@@ -24,8 +24,19 @@ class AdminEvents extends Controller
                 //     array_push($events,$data[$i]['userEvents']);
                 // }
 
-                $events = Event::all();
-        return view('backend.events',['events' => $events]);
+                $events =  Event::join('users','users.id','=','events.userId')->get([
+                    'events.*',
+                    'users.email'
+                ]);
+                foreach($events as $key => $event){
+                    if($event->event_end_date < date('Y-m-d')){
+                        // dd("Yes");
+                        Event::where('id',$event->id)->update([
+                            'event_status'=>'closed'
+                        ]);
+                    }
+                }
+                return view('backend.events',['events' => $events]);
     }
 
 

@@ -7,7 +7,7 @@
 
 
 
-    <div class="advertise__hero advert__design__hero" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://img.freepik.com/free-psd/book-mockup-with-minimal-design_23-2149350413.jpg?w=1380&t=st=1657949483~exp=1657950083~hmac=ecef931e2fce27f7180be0c2643c2e360d95fc08f33bc0f7e0421adcc31f1316') !important;" data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
             Green Guide Advert Design
         </h1>
@@ -25,7 +25,7 @@
 
 
 
-    <div class="business__about__section d-flex justify-content-center align-items-center bg-light">
+    <div class="business__about__section d-flex justify-content-center align-items-center bg-white">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-12" data-animate="fadeInLeft" data-animate-delay="700">
@@ -71,7 +71,14 @@
 
 
 
-    <div class="container mt-5">
+   
+
+
+
+
+
+    <section style="background:#ededed;padding:2rem 0;">
+     <div class="container mt-4 mb-4">
         <div class="text-center">
             <h2>Advert Prices</h2>
             <p class="lead">
@@ -84,12 +91,6 @@
 
 
 
-
-
-
-
-
-    <section class="background-grey">
         <div class="container">
             <div class="text-center">
 
@@ -99,8 +100,8 @@
                 </p>
 
             </div>
-            <table class="table">
-                <thead>
+            <table class="table table-bordered table-hover table-table-striped">
+                <thead class="bg-dark text-white">
                     <tr>
                         <th scope="col">Product Type</th>
                         <th scope="col">Price</th>
@@ -127,7 +128,7 @@
 
 
 
-    <div class="upcomming__issues">
+    <div class="upcomming__issues bg-white">
         <div class="container">
             <div class="row p-0 m-0 d-flex justify-content-between">
                 <div class="col-lg-5 col-md-12 p-0 m-0 animate__animated animate__fadeInLeft visible"
@@ -179,7 +180,7 @@
 
 
     <!-- Page Menu -->
-    <section id="book__addvertise">
+    <section id="book__addvertise"     style="background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0)), url('https://img.freepik.com/free-vector/green-fluid-background-frame_53876-114482.jpg?w=1380&t=st=1657950361~exp=1657950961~hmac=15fa091901ad81b23d9bc3eaad7ca0c2fd69b2c11338295a47876fe658f83c33'); background-repeat: no-repeat;background-size:cover;background-attachment:fixed;color:#fff !important;">
         <div class="container">
             <h1 class="text-center" data-animate="fadeInUp" data-animate-delay="600">BOOK NOW</h1>
             @if (session()->has('success'))
@@ -212,13 +213,13 @@
                     <label for="example-text-input" class="col-lg-1 col-form-label">Company Name</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="text" name="company_name"
-                            value="{{ $userDetails->company_name }}" />
+                            value="{{ isset($userDetails) ? $userDetails->company_name : '' }}" />
                     </div>
 
                     <label for="example-text-input" class="col-lg-1 col-form-label">Contact Name</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="text" name="contact_name"
-                            value="{{ auth()->user()->name }}" />
+                            value="{{ auth()->check() ? auth()->user()->name : '' }}" />
                     </div>
 
                 </div>
@@ -227,13 +228,13 @@
                     <label for="example-text-input" class="col-lg-1 col-form-label">Company Number</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="text" name="company_reg_no"
-                            value="{{ $userDetails->company_reg_no }}" />
+                            value="{{ isset($userDetails) ? $userDetails->company_reg_no : '' }}" />
                     </div>
 
                     <label for="example-text-input" class="col-lg-1 col-form-label">Contact Number</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="text" name="contact_phone"
-                            value="{{ $userDetails->phone }}" />
+                            value="{{ isset($userDetails) ? $userDetails->phone : '' }}" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -241,19 +242,19 @@
                     <label for="example-text-input" class="col-lg-1 col-form-label">Company Email</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="email" name="company_email"
-                            value="{{ auth()->user()->email }}" />
+                            value="{{ auth()->check() ? auth()->user()->email : '' }}" />
                     </div>
 
                     <label for="example-text-input" class="col-lg-1 col-form-label">Contact Email</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="email" name="contact_email"
-                            value="{{ auth()->user()->email }}" />
+                            value="{{ auth()->check() ? auth()->user()->email : '' }}" />
                     </div>
 
                     <label for="example-text-input" class="col-lg-1 col-form-label">Charity Number</label>
                     <div class="col-lg-5">
                         <input class="form-control" type="text" name="charity_number"
-                            value="{{ $userDetails->charity_number }}" />
+                            value="{{ isset($userDetails) ? $userDetails->charity_number : '' }}" />
                     </div>
                 </div>
                 <br>
@@ -370,6 +371,35 @@
                             </div>
                             <!-- end: Total -->
 
+
+
+
+
+                            @if (!auth()->check())     
+                            <br>
+                            <div class="form-group row d-flex align-items-center">
+                                <label for="account_toggle" class="col-lg-12 col-form-label ">Do You Want To Create Account ? </label>
+                                <div class="col-lg-12">
+                                    <input type="checkbox" name="check_account" value="0" id="account_toggle" style="width:20px;height: 20px;" />
+                                </div>
+                            </div>
+                            <div class="form-group row" id="passwords__container">
+                                <label for="example-text-input" class="col-lg-12 col-form-label ">Password</label>
+                                <div class="col-lg-12">
+                                    <input class="form-control" type="password" name="password"  />
+                                    @if ($errors->has('password'))
+                                        <div class="text-danger">{{ $errors->first('password') }}</div>
+                                    @endif
+                                </div>
+                                <label for="example-text-input" class="col-lg-12 col-form-label ">Confirm Password</label>
+                                <div class="col-lg-12">
+                                    <input class="form-control" type="password" name="confirm_password" />
+                                    @if ($errors->has('confirm_password'))
+                                        <div class="text-danger">{{ $errors->first('confirm_password') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            @endif
                             <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button>
                         </div>
                     </div>
@@ -409,6 +439,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
 
     <script>
+
+
+
+$("#passwords__container").css({
+            "display": "none"
+        });
+        $("#account_toggle").on('change', function() {
+            if (this.checked) {
+                $("#passwords__container").css({
+                    "display": "flex"
+                });
+                $("#account_toggle").val("1")
+            } else {
+                $("#passwords__container").css({
+                    "display": "none"
+                });
+                $("#account_toggle").val("0")
+            }
+        });
+
+
+
+
+
+
+
+
         const btn_add = document.getElementById("btn-add-size-quantity");
         const size_quantity = document.getElementById("size-quantity-container");
 
@@ -468,17 +525,19 @@
             event.preventDefault();
         
             let totalPrice = 0;
+        
             let tot_qty = 0;
-
+            const quantity_array = []
             quantity.forEach((q) => {
                 tot_qty += +q.value;
+                quantity_array.push(q.value);
             }) 
 
             let arr = [];
             advertPrice.forEach((price) => {
                 arr.push(price.value);
             })
-            console.log(arr)
+            console.log(quantity_array)
 
             for (let i = 0; i < arr.length; i++) {
                 $.ajax({
@@ -488,7 +547,10 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        totalPrice+= parseInt(response[0][0].advert_price);
+                        console.log(response[0][0])
+                        let price = quantity_array[i]*parseInt(response[0][0].advert_price)
+                        totalPrice+= price
+
                     },
                     error: function(error) {
                         console.log(error);
@@ -501,8 +563,8 @@
                 order_details_box.style.display = 'block';
                 $("#totQty").html(tot_qty);
                 $("#amountTot").html(totalPrice+"£");
-                console.log(tot_qty);
-            console.log(totalPrice);
+            //     console.log(tot_qty);
+            // console.log(totalPrice);
             }, 2000);
             $("#submit_order").on("click", function() {
                 adver_form.submit();

@@ -3,7 +3,7 @@
     
 
 
-    <div class="advertise__hero advert__design__hero" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero"  style="background-image:linear-gradient(to right, rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/smile-face-green-ball-with-golden-five-stars-customer-client-survey-satisfaction-after-use-product-service-concept-by-3d-render_616485-67.jpg?w=1380&t=st=1657953870~exp=1657954470~hmac=7263956d9f4a8e676690d465a1fdeca14165e7de23bd2bebbaa09eec46853e98') !important;" data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
             Green Guide Feedback
         </h1>
@@ -18,7 +18,7 @@
 
 
 
-    <div class="container my-5">
+    <div class="container my-5 py-5">
         @if (session()->has('success'))
                                     <div class="col-lg-12">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -117,10 +117,11 @@
 
 
 
+<div style="background-color: rgba(1, 90, 1,.8)" class="py-5">
 
 <div class="container">
     <div class="col-12 mt-4">
-        <div class="opt_section" style="background-color: rgb(1, 90, 1)">
+        <div class="opt_section">
             <div class="row p-4 d-flex align-items-center" >
                 <div class="col-lg-2 col-md-12">
                   <h4 class="text-white">OPT OUT</h4>
@@ -158,7 +159,7 @@
               </div>
             </div>
 
-            <div class="row ps-5 p-4 pt-0 text-white">
+            <div class="row ps-5 p-4 pt-3 text-white">
               <h4>Not happy about something?</h4>
               <p>Notify us of your
                 complaint and our
@@ -169,6 +170,7 @@
             </div>
         </div>
      </div>
+</div>
 </div>
 
 

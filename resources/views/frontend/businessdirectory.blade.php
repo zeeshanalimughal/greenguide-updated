@@ -420,10 +420,10 @@
 
 
 
-    <div class="container-fluid d-flex justify-content-center flex-column my-5">
+    <div class=" my-5 w-100 py-5" style="background:#ededed;padding:3rem 0;">
         <div class="row d-flex justify-content-center">
             <div class="content col-lg-12 d-flex justify-content-center">
-                <div class="d-flex justify-content-center bg-light">
+                <div class="d-flex justify-content-center">
                     <ul class="d-flex justify-content-center flex-wrap" style="list-style-type: none;">
                         <li>
                             <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""

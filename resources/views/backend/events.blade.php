@@ -64,10 +64,10 @@
                                     <td>{{$j}}</td>
                                         <td>{{ $events[$i]['event_title'] }}</td>
                                         <td>{{ $events[$i]['event_category'] }}</td>
-                                        <td>{{ $events[$i]['event_start_date'] }}</td>
-                                        <td>{{ $events[$i]['event_end_date'] }}</td>
+                                        <td>{{ $events[$i]['event_start_date'] }} ({{Carbon::parse($events[$i]['event_start_date'])->diffForHumans()}})</td>
+                                        <td>{{ $events[$i]['event_end_date'] }}  ({{Carbon::parse($events[$i]['event_end_date'])->diffForHumans()}})</td>
                                         <td>{{ $events[$i]['event_location'] }}</td>
-                                        <td>{{ $events[$i]['userId'] === 0 ? 'By Admin' : 'By User' }}</td>
+                                        <td>{{ $events[$i]['userId'] === 0 ? 'By Admin' : $events[$i]['email']}}</td>
 
                                         <td>
                                             <a target="_blank" href="{{ url('/admins/events') }}/{{ $events[$i]['id'] }}">
@@ -87,6 +87,9 @@
                                                         data-bs-toggle="tooltip" title=""
                                                         data-bs-original-title="status live">Deactivate</button>
                                                 </a>
+                                                @elseif ($events[$i]['event_status'] == 'closed')
+                                                    <button class="btn btn-dark" disabled>Event Closed</button>
+                                              
                                             @else
                                                 <a href="{{ url('/admins/events') }}/{{ $events[$i]['id'] }}/accept">
                                                     <button class="btn btn-secondary" data-bs-placement="top"
@@ -95,7 +98,7 @@
                                                 </a>
                                             @endif
 
-                                            @if ($events[$i]['event_status'] !== 'rejected')
+                                            @if ($events[$i]['event_status'] !== 'rejected' && $events[$i]['event_status'] !== 'closed')
                                                 <a href="{{ url('/admins/events') }}/{{ $events[$i]['id'] }}/reject">
                                                     <button class="btn btn-primary" data-bs-placement="top"
                                                         data-bs-toggle="tooltip" title=""

@@ -25,7 +25,7 @@
                 <div class="sidebar sidebar-modern sticky-sidebar col-lg-3">
                     <ul class="account-nav">
                         <li class="border-bottom"><a href="/account" class="active">Profile</a></li>
-                        <li class="border-bottom"><a href="/businessdirectory/all-directories">Business Directory</a></li>
+                        <li class="border-bottom"><a href="/businessdirectory/all-directories">Business Listing</a></li>
                         <li class="border-bottom"><a href="/events/all-events" class="active">Local Events</a></li>
                         <li class="border-bottom"><a href="/account/designbooking">Design</a></li>
                         <li class="border-bottom"><a href="/account/advertisebooking">Advertise</a></li>

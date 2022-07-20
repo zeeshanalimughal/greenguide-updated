@@ -118,6 +118,10 @@
                                                     class="{{ Request::url() === route('advertise') || Request::url() === route('advert.advert-book') ? 'active' : '' }}">
                                                     <a href="/advert-design-book/">Advert Design</a>
                                                 </li>
+                                                <li
+                                                    class="{{ Request::url() === route('advertise-in-magazine') ? 'active' : '' }}">
+                                                    <a href="/advertise-in-magazine">Advertise in magazine</a>
+                                                </li>
 
                                                 <li
                                                     class="{{ Request::url() === route('advertise') ? 'active' : '' }}">

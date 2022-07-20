@@ -27,7 +27,6 @@ class UserAccount extends Controller
             'company_name' => 'required',
             'company_reg_no' => 'required',
             'phone' => 'required',
-            'charity_number' => 'required',
             'billing_address' => 'required',
         ]);
 

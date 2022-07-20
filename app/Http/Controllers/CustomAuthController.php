@@ -47,8 +47,7 @@ class CustomAuthController extends Controller
             'confirm_password' => 'required|same:password',
             'company_name' => 'required',
             'company_reg_no' => 'required',
-            'phone' => 'required',
-            'charity_no' => 'required',
+            'phone' => 'required'
         ]);
         $data = $request->all();
         $check = $this->create($data);

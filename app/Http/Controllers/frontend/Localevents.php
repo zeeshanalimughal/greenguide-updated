@@ -16,7 +16,17 @@ class Localevents extends Controller
 
 {
     function index(){
-        $ev = Event::where('event_status','live')->get();
+        $ev = Event::where('event_status','live')->join('users','users.id','=','events.userId')->get([
+            'events.*',
+            'users.email'
+        ]);
+        foreach($ev as $key => $event){
+            if($event->event_end_date < date('Y-m-d')){
+                Event::where('id',$event->id)->update([
+                    'event_status'=>'closed'
+                ]);
+            }
+        }
         return view('frontend.localevents',['events'=>$ev]);
     }
 

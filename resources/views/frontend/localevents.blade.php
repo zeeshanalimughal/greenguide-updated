@@ -115,11 +115,6 @@
 
 
 
-
-
-
-
-
                 @if (!app('request')->query('q') && app('request')->query('start') && app('request')->query('end') && app('request')->query('category'))
                     @foreach ($events as $event)
                         @if ($event->event_start_date >= app('request')->query('start') && $event->event_start_date <= app('request')->query('end') && $event->event_category === app('request')->query('category'))
@@ -433,7 +428,7 @@
 
 
 
-    <div class="register__business_Section m-t-100 m-b-100">
+    <div class="register__business_Section m-t-100 m-b-100"  style="background:#ededed;padding:2rem 0;">
         <div class="container">
             <div class="row">
 

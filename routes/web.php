@@ -18,6 +18,20 @@ use App\Http\Controllers\frontend\UserAccount;
 use App\Http\Controllers\frontend\ComunityGrowth;
 use App\Http\Controllers\frontend\Contact;
 use App\Http\Controllers\frontend\ResidentsCorner;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('cache-clear', function () {
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('optimize');
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    dd('Cache Cleared');
+});
+
+
 
 
 
@@ -31,7 +45,7 @@ Route::view('/privacy-policy', 'frontend.policy-pages.privacy-policy');
 Route::view('/website-terms-of-use', 'frontend.policy-pages.website-terms-of-use');
 
 
-Route::view('/advertise-in-magazine', 'frontend.advertise-in-magazine');
+Route::view('/advertise-in-magazine', 'frontend.advertise-in-magazine')->name('advertise-in-magazine');
 
 Route::get('/download-media-pack', [HomePage::class, 'downloadMediaPack']);
 
@@ -85,24 +99,44 @@ Route::get('/localevents', [Localevents::class, 'index'])->name('localevents');
 Route::get('/localevents/{id}', [Localevents::class, 'eventDetails'])->name('eventDetails');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::prefix('/magzine-design-book/')->name('design.')->group(function () {
+    Route::get('/', [Advertise::class, 'advert_design_book'])->name('advert-design-book');
+    Route::post('/submit', [Advertise::class, 'submitDesign'])->name('submit-design');
+});
+
+
+Route::prefix('/advert-design-book/')->name('advert.')->group(function () {
+    Route::get('/', [Advertise::class, 'advert_book'])->name('advert-book');
+    Route::post('/submit', [Advertise::class, 'submitAdvertDesign'])->name('submit-advert');
+});
+
+Route::get('/get-advert-price-total/{id}', [Advertise::class, 'getAdvertPriceTotal']);
+
+
 Route::middleware(['user-auth'])->group(function () {
 
     Route::get('/account', [UserAccount::class, 'index'])->name('account');
     Route::post('/account/update', [UserAccount::class, 'update'])->name('account.update');
 
 
-    Route::prefix('/magzine-design-book/')->name('design.')->group(function () {
-        Route::get('/', [Advertise::class, 'advert_design_book'])->name('advert-design-book');
-        Route::post('/submit', [Advertise::class, 'submitDesign'])->name('submit-design');
-    });
 
 
-    Route::prefix('/advert-design-book/')->name('advert.')->group(function () {
-        Route::get('/', [Advertise::class, 'advert_book'])->name('advert-book');
-        Route::post('/submit', [Advertise::class, 'submitAdvertDesign'])->name('submit-advert');
-    });
-
-    Route::get('/get-advert-price-total/{id}', [Advertise::class, 'getAdvertPriceTotal']);
 
 
 

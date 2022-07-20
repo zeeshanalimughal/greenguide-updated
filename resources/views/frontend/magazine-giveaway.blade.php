@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('main-section')
-    <div class="advertise__hero advert__design__hero" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero"  style="background-image:linear-gradient(to right, rgba(0,0,0,0.6),rgba(0,0,0,0.4)), url('https://img.freepik.com/free-photo/gift-box-with-flowers-green-background_185193-72157.jpg?w=1380&t=st=1657952559~exp=1657953159~hmac=935259c186eaafd992df3edf73507939bbab05be3b61197b6c2186eaa2ec5817') !important;"  data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
             Green Guide Giveaway
         </h1>
@@ -17,9 +17,13 @@
 
 
 
-    <section id="page-title">
-        <div class="container">
-            <div class="page-title" style="text-align:left;">
+ 
+
+
+
+    <div class="container  pt-5 pb-3 my-5">
+
+     <div class="page-title  my-3" style="text-align:left;">
                 To enter your answer to our magazine giveway online fill out the below form. A prize will be drawn at random
                 from the successful entries and contacted by email or phone. <br>Alternatively you can write to us, Unit 1
                 Georgiou Business Park, Second Avenue, N18 2PG, entries must be recieved by midnight on the stated date.
@@ -27,13 +31,8 @@
                 submission.
 
             </div>
-        </div>
-    </section>
 
 
-
-
-    <div class="container">
         @if (session()->has('success'))
             <div class="col-lg-12">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -124,49 +123,61 @@
 
 
 
+<div style="background:#ededed;padding:2rem 0;width:100%;">
+    <div class="container  py-5" >
+        <div class="row">
 
-    <div class="container my-5">
-        <h1 class="mt-4 text-center">The latest
-            issue giveaway is
-            proudly <br>sponsored
-            by:</h1>
-        <h1 style="text-align: center; fonts-size:3.5rem;color:green;">John Lewis</h1>
-        <p class="text-center">The Summer 2022 issue prize is proudly donated by John Lewis </p>
+            <div class="col-lg-7 col-md-12 px-3">
+                <h2 class="text-left">The latest
+                        issue giveaway is
+                        proudly sponsored
+                        by:</h2>
+                    <h1 style="text-align: left; fonts-size:3.5rem;color:green;">John Lewis</h1>
+                    <p class="text-left">The Summer 2022 issue prize is proudly donated by John Lewis </p>
 
-        <div class="row d-flex justify-content-center my-5">
-            <div class="col-lg-5">
-                <div class="product-image">
-                    <!-- Carousel slider -->
-                    <div class="carousel dots-inside dots-dark arrows-visible" data-items="1" data-loop="true"
-                        data-autoplay="true" data-animate-in="fadeIn" data-animate-out="fadeOut" data-autoplay="2500"
-                        data-lightbox="gallery">
-                        <a href="{{ asset('front/img/hamper.jpg') }}" data-lightbox="image"
-                            title="Shop product image!"><img alt="Shop product image!"
-                                src="{{ asset('front/img/hamper.jpg') }}">
-                        </a>
-                        <a href="{{ asset('front/img/hamper2.jpg') }}" data-lightbox="image"
-                            title="Shop product image!"><img alt="Shop product image!"
-                                src="{{ asset('front/img/hamper2.jpg') }}">
-                        </a>
+                    <div class="row d-flex my-5">
+                        <div class="col-lg-5">
+                            <div class="product-image">
+                                <!-- Carousel slider -->
+                                <div class="carousel dots-inside dots-dark arrows-visible" data-items="1" data-loop="true"
+                                    data-autoplay="true" data-animate-in="fadeIn" data-animate-out="fadeOut" data-autoplay="2500"
+                                    data-lightbox="gallery">
+                                    <a href="{{ asset('front/img/hamper.jpg') }}" data-lightbox="image"
+                                        title="Shop product image!"><img alt="Shop product image!"
+                                            src="{{ asset('front/img/hamper.jpg') }}">
+                                    </a>
+                                    <a href="{{ asset('front/img/hamper2.jpg') }}" data-lightbox="image"
+                                        title="Shop product image!"><img alt="Shop product image!"
+                                            src="{{ asset('front/img/hamper2.jpg') }}">
+                                    </a>
+                                </div>
+                                <!-- Carousel slider -->
+                            </div>
+                        </div>
                     </div>
-                    <!-- Carousel slider -->
-                </div>
+
             </div>
+            <div class="col-lg-5 col-md-12 px-3">
+            
+                <h2>The hamper contains;</h2>
+                <ul>
+                    <li>Orange Grove Merlot Spain, 75cl, 13.5%</li>
+                    <li>Story White Grape & Elderflower Sparkling Fruit Pressé, 75cl</li>
+                    <li>Teoni’s Chocolate Oat Crumble Biscuits, 200g</li>
+                    <li>Mr Filbert’s Kalamata Olives, 65g</li>
+                    <li>Cottage Delight Orange Marmalade, 227g plus Wooden Spoon</li>
+                    <li>Cottage Delight Sweet Apple Chutney 210gm plus Wooden Spoon</li>
+                    <li>The Dormen Dry Roasted Peanuts, 100g</li>
+                    <li>Linden Lady Handmade Vanilla Fudge, 115g</li>
+                    <li>Grate Britain All British Cheddar Biscuits, 100g</li>
+                    <li>The Original Cake Company 4” Round Fruit</li>
+                </ul>
+            </div>
+      
+    
         </div>
-        <h2>The hamper contains;</h2>
-        <ul>
-            <li>Orange Grove Merlot Spain, 75cl, 13.5%</li>
-            <li>Story White Grape & Elderflower Sparkling Fruit Pressé, 75cl</li>
-            <li>Teoni’s Chocolate Oat Crumble Biscuits, 200g</li>
-            <li>Mr Filbert’s Kalamata Olives, 65g</li>
-            <li>Cottage Delight Orange Marmalade, 227g plus Wooden Spoon</li>
-            <li>Cottage Delight Sweet Apple Chutney 210gm plus Wooden Spoon</li>
-            <li>The Dormen Dry Roasted Peanuts, 100g</li>
-            <li>Linden Lady Handmade Vanilla Fudge, 115g</li>
-            <li>Grate Britain All British Cheddar Biscuits, 100g</li>
-            <li>The Original Cake Company 4” Round Fruit</li>
-        </ul>
     </div>
+</div>
 
 
 

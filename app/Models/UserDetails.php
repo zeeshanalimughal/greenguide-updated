@@ -14,5 +14,5 @@ class UserDetails extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    protected  $fillable = ['userId','company_name','company_reg_no','phone','charity_number',';billing_Address'];
+    protected  $fillable = ['userId','company_name','company_reg_no','phone','charity_number','billing_Address'];
 }

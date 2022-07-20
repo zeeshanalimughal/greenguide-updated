@@ -4,7 +4,7 @@
 
 
 
-    <div class="advertise__hero advert__design__hero" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://img.freepik.com/free-photo/closeup-shot-gaming-table-one-las-vegas-casinos_181624-44655.jpg?w=1380&t=st=1657951857~exp=1657952457~hmac=856e43f8399c736c2f18269ed1e96bb9ff798a426853d2cd275914bf61f3d0a5') !important;"  data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
             Magazine Puzzle Competitions
         </h1>
@@ -26,9 +26,13 @@
 
     
 
-    <section id="page-title">
-        <div class="container">
-            <div class="page-title" style="text-align:left;">
+
+
+
+
+    <div class="container pt-5 pb-3">
+    
+            <div class="page-title my-3" style="text-align:left;">
                 To enter your answer to our magazine giveway online fill out the below form. A prize will be drawn at random
                 from the successful entries and contacted by email or phone. <br>Alternatively you can write to us, Unit 1
                 Georgiou Business Park, Second Avenue, N18 2PG, entries must be recieved by midnight on the stated date.
@@ -36,14 +40,7 @@
                 submission.
 
             </div>
-        </div>
-    </section>
 
-
-
-
-
-    <div class="container">
         @if (session()->has('success'))
             <div class="col-lg-12">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -138,8 +135,9 @@
 
 
 
+<div style="background:#ededed;padding:1rem 0;margin:4rem 0;">
 
-    <div class="container mt-5">
+    <div class="container mt-5" style="background:#ededed;padding:3rem 0;">
         <h2 class="text-center" style="font-weight: 700">Play the magazine puzzles digitally</h2>
         <h2 class="text-center">Online Puzzles</h2>
         <div class="row col-no-margin equalize" data-equalize-item=".text-box">
@@ -197,6 +195,8 @@
             <!--End: Box 2-->
         </div>
     </div>
+
+</div>
 
 
 

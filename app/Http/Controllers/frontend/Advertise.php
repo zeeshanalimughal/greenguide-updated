@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class Advertise extends Controller
 {
@@ -37,21 +38,70 @@ class Advertise extends Controller
 
     function advert_design_book()
     {
-        $userDetails = UserDetails::where('userId', Auth::user()->id)
-            ->first();
-        return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all()]);
+        if (Auth::check()) {
+
+            $userDetails = UserDetails::where('userId', Auth::user()->id)
+                ->first();
+            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all()]);
+        } else {
+            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all()]);
+        }
     }
+
+
+
+
+    public function createUserDetails(array $data, $id)
+    {
+        return UserDetails::create([
+            'userId' => $id,
+            'company_name' => $data['company_name'],
+            'company_reg_no' => $data['company_reg_no'],
+            'phone' => $data['contact_phone'],
+            'charity_number' => $data['charity_number'],
+        ]);
+    }
+
+
+
     public function submitDesign(Request $request)
     {
 
         $request->validate([
-            'advertSize' => 'required', 'upcomingIssue' => 'required', 'brief_desc' => 'required', 'content' => 'required', 'logo' => 'required', 'images' => 'required', 'website' => 'required', 'fb' => 'required', 'ins' => 'required', 'tw' => 'required', 'yt' => 'required', 'monday_open' => 'required', 'monday_close' => 'required', 'tuesday_open' => 'required', 'tuesday_close' => 'required', 'wednesday_open' => 'required', 'wednesday_close' => 'required', 'thursday_open' => 'required', 'thursday_close' => 'required', 'friday_open' => 'required', 'friday_close' => 'required', 'saturday_open' => 'required', 'saturday_close' => 'required', 'sunday_open' => 'required', 'sunday_close' => 'required', 'holiday_open' => 'required', 'holiday_close' => 'required',
+            'advertSize' => 'required', 'upcomingIssue' => 'required', 'brief_desc' => 'required', 'content' => 'required', 'logo' => 'required', 'images' => 'required', 'website' => 'required', 'fb' => 'required', 'ins' => 'required', 'tw' => 'required', 'yt' => 'required', 'monday_open' => 'required', 'monday_close' => 'required', 'tuesday_open' => 'required', 'tuesday_close' => 'required', 'wednesday_open' => 'required', 'wednesday_close' => 'required', 'thursday_open' => 'required', 'thursday_close' => 'required', 'friday_open' => 'required', 'friday_close' => 'required', 'saturday_open' => 'required', 'saturday_close' => 'required', 'sunday_open' => 'required', 'sunday_close' => 'required', 'holiday_open' => 'required', 'holiday_close' => 'required', 'contact_phone' => 'required', 'contact_name' => 'required', 'contact_email' => 'required'
         ]);
+
+        // dd(($request->input('check_account')));
+        $userAccountId = 0;
+        if (!Auth::check()) {
+            if ($request->input('check_account') !== null && $request->input('check_account') === "1") {
+                $user =   User::create([
+                    'name' => $request->input('contact_name'),
+                    'email' => $request->input('contact_email'),
+                    'password' => Hash::make($request->input('password'))
+                ]);
+                if ($user) {
+                    $userAccountId = $user->id;
+                    $this->createUserDetails($request->all(), $user->id);
+                }
+            } else {
+                $user =   User::create([
+                    'name' => $request->input('contact_name'),
+                    'email' => $request->input('contact_email'),
+                    'password' => ''
+                ]);
+                if ($user) {
+                    $userAccountId = $user->id;
+                    $this->createUserDetails($request->all(), $user->id);
+                }
+            }
+        }
+
 
         $designBook = new DesignBook();
 
 
-        $designBook->userId = Auth::user()->id;
+        $designBook->userId = Auth::check() ? Auth::user()->id : $userAccountId;
         $designBook->advertSize = $request->input('advertSize');
         $designBook->upcomingIssue = $request->input('upcomingIssue');
 
@@ -81,6 +131,12 @@ class Advertise extends Controller
         $designBook->ins = $request->input('ins');
         $designBook->tw = $request->input('tw');
         $designBook->yt = $request->input('yt');
+
+
+
+
+
+
 
 
         if ($request->hasFile('logo')) {
@@ -275,10 +331,18 @@ class Advertise extends Controller
 
     public function advert_book()
     {
-        $userDetails = UserDetails::where('userId', Auth::user()->id)
-            ->first();
-        return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all()]);
+        if (Auth::check()) {
+            $userDetails = UserDetails::where('userId', Auth::user()->id)
+                ->first();
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all()]);
+        } else {
+
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all()]);
+        }
     }
+
+
+
 
     public function submitAdvertDesign(Request $request)
     {
@@ -288,10 +352,40 @@ class Advertise extends Controller
             'borough' => 'required',
             'advertSize' => 'required',
             'quantity' => 'required',
+            'contact_phone' => 'required',
+            'contact_name' => 'required',
+            'contact_email' => 'required'
         ]);
 
+        $userAccountId = 0;
+        if (!Auth::check()) {
+            if ($request->input('check_account') !== null && $request->input('check_account') === "1") {
+                $user =   User::create([
+                    'name' => $request->input('contact_name'),
+                    'email' => $request->input('contact_email'),
+                    'password' => Hash::make($request->input('password'))
+                ]);
+                if ($user) {
+                    $userAccountId = $user->id;
+                    $this->createUserDetails($request->all(), $user->id);
+                }
+            } else {
+                $user =   User::create([
+                    'name' => $request->input('contact_name'),
+                    'email' => $request->input('contact_email'),
+                    'password' => ''
+                ]);
+                if ($user) {
+                    $userAccountId = $user->id;
+                    $this->createUserDetails($request->all(), $user->id);
+                }
+            }
+        }
+
+
+
         $advert = AdvertDesign::create([
-            'userId' => Auth::user()->id,
+            'userId' => Auth::check() ? Auth::user()->id : $userAccountId,
             'upcomingIssue' => $request->upcomingIssue,
             'borough' => $request->borough,
             'advertSize' => $request->advertSize,

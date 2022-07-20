@@ -48,7 +48,8 @@
         <div class="container d-flex justify-content-center">
             <div class="row">
                 <div class="col-lg-6 col-md-12 ">
-                    <h5 class="mb-4 p-0 ">Track the offset with trees planted with  Forest Nation.</h5>
+                      <h3 class="mb-2 p-0 text-center">Track the offset with trees planted with  Forest Nation.</h3>
+
                     <div class="green__guide__box bg-dark text-white">
                         <div class="logo"><img  style="width:120px" src="{{asset('front/img/green-guide-logo.png')}}" alt=""></div>
                         <h2>Green Guide</h2>
@@ -80,7 +81,7 @@
                 </div>
      
                 <div class="col-lg-6 col-md-12 ">
-                    <h3 class="mb-2 p-0">Help fund our reforestation project</h3>
+                    <h3 class="mb-2 p-0 text-center">Help fund our reforestation project</h3>
                     <div class="green__guide__box bg-dark text-white">
                         <div class="logo"><img  style="width:120px" src="{{asset('front/img/green-guide-logo.png')}}" alt=""></div>
                         <h2 class="text-center">Green Guide <br>Forest</h2>
