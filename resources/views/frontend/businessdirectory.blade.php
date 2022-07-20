@@ -17,15 +17,35 @@
         <div class="container">
             <div class="col-lg-6 col-md-12">
                 <h1 data-animate="fadeInUp" data-animate-delay="1000">{{ $businessdirectory[0]->bd_title }}</h1>
-                <form action="" class="p-0 m-0 business__hero__form">
+                <form action="{{ route('directorySearch') }}" method="post" class="p-0 m-0 business__hero__form">
+                    @csrf
                     <div class="input" data-animate="fadeInUp" data-animate-delay="1200">
                         <i class="fas fa-city"></i>
-                        <input type="text" placeholder="what are you looking for">
+                        <input type="text" name="keyword" placeholder="Business Names">
                     </div>
                     <div class="input" data-animate="fadeInUp" data-animate-delay="1200">
                         <i class="fas fa-location-arrow"></i>
-                        <select>
-                            <option value="United Kingdom">United Kingdom</option>
+                        <select class="from-select" name="category">
+                            <option value="" selected="" disabled="">Select a Category of Business</option>
+                            <option value="Accomodation">Accomodation</option>
+                            <option value="Beauty">Beauty</option>
+                            <option value="Community, Organisations Clubs">Community, Organisations Clubs
+                            </option>
+                            <option value="Council Services">Council Services</option>
+                            <option value="Education">Education</option>
+                            <option value="Employment Training">Employment Training</option>
+                            <option value="Entertainment Events">Entertainment Events</option>
+                            <option value="Estate Agents">Estate Agents</option>
+                            <option value="Finance Lega">Finance Lega</option>
+                            <option value="Food">Food</option>
+                            <option value="Health Caring">Health Caring</option>
+                            <option value="Health Wellbeing">Health Wellbeing</option>
+                            <option value="Holidays Tours">Holidays Tours</option>
+                            <option value="Home Repair Constructions">Home Repair Constructions</option>
+                            <option value="IT, Communication Design">IT, Communication Design</option>
+                            <option value="Motors">Motors</option>
+                            <option value="Pets">Pets</option>
+                            <option value="Shopping">Shopping</option>
                         </select>
                     </div>
                     <button class="button__search" data-animate="fadeInUp" data-animate-delay="1300">
@@ -93,64 +113,76 @@
             <h2 class="text-white">Business Categories <span style="font-size:15px;">What's on offer</span></h2>
             <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/education.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/education') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/education.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                EDUCATION
+                            </div>
                         </div>
-                        <div class="title">
-                            EDUCATION
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/food.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/FOOD & DRINK') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/food.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                FOOD & DRINK
+                            </div>
                         </div>
-                        <div class="title">
-                            FOOD & DRINK
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/health.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/HEALTH & BEAUTY') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/health.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                HEALTH & BEAUTY
+                            </div>
                         </div>
-                        <div class="title">
-                            HEALTH & BEAUTY
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/leisure.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/LEISURE') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/leisure.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                LEISURE
+                            </div>
                         </div>
-                        <div class="title">
-                            LEISURE
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/services.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/SERVICES') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/services.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                SERVICES
+                            </div>
                         </div>
-                        <div class="title">
-                            SERVICES
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="icon__box">
-                        <div class="icon">
-                            <img src="{{ asset('/front/img/categories/shopping.png') }}" alt="">
+                    <a href="{{ url('businessdirectory/search/SHOPPING') }}">
+                        <div class="icon__box">
+                            <div class="icon">
+                                <img src="{{ asset('/front/img/categories/shopping.png') }}" alt="">
+                            </div>
+                            <div class="title">
+                                SHOPPING
+                            </div>
                         </div>
-                        <div class="title">
-                            SHOPPING
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -172,14 +204,15 @@
                         <div class="post-item business__post__item">
                             <div class="post-item-wrap business__post__item__wrap ">
                                 <div class="post-image business__post__image">
-                                    <a href="{{ url('/businessdirectory/category/' . strtolower($category->category)) }}">
-                                        <img alt="" src="{{ asset('front/img/1520103821627.jpg') }}"></a>
+                                    <a
+                                        href="{{ url('/businessdirectory/category/' . strtolower($category->category)) }}">
+                                        <img alt="" src="{{ asset('front/img/1520103821627.jpg') }}">
                                 </div>
                                 <div class="post__item__details">
                                     <div class="row">
                                         <div class="col-12">
-                                            <span style="font-size:17px;">{{ $category->category }} <small
-                                                    style="font-size:13px; font-weight: normal;">
+                                            <span style="font-size:17px;">{{ $category->category }}
+                                                <small style="font-size:13px; font-weight: normal;">
                                                     @php
                                                         foreach ($cat as $key => $value) {
                                                             if ($key == $category->category) {
@@ -426,35 +459,38 @@
                 <div class="d-flex justify-content-center">
                     <ul class="d-flex justify-content-center flex-wrap" style="list-style-type: none;">
                         <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo2.png') }}"></a>
+                            < href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
+                                    src="{{ url('front/img/logos/logo2.png') }}">
+                        </li>
+                        <li>
+                            < href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
+                                    src="{{ url('front/img/logos/logo3.png') }}">
                         </li>
                         <li>
                             <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo3.png') }}"></a>
-                        </li>
-                        <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo1.png') }}"></a>
+                                    src="{{ url('front/img/logos/logo1.png') }}">
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
+            </a>
         </div>
     </div>
 
 
+    </a>
 
 
 
 
 
 
-    
 
 
 
-    
+
+
 
 
 
@@ -532,10 +568,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 @endsection

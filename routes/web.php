@@ -33,6 +33,10 @@ Route::get('cache-clear', function () {
 
 
 
+Route::fallback(function() {
+    return view('404');
+});
+
 
 
 
@@ -68,6 +72,14 @@ Route::get('/about', [About::class, 'index'])->name('about');
 Route::get('/businessdirectory', [Businessdirectory::class, 'index'])->name('businessdirectory');
 Route::get('/businessdirectory/category/{category}', [Businessdirectory::class, 'getDirectoriesByCategory']);
 Route::get('/businessdirectory/directory/{id}', [Businessdirectory::class, 'getSingleDirectory']);
+
+
+Route::post('/businessdirectory/search', [Businessdirectory::class, 'getDirectorySearchResults'])->name("directorySearch");
+Route::get('/businessdirectory/search/{category}', [Businessdirectory::class, 'getDirectorySearchResultsByCategory'])->name("directorySearchResultsByCategory");
+
+
+
+
 
 Route::get('/advertise', [Advertise::class, 'index'])->name('advertise');
 
