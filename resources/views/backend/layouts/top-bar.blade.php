@@ -55,13 +55,13 @@
                                             </div>
                                         </div>
                                         <!-- COUNTRY -->
-                                        <div class="d-flex country">
+                                        {{-- <div class="d-flex country">
                                             <a class="nav-link icon text-center" data-bs-target="#country-selector"
                                                 data-bs-toggle="modal">
                                                 <i class="fe fe-globe"></i><span
                                                     class="fs-16 ms-2 d-none d-xl-block">English</span>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                         <!-- SEARCH -->
                                         <div class="dropdown  d-flex">
                                             <a class="nav-link icon theme-layout nav-link-bg layout-setting">
@@ -75,16 +75,7 @@
                                                 <i class="fe fe-minimize fullscreen-button"></i>
                                             </a>
                                         </div>
-                                        <!-- FULL-SCREEN -->
-
-
-                                        {{-- <div class="dropdown d-flex header-settings">
-                                            <a href="javascript:void(0);" class="nav-link icon"
-                                                data-bs-toggle="sidebar-right" data-target=".sidebar-right">
-                                                <i class="fe fe-align-right"></i>
-                                            </a>
-                                        </div>
-                                        <!-- SIDE-MENU --> --}}
+                
                                         <div class="dropdown d-flex profile-1">
                                             <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
                                                 <img src="{{asset('admin/assets/images/users/21.jpg')}}" alt="profile-user"

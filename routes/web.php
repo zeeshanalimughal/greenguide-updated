@@ -33,7 +33,7 @@ Route::get('cache-clear', function () {
 
 
 
-Route::fallback(function() {
+Route::fallback(function () {
     return view('404');
 });
 
@@ -208,8 +208,9 @@ use App\Http\Controllers\backend\Borough;
 use App\Http\Controllers\backend\Feedback;
 use App\Http\Controllers\backend\Giveaway;
 use App\Http\Controllers\backend\MagazineDesign;
+use App\Http\Controllers\backend\MagazineHighlights;
 use App\Http\Controllers\backend\UpcommingIssues;
-
+use App\Http\Controllers\backend\UsersController;
 
 // Admin Auth Routes
 
@@ -246,23 +247,38 @@ Route::prefix('/admins/')->group(function () {
 Route::middleware(['admin-auth'])->group(function () {
     Route::prefix('/admins/')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
+        
+        
+        
+        // Upcommign Issues
+        Route::prefix('/magazine-highlights/')->name('MagazineHighlight.')->group(function () {
+            Route::get('/', [MagazineHighlights::class, 'index'])->name('getMagazineHighlights');
+            Route::post('add', [MagazineHighlights::class, 'addMagazineHighlight'])->name('add');
+            Route::get('{id}/{action}', [MagazineHighlights::class, 'manageMagazineHighlight']);
+            Route::post('update', [MagazineHighlights::class, 'updateMagazineHighlight'])->name('update');
+        });
+    
 
+        Route::prefix('/users/')->name('users.')->group(function () {
+            Route::get('/', [UsersController::class, 'getAllUsers']);
+            Route::get('/{id}/{action}', [UsersController::class, 'manageUsers']);
+        });    
 
 
         Route::prefix('/giveaways/')->name('giveaway.')->group(function () {
             Route::get('/', [Giveaway::class, 'getAllGiveAwayRequests']);
             Route::get('/{id}/{action}', [Giveaway::class, 'manageGiveaways']);
-        });
+        });    
 
         Route::prefix('/feedbacks/')->name('feedback.')->group(function () {
             Route::get('/', [Feedback::class, 'getAllFeedbacks']);
             Route::get('/{id}/{action}', [Feedback::class, 'manageFeedback']);
-        });
+        });    
 
         Route::prefix('/messages/')->group(function () {
             Route::get('/', [AdminController::class, 'getAllMessages']);
             Route::get('{id}', [AdminController::class, 'deleteMessage']);
-        });
+        });    
 
 
         // Advert Book Design
@@ -270,7 +286,7 @@ Route::middleware(['admin-auth'])->group(function () {
         Route::prefix('/advert-design-book/')->name('advert.')->group(function () {
             Route::get('/', [AdvertDesign::class, 'getAllAdvertDesigns']);
             Route::get('{id}/{action}', [AdvertDesign::class, 'manageAdvertDesigns']);
-        });
+        });    
 
 
         // Upcommign Issues

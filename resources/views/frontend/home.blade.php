@@ -5,8 +5,6 @@
 @endpush
 
 @section('main-section')
-
-
     <!-- Particle stars -->
     <section
         style="min-height: 95vh; background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url({{ asset('front/img/herohome.jpg') }}); background-repeat: no-repeat; background-size: cover; background-position:center center; display:flex;align-items: center;">
@@ -216,8 +214,8 @@
                         <div class="post-video" style="height: 100%">
                             <div class="ratio ratio-16x9" style="height: 100%">
                                 {{-- <iframe src="{{ url('/front/video/pexels-workout.mp4') }}" width="560" height="376" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> --}}
-                                <video style="height: 100%" src="{{ url('/front/video/pexels-workout.mp4') }}" loop
-                                    muted autoplay>
+                                <video style="height: 100%" src="{{ url('/front/video/pexels-workout.mp4') }}" loop muted
+                                    autoplay>
                                 </video>
 
                             </div>
@@ -253,7 +251,7 @@
                     </div>
                 </div>
                 <!-- end: P
-                           <!-- Post item-->
+                               <!-- Post item-->
                 <div class="post-item border" style="max-height: 260px;position: relative;">
                     <div class="post-item-wrap">
                         <div class="post-image bordered p-3">
@@ -313,104 +311,24 @@
             <div class="text-medium text-light" data-animate="fadeInDown" data-animate-delay="600">Magazine Highlights
             </div>
             <div class="grid-articles carousel post-carousel m-b-20" data-dots="false">
+
+                @foreach ($highlights as $highlight)             
                 <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
                     <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/1.png') }}"></a>
+                            src="{{asset('uploads/')}}/{{$highlight->image}}"></a>
                     <div class="post-entry-overlay">
                         <div class="post-entry-meta">
                             <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">NEWS</span>
+                                <span class="badge bg-danger">{{$highlight->category_name}}</span>
                             </div>
                             <div class="post-entry-meta-title">
-                                <h2><a href="#">Know Your Borough</a></h2>
+                                <h2><a href="#">{{$highlight->title}}</a></h2>
                             </div>
                         </div>
                     </div>
                 </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/2.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">LIFESTYLE</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">What's on Calendar</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/3.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">LIFESTYLE</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">Puzzles</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/4.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">World</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">Vouchers</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/1.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">World</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">Free directory Listing</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/2.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">World</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">Green Guide</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{ url('front/img/highlights/3.png') }}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">World</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">The most happiest time of the day!</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                @endforeach
+
             </div>
             <div class="text-light text-end">
                 <a class="read-more" href="#">
@@ -454,7 +372,7 @@
 
 
 
-                
+
 
 
 
@@ -623,12 +541,12 @@
 
 
 
-@push('particles')
-     <!-- Partical js base file  -->
- <script src="{{asset('front/plugins/particles/particles.js')}}" type="text/javascript"></script>
- <!--Particles stars-->
- <script src="{{asset('front/plugins/particles/particles-stars.js')}}" type="text/javascript"></script>
-@endpush
+    @push('particles')
+        <!-- Partical js base file  -->
+        <script src="{{ asset('front/plugins/particles/particles.js') }}" type="text/javascript"></script>
+        <!--Particles stars-->
+        <script src="{{ asset('front/plugins/particles/particles-stars.js') }}" type="text/javascript"></script>
+    @endpush
 
 
 

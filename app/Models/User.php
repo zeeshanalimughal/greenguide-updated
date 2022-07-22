@@ -17,10 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $guarded = [];
     protected $fillable = [
         'name',
         'email',
         'password',
+        'status'
     ];
 
     /**
@@ -68,8 +70,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(ReviewsReply::class, 'userId', 'id');
     }
-
-
-
-
 }
