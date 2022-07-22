@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\HomeGallery;
 use App\Models\pages\Home;
 use App\Models\pages\About;
 use App\Models\pages\Advertise;
@@ -12,9 +13,10 @@ use App\Models\pages\CommunityGrowth;
 use App\Models\pages\Contact;
 use App\Models\pages\GreenInitiative;
 use App\Models\pages\Jobs;
+use App\Models\pages\LinksCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Session;
 
 class Pages extends Controller
 {
@@ -668,9 +670,9 @@ class Pages extends Controller
     {
         return view('backend.pages.edit-faq', ['faq' => Faq::find($id)]);
     }
-    
-    
-    
+
+
+
     public function updateFaq(Request $request)
     {
         $request->validate([
@@ -679,13 +681,13 @@ class Pages extends Controller
             'faId' => 'required',
             'role' => 'required',
         ]);
-        
+
         $data  = Faq::find($request->input('faId'))->update([
             'fa_question' => $request->input('fa_question'),
             'fa_answer' => $request->input('fa_answer'),
             'role' => $request->input('role')
         ]);
-        
+
         if ($data) {
             $request->session()->flash('success', 'FAQ Updated Successfully');
             return redirect('admins/pages/faqs');
@@ -694,15 +696,181 @@ class Pages extends Controller
             return redirect('admins/pages/faqs');
         }
     }
-    
-        public function deleteFaq($id)
-        {
-            if (Faq::find($id)->delete()) {
-                session()->flash('success', 'FAQ Deleted Successfully');
-                return redirect('admins/pages/faqs');
-            } else {
-                session()->flash('error', 'Something went wrong');
-                return redirect('admins/pages/faqs');
+
+    public function deleteFaq($id)
+    {
+        if (Faq::find($id)->delete()) {
+            session()->flash('success', 'FAQ Deleted Successfully');
+            return redirect('admins/pages/faqs');
+        } else {
+            session()->flash('error', 'Something went wrong');
+            return redirect('admins/pages/faqs');
+        }
+    }
+
+
+
+
+
+
+
+    public function linksCards()
+    {
+
+        return view('backend.pages.links-card', ['links' => LinksCard::where('id', 1)->get()]);
+    }
+
+    public function updateLinksCards(Request $request)
+    {
+        $request->validate([
+            'title1' => 'required',
+            'details1' => 'required',
+            'link1' => 'required',
+
+            'title2' => 'required',
+            'details2' => 'required',
+            'link2' => 'required',
+
+            'title3' => 'required',
+            'details3' => 'required',
+            'link3' => 'required',
+
+        ]);
+
+
+        $data = LinksCard::find(1);
+
+
+        if ($request->hasFile('image1')) {
+            if ($data->image1 !== null) {
+                $imagePath = public_path('/uploads/' . $data->image1);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $image1 = time() . ' ' . $request->file('image1')->getClientOriginalName();
+            $request->file('image1')->move(public_path() . '/uploads/', $image1);
+            $data->image1 = $image1;
+        }
+
+
+
+        if ($request->hasFile('image2')) {
+            if ($data->image2 !== null) {
+                $imagePath = public_path('/uploads/' . $data->image2);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $image2 = time() . ' ' . $request->file('image2')->getClientOriginalName();
+            $request->file('image2')->move(public_path() . '/uploads/', $image2);
+            $data->image2 = $image2;
+        }
+
+
+
+        if ($request->hasFile('image3')) {
+            if ($data->image3 !== null) {
+                $imagePath = public_path('/uploads/' . $data->image3);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $image3 = time() . ' ' . $request->file('image3')->getClientOriginalName();
+            $request->file('image3')->move(public_path() . '/uploads/', $image3);
+            $data->image3 = $image3;
+        }
+
+
+        $data->title1 = $request->input('title1');
+        $data->title2 = $request->input('title2');
+        $data->title3 = $request->input('title3');
+
+        $data->details1 = $request->input('details1');
+        $data->details2 = $request->input('details2');
+        $data->details3 = $request->input('details3');
+
+        $data->link1 = $request->input('link1');
+        $data->link2 = $request->input('link2');
+        $data->link3 = $request->input('link3');
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/links-cards');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/posts');
+        }
+    }
+
+
+
+
+
+
+
+    public function getAllGalleryData()
+    {
+        return view('backend.gallery', ['galleryData' => HomeGallery::all()]);
+    }
+
+
+    public function addGallery(Request $request)
+    {
+        $gallery = new HomeGallery();
+        $imagesArray = [];
+        if ($request->images) {
+            foreach ($request->images as $key => $image) {
+                $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                $image->move(public_path('uploads'), $imageName);
+                $imagesArray[]['name'] = $imageName;
             }
         }
+        $gallery->images = $imagesArray;
+
+        $gallery->title = $request->input('title');
+        $gallery->desc = $request->input('desc');
+        $gallery->link = $request->input('link');
+
+        $res =  $gallery->save();
+
+        if ($res) {
+            $request->session()->flash('success', 'Gallery Added Successfully');
+            return redirect('/admins/pages/gallery');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/gallery');
+        }
+    }
+
+
+
+
+
+    public function manageGallery($id, $action)
+    {
+        $gallery =  HomeGallery::find($id);
+        if ($action === 'delete') {
+            if ($gallery) {
+                if ($gallery->images) {
+                    foreach ($gallery->images as $image) {
+                        foreach ($image as $img) {
+                            $imgPath = public_path('/uploads/' . $img);
+                            if (File::exists($imgPath)) {
+                                unlink($imgPath);
+                            }
+                        }
+                    }
+                }
+                if ($gallery->delete()) {
+                    Session::flash('success', 'Gallery Item Removed Successfully');
+                    return redirect('/admins/pages/gallery');
+                }
+                Session::flash('error', 'Something went wrong');
+                return redirect('/admins/pages/gallery');
+            }
+        }
+    }
 }

@@ -83,6 +83,12 @@
                          </li>
 
                          <li class="slide">
+                             <a class="side-menu__item" data-bs-toggle="slide" href="/admins/pages/gallery"><i
+                                     class="side-menu__icon mdi fe fe-file"></i><span
+                                     class="side-menu__label">Home Gallery</span></a>
+                         </li>
+
+                         <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/posts"><i
                                      class="side-menu__icon fa fa-file-text-o"></i><span
                                      class="side-menu__label">Posts</span></a>

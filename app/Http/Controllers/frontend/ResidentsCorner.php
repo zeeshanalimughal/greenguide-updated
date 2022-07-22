@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use App\Models\Giveaway;
+use App\Models\pages\LinksCard;
 use App\Models\UpcommingIssues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,11 +19,11 @@ class ResidentsCorner extends Controller
 
     public function getMagazineCompetitionPage()
     {
-        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all()]);
+        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get()]);
     }
     public function getMagazineGiveawayPage()
     {
-        return view('frontend.magazine-giveaway', ['issues' => UpcommingIssues::all()]);
+        return view('frontend.magazine-giveaway', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get()]);
     }
 
     public function submitMagzineGiveaway(Request $request)
@@ -49,7 +50,7 @@ class ResidentsCorner extends Controller
 
     public function getFeedbackPage()
     {
-        return view('frontend.feedback');
+        return view('frontend.feedback',['links'=>LinksCard::where('id',1)->get()]);
     }
 
 

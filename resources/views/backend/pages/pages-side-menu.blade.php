@@ -53,6 +53,11 @@
                     <i class="fe fe-database fs-18 me-2 text-pink p-2"></i>FAQ'S
                 </a>
             </div>
+            <div>
+                <a href="/admins/pages/links-cards" class="list-group-item  d-flex align-items-center px-0">
+                    <i class="fe fe-database fs-18 me-2 text-pink p-2"></i>Links Cards
+                </a>
+            </div>
         </div>
     </div>
 </div>

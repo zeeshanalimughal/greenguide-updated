@@ -8,6 +8,7 @@ use App\Models\AdvertDesign;
 use App\Models\Borough;
 use App\Models\DesignBook;
 use App\Models\pages\Advertise as PagesAdvertise;
+use App\Models\pages\LinksCard;
 use App\Models\UpcommingIssues;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -22,7 +23,7 @@ class Advertise extends Controller
     function index()
     {
         $advertise = PagesAdvertise::where('id', 1)->get();
-        return view('frontend.advertise', ['advertise' => $advertise, 'issues' => UpcommingIssues::all()]);
+        return view('frontend.advertise', ['advertise' => $advertise, 'issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get()]);
     }
     function advertise_home()
     {
@@ -32,9 +33,12 @@ class Advertise extends Controller
 
     function archives()
     {
-        return view('frontend.archives', ['issues' => UpcommingIssues::all()]);
+        return view('frontend.archives', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get()]);
     }
 
+    public function getMagazineInAdvertisePage(){
+        return view('frontend.advertise-in-magazine',['links'=>LinksCard::where('id',1)->get()]);
+    }
 
     function advert_design_book()
     {

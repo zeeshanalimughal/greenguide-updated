@@ -7,6 +7,7 @@ use App\Models\Borough;
 use App\Models\BusinessDirectory as ModelsBusinessDirectory;
 use App\Models\DirectoryReview;
 use App\Models\pages\Businessdirectory as PagesBusinessdirectory;
+use App\Models\pages\LinksCard;
 use App\Models\ReviewsReply;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -39,9 +40,9 @@ class Businessdirectory extends Controller
             $cat['' . $categories[$i]->category]['key'] = $count;
         }
         if ($categories->toArray() > 0) {
-            return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory, 'categories' => $categories, 'cat' => $cat]);
+            return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory, 'categories' => $categories, 'cat' => $cat,'links'=>LinksCard::where('id',1)->get()]);
         }
-        return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory]);
+        return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory,'links'=>LinksCard::where('id',1)->get()]);
     }
 
 

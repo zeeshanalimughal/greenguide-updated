@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\pages\LinksCard;
 use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class Localevents extends Controller
                 ]);
             }
         }
-        return view('frontend.localevents',['events'=>$ev]);
+        return view('frontend.localevents',['events'=>$ev,'links'=>LinksCard::where('id',1)->get()]);
     }
 
 

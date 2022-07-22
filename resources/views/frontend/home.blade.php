@@ -45,6 +45,12 @@
 
 
 
+
+
+
+
+
+
     <!-- Content -->
     <section id="page-content" style="margin-top:50px">
         <div class="container">
@@ -56,221 +62,288 @@
             <!-- end: Page title -->
             <!-- Blog -->
             <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
-                <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap hero__post__back">
-                        <div class="post-image">
-                            <a href="#">
-                                <img style="height: 100%;" alt="" src="{{ asset('front/img/hero/5@2x.png') }}">
-                            </a>
+
+
+
+
+                @foreach ($galleryData as $gallery)
+                    <!-- Post item YouTube-->
+                    <div class="post-item border" style="max-height: 260px;position: relative;">
+                        <div class="post-item-wrap" style="max-height: 260px;">
+                            <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
+                                <div class="post-slider" style="max-height: 260px;">
+                                    <div class="carousel dots-inside arrows-visible arrows-only" data-autoplay="2600"
+                                        data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true"
+                                        data-autoplay="true" data-lightbox="gallery" style="max-height: 260px;">
+
+                                        @if ($gallery->images)
+                                            @foreach ($gallery->images as $image)
+                                                <a href="{{ asset('uploads/') }}/{{ $image['name'] }}"
+                                                    data-lightbox="gallery-image">
+                                                    <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                        src="{{ asset('uploads/') }}/{{ $image['name'] }}">
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    </div>
+
+                                </div>
+                                @if ($gallery->desc)
+                                    <div class="post__back">
+                                        <p>{{ $gallery->desc }}
+                                        </p>
+                                        <div>
+                                            <a href="{{ $gallery->link }}" class="btn btn-info">Read More</a>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($gallery->desc == null)
+                                    <h2>{{ $gallery->title }}</h2>
+                                    <div class="text-center">
+                                        <a href="{{ $gallery->link }}" class="btn btn-success">Find Out</a>
+                                    </div>
+                                @endif
+
+                            </div>
 
                         </div>
-                        <div class="post__back">
-                            <p>Borough specific magzine with reliable information for the residents of the Crovdon Borough
-                            </p>
-                            <div>
-                                <a href="/archives" class="btn btn-info">Read More</a>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <!-- end: Post item-->
-                <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap hero__post__back">
-                        <div class="post-slider">
-                            <div class="carousel dots-inside arrows-visible arrows-only" data-items="1" data-loop="true"
-                                data-autoplay="true" data-lightbox="gallery">
-                                <a href="{{ asset('front/img/advertisements/ad-2.jpg') }}" data-lightbox="gallery-image">
-                                    <img style="max-height: 260px; object-fit:contain;" alt=""
-                                        src="{{ asset('front/img/advertisements/ad-2.jpg') }}">
-                                </a>
-                                <a href="{{ asset('front/img/advertisements/ad-3.jpg') }}" data-lightbox="gallery-image">
-                                    <img style="max-height: 260px; object-fit:contain;" alt=""
-                                        src="{{ asset('front/img/advertisements/ad-3.jpg') }}">
-                                </a>
-                                <a href="{{ asset('front/img/advertisements/ad-4.jpg') }}" data-lightbox="gallery-image">
-                                    <img style="max-height: 260px; object-fit:contain;" alt=""
-                                        src="{{ asset('front/img/advertisements/ad-4.jpg') }}">
-                                </a>
-                                <a href="{{ asset('front/img/advertisements/ad-5.jpg') }}" data-lightbox="gallery-image">
-                                    <img style="max-height: 260px; object-fit:contain;" alt=""
-                                        src="{{ asset('front/img/advertisements/ad-5.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="post__back">
-                                <p>Green Guide magazine is a high end quality printed magazine that is distributed through
-                                    Croydon Borough.</p>
-                                <div>
-                                    <a href="/advertise" class="btn btn-info">Read More</a>
+                    <!-- end: Post item YouTube-->
+                @endforeach
+
+
+
+
+
+
+
+
+                <!--
+                        
+                        
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap hero__post__back">
+                                <div class="post-image">
+                                    <a href="#">
+                                        <img style="height: 100%;" alt="" src="{{ asset('front/img/hero/5@2x.png') }}">
+                                    </a>
+
+                                </div>
+                                <div class="post__back">
+                                    <p>Borough specific magzine with reliable information for the residents of the Crovdon Borough
+                                    </p>
+                                    <div>
+                                        <a href="/archives" class="btn btn-info">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <!-- end: Post item-->
-
-
-                <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap">
-                        <div class="post-image bordered p-3 bg-light">
-                            <h2>What's on in
-                                the Croydon Borough ?</h2>
-                            <div class="text-center">
-                                <a href="/localevents" class="btn btn-success">Find Out</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- end: Post item-->
-
-
-                <!-- Post item YouTube-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap" style="max-height: 260px;">
-                        <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
-                            <div class="post-slider" style="max-height: 260px;">
-                                <div class="carousel dots-inside arrows-visible arrows-only" data-autoplay="2600"
-                                    data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true"
-                                    data-autoplay="true" data-lightbox="gallery" style="max-height: 260px;">
-                                    <a href="{{ asset('front/img/events/1.jpg') }}" data-lightbox="gallery-image">
-                                        <img style="max-height: 260px; object-fit:cover;" alt=""
-                                            src="{{ asset('front/img/events/1.jpg') }}">
-                                    </a>
-                                    <a href="{{ asset('front/img/events/2.jpg') }}" data-lightbox="gallery-image">
-                                        <img style="max-height: 260px; object-fit:cover;" alt=""
-                                            src="{{ asset('front/img/events/2.jpg') }}">
-                                    </a>
-                                    <a href="{{ asset('front/img/events/3.jpg') }}" data-lightbox="gallery-image">
-                                        <img style="max-height: 260px; object-fit:cover;" alt=""
-                                            src="{{ asset('front/img/events/3.jpg') }}">
-                                    </a>
-                                    <a href="{{ asset('front/img/events/4.jpg') }}" data-lightbox="gallery-image">
-                                        <img style="max-height: 260px; object-fit:cover;" alt=""
-                                            src="{{ asset('front/img/events/4.jpg') }}">
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="post__back">
-                                <p>Green Guide magazine is produced and distributed by Green Guide t/a LLG Marketing team
-                                </p>
-                                <div>
-                                    <a href="/about" class="btn btn-info">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- end: Post item YouTube-->
-                <!-- Post item Vimeo-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap">
-
-                        <div class="post-image">
-                            <div class="post-image bordered p-3">
-                                <h2>Low cost, high exposure</h2>
-                                <div class="text-center">
-
-                                    <a href="/advertise" class="btn btn-primary">Read More</a>
+                        
+                        
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap hero__post__back">
+                                <div class="post-slider">
+                                    <div class="carousel dots-inside arrows-visible arrows-only" data-items="1" data-loop="true"
+                                        data-autoplay="true" data-lightbox="gallery">
+                                        <a href="{{ asset('front/img/advertisements/ad-2.jpg') }}" data-lightbox="gallery-image">
+                                            <img style="max-height: 260px; object-fit:contain;" alt=""
+                                                src="{{ asset('front/img/advertisements/ad-2.jpg') }}">
+                                        </a>
+                                        <a href="{{ asset('front/img/advertisements/ad-3.jpg') }}" data-lightbox="gallery-image">
+                                            <img style="max-height: 260px; object-fit:contain;" alt=""
+                                                src="{{ asset('front/img/advertisements/ad-3.jpg') }}">
+                                        </a>
+                                        <a href="{{ asset('front/img/advertisements/ad-4.jpg') }}" data-lightbox="gallery-image">
+                                            <img style="max-height: 260px; object-fit:contain;" alt=""
+                                                src="{{ asset('front/img/advertisements/ad-4.jpg') }}">
+                                        </a>
+                                        <a href="{{ asset('front/img/advertisements/ad-5.jpg') }}" data-lightbox="gallery-image">
+                                            <img style="max-height: 260px; object-fit:contain;" alt=""
+                                                src="{{ asset('front/img/advertisements/ad-5.jpg') }}">
+                                        </a>
+                                    </div>
+                                    <div class="post__back">
+                                        <p>Green Guide magazine is a high end quality printed magazine that is distributed through
+                                            Croydon Borough.</p>
+                                        <div>
+                                            <a href="/advertise" class="btn btn-info">Read More</a>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <!-- end: Post item Vime-->
-                <!-- Post item HTML5 Audio-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
-                        <div class="post-image" style="max-height: 260px;">
-                            <a href="#">
-                                <img alt="" style="height: 100%; object-fit: cover;"
-                                    src="{{ asset('front/img/aerial-view-business.jpg') }}">
-                            </a>
-                        </div>
-                        <div class="post__back">
-                            <p>We are doing our part to offset the production of the Green Guide Magazine.</p>
-                            <div>
-                                <a href="/greeninitiative" class="btn btn-info">Read More</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- end: Post item-->
+                        
 
 
-
-                <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap" style="max-height: 260px;">
-
-                        <div class="post-video" style="height: 100%">
-                            <div class="ratio ratio-16x9" style="height: 100%">
-                                {{-- <iframe src="{{ url('/front/video/pexels-workout.mp4') }}" width="560" height="376" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> --}}
-                                <video style="height: 100%" src="{{ url('/front/video/pexels-workout.mp4') }}" loop muted
-                                    autoplay>
-                                </video>
+                        
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap">
+                                <div class="post-image bordered p-3 bg-light">
+                                    <h2>What's on in
+                                        the Croydon Borough ?</h2>
+                                    <div class="text-center">
+                                        <a href="/localevents" class="btn btn-success">Find Out</a>
+                                    </div>
+                                </div>
 
                             </div>
-
                         </div>
-                    </div>
-                </div>
-                <!-- end: Post item-->
+                        
 
 
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap" style="max-height: 260px;">
+                                <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
+                                    <div class="post-slider" style="max-height: 260px;">
+                                        <div class="carousel dots-inside arrows-visible arrows-only" data-autoplay="2600"
+                                            data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true"
+                                            data-autoplay="true" data-lightbox="gallery" style="max-height: 260px;">
+                                            <a href="{{ asset('front/img/events/1.jpg') }}" data-lightbox="gallery-image">
+                                                <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                    src="{{ asset('front/img/events/1.jpg') }}">
+                                            </a>
+                                            <a href="{{ asset('front/img/events/2.jpg') }}" data-lightbox="gallery-image">
+                                                <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                    src="{{ asset('front/img/events/2.jpg') }}">
+                                            </a>
+                                            <a href="{{ asset('front/img/events/3.jpg') }}" data-lightbox="gallery-image">
+                                                <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                    src="{{ asset('front/img/events/3.jpg') }}">
+                                            </a>
+                                            <a href="{{ asset('front/img/events/4.jpg') }}" data-lightbox="gallery-image">
+                                                <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                    src="{{ asset('front/img/events/4.jpg') }}">
+                                            </a>
+                                        </div>
 
+                                    </div>
+                                    <div class="post__back">
+                                        <p>Green Guide magazine is produced and distributed by Green Guide t/a LLG Marketing team
+                                        </p>
+                                        <div>
+                                            <a href="/about" class="btn btn-info">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap hero__post__back">
-                        <div class="post-slider">
-                            <div class="carousel dots-inside arrows-only" data-autoplay="2600" data-animate-in="fadeIn"
-                                data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true"
-                                data-lightbox="gallery">
-                                <a href="{{ asset('front/img/1520103821627.jpg') }}" data-lightbox="gallery-image">
-                                    <img alt=""
-                                        src="{{ asset('front/img/shutterstock_457521961-632x474.jpg') }}">
-                                </a>
                             </div>
-
                         </div>
-                        <div class="post__back">
-                            <p>Strengthen your companies online exposure by registering on our local directory.</p>
-                            <div>
-                                <a href="/businessdirectory" class="btn btn-info">Read More</a>
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap">
+
+                                <div class="post-image">
+                                    <div class="post-image bordered p-3">
+                                        <h2>Low cost, high exposure</h2>
+                                        <div class="text-center">
+
+                                            <a href="/advertise" class="btn btn-primary">Read More</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- end: P
-                               <!-- Post item-->
-                <div class="post-item border" style="max-height: 260px;position: relative;">
-                    <div class="post-item-wrap">
-                        <div class="post-image bordered p-3">
-                            <h2>Community is key</h2>
-                            <div class="text-center">
-                                <a href="/communitygrowth" class="btn btn-primary">Read More</a>
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
+                                <div class="post-image" style="max-height: 260px;">
+                                    <a href="#">
+                                        <img alt="" style="height: 100%; object-fit: cover;"
+                                            src="{{ asset('front/img/aerial-view-business.jpg') }}">
+                                    </a>
+                                </div>
+                                <div class="post__back">
+                                    <p>We are doing our part to offset the production of the Green Guide Magazine.</p>
+                                    <div>
+                                        <a href="/greeninitiative" class="btn btn-info">Read More</a>
+                                    </div>
+                                </div>
+
                             </div>
-
                         </div>
+                        
 
-                    </div>
-                </div>
-                <!-- end: Post item-->
+
+
+                        
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap" style="max-height: 260px;">
+
+                                <div class="post-video" style="height: 100%">
+                                    <div class="ratio ratio-16x9" style="height: 100%">
+                                        {{-- <iframe src="{{ url('/front/video/pexels-workout.mp4') }}" width="560" height="376" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> --}}
+                                        <video style="height: 100%" src="{{ url('/front/video/pexels-workout.mp4') }}" loop muted
+                                            autoplay>
+                                        </video>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+
+
+                        
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap hero__post__back">
+                                <div class="post-slider">
+                                    <div class="carousel dots-inside arrows-only" data-autoplay="2600" data-animate-in="fadeIn"
+                                        data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true"
+                                        data-lightbox="gallery">
+                                        <a href="{{ asset('front/img/1520103821627.jpg') }}" data-lightbox="gallery-image">
+                                            <img alt=""
+                                                src="{{ asset('front/img/shutterstock_457521961-632x474.jpg') }}">
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="post__back">
+                                    <p>Strengthen your companies online exposure by registering on our local directory.</p>
+                                    <div>
+                                        <a href="/businessdirectory" class="btn btn-info">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                       
+                        <div class="post-item border" style="max-height: 260px;position: relative;">
+                            <div class="post-item-wrap">
+                                <div class="post-image bordered p-3">
+                                    <h2>Community is key</h2>
+                                    <div class="text-center">
+                                        <a href="/communitygrowth" class="btn btn-primary">Read More</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    -->
+
+
+
+
+
+
+
+
             </div>
             <!-- end: Blog -->
         </div>
         <!-- end: post content -->
     </section>
     <!-- end: Content -->
+
+
+
+
+
+
 
 
 
@@ -312,21 +385,21 @@
             </div>
             <div class="grid-articles carousel post-carousel m-b-20" data-dots="false">
 
-                @foreach ($highlights as $highlight)             
-                <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
-                    <a href="#" class="post-image"><img alt=""
-                            src="{{asset('uploads/')}}/{{$highlight->image}}"></a>
-                    <div class="post-entry-overlay">
-                        <div class="post-entry-meta">
-                            <div class="post-entry-meta-category">
-                                <span class="badge bg-danger">{{$highlight->category_name}}</span>
-                            </div>
-                            <div class="post-entry-meta-title">
-                                <h2><a href="#">{{$highlight->title}}</a></h2>
+                @foreach ($highlights as $highlight)
+                    <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">
+                        <a href="#" class="post-image"><img alt=""
+                                src="{{ asset('uploads/') }}/{{ $highlight->image }}"></a>
+                        <div class="post-entry-overlay">
+                            <div class="post-entry-meta">
+                                <div class="post-entry-meta-category">
+                                    <span class="badge bg-danger">{{ $highlight->category_name }}</span>
+                                </div>
+                                <div class="post-entry-meta-title">
+                                    <h2><a href="#">{{ $highlight->title }}</a></h2>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
                 @endforeach
 
             </div>
@@ -466,66 +539,60 @@
     <div class="links__cards__section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="link__card">
-                        <div class="card__image">
-                            <img src="{{ asset('front/img/links_image-2.jpg') }}" alt="">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">
-                                Advertise in Magazine
-                            </h3>
-                            <p align="justify" class="card__content">
-                                Be ahead of your competition and have your
-                                brand, valves, message or offers broadcast
-                                across the London Borough of Croydon. The
-                                Green Guide Magazine is a platform to help you
-                                achieve your business goals.
-                            </p>
-                            <a href="/magzine-design-book" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="link__card">
-                        <div class="card__image">
-                            <img src="{{ asset('front/img/lilnks-image-1.jpg') }}" alt="">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">
-                                Business Listing
-                            </h3>
-                            <p align="justify" class="card__content">
-                                Promote your business by registering your FREE
-                                business listing on our online busines directory.
-                                We want you to positively communicate and
-                                engage within your local market and the Green
-                                Guide Directory is a tool for you to reach more customers.
-                            </p>
-                            <a href="/businessdirectory" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="link__card">
-                        <div class="card__image">
-                            <img src="{{ asset('front/img/links_image-3.jpg') }}" alt="">
-                        </div>
-                        <div class="card__body">
-                            <h3 class="card__title">
-                                Events Calendar
-                            </h3>
-                            <p align="justify" class="card__content">
-                                Embrace and enhance community spirt by
-                                offering a free inclusive calendar to update local
-                                residents of what is going on in their local area. If
-                                you have an event or activity you can register for
-                                FREE.
 
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title1 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href="/localevents" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title2 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details2 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title3 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details3 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -533,6 +600,9 @@
             </div>
         </div>
     </div>
+
+
+
 
 
 

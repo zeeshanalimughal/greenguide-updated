@@ -49,7 +49,8 @@ Route::view('/privacy-policy', 'frontend.policy-pages.privacy-policy');
 Route::view('/website-terms-of-use', 'frontend.policy-pages.website-terms-of-use');
 
 
-Route::view('/advertise-in-magazine', 'frontend.advertise-in-magazine')->name('advertise-in-magazine');
+
+   Route::get('/advertise-in-magazine', [Advertise::class, 'getMagazineInAdvertisePage'])->name('advertise-in-magazine');
 
 Route::get('/download-media-pack', [HomePage::class, 'downloadMediaPack']);
 
@@ -412,6 +413,24 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('edit-faq/{id}', [Pages::class, 'editFaq']);
             Route::post('update-faq', [Pages::class, 'updateFaq'])->name('page.update-faq');
             Route::get('delete-faq/{id}', [Pages::class, 'deleteFaq'])->name('page.delete-faq');
+            
+            
+            
+            
+            // Links Cards
+            
+            Route::get('links-cards', [Pages::class, 'linksCards']);
+            Route::post('update-links-cards', [Pages::class, 'updateLinksCards'])->name('page.update-links-cards'); 
+            
+            
+
+              //Jobs Page
+              Route::get('gallery', [Pages::class, 'getAllGalleryData']);
+              Route::post('add-gallery', [Pages::class, 'addGallery'])->name('page.add-gallery');
+            //   Route::get('edit-gallery/{id}', [Pages::class, 'editGallery']);
+            //   Route::post('update-gallery', [Pages::class, 'updateGallery'])->name('page.update-gallery');
+              Route::get('gallery/{id}/{action}', [Pages::class, 'manageGallery'])->name('page.manageGallery');
+              
         });
     });
 });

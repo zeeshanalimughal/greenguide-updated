@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomeGallery;
 use App\Models\MagazineHighlight;
 use Illuminate\Http\Request;
 use App\Models\pages\Home;
+use App\Models\pages\LinksCard;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Response;
 
@@ -15,7 +17,7 @@ class HomePage extends Controller
         $page = Home::where('id', 1)->get();
         $posts = Posts::all();
         $data = compact('posts');
-        return view('frontend.home', ['page'=> $page,'posts'=>$posts,'highlights'=>MagazineHighlight::where('status','active')->limit(6)->get()]);
+        return view('frontend.home', ['page'=> $page,'posts'=>$posts,'highlights'=>MagazineHighlight::where('status','active')->limit(6)->get(),'links'=>LinksCard::where('id',1)->get(),'galleryData' => HomeGallery::all()]);
     }
 
     

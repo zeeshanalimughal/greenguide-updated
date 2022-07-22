@@ -194,69 +194,65 @@
 
 
 
+
+
 <div class="links__cards__section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('front/img/links_image-2.jpg') }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            Advertise in Magazine
-                        </h3>
-                        <p align="justify" class="card__content">
-                            Be ahead of your competition and have your
-                            brand, valves, message or offers broadcast
-                            across the London Borough of Croydon. The
-                            Green Guide Magazine is a platform to help you
-                            achieve your business goals.
-                        </p>
-                        <a href="/magzine-design-book" class="btn btn-dark">Advertise Today <i
-                                class="ps-3 fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('front/img/lilnks-image-1.jpg') }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            Business Listing
-                        </h3>
-                        <p align="justify" class="card__content">
-                            Promote your business by registering your FREE
-                            business listing on our online busines directory.
-                            We want you to positively communicate and
-                            engage within your local market and the Green
-                            Guide Directory is a tool for you to reach more customers.
-                        </p>
-                        <a href="/businessdirectory" class="btn btn-dark">Advertise Today <i
-                                class="ps-3 fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('front/img/links_image-3.jpg') }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            Events Calendar
-                        </h3>
-                        <p align="justify" class="card__content">
-                            Embrace and enhance community spirt by
-                            offering a free inclusive calendar to update local
-                            residents of what is going on in their local area. If
-                            you have an event or activity you can register for
-                            FREE.
 
+            
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title1}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details1}}
                         </p>
-                        <a href="/localevents" class="btn btn-dark">Events Listing <i
+                        <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
+                                class="ps-3 fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title2}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details2}}
+                        </p>
+                        <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
+                                class="ps-3 fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title3}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details3}}
+                        </p>
+                        <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
                                 class="ps-3 fa fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -264,6 +260,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 
 
