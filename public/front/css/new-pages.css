@@ -6,6 +6,71 @@ html {
 
 
 
+.premium__listings{
+  padding-top: -30px;
+  margin-bottom: 30px;
+
+}
+.premium__listings .premium__listings__title{
+  font-size: 22px;
+  font-weight: 600;
+  /* color: transparent; */
+  background: linear-gradient(to bottom right,rgb(3, 97, 15),rgb(34, 133, 43) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.premium__listings .premium__listings__checkbox{
+  visibility: hidden;
+  transform: scale(0);
+  transition : all .3s ;
+
+}
+
+.premium__listings .premium__listings__label{
+  width:50px;
+  height:22px;
+  border-radius:40px;
+  background-color:rgb(194, 194, 194);
+  position: relative;
+  top: -15px;
+  left: 15px;
+  cursor: pointer;
+  transition : all .4s ;
+}
+.premium__listings .premium__listings__label::before{
+ content: "";
+ position: absolute;
+ top: 50%;
+ transform: translateY(-50%);
+ left: -5%;
+ right: auto;
+ width: 25px;
+ height: 25px;
+ border-radius: 50%;
+ background-color:rgb(105, 105, 105);
+ transition : all  .4s  !important;
+
+}
+ .premium__listings__checkbox:checked ~ .premium__listings__label{
+  background:rgb(6, 160, 19);
+
+}
+
+ .premium__listings__checkbox:checked ~ .premium__listings__label::before{
+  transform: translateX(115%) translateY(-50%) scale(1.3);
+  background:rgb(5, 110, 13);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
+}
+
+
+
+
+
+
+
 .event__form__row{
   max-width: 840px !important;
   width: 100%;

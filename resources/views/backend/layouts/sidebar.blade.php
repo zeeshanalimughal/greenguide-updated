@@ -84,7 +84,7 @@
 
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/pages/gallery"><i
-                                     class="side-menu__icon mdi fe fe-file"></i><span
+                                     class="side-menu__icon ion-images"></i><span
                                      class="side-menu__label">Home Gallery</span></a>
                          </li>
 

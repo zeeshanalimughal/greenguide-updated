@@ -37,6 +37,7 @@
 
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">logo</th>
+                                    <th class="border-bottom-0">Premium</th>
                                     <th class="border-bottom-0">category</th>
                                     <th class="border-bottom-0">subcategory</th>
                                     <th class="border-bottom-0">name</th>
@@ -63,6 +64,22 @@
                             @endphp
                             <td>{{$i}}</td>
                                 <td><img src="{{asset('uploads/'.$directory->logo)}}" style="width:60px;" alt=""></td>
+
+
+                                <td>
+                                    @if((int)$directory->is_premium===1)
+                                    <h1 class="text-primary"> <span class="badge bg-primary">                                    Yes
+                                    </span></h1>
+
+                                    @else
+                                    <h2> <span class="badge bg-default">
+                                        No
+                                    </span></h1>
+                                    @endif
+                                
+                                </td>
+
+                                
                                 <td>{{ $directory->category }}</td>
                                 <td>{{ $directory->subcategory }}</td>
                                 <td>{{ $directory->name }}</td>

@@ -330,6 +330,23 @@
                                 @endif
                             </div>
                         </div>
+
+
+
+
+                        <div class="form-group row premium__listings">
+                            <p class="premium__listings__title">Enable Premium Listing </p>
+                            <div class="col-lg-6">
+                                <input type="checkbox" id="premium__listings" value="yes" name="premium__listing" class="premium__listings__checkbox"/>
+                                @if ($errors->has('premium__listing'))
+                                <div class="text-danger">{{ $errors->first('premium__listing') }}</div>
+                                @endif
+                                <label for="premium__listings" class=" premium__listings__label"></label>
+                            </div>
+                        </div>
+
+
+
                         <div class="form-check">
                             <input type="checkbox" name="terms_conditions" id="terms_conditions" class="form-check-input"
                                 value="1" required="">

@@ -19,6 +19,7 @@ class AdminBusinessDirecrory extends Controller
     {
         $directories = BusinessDirectory::join('users', 'users.id', '=', 'business_directorys.userId')
             ->join('user_details', 'user_details.userId', '=', 'business_directorys.userId')
+            ->orderBy('created_at','DESC')
             ->get(
                 [
                     'business_directorys.id',
@@ -28,6 +29,7 @@ class AdminBusinessDirecrory extends Controller
                     'business_directorys.directory_status',
                     'business_directorys.created_at',
                     'business_directorys.borough',
+                    'business_directorys.is_premium',
                     'users.name',
                     'users.email',
                     'user_details.phone',

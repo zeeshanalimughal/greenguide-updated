@@ -72,6 +72,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Premium</th>
                                             <th>category</th>
                                             <th>subcategory</th>
                                             <th>sub sub category</th>
@@ -91,6 +92,18 @@
                                                 ++$i;
                                             @endphp
                                             <td>{{$i}}</td>
+
+                                             
+                                                <td>
+                                                    @if((int)$directory->is_premium===1)
+                                                    <span class="badge bg-primary">Yes
+                                                    </span>
+                                                    @else
+                                                    <span class="badge bg-secondary">
+                                                        No
+                                                    </span>
+                                                    @endif
+                                                </td>
                                                 <td>{{ $directory->category }}</td>
                                                 <td>{{ $directory->subcategory }}</td>
                                                 <td>{{ $directory->sub_sub_category }}</td>
@@ -135,6 +148,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
+                                            <th>Premium</th>
                                             <th>category</th>
                                             <th>subcategory</th>
                                             <th>sub sub category</th>

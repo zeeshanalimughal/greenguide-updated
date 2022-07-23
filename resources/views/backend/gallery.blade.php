@@ -63,10 +63,6 @@
                                             @endforeach
                                         </td>
 
-
-                                        <td style="word-break: break-word">
-                                            {{ strlen($gallery->title) > 50 ? substr($gallery->title, 0, 50) . '...' : $gallery->title }}
-                                        </td>
                                         <td>{{ $gallery->title }}</td>
 
                                         <td>
@@ -197,8 +193,6 @@
         </div>
     </div>
 
-    <script>
-        CKEDITOR.replace('highlight_description');
-    </script>
+    
     <!-- Modal -->
 @endsection

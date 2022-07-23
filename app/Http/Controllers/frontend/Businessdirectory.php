@@ -40,9 +40,9 @@ class Businessdirectory extends Controller
             $cat['' . $categories[$i]->category]['key'] = $count;
         }
         if ($categories->toArray() > 0) {
-            return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory, 'categories' => $categories, 'cat' => $cat,'links'=>LinksCard::where('id',1)->get()]);
+            return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory, 'categories' => $categories, 'cat' => $cat, 'links' => LinksCard::where('id', 1)->get()]);
         }
-        return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory,'links'=>LinksCard::where('id',1)->get()]);
+        return view('frontend.businessdirectory', ['businessdirectory' => $businessdirectory, 'links' => LinksCard::where('id', 1)->get()]);
     }
 
 
@@ -67,14 +67,16 @@ class Businessdirectory extends Controller
                     'user_details.company_reg_no',
                 ]
             );
-          foreach($directories as $directory){
-              $directory->rating = DirectoryReview::where('directoryId',$directory->id)->avg('rating');
-          }
+        foreach ($directories as $directory) {
+            $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
+        }
+
+     
         return view('frontend.business-directories-by-category', ['directories' => $directories, 'category' => $category]);
     }
 
 
-    
+
 
     function getSingleDirectory($id)
     {
@@ -95,8 +97,8 @@ class Businessdirectory extends Controller
                     'user_details.billing_address'
                 ]
             );
-           
-                $directory->rating = DirectoryReview::where('directoryId',$id)->avg('rating');
+
+        $directory->rating = DirectoryReview::where('directoryId', $id)->avg('rating');
         //  dd($directory->rating);
         $reviews = DirectoryReview::where('directoryId', $id)
             ->where('review_status', 'live')
@@ -112,7 +114,7 @@ class Businessdirectory extends Controller
             ]);
 
 
-            $replys = ReviewsReply::where('directoryId', $id)
+        $replys = ReviewsReply::where('directoryId', $id)
             ->where('reply_status', 'live')
             ->join('users', 'users.id', '=', 'reviews_reply.userId')
             ->get([
@@ -125,11 +127,11 @@ class Businessdirectory extends Controller
                 'users.id',
             ]);
 
-            // dd($replys);
+        // dd($replys);
 
 
 
-            
+
         $reviewsCount = DirectoryReview::where('directoryId', $id)
             ->where('review_status', 'live')
             ->count();
@@ -137,31 +139,35 @@ class Businessdirectory extends Controller
         // dd($reviews);
 
         if (sizeof($directory->toArray()) > 0) {
-            return view('frontend.view-single-directory', ['directory' => $directory, 'reviews' => $reviews, 'replys'=>$replys,'reviewsCount' => $reviewsCount]);
+            return view('frontend.view-single-directory', ['directory' => $directory, 'reviews' => $reviews, 'replys' => $replys, 'reviewsCount' => $reviewsCount]);
         }
         return redirect()->route('businessdirectory');
     }
 
     function add_new_directory()
     {
-        $boroughs = Borough::where('status','live')->get();
+        $boroughs = Borough::where('status', 'live')->get();
         $user = User::where('id', Auth::user()->id)
             ->select(['name', 'email'])
             ->first();
         $userDetails = UserDetails::where('userId', Auth::user()->id)->select(['company_name', 'phone', 'charity_number', 'company_reg_no'])->first();
 
-        return view('frontend.add-new-directory', ['userDetails' => $userDetails, 'user' => $user,'boroughs'=> $boroughs]);
+        return view('frontend.add-new-directory', ['userDetails' => $userDetails, 'user' => $user, 'boroughs' => $boroughs]);
     }
 
 
 
     function createNewDirectory(Request $request)
     {
-        // dd($request->company_images);
+        // dd($request->premium__listing);
         $request->validate([
             'category' => 'required', 'subcategory' => 'required', 'borough' => 'required', 'monday_open' => 'required', 'monday_close' => 'required', 'tuesday_open' => 'required', 'tuesday_close' => 'required', 'wednesday_open' => 'required', 'wednesday_close' => 'required', 'thursday_open' => 'required', 'thursday_close' => 'required', 'friday_open' => 'required', 'friday_close' => 'required', 'saturday_open' => 'required', 'saturday_close' => 'required', 'sunday_open' => 'required', 'company_description' => 'required', 'sunday_close' => 'required', 'holiday_open' => 'required', 'holiday_close' => 'required', 'logo' => 'required',
         ]);
         $directory = new ModelsBusinessDirectory();
+
+        if ($request->premium__listing !== null) {
+            $directory->is_premium = true;
+        }
 
         $directory->userId = Auth::user()->id;
         $directory->category = $request->input('category');
@@ -412,67 +418,77 @@ class Businessdirectory extends Controller
 
 
 
-    function getDirectorySearchResults(Request $request){
-        if($request->method() === 'GET'){
+    function getDirectorySearchResults(Request $request)
+    {
+        if ($request->method() === 'GET') {
             return redirect()->route('businessdirectory');
         }
-        $directories =  ModelsBusinessDirectory::where('business_directorys.category', 'like', '%'.$request->input('category').'%')
-        ->orWhere('user_details.company_name',  'like', '%'.$request->input('keyword').'%')
-        ->where('business_directorys.directory_status', 'live')
-        ->join('users', 'users.id', '=', 'business_directorys.userId')
-        ->join('user_details', 'user_details.userId', '=', 'business_directorys.userId')
-        ->distinct()
-        ->get(
-            [
-                'business_directorys.id',
-                'business_directorys.category',
-                'business_directorys.logo',
-                'business_directorys.subcategory',
-                'business_directorys.borough',
-                'business_directorys.company_images',
-                'users.name',
-                'users.email',
-                'user_details.phone',
-                'user_details.company_name',
-                'user_details.company_reg_no',
-            ]
-        );
-      foreach($directories as $directory){
-          $directory->rating = DirectoryReview::where('directoryId',$directory->id)->avg('rating');
-      }
+        $directories =  ModelsBusinessDirectory::where('business_directorys.category', $request->input('category'))
+            ->orWhere('user_details.company_name',  'like', '%' . $request->input('keyword') . '%')
+            ->where('business_directorys.directory_status', 'live')
+            ->join('users', 'users.id', '=', 'business_directorys.userId')
+            ->join('user_details', 'user_details.userId', '=', 'business_directorys.userId')
+            ->distinct()
+            ->get(
+                [
+                    'business_directorys.id',
+                    'business_directorys.category',
+                    'business_directorys.logo',
+                    'business_directorys.subcategory',
+                    'business_directorys.borough',
+                    'business_directorys.company_images',
+                    'business_directorys.is_premium',
+                    'users.name',
+                    'users.email',
+                    'user_details.phone',
+                    'user_details.company_name',
+                    'user_details.company_reg_no',
+                ]
+            );
 
-      return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $request->input('category'),'keywords' => $request->input('keyword')]);
+            // dd($directories );
+
+
+        foreach ($directories as $directory) {
+            $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
+        }
+        $premium__listings__count = ModelsBusinessDirectory::where('is_premium',1)->where('directory_status','live')->count();
+
+        // dd($premium__listings__count);
+        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $request->input('category'), 'keywords' => $request->input('keyword'),'premium_count'=>$premium__listings__count]);
     }
 
 
 
-function getDirectorySearchResultsByCategory($category){
-    $directories =  ModelsBusinessDirectory::where('business_directorys.category', 'like', '%'.substr($category,0,3).'%')
-    ->orWhere('business_directorys.category', 'like', '%'.$category.'%')
-    ->where('business_directorys.directory_status', 'live')
-    ->join('users', 'users.id', '=', 'business_directorys.userId')
-    ->join('user_details', 'user_details.userId', '=', 'business_directorys.userId')
-    ->distinct()
-    ->get(
-        [
-            'business_directorys.id',
-            'business_directorys.category',
-            'business_directorys.logo',
-            'business_directorys.subcategory',
-            'business_directorys.borough',
-            'business_directorys.company_images',
-            'users.name',
-            'users.email',
-            'user_details.phone',
-            'user_details.company_name',
-            'user_details.company_reg_no',
-        ]
-    );
-  foreach($directories as $directory){
-      $directory->rating = DirectoryReview::where('directoryId',$directory->id)->avg('rating');
-  }
+    function getDirectorySearchResultsByCategory($category)
+    {
+        $directories =  ModelsBusinessDirectory::where('business_directorys.category', 'like', '%' . substr($category, 0, 3) . '%')
+            ->orWhere('business_directorys.category', 'like', '%' . $category . '%')
+            ->where('business_directorys.directory_status', 'live')
+            ->join('users', 'users.id', '=', 'business_directorys.userId')
+            ->join('user_details', 'user_details.userId', '=', 'business_directorys.userId')
+            ->distinct()
+            ->get(
+                [
+                    'business_directorys.id',
+                    'business_directorys.category',
+                    'business_directorys.logo',
+                    'business_directorys.subcategory',
+                    'business_directorys.borough',
+                    'business_directorys.company_images',
+                    'business_directorys.is_premium',
+                    'users.name',
+                    'users.email',
+                    'user_details.phone',
+                    'user_details.company_name',
+                    'user_details.company_reg_no',
+                ]
+            );
+        foreach ($directories as $directory) {
+            $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
+        }
+        $premium__listings__count = ModelsBusinessDirectory::where('is_premium',1)->where('directory_status','live')->count();
 
-  return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $category]);
+        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $category,'premium_count'=>$premium__listings__count]);
+    }
 }
-}
-
