@@ -50,7 +50,7 @@ Route::view('/website-terms-of-use', 'frontend.policy-pages.website-terms-of-use
 
 
 
-   Route::get('/advertise-in-magazine', [Advertise::class, 'getMagazineInAdvertisePage'])->name('advertise-in-magazine');
+Route::get('/advertise-in-magazine', [Advertise::class, 'getMagazineInAdvertisePage'])->name('advertise-in-magazine');
 
 Route::get('/download-media-pack', [HomePage::class, 'downloadMediaPack']);
 
@@ -248,38 +248,42 @@ Route::prefix('/admins/')->group(function () {
 Route::middleware(['admin-auth'])->group(function () {
     Route::prefix('/admins/')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
-        
-        
-        
+
+
+
         // Upcommign Issues
         Route::prefix('/magazine-highlights/')->name('MagazineHighlight.')->group(function () {
             Route::get('/', [MagazineHighlights::class, 'index'])->name('getMagazineHighlights');
             Route::post('add', [MagazineHighlights::class, 'addMagazineHighlight'])->name('add');
             Route::get('{id}/{action}', [MagazineHighlights::class, 'manageMagazineHighlight']);
             Route::post('update', [MagazineHighlights::class, 'updateMagazineHighlight'])->name('update');
+            // Route::post('update-highlight', [MagazineHighlights::class, 'updateHighlight'])->name('update-highlight');
+
         });
-    
+
+
+
 
         Route::prefix('/users/')->name('users.')->group(function () {
             Route::get('/', [UsersController::class, 'getAllUsers']);
             Route::get('/{id}/{action}', [UsersController::class, 'manageUsers']);
-        });    
+        });
 
 
         Route::prefix('/giveaways/')->name('giveaway.')->group(function () {
             Route::get('/', [Giveaway::class, 'getAllGiveAwayRequests']);
             Route::get('/{id}/{action}', [Giveaway::class, 'manageGiveaways']);
-        });    
+        });
 
         Route::prefix('/feedbacks/')->name('feedback.')->group(function () {
             Route::get('/', [Feedback::class, 'getAllFeedbacks']);
             Route::get('/{id}/{action}', [Feedback::class, 'manageFeedback']);
-        });    
+        });
 
         Route::prefix('/messages/')->group(function () {
             Route::get('/', [AdminController::class, 'getAllMessages']);
             Route::get('{id}', [AdminController::class, 'deleteMessage']);
-        });    
+        });
 
 
         // Advert Book Design
@@ -287,7 +291,7 @@ Route::middleware(['admin-auth'])->group(function () {
         Route::prefix('/advert-design-book/')->name('advert.')->group(function () {
             Route::get('/', [AdvertDesign::class, 'getAllAdvertDesigns']);
             Route::get('{id}/{action}', [AdvertDesign::class, 'manageAdvertDesigns']);
-        });    
+        });
 
 
         // Upcommign Issues
@@ -296,6 +300,7 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::post('add', [UpcommingIssues::class, 'addIssue'])->name('add');
             Route::get('{id}/{action}', [UpcommingIssues::class, 'issueAction']);
             Route::post('update', [UpcommingIssues::class, 'issueUpdate'])->name('update');
+            Route::post('update-headings', [UpcommingIssues::class, 'updateHeadings'])->name('update-headings');
         });
 
 
@@ -367,6 +372,7 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('/', [AdvertSizes::class, 'index']);
             Route::post('add', [AdvertSizes::class, 'addAdvertSize'])->name('add');
             Route::get('{id}/{action}', [AdvertSizes::class, 'advertAction']);
+            Route::post('update', [AdvertSizes::class, 'advertUpdate'])->name('update');
         });
 
 
@@ -413,24 +419,23 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('edit-faq/{id}', [Pages::class, 'editFaq']);
             Route::post('update-faq', [Pages::class, 'updateFaq'])->name('page.update-faq');
             Route::get('delete-faq/{id}', [Pages::class, 'deleteFaq'])->name('page.delete-faq');
-            
-            
-            
-            
-            // Links Cards
-            
-            Route::get('links-cards', [Pages::class, 'linksCards']);
-            Route::post('update-links-cards', [Pages::class, 'updateLinksCards'])->name('page.update-links-cards'); 
-            
-            
 
-              //Jobs Page
-              Route::get('gallery', [Pages::class, 'getAllGalleryData']);
-              Route::post('add-gallery', [Pages::class, 'addGallery'])->name('page.add-gallery');
+
+
+
+            // Links Cards
+
+            Route::get('links-cards', [Pages::class, 'linksCards']);
+            Route::post('update-links-cards', [Pages::class, 'updateLinksCards'])->name('page.update-links-cards');
+
+
+
+            //Jobs Page
+            Route::get('gallery', [Pages::class, 'getAllGalleryData']);
+            Route::post('add-gallery', [Pages::class, 'addGallery'])->name('page.add-gallery');
             //   Route::get('edit-gallery/{id}', [Pages::class, 'editGallery']);
             //   Route::post('update-gallery', [Pages::class, 'updateGallery'])->name('page.update-gallery');
-              Route::get('gallery/{id}/{action}', [Pages::class, 'manageGallery'])->name('page.manageGallery');
-              
+            Route::get('gallery/{id}/{action}', [Pages::class, 'manageGallery'])->name('page.manageGallery');
         });
     });
 });

@@ -511,7 +511,7 @@
 
 
     <!-- CALL TO ACTION -->
-    <div class="call-to-action call-to-action-colored background-colored m-b-0">
+    {{-- <div class="call-to-action call-to-action-colored background-colored m-b-0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10" data-animate="fadeInUp" data-animate-delay="600">
@@ -522,7 +522,7 @@
                         Directory</a> </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- END: CALL TO ACTION -->
 
 

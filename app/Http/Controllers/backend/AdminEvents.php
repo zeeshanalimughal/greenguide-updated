@@ -12,98 +12,93 @@ use Illuminate\Support\Facades\Session;
 
 class AdminEvents extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // $events = array();
         // $data = User::with(['userDetails','userEvents'])->get();
         // for($i=0;$i<sizeof($ev);$i++){
-            //     foreach($ev[$i]['userEvents'] as $user){
-                //        print_r($user);
-                //     }
-                // }
-                // for($i=0;$i<sizeof($data);$i++){
-                //     array_push($events,$data[$i]['userEvents']);
-                // }
+        //     foreach($ev[$i]['userEvents'] as $user){
+        //        print_r($user);
+        //     }
+        // }
+        // for($i=0;$i<sizeof($data);$i++){
+        //     array_push($events,$data[$i]['userEvents']);
+        // }
 
-                $events =  Event::join('users','users.id','=','events.userId')->get([
-                    'events.*',
-                    'users.email'
+        $events =  Event::join('users', 'users.id', '=', 'events.userId')->get([
+            'events.*',
+            'users.email'
+        ]);
+        foreach ($events as $key => $event) {
+            if ($event->event_end_date < date('Y-m-d')) {
+                // dd("Yes");
+                Event::where('id', $event->id)->update([
+                    'event_status' => 'closed'
                 ]);
-                foreach($events as $key => $event){
-                    if($event->event_end_date < date('Y-m-d')){
-                        // dd("Yes");
-                        Event::where('id',$event->id)->update([
-                            'event_status'=>'closed'
-                        ]);
-                    }
-                }
-                return view('backend.events',['events' => $events]);
+            }
+        }
+        return view('backend.events', ['events' => $events]);
     }
 
 
-    public function activateEvent($id, $action){
+    public function activateEvent($id, $action)
+    {
 
 
-        if($action=='activate'){
-            if(Event::where('id',$id)->update(['event_status'=>'live',])){
-                Session::flash('success',"Event activated Successfully");
+        if ($action == 'activate') {
+            if (Event::where('id', $id)->update(['event_status' => 'live',])) {
+                Session::flash('success', "Event activated Successfully");
                 return redirect('/admins/events');
-            }else{
-                Session::flash('error',"Something went wrong");
+            } else {
+                Session::flash('error', "Something went wrong");
                 return redirect('/admins/events');
-
             }
         }
 
-        if($action=='deactivate'){
-            if(Event::where('id',$id)->update(['event_status'=>'pending',])){
-                Session::flash('success',"Event deactivated Successfully");
+        if ($action == 'deactivate') {
+            if (Event::where('id', $id)->update(['event_status' => 'pending',])) {
+                Session::flash('success', "Event deactivated Successfully");
                 return redirect('/admins/events');
-
-            }else{
-                Session::flash('error',"Something went wrong");
+            } else {
+                Session::flash('error', "Something went wrong");
                 return redirect('/admins/events');
-
-            }
-        }
-
-
-        if($action=='reject'){
-            if(Event::where('id',$id)->update(['event_status'=>'rejected',])){
-                Session::flash('success',"Event Rejected Successfully");
-                return redirect('/admins/events');
-
-            }else{
-                Session::flash('error',"Something went wrong");
-                return redirect('/admins/events');
-
             }
         }
 
 
-        if($action=='accept'){
-            if(Event::where('id',$id)->update(['event_status'=>'pending',])){
-                Session::flash('success',"Event Accepted Successfully, You Can Activate Now");
+        if ($action == 'reject') {
+            if (Event::where('id', $id)->update(['event_status' => 'rejected',])) {
+                Session::flash('success', "Event Rejected Successfully");
                 return redirect('/admins/events');
-
-            }else{
-                Session::flash('error',"Something went wrong");
+            } else {
+                Session::flash('error', "Something went wrong");
                 return redirect('/admins/events');
+            }
+        }
 
+
+        if ($action == 'accept') {
+            if (Event::where('id', $id)->update(['event_status' => 'pending',])) {
+                Session::flash('success', "Event Accepted Successfully, You Can Activate Now");
+                return redirect('/admins/events');
+            } else {
+                Session::flash('error', "Something went wrong");
+                return redirect('/admins/events');
             }
         }
 
 
 
-        if($action=='remove'){
+        if ($action == 'remove') {
 
-            $event = Event::where('id',$id)->get();
-            foreach($event[0]->eventImages as $name => $image){
-               foreach ($image as $key => $img) {
-                 $imgPath =public_path('/uploads/' . $img);
-                 if (File::exists($imgPath)) {
-                    unlink($imgPath);
+            $event = Event::where('id', $id)->get();
+            foreach ($event[0]->eventImages as $name => $image) {
+                foreach ($image as $key => $img) {
+                    $imgPath = public_path('/uploads/' . $img);
+                    if (File::exists($imgPath)) {
+                        unlink($imgPath);
+                    }
                 }
-               }
             }
 
             $imagePath = public_path('/uploads/' . $event[0]->event_main_image);
@@ -111,12 +106,11 @@ class AdminEvents extends Controller
                 unlink($imagePath);
             }
 
-            if(Event::where('id',$id)->delete()){
-                Session::flash('success',"Event Deleted Successfully");
+            if (Event::where('id', $id)->delete()) {
+                Session::flash('success', "Event Deleted Successfully");
                 return redirect('/admins/events');
-
-            }else{
-                Session::flash('error',"Something went wrong");
+            } else {
+                Session::flash('error', "Something went wrong");
                 return redirect('/admins/events');
             }
         }
@@ -125,12 +119,13 @@ class AdminEvents extends Controller
     }
 
 
-    public function viewEvent($id){
-        $event = Event::where('id',$id)->get();
-        if(sizeof($event->toArray())>0){
-            $user = User::where('id',$event[0]->userId)->get();
-            return view('frontend.event-preview-by-admin',['event'=>$event,'user'=>$user]);
-        }else{
+    public function viewEvent($id)
+    {
+        $event = Event::where('id', $id)->get();
+        if (sizeof($event->toArray()) > 0) {
+            $user = User::where('id', $event[0]->userId)->get();
+            return view('frontend.event-preview-by-admin', ['event' => $event, 'user' => $user]);
+        } else {
             return redirect('/localevents');
         }
     }
@@ -138,19 +133,20 @@ class AdminEvents extends Controller
 
 
 
-    function addNewEvent(Request $request){
+    function addNewEvent(Request $request)
+    {
         $request->validate([
-            'event_title'=>'required',
-            'event_category'=>'required',
-            'event_date'=>'required',
-            'event_time'=>'required',
-            'event_start_date'=>'required',
-            'event_end_date'=>'required',
-            'event_location'=>'required',
-            'event_website'=>'required',
-            'event_description'=>'required',
-            'event_main_image'=>'required|mimes:jpeg,png,jpg,gif,svg',
-            'eventImages'=>'required',
+            'event_title' => 'required',
+            'event_category' => 'required',
+            'event_date' => 'required',
+            'event_time' => 'required',
+            'event_start_date' => 'required',
+            'event_end_date' => 'required',
+            'event_location' => 'required',
+            'event_website' => 'required',
+            'event_description' => 'required',
+            'event_main_image' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'eventImages' => 'required',
         ]);
 
         $event = new Event();
@@ -172,23 +168,21 @@ class AdminEvents extends Controller
         }
 
         $images = [];
-        if ($request->eventImages){
-            foreach($request->eventImages as $key => $image)
-            {
-                $imageName = rand(1,999).time().rand(1,999).'.'.$image->extension();
+        if ($request->eventImages) {
+            foreach ($request->eventImages as $key => $image) {
+                $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
                 $image->move(public_path('uploads'), $imageName);
                 $images[]['name'] = $imageName;
             }
         }
         $event->eventImages = $images;
 
-        if($event->save()){
+        if ($event->save()) {
             Session::flash('success', 'Event Created successfully and it is under review');
             return redirect('admins/events');
-        }else{
+        } else {
             Session::flash('error', 'Something went wrong');
             return redirect('admins/events');
         }
     }
-
 }

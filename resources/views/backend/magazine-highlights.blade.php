@@ -29,7 +29,7 @@
         @endphp
     @endif
 
-    
+
 
     <!-- Row -->
     <div class="row row-sm">
@@ -57,59 +57,68 @@
                             </thead>
                             <tbody>
                                 @foreach ($highlights as $highlight)
+                                    <tr>
+                                        <td>{{ $highlight->id }}</td>
+                                        <td><span class="avatar bradius bradius cover-image"
+                                                data-bs-image-src="{{ asset('uploads/') }}/{{ $highlight->image }}"
+                                                style="background: url(&quot;{{ asset('uploads/') }}/{{ $highlight->image }}&quot;) center center;"></span>
+                                        </td>
 
-                                <tr>
-                                    <td>{{$highlight->id}}</td>
-                                    <td><span class="avatar bradius bradius cover-image" data-bs-image-src="{{asset('uploads/')}}/{{$highlight->image}}" style="background: url(&quot;{{asset('uploads/')}}/{{$highlight->image}}&quot;) center center;"></span></td>
+                                        <td style="word-break: break-word">
+                                            {{ strlen($highlight->title) > 50 ? substr($highlight->title, 0, 50) . '...' : $highlight->title }}
+                                        </td>
+                                        <td>{{ $highlight->category_name }}</td>
 
-                                    <td style="word-break: break-word">{{strlen($highlight->title)>50 ? substr($highlight->title,0,50).'...' : $highlight->title}}</td>
-                                    <td>{{$highlight->category_name}}</td>
+                                        <td>
+                                            @php
+                                                
+                                                echo strlen($highlight->description) > 100 ? substr($highlight->description, 0, 100) . '...' : $highlight->description;
+                                            @endphp
 
-                                    <td>
-                                    @php
-                                        
-                                      echo  strlen($highlight->description)>100 ? substr($highlight->description,0,100).'...' : $highlight->description;
-                                    @endphp
-                                    
-                                    </td>
+                                        </td>
 
-                                    <td>
-                                        @if ($highlight->status === 'active')
-                                            <span
-                                                class="badge rounded-pill bg-success badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
-                                        @else
-                                            <span
-                                                class="badge rounded-pill bg-danger badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="g-2">
+                                        <td>
                                             @if ($highlight->status === 'active')
-                                                <a href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/deactivate">
-                                                    <button class="btn btn-primary" data-bs-placement="top"
-                                                        data-bs-toggle="tooltip" title=""
-                                                        data-bs-original-title="Deactivate">Deactivate</button>
-                                                </a>
+                                                <span
+                                                    class="badge rounded-pill bg-success badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
+                                            @else
+                                                <span
+                                                    class="badge rounded-pill bg-danger badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
                                             @endif
-                                            @if ($highlight->status === 'deactive')
-                                                <a href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/activate">
-                                                    <button class="btn btn-danger" data-bs-placement="top"
-                                                        data-bs-toggle="tooltip" title=""
-                                                        data-bs-original-title="Activate">Activate</button>
-                                                    {{-- @else
+                                        </td>
+                                        <td>
+                                            <div class="g-2">
+                                                <a href="{{ url('admins/magazine-highlights/' . $highlight->id) }}/edit"
+                                                    class="btn btn-info" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Edit">Edit</a>
+                                                @if ($highlight->status === 'active')
+                                                    <a
+                                                        href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/deactivate">
+                                                        <button class="btn btn-primary" data-bs-placement="top"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Deactivate">Deactivate</button>
+                                                    </a>
+                                                @endif
+                                                @if ($highlight->status === 'deactive')
+                                                    <a
+                                                        href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/activate">
+                                                        <button class="btn btn-danger" data-bs-placement="top"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Activate">Activate</button>
+                                                        {{-- @else
                                             <a href="{{url('/admins/users')}}/{{$user->id}}/activate">
                                                 <button class="btn btn-danger" data-bs-placement="top"
                                                 data-bs-toggle="tooltip" title=""
                                                 data-bs-original-title="Activate">Activate</button>
                                             </a> --}}
-                                            @endif
-                                            <a href="{{ url('admins/magazine-highlights/' . $highlight->id) }}/delete"
-                                                class="btn btn-warning" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Delete">Remove</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                @endif
 
+                                                <a href="{{ url('admins/magazine-highlights/' . $highlight->id) }}/delete"
+                                                    class="btn btn-warning" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Delete">Remove</a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -131,7 +140,7 @@
 
 
 
-    
+
 
 
 
@@ -157,28 +166,29 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Image</label>
-                                    <input type="file" name="image"  class="form-control">
+                                    <input type="file" name="image" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Title </label>
-                                    <input type="text" name="title" value="{{old('title')}}" class="form-control">
+                                    <input type="text" name="title" value="{{ old('title') }}" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Category Name </label>
-                                    <input type="text" name="category_name" value="{{old('category_name')}}" class="form-control">
+                                    <input type="text" name="category_name" value="{{ old('category_name') }}"
+                                        class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Post Description</label>
-                                    <textarea class="postEditor" name="highlight_description" >
+                                    <textarea class="postEditor" name="highlight_description">
                                     </textarea>
-                                                                  
+
 
                                 </div>
                             </div>

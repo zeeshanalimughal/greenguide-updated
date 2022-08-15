@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jul 23, 2022 at 03:03 PM
+-- Generation Time: Aug 15, 2022 at 01:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,8 +65,8 @@ CREATE TABLE `adverts` (
 --
 
 INSERT INTO `adverts` (`id`, `advert_size`, `advert_price`, `currency`, `created_at`, `updated_at`) VALUES
-(4, 'A6', '475', '£', '2022-03-09 06:42:10', '2022-03-09 06:42:10'),
-(5, 'A5', '800', '£', '2022-03-09 06:42:22', '2022-03-09 06:42:22'),
+(4, 'A6', '475', '£', '2022-03-09 06:42:10', '2022-08-15 00:47:15'),
+(5, 'A5', '800', '£', '2022-03-09 06:42:22', '2022-08-15 00:47:01'),
 (6, 'A4', '1500', '£', '2022-03-09 06:42:33', '2022-03-09 06:42:33'),
 (7, 'Double Spread', '2800', '£', '2022-03-09 06:42:45', '2022-03-09 06:42:45'),
 (8, 'Voucher', '180', '£', '2022-03-09 06:43:09', '2022-03-09 06:43:09'),
@@ -399,6 +399,26 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `general_settings`
+--
+
+CREATE TABLE `general_settings` (
+  `id` int(11) NOT NULL,
+  `ui_heading_one` varchar(255) NOT NULL,
+  `ui_heading_two` varchar(255) NOT NULL,
+  `ui_heading_three` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `general_settings`
+--
+
+INSERT INTO `general_settings` (`id`, `ui_heading_one`, `ui_heading_two`, `ui_heading_three`) VALUES
+(1, 'Issue', 'Artwork and Payment Deadline', 'Distribution Commencement');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `giveaways`
 --
 
@@ -542,8 +562,8 @@ INSERT INTO `magazine_highlights` (`id`, `image`, `title`, `category_name`, `des
 (5, '1658388209 2.png', 'What\'s on Calendar', 'lifestyle', '<p>No</p>', 'active', '2022-07-21 02:23:29', '2022-07-21 02:23:29'),
 (6, '1658388234 1-large.jpg', 'Puzzles', 'Puzzles', '<p>No</p>', 'deactive', '2022-07-21 02:23:54', '2022-07-21 02:25:42'),
 (7, '1658388257 1.png', 'Vouchers', 'Vouchers', '<p>No</p>', 'active', '2022-07-21 02:24:17', '2022-07-21 02:24:17'),
-(8, '1658388281 1280-279253-538798184.png', 'Free directory Listing', 'world', '<p>no</p>', 'deactive', '2022-07-21 02:24:41', '2022-07-21 02:25:50'),
-(9, '1658388306 3.png', 'Green Guide', 'Green Guide', '<p>No</p>', 'active', '2022-07-21 02:25:06', '2022-07-21 02:25:06');
+(8, '1660561540-1646028345 1280-279253-538798184.png', 'Free directory Listing', 'world', '<p>no</p>', 'deactive', '2022-07-21 02:24:41', '2022-08-15 06:05:40'),
+(9, '1658388306 3.png', 'Green Guide', 'Green Guide', '<p>No</p>', 'active', '2022-07-21 02:25:06', '2022-08-15 05:59:44');
 
 -- --------------------------------------------------------
 
@@ -1101,6 +1121,12 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `giveaways`
 --
 ALTER TABLE `giveaways`
@@ -1308,6 +1334,12 @@ ALTER TABLE `faqs`
 --
 ALTER TABLE `feedback`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `giveaways`

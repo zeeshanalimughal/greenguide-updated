@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Feedback;
+use App\Models\General_Setting;
 use App\Models\Giveaway;
 use App\Models\pages\LinksCard;
 use App\Models\UpcommingIssues;
@@ -19,7 +20,7 @@ class ResidentsCorner extends Controller
 
     public function getMagazineCompetitionPage()
     {
-        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get()]);
+        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]);
     }
     public function getMagazineGiveawayPage()
     {

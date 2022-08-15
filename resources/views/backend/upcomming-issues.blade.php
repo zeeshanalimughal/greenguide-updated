@@ -6,28 +6,66 @@
         <h1 class="page-title">Upcoming Issues</h1>
     @endpush
 
-    <div class="row mb-3">
-        <div class="col-12">
-            <button class="btn btn-primary btn-pill mt-3" data-bs-toggle="modal" data-bs-target="#largemodal">Add
-                new</button>
+    <div class="card">
+
+        @if (session()->has('error'))
+            @php
+                echo message(session()->get('error'), 'danger');
+            @endphp
+        @endif
+        @if (session()->has('success'))
+            @php
+                echo message(session()->get('success'), 'success');
+            @endphp
+        @endif
+        @if ($errors->any())
+            @php
+                echo errorAlert($errors->all(), 'danger');
+            @endphp
+        @endif
+
+
+        <div class="card-body">
+            <h3 class="card-title">Upcomming Issues Headings</h3>
+            <form method="POST" action="{{ route('issue.update-headings') }}">
+                @csrf
+                <div class="col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <label class="form-label">Headings 1 </label>
+                        <input type="text" name="ui_heading_one" value="{{ $settings[0]->ui_heading_one }}"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <label class="form-label">Headings 2 </label>
+                        <input type="text" name="ui_heading_two" value="{{ $settings[0]->ui_heading_two }}"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <label class="form-label">Headings 3 </label>
+                        <input type="text" name="ui_heading_three" value="{{ $settings[0]->ui_heading_three }}"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <br>
         </div>
     </div>
 
-    @if (session()->has('error'))
-        @php
-            echo message(session()->get('error'), 'danger');
-        @endphp
-    @endif
-    @if (session()->has('success'))
-        @php
-            echo message(session()->get('success'), 'success');
-        @endphp
-    @endif
-    @if ($errors->any())
-        @php
-            echo errorAlert($errors->all(), 'danger');
-        @endphp
-    @endif
+    <div class="row mb-3">
+        <div class="col-12">
+            <button class="btn btn-primary btn-pill mt-3" data-bs-toggle="modal" data-bs-target="#largemodal">Add
+                new issue</button>
+        </div>
+    </div>
 
     <!-- Row -->
     <div class="row row-sm">
@@ -35,16 +73,19 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Upcomming Issues</h3>
+
                 </div>
+
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">#</th>
-                                    <th class="wd-15p border-bottom-0">Issue</th>
-                                    <th class="wd-15p border-bottom-0">Artwork and Payment Deadline</th>
-                                    <th class="wd-15p border-bottom-0">Distribution Commencement
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_one }}</th>
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_two }}</th>
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_three }}
                                     </th>
                                     <th class="wd-20p border-bottom-0">Action</th>
 
@@ -131,8 +172,8 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Artwork and Payment Deadline </label>
-                                    <input class="form-control" name="deadline" value="{{ old('deadline') }}" type="date"
-                                        value="2011-08-19">
+                                    <input class="form-control" name="deadline" value="{{ old('deadline') }}"
+                                        type="date" value="2011-08-19">
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12">

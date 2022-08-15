@@ -71,7 +71,7 @@ class Businessdirectory extends Controller
             $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
         }
 
-     
+
         return view('frontend.business-directories-by-category', ['directories' => $directories, 'category' => $category]);
     }
 
@@ -446,16 +446,16 @@ class Businessdirectory extends Controller
                 ]
             );
 
-            // dd($directories );
+        // dd($directories );
 
 
         foreach ($directories as $directory) {
             $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
         }
-        $premium__listings__count = ModelsBusinessDirectory::where('is_premium',1)->where('directory_status','live')->count();
+        $premium__listings__count = ModelsBusinessDirectory::where('is_premium', 1)->where('directory_status', 'live')->count();
 
         // dd($premium__listings__count);
-        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $request->input('category'), 'keywords' => $request->input('keyword'),'premium_count'=>$premium__listings__count]);
+        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $request->input('category'), 'keywords' => $request->input('keyword'), 'premium_count' => $premium__listings__count]);
     }
 
 
@@ -487,8 +487,8 @@ class Businessdirectory extends Controller
         foreach ($directories as $directory) {
             $directory->rating = DirectoryReview::where('directoryId', $directory->id)->avg('rating');
         }
-        $premium__listings__count = ModelsBusinessDirectory::where('is_premium',1)->where('directory_status','live')->count();
+        $premium__listings__count = ModelsBusinessDirectory::where('is_premium', 1)->where('directory_status', 'live')->count();
 
-        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $category,'premium_count'=>$premium__listings__count]);
+        return view('frontend.searchDirectoryResults', ['directories' => $directories, 'category' => $category, 'premium_count' => $premium__listings__count]);
     }
 }

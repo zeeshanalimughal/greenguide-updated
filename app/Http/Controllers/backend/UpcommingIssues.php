@@ -7,11 +7,11 @@ use App\Models\UpcommingIssues as ModelsUpcommingIssues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\General_Setting;
 class UpcommingIssues extends Controller
 {
     public function index(){
-        return view('backend.upcomming-issues',['issues' => ModelsUpcommingIssues::all()]);
+        return view('backend.upcomming-issues',['issues' => ModelsUpcommingIssues::all(),'settings' => General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]);
     }
 
     public function addIssue(Request $request)
@@ -63,6 +63,25 @@ class UpcommingIssues extends Controller
             'issue'=> $request->issue,
             'deadline'=> $request->deadline,
             'commencement'=> $request->commencement,
+        ])){
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('admins/upcomming-issues');
+        }
+        $request->session()->flash('error', 'Something went wrong');
+        return redirect('admins/upcomming-issues');
+    }
+
+    public function updateHeadings(Request $request){
+        $request->validate([
+            'ui_heading_one'=>'required',
+            'ui_heading_two'=>'required',
+            'ui_heading_three'=>'required',
+        ]);
+        if(General_Setting::first()
+        ->update([
+            'ui_heading_one'=> $request->ui_heading_one,
+            'ui_heading_two'=> $request->ui_heading_two,
+            'ui_heading_three'=> $request->ui_heading_three,
         ])){
             $request->session()->flash('success', 'Updated Successfully');
             return redirect('admins/upcomming-issues');

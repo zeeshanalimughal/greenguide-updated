@@ -253,9 +253,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Issue</th>
-                                    <th scope="col">Artwork and Payment Deadline</th>
-                                    <th scope="col">Distribution Commencement</th>
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_one }}</th>
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_two }}</th>
+                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_three }}
                                 </tr>
                             </thead>
                             <tbody>

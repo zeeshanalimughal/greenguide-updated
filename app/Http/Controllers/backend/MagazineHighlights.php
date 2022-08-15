@@ -92,10 +92,40 @@ class MagazineHighlights extends Controller
             Session::flash('error', 'Something went wrong');
             return redirect('admins/magazine-highlights');
         }
+        if ($action === 'edit') {
+            $highlight  = MagazineHighlight::where('id', $id)->get();
+            return view('backend.edit-highlight', ['highlight' => $highlight]);
+        }
     }
 
 
-    public function updateMagazineHighlight()
+    public function updateMagazineHighlight(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'category_name' => 'required',
+        ]);
+
+        $highlight =  MagazineHighlight::find($request->input('id'));
+        if ($request->hasFile('image')) {
+            $imagePath = public_path('/uploads/' . $highlight->image);
+            if (File::exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $image = time() . '-' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path() . '/uploads/', $image);
+            $highlight->image = $image;
+        }
+
+        $highlight->category_name = $request->input('category_name');
+        $highlight->title = $request->input('title');
+        $highlight->description = $request->input('highlight_description');
+
+        if ($highlight->update()) {
+            Session::flash('success', 'Highlight Updated Successfully');
+            return redirect('admins/magazine-highlights');
+        }
+        Session::flash('error', 'Something went wrong');
+        return redirect('admins/magazine-highlights');
     }
 }

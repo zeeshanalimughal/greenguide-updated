@@ -60,7 +60,11 @@
                                             {{-- <a href="{{url('admins/posts/edit')}}" class="btn text-primary btn-sm"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-original-title="Edit"><span
-                                                    class="fe fe-edit fs-14"></span></a> --}}
+                                                class="fe fe-edit fs-14"></span></a> --}}
+                                                <a href="{{url('admins/adverts/'.$advert->id)}}/edit" class="btn text-info btn-sm"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Edit"><span
+                                                        class="fe fe-edit fs-14"></span></a>
                                             <a href="{{url('admins/adverts/'.$advert->id)}}/delete" class="btn text-danger btn-sm"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-original-title="Delete"><span
