@@ -111,28 +111,74 @@
 </section>
 
 
-<div class="container-fluid d-flex justify-content-center flex-column my-5">
-    <div class="row d-flex justify-content-center">
-        <div class="content col-lg-12 d-flex justify-content-center">
-            <div class="d-flex justify-content-center bg-light">
-                <ul class="d-flex justify-content-center flex-wrap" style="list-style-type: none;">
-                    <li>
-                        <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt="" src="{{ url('front/img/logos/logo2.png') }}"></a>
-                    </li>
-                    <li>
-                        <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt="" src="{{ url('front/img/logos/logo3.png') }}"></a>
-                    </li>
-                    <li>
-                        <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt="" src="{{ url('front/img/logos/logo1.png') }}"></a>
-                    </li>
-                    {{-- <li>
-                        <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt="" src="{{ url('front/img/logos/logo1.png') }}"></a>
-                    </li> --}}
-                </ul>
+
+
+
+<div class="links__cards__section">
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title1}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details1}}
+                        </p>
+                        <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
+                                class="ps-3 fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title2}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details2}}
+                        </p>
+                        <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
+                                class="ps-3 fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="link__card">
+                    <div class="card__image">
+                        <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">
+                            {{$links[0]->title3}}
+                        </h3>
+                        <p align="justify" class="card__content">
+                            {{$links[0]->details3}}
+                        </p>
+                        <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                                class="ps-3 fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 

@@ -57,15 +57,15 @@
                                 </div>
                             </div>
 
-                    
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Contact team title</label>
-                                    <input type="text" value="{{ $page[0]->contact_team_title }}" name="contact_team_title"
-                                        class="form-control">
+                                    <input type="text" value="{{ $page[0]->contact_team_title }}"
+                                        name="contact_team_title" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Contact team description</label>
                                     <input type="text" value="{{ $page[0]->contact_team_desc }}" name="contact_team_desc"
@@ -73,7 +73,128 @@
                                 </div>
                             </div>
 
-                        
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Finance Email</label>
+                                    <input type="text" value="{{ $page[0]->finance_email }}" name="finance_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    Finance Phone
+                                    <input type="text" value="{{ $page[0]->finance_phone }}" name="finance_phone"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Operations Email</label>
+                                    <input type="text" value="{{ $page[0]->operations_email }}" name="operations_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Operations Phone</label>
+                                    <input type="text" value="{{ $page[0]->operations_phone }}" name="operations_phone"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Sales Team Email</label>
+                                    <input type="text" value="{{ $page[0]->sales_email }}" name="sales_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Sales Team Phone</label>
+                                    <input type="text" value="{{ $page[0]->sales_phone }}"
+                                        name="sales_phone" class="form-control">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Design Email</label>
+                                    <input type="text" value="{{ $page[0]->design_email }}" name="design_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Design Phone</label>
+                                    <input type="text" value="{{ $page[0]->design_phone }}"
+                                        name="design_phone" class="form-control">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Customer Service Email</label>
+                                    <input type="text" value="{{ $page[0]->customer_email }}" name="customer_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Customer Service Phone</label>
+                                    <input type="text" value="{{ $page[0]->customer_phone }}"
+                                        name="customer_phone" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Hr Development Email</label>
+                                    <input type="text" value="{{ $page[0]->hr_email }}" name="hr_email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Hr Development Phone</label>
+                                    <input type="text" value="{{ $page[0]->hr_phone }}"
+                                        name="hr_phone" class="form-control">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
                         </div>
 
 
@@ -87,5 +208,4 @@
     </div>
 
     </div>
-
 @endsection

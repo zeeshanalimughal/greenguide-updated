@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact as ModelsContact;
+use App\Models\GreenguideTeam;
 use App\Models\pages\Contact as PagesContact;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class Contact extends Controller
     function index()
     {
         $page = PagesContact::where('id', 1)->get();
-        return view('frontend.contact', compact('page'));
+        $teams =  GreenguideTeam::all();
+        return view('frontend.contact', compact('page','teams'));
     }
 
 

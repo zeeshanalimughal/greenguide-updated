@@ -160,6 +160,20 @@ class Pages extends Controller
             'contact_sub_title' => 'required',
             'contact_team_title' => 'required',
             'contact_team_desc' => 'required',
+
+            'finance_email' => 'required',
+            'finance_phone' => 'required',
+            'operations_email' => 'required',
+            'operations_phone' => 'required',
+            'sales_email' => 'required',
+            'sales_phone' => 'required',
+            'design_email' => 'required',
+            'design_phone' => 'required',
+            'customer_email' => 'required',
+            'customer_phone' => 'required',
+            'hr_email' => 'required',
+            'hr_phone' => 'required',
+
             'contact_hero_image' => 'mimes:png,jpg,jpeg',
         ]);
         $data  = Contact::find(1);
@@ -167,7 +181,21 @@ class Pages extends Controller
         $data->contact_title = $request->input('contact_title');
         $data->contact_sub_title = $request->input('contact_sub_title');
         $data->contact_team_title = $request->input('contact_team_title');
-        $data->contact_team_desc = $request->input('contact_team_desc');
+
+        $data->finance_email = $request->input('finance_email');
+        $data->finance_phone = $request->input('finance_phone');
+        $data->operations_email = $request->input('operations_email');
+        $data->operations_phone = $request->input('operations_phone');
+        $data->sales_email = $request->input('sales_email');
+        $data->sales_phone = $request->input('sales_phone');
+        $data->design_email = $request->input('design_email');
+        $data->design_phone = $request->input('design_phone');
+        $data->customer_email = $request->input('customer_email');
+        $data->customer_phone = $request->input('customer_phone');
+        $data->hr_email = $request->input('hr_email');
+        $data->hr_phone = $request->input('hr_phone');
+
+
 
         if ($request->hasFile('contact_hero_image')) {
             $imagePath = public_path('/uploads/' . $data->contact_hero_image);

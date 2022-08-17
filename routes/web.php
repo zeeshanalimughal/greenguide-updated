@@ -208,6 +208,7 @@ use App\Http\Controllers\backend\AdvertDesign;
 use App\Http\Controllers\backend\Borough;
 use App\Http\Controllers\backend\Feedback;
 use App\Http\Controllers\backend\Giveaway;
+use App\Http\Controllers\backend\GreenguideTeam;
 use App\Http\Controllers\backend\MagazineDesign;
 use App\Http\Controllers\backend\MagazineHighlights;
 use App\Http\Controllers\backend\UpcommingIssues;
@@ -248,6 +249,17 @@ Route::prefix('/admins/')->group(function () {
 Route::middleware(['admin-auth'])->group(function () {
     Route::prefix('/admins/')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
+
+
+
+        // Greengude Team Admin
+        Route::prefix('/teams/')->name('teams.')->group(function () {
+            Route::get('/', [GreenguideTeam::class, 'getAdminTeamPage'])->name('getTeams');
+            Route::post('add', [GreenguideTeam::class, 'addTeamMember'])->name('add');
+            Route::get('{edit}/{id}', [GreenguideTeam::class, 'manageTeamMembert'])->name('manage');
+            Route::post('update', [GreenguideTeam::class, 'updateTeamMember'])->name('update');
+        });
+
 
 
 
