@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\pages;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Distributor extends Model
 {
     use HasFactory;
-    protected $guarded = [];
-    protected $table = 'page_feedback';
 }

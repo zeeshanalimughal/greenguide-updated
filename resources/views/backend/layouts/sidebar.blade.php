@@ -82,9 +82,14 @@
                                      class="side-menu__label">Greenguide Team</span></a>
                          </li>
                          <li class="slide">
+                             <a class="side-menu__item" data-bs-toggle="slide" href="/admins/distributors"><i
+                                     class="side-menu__icon mdi fe fe-users"></i><span
+                                     class="side-menu__label">Greenguide Distributors</span></a>
+                         </li>
+                         <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/pages"><i
-                                     class="side-menu__icon mdi fe fe-file"></i><span
-                                     class="side-menu__label">Pages</span></a>
+                                     class="side-menu__icon mdi fe fe-settings"></i><span
+                                     class="side-menu__label">Pages Settings</span></a>
                          </li>
 
                          <li class="slide">

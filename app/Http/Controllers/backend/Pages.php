@@ -11,6 +11,7 @@ use App\Models\pages\Advertise;
 use App\Models\pages\Businessdirectory;
 use App\Models\pages\CommunityGrowth;
 use App\Models\pages\Contact;
+use App\Models\pages\Feedback;
 use App\Models\pages\GreenInitiative;
 use App\Models\pages\Jobs;
 use App\Models\pages\LinksCard;
@@ -311,11 +312,14 @@ class Pages extends Controller
             'bd_cat_title' => 'required',
             'bd_cat_desc' => 'required',
             'bd_sec3_title' => 'required',
+            'sec2_title' => 'required',
+            'sec2_desc' => 'required',
             'bd_sec3_desc' => 'required',
             'bd_sec4_title' => 'required',
             'bd_sec4_desc' => 'required',
-            'bd_hero_image' => 'mimes:png,jpg,jpeg',
-            'bd_sec3_image' => 'mimes:png,jpg,jpeg',
+            'bd_hero_image' => 'mimes:png,jpg,jpeg,webp',
+            'bd_sec3_image' => 'mimes:png,jpg,jpeg,webp',
+            'sec2_image' => 'mimes:png,jpg,jpeg,webp',
         ]);
         $data  = Businessdirectory::find(1);
 
@@ -323,6 +327,8 @@ class Pages extends Controller
         $data->bd_cat_title = $request->input('bd_cat_title');
         $data->bd_cat_desc = $request->input('bd_cat_desc');
         $data->bd_sec3_title = $request->input('bd_sec3_title');
+        $data->sec2_title = $request->input('sec2_title');
+        $data->sec2_desc = $request->input('sec2_desc');
         $data->bd_sec3_desc = $request->input('bd_sec3_desc');
         $data->bd_sec4_title = $request->input('bd_sec4_title');
         $data->bd_sec4_desc = $request->input('bd_sec4_desc');
@@ -337,6 +343,17 @@ class Pages extends Controller
             $bd_hero_image = time() . ' ' . $request->file('bd_hero_image')->getClientOriginalName();
             $request->file('bd_hero_image')->move(public_path() . '/uploads/', $bd_hero_image);
             $data->bd_hero_image = $bd_hero_image;
+        }
+
+        if ($request->hasFile('sec2_image')) {
+            $imagePath = public_path('/uploads/' . $data->sec2_image);
+            if (File::exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $sec2_image = time() . ' ' . $request->file('sec2_image')->getClientOriginalName();
+            $request->file('sec2_image')->move(public_path() . '/uploads/', $sec2_image);
+            $data->sec2_image = $sec2_image;
         }
 
         if ($request->hasFile('bd_sec3_image')) {
@@ -1034,7 +1051,7 @@ class Pages extends Controller
 
 
         $images = [];
-        if ($request->hasFile('section3_gift_images') && $request->section3_gift_images!=='null') {
+        if ($request->hasFile('section3_gift_images') && $request->section3_gift_images !== 'null') {
 
             foreach ($data->section3_gift_images as $name => $image) {
                 foreach ($image as $key => $img) {
@@ -1060,6 +1077,66 @@ class Pages extends Controller
         } else {
             $request->session()->flash('error', 'Something went wrong');
             return redirect('/admins/pages/magazine-giveaway');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function getAdminFeedbackPage()
+    {
+
+        $page = Feedback::where('id', 1)->get();
+        return view('backend.pages.feedback', compact('page'));
+    }
+
+
+
+    public function feedbackPage(Request $request)
+    {
+        $request->validate([
+            'hero_title' => 'required',
+            'hero_subtitle' => 'required',
+            'section2_text' => 'required',
+            'section2_heading' => 'required',
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $data  = Feedback::find(1);
+
+        $data->hero_title = $request->input('hero_title');
+        $data->hero_subtitle = $request->input('hero_subtitle');
+        $data->section2_text = $request->input('section2_text');
+        $data->section2_heading = $request->input('section2_heading');
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
+            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/feedback');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/feedback');
         }
     }
 }

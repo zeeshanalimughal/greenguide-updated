@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use App\Models\General_Setting;
 use App\Models\Giveaway;
+use App\Models\pages\Feedback as PageFeedback;
 use App\Models\pages\LinksCard;
 use App\Models\pages\MagazineCompetition;
 use App\Models\pages\MagazineGiveaway;
@@ -53,7 +54,7 @@ class ResidentsCorner extends Controller
 
     public function getFeedbackPage()
     {
-        return view('frontend.feedback',['links'=>LinksCard::where('id',1)->get()]);
+        return view('frontend.feedback',['links'=>LinksCard::where('id',1)->get(),'page'=>PageFeedback::find(1)]);
     }
 
 

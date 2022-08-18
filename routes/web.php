@@ -206,6 +206,7 @@ use App\Http\Controllers\backend\Posts;
 use App\Http\Controllers\backend\AdminBusinessDirecrory;
 use App\Http\Controllers\backend\AdvertDesign;
 use App\Http\Controllers\backend\Borough;
+use App\Http\Controllers\backend\Distributor;
 use App\Http\Controllers\backend\Feedback;
 use App\Http\Controllers\backend\Giveaway;
 use App\Http\Controllers\backend\GreenguideTeam;
@@ -258,6 +259,15 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::post('add', [GreenguideTeam::class, 'addTeamMember'])->name('add');
             Route::get('{edit}/{id}', [GreenguideTeam::class, 'manageTeamMembert'])->name('manage');
             Route::post('update', [GreenguideTeam::class, 'updateTeamMember'])->name('update');
+        });
+
+
+        // Greengude Distributors Admin
+        Route::prefix('/distributors/')->name('distributors.')->group(function () {
+            Route::get('/', [Distributor::class, 'getAdminDistributorPage'])->name('getDistributors');
+            Route::post('add', [Distributor::class, 'addDistributorMember'])->name('add');
+            Route::get('{edit}/{id}', [Distributor::class, 'manageDistributorMembert'])->name('manage');
+            Route::post('update', [Distributor::class, 'updateDistributorMember'])->name('update');
         });
 
 
@@ -461,6 +471,12 @@ Route::middleware(['admin-auth'])->group(function () {
             //Magazine Giveaway Page
             Route::get('magazine-giveaway', [Pages::class, 'getMagazineGiveawayPage']);
             Route::post('magazine-giveaway', [Pages::class, 'magazineGiveaway'])->name('page.magazineGiveaway');
+
+
+
+            //Feedback Page
+            Route::get('feedback', [Pages::class, 'getAdminFeedbackPage']);
+            Route::post('feedback', [Pages::class, 'feedbackPage'])->name('page.feedback');
         });
     });
 });

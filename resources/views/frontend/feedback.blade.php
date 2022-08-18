@@ -3,15 +3,14 @@
     
 
 
-    <div class="advertise__hero advert__design__hero"  style="background-image:linear-gradient(to right, rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://img.freepik.com/free-photo/smile-face-green-ball-with-golden-five-stars-customer-client-survey-satisfaction-after-use-product-service-concept-by-3d-render_616485-67.jpg?w=1380&t=st=1657953870~exp=1657954470~hmac=7263956d9f4a8e676690d465a1fdeca14165e7de23bd2bebbaa09eec46853e98') !important;" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero"  style="background-image:linear-gradient(to right, rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('{{asset('uploads/'.$page->hero_image)}}') !important;" data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
-            Green Guide Feedback
+         {{$page->hero_title}}
         </h1>
         <div class="container">
             <p class="description" style="font-size:17px; color:#fff; margin-top: 20px; text-align: center"
                 data-animate="fadeInUp" data-animate-delay="800">
-                We would love to hear your thoughts, suggestions concerns and problems with anything so we can improve!
-            </p>
+               {{$page->hero_subtitle}}
         </div>
     </div>
 
@@ -38,8 +37,10 @@
                                     </div>
                                 @endif
 
-        <h1>Feedback Form</h1>
-        <p>We would love to hear your thoughts, suggestionsm concerns and problems with anything so we can improve!</p>
+        <h1>  {{$page->section2_heading}}</h1>
+        <p>@php
+            echo $page->section2_text
+        @endphp</p>
         <form class="row g-3" method="POST" action="{{route("feedback.submit")}}">
 @csrf
             <div class="col-12">

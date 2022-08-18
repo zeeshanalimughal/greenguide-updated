@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 15, 2022 at 01:09 PM
+-- Generation Time: Aug 18, 2022 at 09:33 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -273,6 +273,31 @@ INSERT INTO `directory_reviews` (`id`, `userId`, `directoryId`, `website`, `rati
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `distributors`
+--
+
+CREATE TABLE `distributors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `distributors`
+--
+
+INSERT INTO `distributors` (`id`, `image`, `name`, `position`, `email`, `message`, `created_at`, `updated_at`) VALUES
+(1, '1660804950 young-bearded-man-with-striped-shirt_273609-5677.webp', 'Alan Monre', 'CEO, Square Software', 'alanmonre@gmail.com', '<p>Green Guide Amgzine is by far the most amazing website out there! I literally could not be happier that I chose it</p>', '2022-08-18 01:42:30', '2022-08-18 01:45:23'),
+(2, '1660805173 pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.webp', 'Emmi', 'CEO, Square Software', 'emmi@gmail.com', '<p>Green Guide Amgzine is by far the most amazing website out there! I literally could not be happier that I chose it</p>', '2022-08-18 01:46:13', '2022-08-18 01:46:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -445,6 +470,32 @@ INSERT INTO `giveaways` (`id`, `upcomingIssue`, `name`, `contact`, `email`, `add
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `greenguide_team`
+--
+
+CREATE TABLE `greenguide_team` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `greenguide_team`
+--
+
+INSERT INTO `greenguide_team` (`id`, `image`, `name`, `position`, `email`, `created_at`, `updated_at`) VALUES
+(3, '1660631579 woman-takes-images-holding-photographic-camera-hands_176532-12497.webp', 'Taurai Jiri', 'Managing Director', 'example@gmail.com', '2022-08-16 01:32:59', '2022-08-16 01:32:59'),
+(4, '1660631645 young-bearded-man-with-striped-shirt_273609-5677.webp', 'Richard Richards', 'Business Development Manager', 'example2@gmail.com', '2022-08-16 01:34:05', '2022-08-16 01:34:05'),
+(5, '1660631678 pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.webp', 'Daniella Milusheva', 'HR Assistant Manager', 'example3@gmail.com', '2022-08-16 01:34:38', '2022-08-16 01:34:38'),
+(6, '1660631815 friendly-smiling-woman-looking-pleased-front_176420-20779.webp', 'Andrea Halsey', 'Sales Assistant', 'example4@gmail.com', '2022-08-16 01:36:55', '2022-08-16 01:36:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `home_gallery`
 --
 
@@ -560,7 +611,7 @@ INSERT INTO `magazine_highlights` (`id`, `image`, `title`, `category_name`, `des
 (3, '1658388083 3.png', 'The most happiest time of the day!', 'world', '<p>Nopw</p>', 'active', '2022-07-21 02:21:23', '2022-07-21 02:21:23'),
 (4, '1658388182 4.png', 'Know Your Borough', 'News', '<p>No</p>', 'active', '2022-07-21 02:23:02', '2022-07-21 02:23:02'),
 (5, '1658388209 2.png', 'What\'s on Calendar', 'lifestyle', '<p>No</p>', 'active', '2022-07-21 02:23:29', '2022-07-21 02:23:29'),
-(6, '1658388234 1-large.jpg', 'Puzzles', 'Puzzles', '<p>No</p>', 'deactive', '2022-07-21 02:23:54', '2022-07-21 02:25:42'),
+(6, '1658388234 1-large.jpg', 'Puzzles', 'Puzzles', '<p>No</p>', 'deactive', '2022-07-21 02:23:54', '2022-08-15 06:16:26'),
 (7, '1658388257 1.png', 'Vouchers', 'Vouchers', '<p>No</p>', 'active', '2022-07-21 02:24:17', '2022-07-21 02:24:17'),
 (8, '1660561540-1646028345 1280-279253-538798184.png', 'Free directory Listing', 'world', '<p>no</p>', 'deactive', '2022-07-21 02:24:41', '2022-08-15 06:05:40'),
 (9, '1658388306 3.png', 'Green Guide', 'Green Guide', '<p>No</p>', 'active', '2022-07-21 02:25:06', '2022-08-15 05:59:44');
@@ -631,7 +682,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (72, '2022_07_21_070639_create_magazine_highlights_table', 40),
 (73, '2022_07_22_045159_create_links_cards_table', 41),
 (74, '2022_07_22_050409_create_links_cards_table', 42),
-(75, '2022_07_22_103943_create_home_gallery_table', 43);
+(75, '2022_07_22_103943_create_home_gallery_table', 43),
+(76, '2022_08_16_052639_create_greenguide_team_table', 44),
+(77, '2022_08_17_045635_create_page_magazine_competition_table', 45),
+(78, '2022_08_17_054032_create_page_magazine_giveaway_table', 46),
+(79, '2022_08_18_053805_create_page_feedback_table', 47),
+(80, '2022_08_18_062816_create_distributors_table', 48);
 
 -- --------------------------------------------------------
 
@@ -703,6 +759,9 @@ CREATE TABLE `page_businessdirectory` (
   `bd_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_cat_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_cat_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec2_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec2_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec2_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -716,8 +775,8 @@ CREATE TABLE `page_businessdirectory` (
 -- Dumping data for table `page_businessdirectory`
 --
 
-INSERT INTO `page_businessdirectory` (`id`, `bd_hero_image`, `bd_title`, `bd_cat_title`, `bd_cat_desc`, `bd_sec3_title`, `bd_sec3_desc`, `bd_sec3_image`, `bd_sec4_title`, `bd_sec4_desc`, `created_at`, `updated_at`) VALUES
-(1, '1645693562 business-bg.jpg', 'Green Guide Directory', 'DIRECTORY CATEGORIES', 'Need to find a local business? We have a wide range of businesses registered on the Green Guide business directory.', 'Green Guide Croydon Magazine', '<p>The team at LGG Marketing are pleased to announce the launch of a borough wide residential magazine across the entire Croydon Borough. The Green Guide magazine will be a unified publication of local messages, community initiatives and a business directory. We want to connect residents with their local market in order to establish a pathway for community growth.</p>', '1645693562 business-directory-img1.png', 'Why Choose GreenGuide?', '<p>This magazine focuses on residents and aims to provide them with important information and messages. Ultimately, the goal is to enhance the readership of the magazine.| A local magazine enables you to communicate directly to potential customers in the local area.| Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.| As the advertisement is placed inside a trusted and reliable local magazine, which provides important sources of local information, readers are likely to display higher levels of trust. oIn printed magazines, your adverts can reach new audiences, particularly local residents who do not regularly access online content.| High exposure rate with the magazine being posted by our own experienced distribution teams to ~156,000 households.| User friendly magazine will have an index page that has the company names listed with the associated page number, contents page that outlines the categories within the issue and colour co-ordinated, easy to use tabs which will enable readers to identify content quickly.| Build a pathway for companies to reach new audiences within their local market.| Low cost marketing approach with various advert sizes for a</p>', NULL, '2022-03-12 02:24:24');
+INSERT INTO `page_businessdirectory` (`id`, `bd_hero_image`, `bd_title`, `bd_cat_title`, `bd_cat_desc`, `sec2_title`, `sec2_desc`, `sec2_image`, `bd_sec3_title`, `bd_sec3_desc`, `bd_sec3_image`, `bd_sec4_title`, `bd_sec4_desc`, `created_at`, `updated_at`) VALUES
+(1, '1645693562 business-bg.jpg', 'Green Guide Directory', 'DIRECTORY CATEGORIES', 'Need to find a local business? We have a wide range of businesses registered on the Green Guide business directory.', 'Register Your Business', '<p>Want to expand your exposure to the Green Guide community? If you&#39;re a business owner and would like to add your business to the Green Guide directory, then register for FREE. We want to build an expansive business directory that offers free exposure for local businesses and provides an easy and helpful resource for local residents. Our online business directory listing form will only take a few minutes to complete and is easy to use. When you have submitted the listing it will be reviewed and if accepted will be published live onto the Green Guide website.</p>', '1660803730 BG_Register_your_business.png', 'Green Guide Croydon Magazine', '<p>The team at LGG Marketing are pleased to announce the launch of a borough wide residential magazine across the entire Croydon Borough. The Green Guide magazine will be a unified publication of local messages, community initiatives and a business directory. We want to connect residents with their local market in order to establish a pathway for community growth.</p>', '1645693562 business-directory-img1.png', 'Why Choose GreenGuide?', '<p>This magazine focuses on residents and aims to provide them with important information and messages. Ultimately, the goal is to enhance the readership of the magazine.| A local magazine enables you to communicate directly to potential customers in the local area.| Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.| As the advertisement is placed inside a trusted and reliable local magazine, which provides important sources of local information, readers are likely to display higher levels of trust. oIn printed magazines, your adverts can reach new audiences, particularly local residents who do not regularly access online content.| High exposure rate with the magazine being posted by our own experienced distribution teams to ~156,000 households.| User friendly magazine will have an index page that has the company names listed with the associated page number, contents page that outlines the categories within the issue and colour co-ordinated, easy to use tabs which will enable readers to identify content quickly.| Build a pathway for companies to reach new audiences within their local market.| Low cost marketing approach with various advert sizes for a</p>', NULL, '2022-08-18 01:22:10');
 
 -- --------------------------------------------------------
 
@@ -763,6 +822,18 @@ CREATE TABLE `page_contact` (
   `contact_team_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact_media_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contact_media_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `finance_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `finance_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `design_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `design_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `operations_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `operations_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sales_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sales_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hr_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hr_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -771,8 +842,32 @@ CREATE TABLE `page_contact` (
 -- Dumping data for table `page_contact`
 --
 
-INSERT INTO `page_contact` (`id`, `contact_hero_image`, `contact_title`, `contact_sub_title`, `contact_desc`, `contact_map`, `contact_team_title`, `contact_team_desc`, `contact_media_title`, `contact_media_desc`, `created_at`, `updated_at`) VALUES
-(1, '1646374181 contact-us-hero.jpg', 'We’d Love to Hear From You', 'GET IN TOUCH', '&nbsp; &nbsp;', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.241881356656!2d-0.050808684338578!3d51.61877817965347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761e8ae036c7b1%3A0x85f7847126c3629f!2sLocal%20Green%20Guide%20Ltd%20-%20LGG%20Marketing!5e0!3m2!1sen!2s!4v1639087067763!5m2!1sen!2s\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'Green Guide Team', 'You can rely on our amazing, professional and friendly customer service team.', 'Media Partnerships', 'We love to support local events and have been chosen to be media partners for many of the best local festivals and events. The best partnerships include advertising, competitions, editorial, online and engagement at events.', NULL, '2022-05-17 14:38:12');
+INSERT INTO `page_contact` (`id`, `contact_hero_image`, `contact_title`, `contact_sub_title`, `contact_desc`, `contact_map`, `contact_team_title`, `contact_team_desc`, `contact_media_title`, `contact_media_desc`, `finance_email`, `finance_phone`, `design_email`, `design_phone`, `operations_email`, `operations_phone`, `customer_email`, `customer_phone`, `sales_email`, `sales_phone`, `hr_email`, `hr_phone`, `created_at`, `updated_at`) VALUES
+(1, '1646374181 contact-us-hero.jpg', 'We’d Love to Hear From You', 'GET IN TOUCH', '&nbsp; &nbsp;', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.241881356656!2d-0.050808684338578!3d51.61877817965347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761e8ae036c7b1%3A0x85f7847126c3629f!2sLocal%20Green%20Guide%20Ltd%20-%20LGG%20Marketing!5e0!3m2!1sen!2s!4v1639087067763!5m2!1sen!2s\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'Green Guide Team', 'You can rely on our amazing, professional and friendly customer service team.', 'Media Partnerships', 'We love to support local events and have been chosen to be media partners for many of the best local festivals and events. The best partnerships include advertising, competitions, editorial, online and engagement at events.', 'example@example.com', '(123) 456-7890', 'example@example.com', '(123) 456-7890', 'example@example.com', '(123) 456-7890', 'example@example.com', '(123) 456-7890', 'example@example.com', '(123) 456-7890', 'example@example.com', '(123) 456-7890', NULL, '2022-08-16 00:05:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_feedback`
+--
+
+CREATE TABLE `page_feedback` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `hero_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_feedback`
+--
+
+INSERT INTO `page_feedback` (`id`, `hero_title`, `hero_subtitle`, `hero_image`, `section2_heading`, `section2_text`, `created_at`, `updated_at`) VALUES
+(1, 'Green Guide Feedback', 'Green Guide Feedback', '1660802741 smile-face-green-ball-with-golden-five-stars-customer-client-survey-satisfaction-after-use-product-service-concept-by-3d-render_616485-67.webp', 'Feedback Form', '<p>We would love to hear your thoughts, suggestionsm concerns and problems with anything so we can improve!</p>', NULL, '2022-08-18 01:05:41');
 
 -- --------------------------------------------------------
 
@@ -871,6 +966,62 @@ CREATE TABLE `page_job` (
 
 INSERT INTO `page_job` (`id`, `job_hero_image`, `job_title`, `job_subtitle`, `job_sec2_title`, `job_sec2_image1`, `job_sec2_image2`, `job_sec2_sdesc`, `job_sec2_ldesc`, `job_sec3_title`, `job_sec3_sdesc`, `job_sec4_title`, `job_sec4_subtitle`, `created_at`, `updated_at`) VALUES
 (1, '1646398083 2107.q702.013.S.m005.c10.job search illustration-min.jpg', 'Leaflet Distributor', 'Join the Green Guide team TODAY', 'JOIN THE GREEN GUIDE TEAM', '1646116277 rsz_door-to-door-distributions-team.jpg', '1646116277 right-direction.jpg', '<p>We have a wide variety of job roles available within our fast growing company which include:</p>\r\n\r\n<ul>\r\n	<li>Leaflet Distributor Jobs in London</li>\r\n	<li>Distribution Manager Jobs in London</li>\r\n	<li>Warehouse Assistant Jobs in London</li>\r\n	<li>Admin Based Jobs&nbsp;in London</li>\r\n</ul>', '<p>If you are honest, hardworking and</p>\r\n\r\n<p>can work as part of a team then JOIN US today. All you need to do is</p>\r\n\r\n<p>fill out our application form and someone will be in contact.</p>', 'Are you still interested?', 'If you’re still interested in applying for a job with Green Guide, simply fill out the form on this page to beginthe application process.', 'Here are our steps to start earning money within days!', 'How our recruitment process works:', NULL, '2022-05-17 14:29:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_magazine_competition`
+--
+
+CREATE TABLE `page_magazine_competition` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `hero_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_heading_online` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_heading_kidz` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_magazine_competition`
+--
+
+INSERT INTO `page_magazine_competition` (`id`, `hero_title`, `hero_subtitle`, `hero_image`, `section2_text`, `section2_heading`, `section3_heading`, `section3_heading_online`, `section3_heading_kidz`, `created_at`, `updated_at`) VALUES
+(1, 'Magazine Puzzle Competitions', 'In every publication of the Green Guide magazine there will a puzzle page for residents. To be in chance to win a Puzzles Competition Prize, fill out the Competition form below.', '1660714149 closeup-shot-gaming-table-one-las-vegas-casinos_181624-44655.webp', '<p>To enter your answer to our magazine giveway online fill out the below form. A prize will be drawn at random from the successful entries and contacted by email or phone. Alternatively you can write to us, Unit 1 Georgiou Business Park, Second Avenue, N18 2PG, entries must be recieved by midnight on the stated date. Please read our Competition <a href=\"/competition-terms-conditions\" target=\"_self\">Terms &amp; Conditions</a> before entry submission.</p>', 'Green Guide Puzzle Competitions', 'Play the magazine puzzles digitally', 'Online Puzzles', 'Kidz Corner', NULL, '2022-08-17 00:36:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_magazine_giveaway`
+--
+
+CREATE TABLE `page_magazine_giveaway` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `hero_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section2_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_sponser_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section3_gift_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`section3_gift_images`)),
+  `section3_hamper_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_magazine_giveaway`
+--
+
+INSERT INTO `page_magazine_giveaway` (`id`, `hero_title`, `hero_subtitle`, `hero_image`, `section2_text`, `section2_heading`, `section3_heading`, `section3_sponser_name`, `section3_subtitle`, `section3_gift_images`, `section3_hamper_content`, `created_at`, `updated_at`) VALUES
+(1, 'Green Guide Giveaway', 'In every publication of the Green Guide magazine there will be an interactive competition for all residents. To be in with a chance to win the Quarterly Giveaway fill out the Competition form below.', '1660716678 gift-box-with-flowers-green-background_185193-72157.webp', '<p>To enter your answer to our magazine giveway online fill out the below form. A prize will be drawn at random from the successful entries and contacted by email or phone. Alternatively you can write to us, Unit 1 Georgiou Business Park, Second Avenue, N18 2PG, entries must be recieved by midnight on the stated date. Please read our <a href=\"/competition-terms-conditions\">Competition Terms &amp; Conditions</a> before entry submission.</p>', 'Green Guide Giveaway', 'The latest issue giveaway is proudly sponsored by:', 'John Lewis', 'The Summer 2022 issue prize is proudly donated by John Lewis', '[{\"name\":\"7841660718069795.jpg\"},{\"name\":\"3761660718069344.jpg\"}]', '<h2>The hamper contains;</h2>\r\n\r\n<ul>\r\n	<li>Orange Grove Merlot Spain,75cl, 13.5%</li>\r\n	<li>Story White Grape &amp; Elderflower Sparkling Fruit Press&eacute;, 75cl</li>\r\n	<li>Teoni&rsquo;s Chocolate Oat Crumble Biscuits, 200g</li>\r\n	<li>Mr Filbert&rsquo;s Kalamata Olives, 65g</li>\r\n	<li>Cottage Delight Orange Marmalade, 227g plus Wooden Spoon</li>\r\n	<li>Cottage Delight Sweet Apple Chutney 210gm plus Wooden Spoon</li>\r\n	<li>The Dormen Dry Roasted Peanuts, 100g</li>\r\n	<li>Linden Lady Handmade Vanilla Fudge, 115g</li>\r\n	<li>Grate Britain All British Cheddar Biscuits, 100g</li>\r\n	<li>The Original Cake Company 4&rdquo; Round Fruit</li>\r\n</ul>', NULL, '2022-08-17 01:34:29');
 
 -- --------------------------------------------------------
 
@@ -1095,6 +1246,12 @@ ALTER TABLE `directory_reviews`
   ADD KEY `directory_reviews_directoryid_foreign` (`directoryId`);
 
 --
+-- Indexes for table `distributors`
+--
+ALTER TABLE `distributors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -1132,6 +1289,12 @@ ALTER TABLE `general_settings`
 ALTER TABLE `giveaways`
   ADD PRIMARY KEY (`id`),
   ADD KEY `giveaways_upcomingissue_foreign` (`upcomingIssue`);
+
+--
+-- Indexes for table `greenguide_team`
+--
+ALTER TABLE `greenguide_team`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `home_gallery`
@@ -1194,6 +1357,12 @@ ALTER TABLE `page_contact`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `page_feedback`
+--
+ALTER TABLE `page_feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `page_greeninitiative`
 --
 ALTER TABLE `page_greeninitiative`
@@ -1209,6 +1378,18 @@ ALTER TABLE `page_home`
 -- Indexes for table `page_job`
 --
 ALTER TABLE `page_job`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `page_magazine_competition`
+--
+ALTER TABLE `page_magazine_competition`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `page_magazine_giveaway`
+--
+ALTER TABLE `page_magazine_giveaway`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1312,6 +1493,12 @@ ALTER TABLE `directory_reviews`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `distributors`
+--
+ALTER TABLE `distributors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -1348,6 +1535,12 @@ ALTER TABLE `giveaways`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `greenguide_team`
+--
+ALTER TABLE `greenguide_team`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `home_gallery`
 --
 ALTER TABLE `home_gallery`
@@ -1375,7 +1568,7 @@ ALTER TABLE `magazine_highlights`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `page_about`
@@ -1408,6 +1601,12 @@ ALTER TABLE `page_contact`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `page_feedback`
+--
+ALTER TABLE `page_feedback`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `page_greeninitiative`
 --
 ALTER TABLE `page_greeninitiative`
@@ -1423,6 +1622,18 @@ ALTER TABLE `page_home`
 -- AUTO_INCREMENT for table `page_job`
 --
 ALTER TABLE `page_job`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `page_magazine_competition`
+--
+ALTER TABLE `page_magazine_competition`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `page_magazine_giveaway`
+--
+ALTER TABLE `page_magazine_giveaway`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

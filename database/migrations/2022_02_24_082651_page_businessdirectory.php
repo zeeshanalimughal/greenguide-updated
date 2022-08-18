@@ -19,6 +19,9 @@ class PageBusinessdirectory extends Migration
             $table->string('bd_title');
             $table->string('bd_cat_title');
             $table->text('bd_cat_desc');
+            $table->string('sec2_title');
+            $table->string('sec2_desc');
+            $table->string('sec2_image');
             $table->string('bd_sec3_title');
             $table->text('bd_sec3_desc');
             $table->string('bd_sec3_image');

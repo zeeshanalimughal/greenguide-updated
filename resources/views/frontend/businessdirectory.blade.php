@@ -66,17 +66,12 @@
 
                 <div class="col-lg-7 col-md-12 mt-4" data-animate="fadeInLeft" data-animate-delay="1500">
                     <h1 class="title">
-                        Register Your Business
+                        {{$businessdirectory[0]->sec2_title}}
                     </h1>
                     <h5 class="description" text-align="justify">
-                        Want to expand your exposure to the Green Guide community?<br><br>
-                        If you're a business owner and would like to add your business to the Green Guide directory, then
-                        register for FREE. We want to build an expansive business directory that offers free exposure for
-                        local businesses and provides an easy and helpful resource for local residents.<br><br>
-                        Our online business directory listing form will only take a few minutes to complete and is easy to
-                        use. When you have submitted the listing it will be reviewed and if accepted will be published live
-                        onto the Green Guide website.
-
+                       @php
+                           echo $businessdirectory[0]->sec2_desc
+                       @endphp
                         <br>
 
 
@@ -93,7 +88,7 @@
                 <div class="col-lg-5 col-md-12" data-animate="fadeInRight" data-animate-delay="1000">
                     <div class="image" style="max-width: 800px;width:100%;height:500px; position: relative;">
                         <img style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;object-fit: contain;"
-                            src="{{ asset('uploads/BG_Register_your_business.png') }}" alt="">
+                            src="{{ asset('uploads/'.$businessdirectory[0]->sec2_image) }}" alt="">
                     </div>
                 </div>
             </div>
