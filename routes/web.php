@@ -393,21 +393,24 @@ Route::middleware(['admin-auth'])->group(function () {
 
             Route::get('/', [Pages::class, 'pages']);
 
+
+
+
             //Home Page
             Route::get('home', [Pages::class, 'getHomePage']);
-            Route::post('page-home', [Pages::class, 'page_home'])->name('page.home');;
+            Route::post('page-home', [Pages::class, 'page_home'])->name('page.home');
 
             //About Page
             Route::get('about', [Pages::class, 'getAboutPage']);
-            Route::post('page-about', [Pages::class, 'page_about'])->name('page.about');;
+            Route::post('page-about', [Pages::class, 'page_about'])->name('page.about');
 
             //Contact Page
             Route::get('contact', [Pages::class, 'getContactPage']);
-            Route::post('page-contact', [Pages::class, 'page_contact'])->name('page.contact');;
+            Route::post('page-contact', [Pages::class, 'page_contact'])->name('page.contact');
 
             //Advertise Page
             Route::get('advertise', [Pages::class, 'getAdvertisePage']);
-            Route::post('page-advertise', [Pages::class, 'page_advertise'])->name('page.advertise');;
+            Route::post('page-advertise', [Pages::class, 'page_advertise'])->name('page.advertise');
 
             //Businessdirectory Page
             Route::get('businessdirectory', [Pages::class, 'getBusinessdirectoryPage']);
@@ -448,6 +451,16 @@ Route::middleware(['admin-auth'])->group(function () {
             //   Route::get('edit-gallery/{id}', [Pages::class, 'editGallery']);
             //   Route::post('update-gallery', [Pages::class, 'updateGallery'])->name('page.update-gallery');
             Route::get('gallery/{id}/{action}', [Pages::class, 'manageGallery'])->name('page.manageGallery');
+
+
+
+            //Magazine Competition Page
+            Route::get('magazine-competition', [Pages::class, 'getMagazineCompetitionPage']);
+            Route::post('magazine-competition', [Pages::class, 'magazineCompetition'])->name('page.magazineCompetition');
+
+            //Magazine Giveaway Page
+            Route::get('magazine-giveaway', [Pages::class, 'getMagazineGiveawayPage']);
+            Route::post('magazine-giveaway', [Pages::class, 'magazineGiveaway'])->name('page.magazineGiveaway');
         });
     });
 });

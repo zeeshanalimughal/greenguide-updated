@@ -4,14 +4,14 @@
 
 
 
-    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://img.freepik.com/free-photo/closeup-shot-gaming-table-one-las-vegas-casinos_181624-44655.jpg?w=1380&t=st=1657951857~exp=1657952457~hmac=856e43f8399c736c2f18269ed1e96bb9ff798a426853d2cd275914bf61f3d0a5') !important;"  data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('{{asset('uploads/'.$page->hero_image)}}') !important;"  data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
-            Magazine Puzzle Competitions
+            {{$page->hero_title}}
         </h1>
         <div class="container">
             <p class="description" style="font-size:17px; color:#fff; margin-top: 20px; text-align: center"
                 data-animate="fadeInUp" data-animate-delay="800">
-                In every publication of the Green Guide magazine there will a puzzle page for residents. To be in chance to win a Puzzles Competition Prize, fill out the Competition form below.
+                {{$page->hero_subtitle}}
             </p>
         </div>
 
@@ -33,12 +33,9 @@
     <div class="container pt-5 pb-3">
     
             <div class="page-title my-3" style="text-align:left;">
-                To enter your answer to our magazine giveway online fill out the below form. A prize will be drawn at random
-                from the successful entries and contacted by email or phone. <br>Alternatively you can write to us, Unit 1
-                Georgiou Business Park, Second Avenue, N18 2PG, entries must be recieved by midnight on the stated date.
-                Please read our <a href="/competition-terms-conditions">Competition Terms & Conditions</a> before entry
-                submission.
-
+            @php
+                echo $page->section2_text;
+            @endphp
             </div>
 
         @if (session()->has('success'))
@@ -58,7 +55,7 @@
             </div>
         @endif
         <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
-            <h1 class="text-center">Green Guide Puzzle Competitions</h1>
+            <h1 class="text-center"> {{$page->section2_heading}}</h1>
             @csrf
             <div class="col-md-6">
                 <label for="inputCity" class="form-label">Issue Number - Present</label>
@@ -138,8 +135,8 @@
 <div style="background:#ededed;padding:1rem 0;margin:4rem 0;">
 
     <div class="container mt-5" style="background:#ededed;padding:3rem 0;">
-        <h2 class="text-center" style="font-weight: 700">Play the magazine puzzles digitally</h2>
-        <h2 class="text-center">Online Puzzles</h2>
+        <h2 class="text-center" style="font-weight: 700">{{$page->section3_heading}}</h2>
+        <h2 class="text-center">{{$page->section3_heading_online}}</h2>
         <div class="row col-no-margin equalize" data-equalize-item=".text-box">
             <!--Box 1-->
             <div class="col-lg-6" style="background-color: #6f86a1;">
@@ -169,7 +166,7 @@
 
 
     <div class="container my-5">
-        <h2 class="text-center">Kidz Corner</h2>
+        <h2 class="text-center">{{$page->section3_heading_kidz}}</h2>
         <div class="row col-no-margin equalize" data-equalize-item=".text-box">
             <!--Box 1-->
             <div class="col-lg-6" style="background-color: #8498b1;">

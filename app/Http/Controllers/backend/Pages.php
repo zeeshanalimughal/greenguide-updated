@@ -14,6 +14,8 @@ use App\Models\pages\Contact;
 use App\Models\pages\GreenInitiative;
 use App\Models\pages\Jobs;
 use App\Models\pages\LinksCard;
+use App\Models\pages\MagazineCompetition;
+use App\Models\pages\MagazineGiveaway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -281,7 +283,7 @@ class Pages extends Controller
             return redirect('/admins/pages/advertise');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/advertise');
         }
     }
 
@@ -899,6 +901,165 @@ class Pages extends Controller
                 Session::flash('error', 'Something went wrong');
                 return redirect('/admins/pages/gallery');
             }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function getMagazineCompetitionPage()
+    {
+
+        $page = MagazineCompetition::where('id', 1)->get();
+        return view('backend.pages.magazine-competition', compact('page'));
+    }
+
+
+    public function magazineCompetition(Request $request)
+    {
+        $request->validate([
+            'hero_title' => 'required',
+            'hero_subtitle' => 'required',
+            'section2_text' => 'required',
+            'section2_heading' => 'required',
+            'section3_heading' => 'required',
+            'section3_heading_online' => 'required',
+            'section3_heading_kidz' => 'required',
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $data  = MagazineCompetition::find(1);
+
+        $data->hero_title = $request->input('hero_title');
+        $data->hero_subtitle = $request->input('hero_subtitle');
+        $data->section2_text = $request->input('section2_text');
+        $data->section2_heading = $request->input('section2_heading');
+        $data->section3_heading = $request->input('section3_heading');
+        $data->section3_heading_online = $request->input('section3_heading_online');
+        $data->section3_heading_kidz = $request->input('section3_heading_kidz');
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
+            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/magazine-competition');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/magazine-competition');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getMagazineGiveawayPage()
+    {
+
+        $page = MagazineGiveaway::where('id', 1)->get();
+        return view('backend.pages.magazine-giveaway', compact('page'));
+    }
+
+
+    public function magazineGiveaway(Request $request)
+    {
+        $request->validate([
+            'hero_title' => 'required',
+            'hero_subtitle' => 'required',
+            'section2_text' => 'required',
+            'section2_heading' => 'required',
+            'section3_heading' => 'required',
+            'section3_sponser_name' => 'required',
+            'section3_subtitle' => 'required',
+            'section3_hamper_content' => 'required',
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
+            'section3_gift_images[]' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $data  = MagazineGiveaway::find(1);
+
+        $data->hero_title = $request->input('hero_title');
+        $data->hero_subtitle = $request->input('hero_subtitle');
+        $data->section2_text = $request->input('section2_text');
+        $data->section2_heading = $request->input('section2_heading');
+        $data->section3_heading = $request->input('section3_heading');
+        $data->section3_sponser_name = $request->input('section3_sponser_name');
+        $data->section3_subtitle = $request->input('section3_subtitle');
+        $data->section3_hamper_content = $request->input('section3_hamper_content');
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
+
+
+        $images = [];
+        if ($request->hasFile('section3_gift_images') && $request->section3_gift_images!=='null') {
+
+            foreach ($data->section3_gift_images as $name => $image) {
+                foreach ($image as $key => $img) {
+                    $imgPath = public_path('/uploads/' . $img);
+                    if (File::exists($imgPath)) {
+                        unlink($imgPath);
+                    }
+                }
+            }
+
+            foreach ($request->section3_gift_images as $key => $image) {
+                $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                $image->move(public_path('uploads'), $imageName);
+                $images[]['name'] = $imageName;
+            }
+            $data->section3_gift_images = $images;
+        }
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/magazine-giveaway');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/magazine-giveaway');
         }
     }
 }
