@@ -37,6 +37,18 @@ class Pages extends Controller
     public function page_home(Request $request)
     {
         $request->validate([
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
+            'hero_title1' => 'required',
+            'hero_title2' => 'required',
+            'hero_animated_title' => 'required',
+            'post_category_title1' => 'required',
+            'post_category_title2' => 'required',
+            'post_category_title3' => 'required',
+            'post_category_image1' => 'mimes:png,jpg,jpeg,webp',
+            'post_category_image2' => 'mimes:png,jpg,jpeg,webp',
+            'post_category_image3' => 'mimes:png,jpg,jpeg,webp',
+
+
             'box1_title' => 'required',
             // 'box1_image' => 'mimes:png,jpg,jpeg',
             'box2_title' => 'required',
@@ -51,35 +63,83 @@ class Pages extends Controller
             'dir_desc' => 'required',
         ]);
 
-        // if ($request->hasFile('box_images')) {
-        //     foreach ($request->file('box_images') as $imagefile) {
-        //         $name = $imagefile->getClientOriginalName();
-        //         $imagefile->move(public_path() . '/uploads/', $name);
-        //         $data[] = $name;
-        //     }
-        // }
 
-        // print_r($data[0]);
-        $res  = Home::where('id', 1)->update([
-            'b1_title' => $request->input('box1_title'),
-            // 'b1_image' => $data[0],
-            'b2_title' => $request->input('box2_title'),
-            // 'b2_image' => $data[1],
-            'b3_title' => $request->input('box3_title'),
-            // 'b3_image' => $data[2],
-            'b4_title' => $request->input('box4_title'),
-            // 'b4_image' => $data[3],
-            'b5_title' => $request->input('box5_title'),
-            // 'b5_image' => $data[4],
-            'dir_title' => $request->input('dir_title'),
-            'dir_desc' => $request->input('dir_desc'),
-        ]);
+        $home = Home::find(1);
+
+        if ($request->hasFile('hero_image')) {
+
+            if ($home->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $home->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $home->hero_image = $hero_image;
+        }
+
+
+        if ($request->hasFile('post_category_image1')) {
+            if ($home->post_category_image1 !== '') {
+                $imagePath = public_path('/uploads/' . $home->post_category_image1);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $post_category_image1 = time() . '-' . $request->file('post_category_image1')->getClientOriginalName();
+            $request->file('post_category_image1')->move(public_path() . '/uploads/', $post_category_image1);
+            $home->post_category_image1 = $post_category_image1;
+        }
+
+        if ($request->hasFile('post_category_image2')) {
+            if ($home->post_category_image2 !== '') {
+                $imagePath = public_path('/uploads/' . $home->post_category_image2);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $post_category_image2 = time() . '-' . $request->file('post_category_image2')->getClientOriginalName();
+            $request->file('post_category_image2')->move(public_path() . '/uploads/', $post_category_image2);
+            $home->post_category_image2 = $post_category_image2;
+        }
+
+        if ($request->hasFile('post_category_image3')) {
+            if ($home->post_category_image3 !== '') {
+                $imagePath = public_path('/uploads/' . $home->post_category_image3);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $post_category_image3 = time() . '-' . $request->file('post_category_image3')->getClientOriginalName();
+            $request->file('post_category_image3')->move(public_path() . '/uploads/', $post_category_image3);
+            $home->post_category_image3 = $post_category_image3;
+        }
+
+        $home->b1_title = $request->input('box1_title');
+        $home->b2_title = $request->input('box2_title');
+        $home->b3_title = $request->input('box3_title');
+        $home->b4_title = $request->input('box4_title');
+        $home->b5_title = $request->input('box5_title');
+        $home->dir_title = $request->input('dir_title');
+        $home->dir_desc = $request->input('dir_desc');
+
+
+        $home->hero_title1 = $request->input('hero_title1');
+        $home->hero_title2 = $request->input('hero_title2');
+        $home->hero_animated_title = $request->input('hero_animated_title');
+        $home->post_category_title1 = $request->input('post_category_title1');
+        $home->post_category_title2 = $request->input('post_category_title2');
+        $home->post_category_title3 = $request->input('post_category_title3');
+
+
+        $res  = $home->update();
         if ($res) {
             $request->session()->flash('success', 'Updated Successfully');
             return redirect('/admins/pages/home');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/home');
         }
     }
 
@@ -134,7 +194,7 @@ class Pages extends Controller
             return redirect('/admins/pages/about');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/about');
         }
     }
 
@@ -218,7 +278,7 @@ class Pages extends Controller
             return redirect('/admins/pages/contact');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/contact');
         }
     }
 
@@ -373,7 +433,7 @@ class Pages extends Controller
             return redirect('/admins/pages/businessdirectory');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/businessdirectory');
         }
     }
 
@@ -481,7 +541,7 @@ class Pages extends Controller
             return redirect('/admins/pages/greeninitiative');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/greeninitiative');
         }
     }
 
@@ -561,7 +621,7 @@ class Pages extends Controller
             return redirect('/admins/pages/communitygrowth');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/communitygrowth');
         }
     }
 
@@ -669,7 +729,7 @@ class Pages extends Controller
             return redirect('/admins/pages/jobs');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/jobs');
         }
     }
 
@@ -848,7 +908,7 @@ class Pages extends Controller
             return redirect('/admins/pages/links-cards');
         } else {
             $request->session()->flash('error', 'Something went wrong');
-            return redirect('/admins/posts');
+            return redirect('/admins/pages/links-cards');
         }
     }
 

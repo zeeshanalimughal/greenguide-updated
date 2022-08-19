@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 18, 2022 at 09:33 AM
+-- Generation Time: Aug 19, 2022 at 03:10 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -913,6 +913,16 @@ INSERT INTO `page_greeninitiative` (`id`, `gi_hero_image`, `gi_title`, `gi_subti
 
 CREATE TABLE `page_home` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_title1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_title2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_animated_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_title1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_title2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_title3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_image1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_image2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_category_image3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `b1_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `b1_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `b2_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -933,8 +943,8 @@ CREATE TABLE `page_home` (
 -- Dumping data for table `page_home`
 --
 
-INSERT INTO `page_home` (`id`, `b1_title`, `b1_image`, `b2_title`, `b2_image`, `b3_title`, `b3_image`, `b4_title`, `b4_image`, `b5_title`, `b5_image`, `dir_title`, `dir_desc`, `created_at`, `updated_at`) VALUES
-(1, 'Pathway for community growths', '', 'Produced and distributed by LGG', '', 'Borough wide quarterly residential magazine', '', 'Less waste more trees', '', 'Your Local Market', '', 'Business Directory', 'A local magazine enables you to communicate directly to potential customers in the local area..', NULL, '2022-02-22 08:41:41');
+INSERT INTO `page_home` (`id`, `hero_image`, `hero_title1`, `hero_title2`, `hero_animated_title`, `post_category_title1`, `post_category_title2`, `post_category_title3`, `post_category_image1`, `post_category_image2`, `post_category_image3`, `b1_title`, `b1_image`, `b2_title`, `b2_image`, `b3_title`, `b3_image`, `b4_title`, `b4_image`, `b5_title`, `b5_image`, `dir_title`, `dir_desc`, `created_at`, `updated_at`) VALUES
+(1, '1660900390-herohome.jpg', 'Green Guide Croydon Magazine', 'We want to empower', 'residents to know who the can|go to.|turn to.|connect with.', 'Spotlights', 'Companies', 'LGG Team', '1660900775-1645600589 4.png', '1660892929 1645600499 1.png', '1660892929 1645600616 2.png', 'Pathway for community growths', '', 'Produced and distributed by LGG', '', 'Borough wide quarterly residential magazine', '', 'Less waste more trees', '', 'Your Local Market', '', 'Business Directory', 'A local magazine enables you to communicate directly to potential customers in the local area..', NULL, '2022-08-19 04:19:35');
 
 -- --------------------------------------------------------
 
@@ -1155,7 +1165,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (26, 'Zeeshan Ali', 'zeeshan@gmail.com', NULL, '$2y$10$hH7iQ/2JOdX2EhJlla1Y0OHp5AGRSC5OrMT0kSg5izdQQ1R3eDW8q', NULL, 'active', '2022-03-07 01:45:21', '2022-07-21 01:16:08'),
-(36, 'kashif', 'kashif@gmail.com', NULL, '$2y$10$LRppdBypjalw9dc1c9GOB.GER9WjrOkmkNBmojXGuRL651nqEuhdS', NULL, 'active', '2022-07-19 03:49:42', '2022-07-21 01:22:03');
+(36, 'kashif', 'kashif@gmail.com', NULL, '$2y$10$LRppdBypjalw9dc1c9GOB.GER9WjrOkmkNBmojXGuRL651nqEuhdS', NULL, 'active', '2022-07-19 03:49:42', '2022-08-18 06:18:18');
 
 -- --------------------------------------------------------
 
@@ -1496,7 +1506,7 @@ ALTER TABLE `directory_reviews`
 -- AUTO_INCREMENT for table `distributors`
 --
 ALTER TABLE `distributors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
