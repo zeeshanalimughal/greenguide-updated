@@ -54,6 +54,7 @@
                 </div>
             </div>
         @endif
+        @if($form[0]->status==='live') 
         <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
             <h1 class="text-center"> {{$page->section2_heading}}</h1>
             @csrf
@@ -124,6 +125,9 @@
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
         </form>
+        @else
+        <h2>Magazine Competition Form Is Not Available</h2>
+        @endif
     </div>
 
 

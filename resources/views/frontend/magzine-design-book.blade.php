@@ -483,6 +483,7 @@
                     </div>
                 </div>
             @endif
+            @if($form[0]->status==='live') 
             <form method="POST" class="form-validate" action="{{ route('design.submit-design') }}"
                 enctype="multipart/form-data" data-animate="fadeInUp" data-animate-delay="800">
                 @csrf
@@ -818,6 +819,10 @@
                     </div>
                 </div>
             </form>
+
+            @else
+            <h2 class="text-white text-center">Magazine Design Booking Form Is Not Available</h2>
+            @endif
         </div>
     </section>
 

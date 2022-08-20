@@ -50,6 +50,7 @@
                             echo $page[0]->contact_desc;
                         @endphp
                     </p>
+                    @if($form[0]->status==='live')    
                     <div class="m-t-30" data-animate="fadeInUp" data-animate-delay="900">
                         <form action="{{ route('contact.send') }}" method="POST">
                             @csrf
@@ -95,6 +96,10 @@
                             <input class="btn btn-primary" type="submit" name="submit" value="Send message" />
                         </form>
                     </div>
+                    
+                @else
+                <h2>Contact Form Not Available</h2>
+                @endif
                     <div class="social-icons m-t-30 social-icons-colored">
                         <ul>
                             <li class="social-facebook" data-animate="fadeInUp" data-animate-delay="800"><a

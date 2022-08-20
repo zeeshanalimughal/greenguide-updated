@@ -395,6 +395,7 @@
                         </div>
                     @endif
                     <div class="job-form-container px-0 px-sm-5">
+                        @if($form[0]->status==='live')    
                         <form action="{{ route('job.submit') }}" method="POST" class="p-0 m-0"
                             enctype="multipart/form-data">
                             @csrf
@@ -671,6 +672,10 @@
 
 
                         </form>
+                        
+                @else
+                <h1>Jops Form Not Available</h1>
+                @endif
                     </div>
                 </div>
             </div>

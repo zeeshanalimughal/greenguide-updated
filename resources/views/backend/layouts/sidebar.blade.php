@@ -36,7 +36,8 @@
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/businessdirectories"><i
-                                     class="side-menu__icon mdi mdi-account-card-details"></i><span class="side-menu__label">Business
+                                     class="side-menu__icon mdi mdi-account-card-details"></i><span
+                                     class="side-menu__label">Business
                                      Directory</span></a>
                          </li>
                          <li class="slide">
@@ -61,8 +62,8 @@
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/magazine-highlights"><i
-                                     class="side-menu__icon fa fa-ge"></i><span
-                                     class="side-menu__label">Magazine Highlights</span></a>
+                                     class="side-menu__icon fa fa-ge"></i><span class="side-menu__label">Magazine
+                                     Highlights</span></a>
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/users"><i
@@ -91,11 +92,16 @@
                                      class="side-menu__icon mdi fe fe-settings"></i><span
                                      class="side-menu__label">Pages Settings</span></a>
                          </li>
+                         <li class="slide">
+                             <a class="side-menu__item" data-bs-toggle="slide" href="{{route('forms')}}"><i
+                                     class="side-menu__icon mdi fe fe-settings"></i><span
+                                     class="side-menu__label">Website Forms Settings</span></a>
+                         </li>
 
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/pages/gallery"><i
-                                     class="side-menu__icon ion-images"></i><span
-                                     class="side-menu__label">Home Gallery</span></a>
+                                     class="side-menu__icon ion-images"></i><span class="side-menu__label">Home
+                                     Gallery</span></a>
                          </li>
 
                          <li class="slide">
@@ -116,7 +122,8 @@
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide"
                                  href="{{ url('admins/upcomming-issues') }}"><i
-                                     class="side-menu__icon fe fe-alert-triangle"></i><span class="side-menu__label">Upcomming
+                                     class="side-menu__icon fe fe-alert-triangle"></i><span
+                                     class="side-menu__label">Upcomming
                                      Issues</span></a>
                          </li>
                          <li class="slide">
@@ -126,12 +133,14 @@
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide"
-                                 href="{{ url('admins/giveaways') }}"><i class="side-menu__icon icon icon-present"></i><span
+                                 href="{{ url('admins/giveaways') }}"><i
+                                     class="side-menu__icon icon icon-present"></i><span
                                      class="side-menu__label">Giveaways</span></a>
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide"
-                                 href="{{ url('admins/feedbacks') }}"><i class="side-menu__icon icon icon-bubbles"></i><span
+                                 href="{{ url('admins/feedbacks') }}"><i
+                                     class="side-menu__icon icon icon-bubbles"></i><span
                                      class="side-menu__label">Feedbacks</span></a>
                          </li>
                          {{-- <li class="sub-category">

@@ -7,7 +7,9 @@ use App\Models\Faq;
 use App\Models\Job;
 use App\Models\pages\Jobs as PagesJobs;
 use App\Models\pages\LinksCard;
+use App\Models\WebsiteForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +19,7 @@ class Jobs extends Controller
     function index()
     {
         $page = PagesJobs::where('id', 1)->get();
-        return view('frontend.jobs', ['page' => $page, 'faqs' => Faq::all(),'links'=>LinksCard::where('id',1)->get()]);
+        return view('frontend.jobs', ['page' => $page, 'faqs' => Faq::all(),'links'=>LinksCard::where('id',1)->get(),'form'=>WebsiteForm::where('link','jobs#apply-job')->get()]);
     }
 
     public function submitJobRequest(Request $request)

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact as ModelsContact;
 use App\Models\GreenguideTeam;
 use App\Models\pages\Contact as PagesContact;
+use App\Models\WebsiteForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class Contact extends Controller
 {
@@ -14,7 +16,8 @@ class Contact extends Controller
     {
         $page = PagesContact::where('id', 1)->get();
         $teams =  GreenguideTeam::all();
-        return view('frontend.contact', compact('page','teams'));
+        $form = WebsiteForm::where('link',FacadesRequest::path())->get();
+        return view('frontend.contact', compact('page','teams','form'));
     }
 
 

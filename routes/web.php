@@ -398,6 +398,11 @@ Route::middleware(['admin-auth'])->group(function () {
         });
 
 
+         //Website Forms
+         Route::get('forms', [Pages::class, 'getWebsiteForms'])->name('forms');
+         Route::get('forms/{id}/{action}', [Pages::class, 'manageWebsiteForms']);
+
+
         // Pages Settings Routes
         Route::prefix('/pages/')->group(function () {
 
@@ -477,6 +482,9 @@ Route::middleware(['admin-auth'])->group(function () {
             //Feedback Page
             Route::get('feedback', [Pages::class, 'getAdminFeedbackPage']);
             Route::post('feedback', [Pages::class, 'feedbackPage'])->name('page.feedback');
+            
+            
+           
         });
     });
 });

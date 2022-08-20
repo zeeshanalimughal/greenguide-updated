@@ -20,6 +20,8 @@
     <section>
         <div class="container" >
             <div class="row d-flex justify-content-around flex-sm-wrap-reverse">
+
+                @if($form[0]->status==='live')      
                 <div class="col-md-5 d-none d-md-flex" >
                     <img src="{{ url('front/img/login__image.jpg') }}" style="max-width:450px;width:100%; object-fit:contain;" alt="">
                 </div>
@@ -73,6 +75,10 @@
                         </p>
                     </div>
                 </div>
+
+                @else
+                <h1>Login Is Not Available</h1>
+                @endif
             </div>
         </div>
     </section>

@@ -17,6 +17,8 @@
     <section class="pt-5 pb-5">
         <div class="container-fluid d-flex flex-column">
             <div class="row align-items-center min-vh-60">
+                @if($form[0]->status==='live')  
+
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <h3>Register New Account</h3>
 
@@ -142,6 +144,10 @@
                             class="small fw-bold">Sign in</a>
                     </div>
                 </div>
+
+                @else
+                <h1>Registeration Is Not Available</h1>
+                @endif
             </div>
         </div>
     </section>

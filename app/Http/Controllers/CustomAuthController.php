@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\UserDetails;
+use App\Models\WebsiteForm;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class CustomAuthController extends Controller
 {
     public function index()
     {
-        return view('frontend.login', ['auth' => 'auth']);
+        return view('frontend.login', ['auth' => 'auth','form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
 
     public function customLogin(Request $request)
@@ -36,7 +38,7 @@ class CustomAuthController extends Controller
 
     public function registration()
     {
-        return view('frontend.register');
+        return view('frontend.register',['form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
     public function customRegistration(Request $request)
     {

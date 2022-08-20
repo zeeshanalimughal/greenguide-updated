@@ -11,7 +11,9 @@ use App\Models\pages\LinksCard;
 use App\Models\pages\MagazineCompetition;
 use App\Models\pages\MagazineGiveaway;
 use App\Models\UpcommingIssues;
+use App\Models\WebsiteForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 
 
@@ -23,11 +25,11 @@ class ResidentsCorner extends Controller
 
     public function getMagazineCompetitionPage()
     {
-        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>MagazineCompetition::find(1)]);
+        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>MagazineCompetition::find(1),'form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
     public function getMagazineGiveawayPage()
     {
-        return view('frontend.magazine-giveaway', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'page'=>MagazineGiveaway::find(1)]);
+        return view('frontend.magazine-giveaway', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'page'=>MagazineGiveaway::find(1),'form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
 
     public function submitMagzineGiveaway(Request $request)
@@ -54,7 +56,7 @@ class ResidentsCorner extends Controller
 
     public function getFeedbackPage()
     {
-        return view('frontend.feedback',['links'=>LinksCard::where('id',1)->get(),'page'=>PageFeedback::find(1)]);
+        return view('frontend.feedback',['links'=>LinksCard::where('id',1)->get(),'page'=>PageFeedback::find(1),'form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
 
 

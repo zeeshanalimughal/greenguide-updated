@@ -202,6 +202,7 @@
                 </div>
                 {{session()->forget('error')}}
             @endif
+            @if($form[0]->status==='live') 
             <form method="POST" id="adver_form" class="form-validate" action="{{ route('advert.submit-advert') }}"
                 enctype="multipart/form-data" data-animate="fadeInUp" data-animate-delay="800">
                 @csrf
@@ -418,6 +419,9 @@
                     </div>
                 </div>
             </form>
+            @else
+            <h2 class="text-center mt-5">Advert Design Form Is Not Available</h2>
+            @endif
         </div>
     </section>
 
@@ -469,7 +473,7 @@ $("#passwords__container").css({
         const btn_add = document.getElementById("btn-add-size-quantity");
         const size_quantity = document.getElementById("size-quantity-container");
 
-
+      if(btn_add){
         btn_add.addEventListener("click", function() {
             size_quantity.insertAdjacentHTML('beforeend', `
                     <label for="example-text-input" class="col-lg-1 col-form-label">Quantity</label>
@@ -506,9 +510,9 @@ $("#passwords__container").css({
                             <div class="text-danger">{{ $errors->first('advertSize') }}</div>
                         @endif
                     </div>
-`);
+            `);
         })
-
+    }
 
         const adver_form = document.querySelector("#adver_form");
         const adver_submit_btn = document.querySelector("#adver_submit_btn");
@@ -518,9 +522,14 @@ $("#passwords__container").css({
 
         const quantity = document.getElementsByName("quantity[]");
         const advertPrice = document.getElementsByName("advertSize[]");
+        if(adver_cancel_btn){
+       
         adver_cancel_btn.addEventListener("click", function(){
             window.location.reload();
         })
+             
+    }
+    if(adver_cancel_btn){
         adver_form.addEventListener('submit', function(event) {
             event.preventDefault();
         
@@ -570,7 +579,7 @@ $("#passwords__container").css({
                 adver_form.submit();
             })
         })
-
+    }
 
 
         $(document).on("scroll", function() {

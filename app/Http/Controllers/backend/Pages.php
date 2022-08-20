@@ -17,6 +17,7 @@ use App\Models\pages\Jobs;
 use App\Models\pages\LinksCard;
 use App\Models\pages\MagazineCompetition;
 use App\Models\pages\MagazineGiveaway;
+use App\Models\WebsiteForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -1197,6 +1198,37 @@ class Pages extends Controller
         } else {
             $request->session()->flash('error', 'Something went wrong');
             return redirect('/admins/pages/feedback');
+        }
+    }
+
+
+    public function getWebsiteForms(){
+        return view('backend.website-forms', ['forms' => WebsiteForm::all()]);
+    }
+
+
+
+
+    function manageWebsiteForms($id, $action)
+    {
+
+        if ($action === 'activate') {
+            if (WebsiteForm::where('id', $id)->update(['status' => 'live',])) {
+                Session::flash('success', "Form Activated successfully");
+                return redirect('/admins/forms');
+            } else {
+                Session::flash('error', "Something went wrong");
+                return redirect('/admins/forms');
+            }
+        } 
+
+        if ($action === 'deactivate') {
+            if (WebsiteForm::where('id', $id)->update(['status' => 'deactive',])) {
+                Session::flash('success', "Form Deactivated successfully");
+                return redirect('/admins/forms');
+            } else {
+                Session::flash('error', "Something went wrong");
+            }
         }
     }
 }

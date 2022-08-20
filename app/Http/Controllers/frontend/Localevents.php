@@ -7,9 +7,11 @@ use App\Models\Event;
 use App\Models\pages\LinksCard;
 use App\Models\User;
 use App\Models\UserDetails;
+use App\Models\WebsiteForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 
 
@@ -48,7 +50,7 @@ class Localevents extends Controller
     function addEventForm(){
         $user = UserDetails::where('userId',Auth::user()->id)
         ->first();
-        return view('frontend.add-event-form',['user' => $user]);
+        return view('frontend.add-event-form',['user' => $user,'form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
     }
     
     function addEvent(Request $request){

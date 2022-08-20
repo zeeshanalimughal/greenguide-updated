@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 19, 2022 at 03:10 PM
+-- Generation Time: Aug 20, 2022 at 01:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -687,7 +687,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (77, '2022_08_17_045635_create_page_magazine_competition_table', 45),
 (78, '2022_08_17_054032_create_page_magazine_giveaway_table', 46),
 (79, '2022_08_18_053805_create_page_feedback_table', 47),
-(80, '2022_08_18_062816_create_distributors_table', 48);
+(80, '2022_08_18_062816_create_distributors_table', 48),
+(81, '2022_08_20_071603_create_website_froms_table', 49);
 
 -- --------------------------------------------------------
 
@@ -1193,6 +1194,37 @@ INSERT INTO `user_details` (`id`, `userId`, `company_name`, `company_reg_no`, `p
 (13, 26, 'LLG Green Guide', '923847', '984237498', 'SWE2897', 'My Address', NULL, NULL),
 (22, 36, 'ZEX', '4543534', '03059677107', '345353', NULL, NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `website_froms`
+--
+
+CREATE TABLE `website_froms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'live',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `website_froms`
+--
+
+INSERT INTO `website_froms` (`id`, `name`, `link`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Login', 'login', 'live', NULL, '2022-08-20 03:07:10'),
+(2, 'Register', 'register', 'live', NULL, '2022-08-20 03:08:37'),
+(3, 'Contact', 'contact', 'live', NULL, '2022-08-20 03:35:43'),
+(4, 'Job', 'jobs#apply-job', 'live', NULL, '2022-08-20 03:44:20'),
+(5, 'Add Event', 'events/add-event-form', 'live', NULL, '2022-08-20 03:51:58'),
+(6, 'Magazine Design Book', 'magzine-design-book#book__addvertise', 'live', NULL, '2022-08-20 03:58:29'),
+(7, 'Advert Design Book', 'advert-design-book/#book__addvertise', 'live', NULL, '2022-08-20 04:05:18'),
+(8, 'Magzine Competition', 'magzine-competition', 'live', NULL, '2022-08-20 03:47:11'),
+(9, 'Magzine Giveaway', 'magzine-giveaway', 'live', NULL, '2022-08-20 03:48:36'),
+(10, 'Feedback', 'feedback', 'live', NULL, '2022-08-20 03:49:41');
+
 --
 -- Indexes for dumped tables
 --
@@ -1451,6 +1483,12 @@ ALTER TABLE `user_details`
   ADD KEY `user_details_userid_foreign` (`userId`);
 
 --
+-- Indexes for table `website_froms`
+--
+ALTER TABLE `website_froms`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1578,7 +1616,7 @@ ALTER TABLE `magazine_highlights`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `page_about`
@@ -1681,6 +1719,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `website_froms`
+--
+ALTER TABLE `website_froms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
