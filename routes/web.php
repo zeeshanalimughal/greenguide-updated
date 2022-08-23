@@ -20,7 +20,11 @@ use App\Http\Controllers\frontend\Contact;
 use App\Http\Controllers\frontend\ResidentsCorner;
 use Illuminate\Support\Facades\Artisan;
 
-Route::get('cache-clear', function () {
+
+
+
+Route::get('/clear-cache', function () {
+    // Artisan::call('route:clear');
     Artisan::call('config:cache');
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
@@ -28,7 +32,7 @@ Route::get('cache-clear', function () {
     Artisan::call('config:cache');
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
-    dd('Cache Cleared');
+    dd("route clear");
 });
 
 
@@ -482,6 +486,12 @@ Route::middleware(['admin-auth'])->group(function () {
             //Feedback Page
             Route::get('feedback', [Pages::class, 'getAdminFeedbackPage']);
             Route::post('feedback', [Pages::class, 'feedbackPage'])->name('page.feedback');
+            
+            
+
+            //Advert Design Page
+            Route::get('advert-design', [Pages::class, 'getAdvertDesign']);
+            Route::post('advert-design', [Pages::class, 'advertDesign'])->name('page.advert-design');
             
             
            

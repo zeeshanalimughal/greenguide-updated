@@ -120,7 +120,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                {{-- <div class="col-lg-4 col-sm-6 p-0 m-0">
                     <a href="{{ url('front/img/advertisements/add7.jpg') }}">
                         <div class="image_box">
                             <img src="{{ url('front/img/advertisements/add7.jpg') }}" alt="">
@@ -182,7 +182,7 @@
                             <img src="{{ url('front/img/advertisements/add17.jpg') }}" alt="">
                         </div>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -219,21 +219,14 @@
             <!-- Post item-->
             <div class="post-item" style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;">
 
-                <div class="post-item-wrap">
-                    <div class="row">
-                        <div class="col-9 text-center">
-                            <h4>A6 (height: 210mm x widht:148mm)</h4>
-                        </div>
-                    </div>
+                <div class="post-item-wrap position-relative" >
+       
+                    <h3 style="position: absolute; top: 50%; left: -20px; z-index:10;" class="advertise_name_price">A6<br>£100+VAT</h3>
+                    <h3></h3>
                     <div class="post-image ad-post-image">
                         <img alt="" src="{{ asset('/front/img/advertisements/ad1.jpg') }}">
+                    </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-9 text-center">
-                            <h3>£100+VAT</h3>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- end: Post item-->

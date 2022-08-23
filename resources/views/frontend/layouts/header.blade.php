@@ -107,7 +107,7 @@
                                             href="/about">About</a></li>
                                     <!-- <li><a href="/advertise">Advertise</a></li> -->
                                     <li class="{{ Request::url() === route('advertise') ? 'active' : '' }}">
-                                        <div class="p-dropdown"><a href="{{ route('advert_home') }}"
+                                        <div class="p-dropdown"><a href="{{ route('advertise') }}"
                                                 id="advertise-home" class="py-2 px-3 font-weight-600">Advertise <i class="fa fa-chevron-down"></i></a></a>
                                             <ul class="p-dropdown-content">
                                                 <li
@@ -118,10 +118,10 @@
                                                     class="{{ Request::url() === route('advertise') || Request::url() === route('advert.advert-book') ? 'active' : '' }}">
                                                     <a href="/advert-design-book/">Advert Design</a>
                                                 </li>
-                                                <li
+                                                {{-- <li
                                                     class="{{ Request::url() === route('advertise-in-magazine') ? 'active' : '' }}">
                                                     <a href="/advertise-in-magazine">Advertise in magazine</a>
-                                                </li>
+                                                </li> --}}
 
                                                 <li
                                                     class="{{ Request::url() === route('advertise') ? 'active' : '' }}">
@@ -194,7 +194,7 @@
         </header>
         <script>
             $('#advertise-home').on('click', function() {
-                window.location.replace("{{ route('advert_home') }}");
+                window.location.replace("{{ route('advertise') }}");
             })
         </script>
         <!-- end: Header -->

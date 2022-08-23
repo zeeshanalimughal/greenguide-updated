@@ -8,6 +8,7 @@ use App\Models\AdvertDesign;
 use App\Models\Borough;
 use App\Models\DesignBook;
 use App\Models\General_Setting;
+use App\Models\Pages\AdvertDesign as PagesAdvertDesign;
 use App\Models\pages\Advertise as PagesAdvertise;
 use App\Models\pages\LinksCard;
 use App\Models\UpcommingIssues;
@@ -340,10 +341,10 @@ class Advertise extends Controller
         if (Auth::check()) {
             $userDetails = UserDetails::where('userId', Auth::user()->id)
                 ->first();
-            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get()]);
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get(),'page'=>PagesAdvertDesign::find(1)]);
         } else {
 
-            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get()]);
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get(),'page'=>PagesAdvertDesign::find(1)]);
         }
     }
 

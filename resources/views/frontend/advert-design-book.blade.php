@@ -7,13 +7,14 @@
 
 
 
-    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://img.freepik.com/free-psd/book-mockup-with-minimal-design_23-2149350413.jpg?w=1380&t=st=1657949483~exp=1657950083~hmac=ecef931e2fce27f7180be0c2643c2e360d95fc08f33bc0f7e0421adcc31f1316') !important;" data-animate="fadeIn" data-animate-delay="500">
+    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('{{asset('uploads/'.$page->hero_image)}}') !important;" data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
-            Green Guide Advert Design
+          {{$page->hero_title}}
         </h1>
         <h3 class="subtitle" data-animate="fadeInUp" data-animate-delay="800">
-            Our professional design team can generate a high quality <br>advert for your business
-
+           @php
+               echo $page->hero_subtitle
+           @endphp
 
         </h3>
         <a href="#book__addvertise"><button class="btn__advertise" data-animate="fadeInUp" data-animate-delay="1000">Book
@@ -30,35 +31,16 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12" data-animate="fadeInLeft" data-animate-delay="700">
                     <div class="image">
-                        <img src="{{ asset('front/img/TL-Portfolio-graphic.jpg') }}" alt="">
+                        <img src="{{ asset('uploads/'.$page->section2_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12 mt-3 mt-sm-6">
                     <div class="title" data-animate="fadeInUp" data-animate-delay="700">
-                        Advert Design
+                       {{$page->section2_heading}}
                     </div>
-                    <h5 class="description text-dark mb-3" data-animate="fadeInUp" data-animate-delay="800">
-                        Readers and customers want an advert to catch their eye and we recommend that your advert consists
-                        of content that a reader can gain useful information from. To maximise your exposure we recommend
-                        that your advert;
-                    </h5>
-                    <div class="description" text-align="justify" data-animate="fadeInUp" data-animate-delay="900">
-                        <div class="text-left">
-                            <ul>
-                                <li class="mb-1 text-dark">Be original.</li>
-                                <li class="mb-1 text-dark">High-quality images and content.
-                                </li>
-                                <li class="mb-1 text-dark">Insightful content with the subliminal impact of selling a
-                                    product or service.
-                                </li>
-                                <li class="mb-1 text-dark">Call to action
-                                </li>
-                                <li class="mb-1 text-dark">Trackable code to measure your ROI
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
+                    @php
+                        echo    $page->section2_text
+                    @endphp
 
                 </div>
             </div>
@@ -80,11 +62,12 @@
     <section style="background:#ededed;padding:2rem 0;">
      <div class="container mt-4 mb-4">
         <div class="text-center">
-            <h2>Advert Prices</h2>
-            <p class="lead">
-                Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a
-                few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.
-            </p>
+            <h2>    {{$page->section3_heading}}</h2>
+          <div class="text-center">
+            @php
+            echo $page->section3_text
+            @endphp
+          </div>
         </div>
     </div>
 
@@ -92,14 +75,7 @@
 
 
         <div class="container">
-            <div class="text-center">
-
-                <p class="lead">
-                    In printed magazines, your adverts can reach new audiences, particularly local residents who do not
-                    regularly access online content.
-                </p>
-
-            </div>
+            
             <table class="table table-bordered table-hover table-table-striped">
                 <thead class="bg-dark text-white">
                     <tr>
@@ -133,12 +109,12 @@
             <div class="row p-0 m-0 d-flex justify-content-between">
                 <div class="col-lg-5 col-md-12 p-0 m-0 animate__animated animate__fadeInLeft visible"
                     data-animate="fadeInLeft" data-animate-delay="600">
-                    <h2 class="title">Upcoming Issues
+                    <h2 class="title">{{ $page->section4_heading}}
                     </h2>
-                    <p class="description">The Green Guide magazine is a unified publication of local messages,
-                        community initiatives and a business directory. Connecting residents with their local market to
-                        establish a pathway for community growth. Download the latest issue or access our archives.
-
+                    <p class="description">
+                        @php
+                        echo $page->section4_text
+                        @endphp
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-12 p-0 m-0 animate__animated animate__fadeInRight visible"

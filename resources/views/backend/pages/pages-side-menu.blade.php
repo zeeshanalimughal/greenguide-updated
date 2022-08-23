@@ -64,6 +64,11 @@
                 </a>
             </div>
             <div>
+                <a href="/admins/pages/advert-design" class="list-group-item  d-flex align-items-center px-0">
+                    <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Advert Design Book</a>
+                </a>
+            </div>
+            <div>
                 <a href="/admins/pages/faqs" class="list-group-item  d-flex align-items-center px-0">
                     <i class="fe fe-database fs-18 me-2 text-pink p-2"></i>FAQ'S
                 </a>

@@ -7,6 +7,7 @@ use App\Models\Faq;
 use App\Models\HomeGallery;
 use App\Models\pages\Home;
 use App\Models\pages\About;
+use App\Models\Pages\AdvertDesign;
 use App\Models\pages\Advertise;
 use App\Models\pages\Businessdirectory;
 use App\Models\pages\CommunityGrowth;
@@ -1202,7 +1203,8 @@ class Pages extends Controller
     }
 
 
-    public function getWebsiteForms(){
+    public function getWebsiteForms()
+    {
         return view('backend.website-forms', ['forms' => WebsiteForm::all()]);
     }
 
@@ -1220,7 +1222,7 @@ class Pages extends Controller
                 Session::flash('error', "Something went wrong");
                 return redirect('/admins/forms');
             }
-        } 
+        }
 
         if ($action === 'deactivate') {
             if (WebsiteForm::where('id', $id)->update(['status' => 'deactive',])) {
@@ -1229,6 +1231,92 @@ class Pages extends Controller
             } else {
                 Session::flash('error', "Something went wrong");
             }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getAdvertDesign()
+    {
+// dd("dkf");
+        $page = AdvertDesign::where('id', 1)->get();
+        return view('backend.pages.advert-design', compact('page'));
+    }
+
+
+
+    public function advertDesign(Request $request)
+    {
+        $request->validate([
+            'hero_title' => 'required',
+            'hero_subtitle' => 'required',
+            'section2_text' => 'required',
+            'section2_heading' => 'required',
+            'section3_heading' => 'required',
+            'section3_text' => 'required',
+            'section4_heading' => 'required',
+            'section4_text' => 'required',
+            'section2_image' => 'mimes:png,jpg,jpeg,webp',
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $data  = AdvertDesign::find(1);
+
+        $data->hero_title = $request->input('hero_title');
+        $data->hero_subtitle = $request->input('hero_subtitle');
+        $data->section2_text = $request->input('section2_text');
+        $data->section2_heading = $request->input('section2_heading');
+        $data->section3_heading = $request->input('section3_heading');
+        $data->section3_text = $request->input('section3_text');
+        $data->section4_heading = $request->input('section4_heading');
+        $data->section4_text = $request->input('section4_text');
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
+
+        if ($request->hasFile('section2_image')) {
+            if ($data->section2_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->section2_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $section2_image = time() . ' ' . $request->file('section2_image')->getClientOriginalName();
+            $request->file('section2_image')->move(public_path() . '/uploads/', $section2_image);
+            $data->section2_image = $section2_image;
+        }
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/advert-design');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/advert-design');
         }
     }
 }
