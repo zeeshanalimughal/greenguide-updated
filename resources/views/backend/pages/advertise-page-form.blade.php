@@ -73,6 +73,22 @@
                                 </div>
                             </div>
 
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Add Section 2 Image one </label>
+                                    <input type="file" name="ad_sec2_image1" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Add Section 2 Image two </label>
+                                    <input type="file" name="ad_sec2_image2" class="form-control">
+                                </div>
+                            </div>
+
+
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Add Section Pathway Title </label>
@@ -88,7 +104,13 @@
                                    </textarea>
                                 </div>
                             </div>
-
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Add Section Pathway Side Image </label>
+                                    <input type="file" name="ad_pathway_image" class="form-control">
+                                </div>
+                            </div>
 
 
                             <div class="col-sm-12 col-md-12">
@@ -107,6 +129,15 @@
                                 </div>
                             </div> --}}
 
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">UpcommingIssues content</label>
+                                   <textarea name="add_upcomming_issue_content">
+                                        {{$page[0]->add_upcomming_issue_content}}
+                                   </textarea>
+                                </div>
+                            </div>
 
 
                             <div class="col-sm-12 col-md-12">
@@ -155,5 +186,6 @@
         CKEDITOR.replace('ad_benifits');
         CKEDITOR.replace('ad_service_desc');
         CKEDITOR.replace('ad_pathway_desc');
+        CKEDITOR.replace('add_upcomming_issue_content');
     </script>
 @endsection

@@ -12,12 +12,7 @@
                     <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>About
                 </a>
             </div>
-            <div>
-                <a href="/admins/pages/advertise" class="list-group-item  d-flex align-items-center px-0">
-                    <i class="fe fe-eye fs-18 me-2 text-primary p-2"></i> Advertise
-                </a>
-            </div>
-
+           
             <div>
                 <a href="/admins/pages/businessdirectory" class="list-group-item  d-flex align-items-center px-0">
                     <i class="fe fe-headphones fs-18 me-2 text-info p-2"></i> Business Directory
@@ -66,6 +61,17 @@
             <div>
                 <a href="/admins/pages/advert-design" class="list-group-item  d-flex align-items-center px-0">
                     <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Advert Design Book</a>
+                </a>
+            </div>
+            <div>
+                <a href="/admins/pages/advertise" class="list-group-item  d-flex align-items-center px-0">
+                    <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i> Advertise
+                </a>
+            </div>
+
+            <div>
+                <a href="/admins/pages/advertise-in-magazine" class="list-group-item  d-flex align-items-center px-0">
+                    <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Advertise in Magazine</a>
                 </a>
             </div>
             <div>

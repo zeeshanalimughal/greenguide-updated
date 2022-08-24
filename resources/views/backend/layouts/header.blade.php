@@ -35,7 +35,8 @@
     <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
 
 
-    <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script> --}}
+    <script src="//cdn.ckeditor.com/4.19.1/full/ckeditor.js"></script>
 
 </head>
 

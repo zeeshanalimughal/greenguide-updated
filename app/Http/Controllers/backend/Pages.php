@@ -7,8 +7,9 @@ use App\Models\Faq;
 use App\Models\HomeGallery;
 use App\Models\pages\Home;
 use App\Models\pages\About;
-use App\Models\Pages\AdvertDesign;
+use App\Models\pages\AdvertDesign;
 use App\Models\pages\Advertise;
+use App\Models\pages\AdvertiseInMagazine;
 use App\Models\pages\Businessdirectory;
 use App\Models\pages\CommunityGrowth;
 use App\Models\pages\Contact;
@@ -313,7 +314,11 @@ class Pages extends Controller
             'ad_benifits_title' => 'required',
             'ad_benifits' => 'required',
             'ad_prices_desc' => 'required',
-            'add_hero_image' => 'mimes:png,jpg,jpeg',
+            'add_upcomming_issue_content' => 'required',
+            'add_hero_image' => 'mimes:png,jpg,jpeg,webp',
+            'ad_sec2_image1' => 'mimes:png,jpg,jpeg,webp',
+            'ad_sec2_image2' => 'mimes:png,jpg,jpeg,webp',
+            'ad_pathway_image' => 'mimes:png,jpg,jpeg,webp',
         ]);
         $data  = Advertise::find(1);
 
@@ -327,6 +332,8 @@ class Pages extends Controller
         $data->ad_benifits_title = $request->input('ad_benifits_title');
         $data->ad_benifits = $request->input('ad_benifits');
         $data->ad_prices_desc = $request->input('ad_prices_desc');
+        $data->ad_prices_desc = $request->input('ad_prices_desc');
+        $data->add_upcomming_issue_content = $request->input('add_upcomming_issue_content');
 
         if ($request->hasFile('add_hero_image')) {
             $imagePath = public_path('/uploads/' . $data->add_hero_image);
@@ -338,6 +345,47 @@ class Pages extends Controller
             $request->file('add_hero_image')->move(public_path() . '/uploads/', $add_hero_image);
             $data->add_hero_image = $add_hero_image;
         }
+
+
+        
+        if ($request->hasFile('ad_sec2_image1')) {
+            if ($data->ad_sec2_image1 !== '') {
+                $imagePath = public_path('/uploads/' . $data->ad_sec2_image1);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $ad_sec2_image1 = time() . ' ' . $request->file('ad_sec2_image1')->getClientOriginalName();
+            $request->file('ad_sec2_image1')->move(public_path() . '/uploads/', $ad_sec2_image1);
+            $data->ad_sec2_image1 = $ad_sec2_image1;
+        }
+
+        if ($request->hasFile('ad_sec2_image2')) {
+            if ($data->ad_sec2_image2 !== '') {
+                $imagePath = public_path('/uploads/' . $data->ad_sec2_image2);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $ad_sec2_image2 = time() . ' ' . $request->file('ad_sec2_image2')->getClientOriginalName();
+            $request->file('ad_sec2_image2')->move(public_path() . '/uploads/', $ad_sec2_image2);
+            $data->ad_sec2_image2 = $ad_sec2_image2;
+        }
+
+        if ($request->hasFile('ad_pathway_image')) {
+            if ($data->ad_pathway_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->ad_pathway_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $ad_pathway_image = time() . ' ' . $request->file('ad_pathway_image')->getClientOriginalName();
+            $request->file('ad_pathway_image')->move(public_path() . '/uploads/', $ad_pathway_image);
+            $data->ad_pathway_image = $ad_pathway_image;
+        }
+
+
+
 
         $res =  $data->update();
 
@@ -1252,7 +1300,6 @@ class Pages extends Controller
 
     public function getAdvertDesign()
     {
-// dd("dkf");
         $page = AdvertDesign::where('id', 1)->get();
         return view('backend.pages.advert-design', compact('page'));
     }
@@ -1317,6 +1364,121 @@ class Pages extends Controller
         } else {
             $request->session()->flash('error', 'Something went wrong');
             return redirect('/admins/pages/advert-design');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getAdvertiseInMagazine()
+    {
+        $page = AdvertiseInMagazine::where('id', 1)->get();
+        return view('backend.pages.advertise-in-magazine', compact('page'));
+    }
+
+
+
+    public function advertiseInMagazine(Request $request)
+    {
+        $request->validate([
+            'sec1_content' => 'required',
+            'sec2_content' => 'required',
+            'sec3_content' => 'required',
+            'sec4_content' => 'required',
+            'sec5_content' => 'required',
+            'sec1_image' => 'mimes:png,jpg,jpeg,webp',
+            'sec3_image' => 'mimes:png,jpg,jpeg,webp',
+            'sec4_image' => 'mimes:png,jpg,jpeg,webp',
+            'sec5_image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $data  = AdvertiseInMagazine::find(1);
+
+        $data->sec1_content = $request->input('sec1_content');
+        $data->sec2_content = $request->input('sec2_content');
+        $data->sec3_content = $request->input('sec3_content');
+        $data->sec4_content = $request->input('sec4_content');
+        $data->sec5_content = $request->input('sec5_content');
+
+
+
+        if ($request->hasFile('sec1_image')) {
+            if ($data->sec1_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec1_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $sec1_image = time() . ' ' . $request->file('sec1_image')->getClientOriginalName();
+            $request->file('sec1_image')->move(public_path() . '/uploads/', $sec1_image);
+            $data->sec1_image = $sec1_image;
+        }
+
+
+
+        if ($request->hasFile('sec3_image')) {
+            if ($data->sec3_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec3_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $sec3_image = time() . ' ' . $request->file('sec3_image')->getClientOriginalName();
+            $request->file('sec3_image')->move(public_path() . '/uploads/', $sec3_image);
+            $data->sec3_image = $sec3_image;
+        }
+
+        if ($request->hasFile('sec4_image')) {
+            if ($data->sec4_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec4_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $sec4_image = time() . ' ' . $request->file('sec4_image')->getClientOriginalName();
+            $request->file('sec4_image')->move(public_path() . '/uploads/', $sec4_image);
+            $data->sec4_image = $sec4_image;
+        }
+
+
+        if ($request->hasFile('sec5_image')) {
+            if ($data->sec5_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec5_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $sec5_image = time() . ' ' . $request->file('sec5_image')->getClientOriginalName();
+            $request->file('sec5_image')->move(public_path() . '/uploads/', $sec5_image);
+            $data->sec5_image = $sec5_image;
+        }
+
+
+
+
+
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/advertise-in-magazine');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/advertise-in-magazine');
         }
     }
 }

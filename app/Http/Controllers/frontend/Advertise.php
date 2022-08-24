@@ -10,6 +10,7 @@ use App\Models\DesignBook;
 use App\Models\General_Setting;
 use App\Models\Pages\AdvertDesign as PagesAdvertDesign;
 use App\Models\pages\Advertise as PagesAdvertise;
+use App\Models\pages\AdvertiseInMagazine;
 use App\Models\pages\LinksCard;
 use App\Models\UpcommingIssues;
 use App\Models\User;
@@ -27,7 +28,7 @@ class Advertise extends Controller
     function index()
     {
         $advertise = PagesAdvertise::where('id', 1)->get();
-        return view('frontend.advertise', ['advertise' => $advertise, 'issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]);
+        return view('frontend.advertise', ['advertise' => $advertise, 'issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>AdvertiseInMagazine::find(1)]);
     }
     function advertise_home()
     {
@@ -41,7 +42,7 @@ class Advertise extends Controller
     }
 
     public function getMagazineInAdvertisePage(){
-        return view('frontend.advertise-in-magazine',['links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]);
+        return view('frontend.advertise-in-magazine',['links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>AdvertiseInMagazine::find(1)]);
     }
 
     function advert_design_book()

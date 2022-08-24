@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 23, 2022 at 11:17 AM
+-- Generation Time: Aug 24, 2022 at 01:22 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -689,7 +689,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (79, '2022_08_18_053805_create_page_feedback_table', 47),
 (80, '2022_08_18_062816_create_distributors_table', 48),
 (81, '2022_08_20_071603_create_website_froms_table', 49),
-(82, '2022_08_23_060814_create_page_advert_design_table', 50);
+(82, '2022_08_23_060814_create_page_advert_design_table', 50),
+(83, '2022_08_24_045329_create_page_advertise_in_magazine_table', 51);
 
 -- --------------------------------------------------------
 
@@ -732,9 +733,13 @@ CREATE TABLE `page_advertise` (
   `ad_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_sec2_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_sec2_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ad_sec2_image1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ad_sec2_image2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_pathway_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_pathway_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ad_pathway_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_service_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `add_upcomming_issue_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_benifits_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_benifits` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ad_prices_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -746,8 +751,36 @@ CREATE TABLE `page_advertise` (
 -- Dumping data for table `page_advertise`
 --
 
-INSERT INTO `page_advertise` (`id`, `add_hero_image`, `ad_title`, `ad_subtitle`, `ad_sec2_heading`, `ad_sec2_desc`, `ad_pathway_heading`, `ad_pathway_desc`, `ad_service_desc`, `ad_benifits_title`, `ad_benifits`, `ad_prices_desc`, `created_at`, `updated_at`) VALUES
-(1, '1645685536 advertise.jpg', 'Green Guide magazine', 'Discover the potential of exceptional advertising', 'Why Advertise within the Green Guide magazine?', '<strong>READERSHIP</strong> - Focus on residents and aims to provide them with important information and messages from the local businesses and the council.| <strong>CONNECT </strong>- A local magazine enables you to communicate directly to new and existing customers in the local area.| <strong>TRUST </strong>- Readers are likely to display higher levels of trust to the businesses advertised within a magazine that provides important sources of local information,| <strong>ACCESSIBILITY </strong>- In printed magazine, your advert can reach new audiences, particularly local residents who do not regularly access online content. |<strong>PROFITABILITY </strong>- Reach new audiences within your local market. Low cost marketing approach with various advert sizes for any budget', 'Pathway for community growth', '<p>The Green Guide Magazine is a one-stop-shop for design, print and distribution, giving residents and businesses a single point of contact, reducing stress and giving you are more fluid, more streamlined marketing process.| The Green Guide is a high-end quality printed magazine which has many useful features for residents, thus it is designed to ensure that residents keep it.| It is usually the case that, when canvassing local houses, you will have to deal with complaints pertaining to distribution, most of which have nothing to do with the brand or services offered. When advertising in the Green Guide, however, this is not the case. In fact, residents will get in touch with the Green Guide customer service team if they have any complaints with distribution. Our friendly, professional customer service team will respond and resolve any complaints that may arise.| The Green Guide campaign can be accessed via the online portal system, where you can locate daily reports, local distribution maps and other information pertaining to distribution that can enable local residents to track and calculate responses.| As well as creating a listing in the Green Guide magazine, businesses will also be given a FREE premium listing in the Green Guide online local directory. This will direct more traffic to you and ensure your company&rsquo;s position as a key player in the local area that is well-known to local residents.| Although it differs on the volumes used, the Green Guide will be an excellent, cost-effective addition to your marketing mix.</p>', '<p>Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.</p>', 'Benefits of advertising within the Green Guide Croydon magazine', '<p>Low cost marketing approach with various advert sizes for any budget.| High exposure rate with the magazine being posted by our own experienced distribution teams to ~156,000 households.| Your advert will be displayed within a high-quality publication.| User friendly magazine will enable the reader to locate your advert in a quick, hassle free manner.| When an advert is secured within our magazine your business will receive a premium online listing within our business directory.| Online access which will include, downloadable magazines, business directory and events calendar. Provide important information and messages to enhance readership of the magazine.</p>', '<p>Green Guide Magazine is a high quality, informative magazine that is posted to residents of the London Borough of Croydon on a quarterly basis.</p>', NULL, '2022-08-23 00:29:01');
+INSERT INTO `page_advertise` (`id`, `add_hero_image`, `ad_title`, `ad_subtitle`, `ad_sec2_heading`, `ad_sec2_desc`, `ad_sec2_image1`, `ad_sec2_image2`, `ad_pathway_heading`, `ad_pathway_desc`, `ad_pathway_image`, `ad_service_desc`, `add_upcomming_issue_content`, `ad_benifits_title`, `ad_benifits`, `ad_prices_desc`, `created_at`, `updated_at`) VALUES
+(1, '1645685536 advertise.jpg', 'Green Guide magazine', 'Discover the potential of exceptional advertising', 'Why Advertise within the Green Guide magazine?', '<p><strong>READERSHIP</strong> - Focus on residents and aims to provide them with important information and messages from the local businesses and the council.| <strong>CONNECT </strong>- A local magazine enables you to communicate directly to new and existing customers in the local area.| <strong>TRUST </strong>- Readers are likely to display higher levels of trust to the businesses advertised within a magazine that provides important sources of local information,| <strong>ACCESSIBILITY </strong>- In printed magazine, your advert can reach new audiences, particularly local residents who do not regularly access online content. |<strong>PROFITABILITY </strong>- Reach new audiences within your local market. Low cost marketing approach with various advert sizes for any budget</p>', '1661320513 business-strategy.png', '1661320513 1520103821627.jpg', 'Pathway for community growth', '<p>The Green Guide Magazine is a one-stop-shop for design, print and distribution, giving residents and businesses a single point of contact, reducing stress and giving you are more fluid, more streamlined marketing process.| The Green Guide is a high-end quality printed magazine which has many useful features for residents, thus it is designed to ensure that residents keep it.| It is usually the case that, when canvassing local houses, you will have to deal with complaints pertaining to distribution, most of which have nothing to do with the brand or services offered. When advertising in the Green Guide, however, this is not the case. In fact, residents will get in touch with the Green Guide customer service team if they have any complaints with distribution. Our friendly, professional customer service team will respond and resolve any complaints that may arise.| The Green Guide campaign can be accessed via the online portal system, where you can locate daily reports, local distribution maps and other information pertaining to distribution that can enable local residents to track and calculate responses.| As well as creating a listing in the Green Guide magazine, businesses will also be given a FREE premium listing in the Green Guide online local directory. This will direct more traffic to you and ensure your company&rsquo;s position as a key player in the local area that is well-known to local residents.| Although it differs on the volumes used, the Green Guide will be an excellent, cost-effective addition to your marketing mix.</p>', '1661320513 TL-Portfolio-graphic (1).jpg', '<p>Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.</p>', '<h1><span style=\"font-size:48px\"><span style=\"color:#000033\">Upcoming Issues</span></span></h1>\r\n\r\n<p>The Green Guide magazine is a unified publication of local messages, community initiatives and a business directory. Connecting residents with their local market to establish a pathway for community growth. Download the latest issue or access our archives.</p>', 'Benefits of advertising within the Green Guide Croydon magazine', '<p>Low cost marketing approach with various advert sizes for any budget.| High exposure rate with the magazine being posted by our own experienced distribution teams to ~156,000 households.| Your advert will be displayed within a high-quality publication.| User friendly magazine will enable the reader to locate your advert in a quick, hassle free manner.| When an advert is secured within our magazine your business will receive a premium online listing within our business directory.| Online access which will include, downloadable magazines, business directory and events calendar. Provide important information and messages to enhance readership of the magazine.</p>', '<p>Green Guide Magazine is a high quality, informative magazine that is posted to residents of the London Borough of Croydon on a quarterly basis.</p>', NULL, '2022-08-24 00:59:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_advertise_in_magazine`
+--
+
+CREATE TABLE `page_advertise_in_magazine` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `sec1_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec1_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec2_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec3_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec3_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec4_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec4_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec5_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sec5_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_advertise_in_magazine`
+--
+
+INSERT INTO `page_advertise_in_magazine` (`id`, `sec1_image`, `sec1_content`, `sec2_content`, `sec3_image`, `sec3_content`, `sec4_image`, `sec4_content`, `sec5_image`, `sec5_content`, `created_at`, `updated_at`) VALUES
+(1, '1661318503 advertise-in-design.jpg', '<h2 style=\"text-align:center\">Green Guide Croydon Magazine</h2>\r\n\r\n<p><span style=\"font-size:16px\">We&#39;re helping build lives and livelihoods by combining our specialist knowledge in distribution with close collaborations with businesses to help local residents discover what amenities and services are at their disposal. The Green Guide Magazine will be posted to residents based in the London Borough of Croydon (~156,000 households) with the aim to help build community growth.</span></p>', '<h2 style=\"text-align:center\">Upcoming Issues</h2>\r\n\r\n<p><span style=\"font-size:16px\">The Green Guide magazine is a quarterly publication of local messages, community initiatives and a business directory which will be distributed across the London Borough of Croydon. We offer a range of advert sizes to accommodate any marketing budget.</span></p>', '1661318503 advertise-in-design.jpg', '<h2 style=\"text-align:center\">High exposure, low cost marketing approach</h2>\r\n\r\n<p><span style=\"font-size:16px\">Green Guide Magazine is a high quality, informative magazine that is posted to residents of the London Borough of Croydon on a quarterly basis. Take advantage of this amazing marketing avenue by placing your advert in a high exposure magazine that is delivered to ~156,000 households.</span></p>', '1661318503 advertise-in-design.jpg', '<h2 style=\"text-align:center\">Increase Your Sales</h2>\r\n\r\n<p><span style=\"font-size:16px\">A magazine delivers informative and useful information to the local resident which drives, brand awareness. Green Guide is a product that is focussed on building relationships with the audience which increases the level of trust for the adverts displayed within and exposes the businesses to a high volume of potential, customers.</span></p>', '1661318503 advertise-in-design.jpg', '<h2 style=\"text-align:center\">Premium Advert Designs</h2>\r\n\r\n<p><span style=\"font-size:16px\">Our professional designers can create a powerful and engaging advertisement at a low cost. All ads are printed on paper with a glossy finish to produce high quality advertisements. To ensure a memorable advert a sleek and creative design with a targeted message can help your brand flourish.</span></p>', NULL, '2022-08-24 00:26:16');
 
 -- --------------------------------------------------------
 
@@ -1411,6 +1444,12 @@ ALTER TABLE `page_advertise`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `page_advertise_in_magazine`
+--
+ALTER TABLE `page_advertise_in_magazine`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `page_advert_design`
 --
 ALTER TABLE `page_advert_design`
@@ -1652,7 +1691,7 @@ ALTER TABLE `magazine_highlights`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `page_about`
@@ -1664,6 +1703,12 @@ ALTER TABLE `page_about`
 -- AUTO_INCREMENT for table `page_advertise`
 --
 ALTER TABLE `page_advertise`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `page_advertise_in_magazine`
+--
+ALTER TABLE `page_advertise_in_magazine`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

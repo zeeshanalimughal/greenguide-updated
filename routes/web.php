@@ -494,6 +494,13 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::post('advert-design', [Pages::class, 'advertDesign'])->name('page.advert-design');
             
             
+            
+
+            //AdvertiseInMagazine Design Page
+            Route::get('advertise-in-magazine', [Pages::class, 'getAdvertiseInMagazine']);
+            Route::post('advertise-in-magazine', [Pages::class, 'advertiseInMagazine'])->name('page.advertise-in-magazine');
+            
+            
            
         });
     });

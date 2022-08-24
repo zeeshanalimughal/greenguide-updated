@@ -1,4 +1,4 @@
-@extends("frontend.layouts.master")
+@extends('frontend.layouts.master')
 @section('main-section')
     <div class="fixed__advertise__link">
         <a href="/magzine-design-book">Advertise with us</a>
@@ -7,7 +7,8 @@
     {{-- {{$advertise}} --}}
 
 
-    <div class="advertise__hero" data-animate="fadeIn" data-animate-delay="500" style="
+    <div class="advertise__hero" data-animate="fadeIn" data-animate-delay="500"
+        style="
                                                                width     : 100%;
                                                             min-height: 80vh;
                                                             /* padding:3rem 0; */
@@ -56,8 +57,8 @@
                                 @endphp
                                 @foreach ($add_sec2_desc_arr as $desc_arr)
                                     <li class="mb-3">
-                                        @php 
-                                        echo $desc_arr ;
+                                        @php
+                                            echo $desc_arr;
                                         @endphp
                                     </li>
                                 @endforeach
@@ -75,10 +76,10 @@
                 </div>
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <div class="job-image-container advertise-side-image position-relative w-100">
-                        <img src="{{ url('front/img/business-strategy.png') }}" class="img-1 img-responsive w-100" alt=""
-                            data-animate="fadeInRight" data-animate-delay="900">
+                        <img src="{{ url('uploads/' . $advertise[0]->ad_sec2_image1) }}" class="img-1 img-responsive w-100"
+                            alt="" data-animate="fadeInRight" data-animate-delay="900">
                         <div class="inner-image" data-animate="fadeInUp" data-animate-delay="1100">
-                            <img src="{{ url('front/img/1520103821627.jpg') }}" class="image" alt="">
+                            <img src="{{ url('uploads/' . $advertise[0]->ad_sec2_image2) }}" class="image" alt="">
 
                         </div>
                     </div>
@@ -106,33 +107,19 @@
 
 
 
-
-
-
-
-
-
     <div class="advert__in__design__section">
         <div class="container my-5">
             <div class="row my-5">
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
                     <div class="image">
                         <img style="z-index:100; display: flex !important;" width="100%"
-                            src="{{ asset('front/img/advertise-in-design.jpg') }}" alt="">
+                            src="{{ asset('uploads/' . $page->sec1_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
-                    <h3 class="heading " style="font-weight: 600">
-                        Green Guide Croydon Magazine
-                    </h3>
-                    <p class="desc" style="font-size:18px; " align="justify">
-                        We're helping build lives and livelihoods by combining our specialist
-                        knowledge in distribution with close collaborations with businesses
-                        to help local residents discover what amenities and services are at
-                        their disposal. The Green Guide Magazine will be posted to
-                        residents based in the London Borough of Croydon (~156,000
-                        households) with the aim to help build community growth.
-                    </p>
+                    @php
+                        echo $page->sec1_content;
+                    @endphp
                     <div class="text-center mt-3">
                         <a href="/download-media-pack" class="btn btn-outline-primary">Media Pack <i
                                 class="ps-3 fa fa-download"></i></a>
@@ -146,14 +133,9 @@
                 <div class="row my-5 d-flex justify-content-around">
 
                     <div class="col-lg-4 col-md-12  text-white">
-                        <h2 class="heading " style="font-weight: 600">
-                            Upcoming Issues
-                        </h2>
-                        <p class="desc" style="font-size:18px; " align="justify">
-                            The Green Guide magazine is a quarterly publication of local messages, community initiatives and
-                            a business directory which will be distributed across the London Borough of Croydon. We offer a
-                            range of advert sizes to accommodate any marketing budget.
-                        </p>
+                        @php
+                            echo $page->sec2_content;
+                        @endphp
                         <div class="text-center mt-5">
                             <a href="/advert-design-book/#book__addvertise" class="btn btn-outline-primary">Book Now <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
@@ -207,18 +189,13 @@
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
                     <div class="image">
                         <img style="z-index:100; display: flex !important;" width="100%"
-                            src="{{ asset('front/img/advertise-in-design.jpg') }}" alt="">
+                            src="{{ asset('uploads/' . $page->sec3_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
-                    <h3 class="heading " style="font-weight: 600">
-                        High exposure, low cost marketing approach
-                    </h3>
-                    <p class="desc" style="font-size:18px; " align="justify">
-                        Green Guide Magazine is a high quality, informative magazine that is posted to residents of the
-                        London Borough of Croydon on a quarterly basis. Take advantage of this amazing marketing avenue by
-                        placing your advert in a high exposure magazine that is delivered to ~156,000 households.
-                    </p>
+                    @php
+                        echo $page->sec3_content;
+                    @endphp
                     <div class="text-center mt-3">
                         <a href="/download-media-pack" class="btn btn-outline-primary">Media Pack <i
                                 class="ps-3 fa fa-download"></i></a>
@@ -236,15 +213,12 @@
                 <div class="row my-5 d-flex justify-content-around">
 
                     <div class="col-lg-6 col-md-12  text-white">
-                        <h2 class="heading " style="font-weight: 600">
-                            Increase Your Sales
-                        </h2>
-                        <p class="desc" style="font-size:18px; " align="justify">
-                            A magazine delivers informative and useful information to the local resident which drives, brand
-                            awareness. Green Guide is a product that is focussed on building relationships with the audience
-                            which increases the level of trust for the adverts displayed within and exposes the businesses
-                            to a high volume of potential, customers.
-                        </p>
+
+
+                        @php
+                            echo $page->sec4_content;
+                        @endphp
+
                         <div class="text-center mt-3">
                             <a href="/magzine-design-book" class="btn btn-outline-primary">Find out More <i
                                     class="ps-3 fa fa-download"></i></a>
@@ -253,7 +227,7 @@
                     <div class="col-lg-6 col-md-12 ">
                         <div class="image">
                             <img style="z-index:100; display: flex !important;" width="100%"
-                                src="{{ asset('front/img/advertise-in-design.jpg') }}" alt="">
+                                src="{{ asset('uploads/' . $page->sec4_image) }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -275,18 +249,13 @@
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
                     <div class="image">
                         <img style="z-index:100; display: flex !important;" width="100%"
-                            src="{{ asset('front/img/advertise-in-design.jpg') }}" alt="">
+                            src="{{ asset('uploads/' . $page->sec5_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
-                    <h3 class="heading " style="font-weight: 600">
-                        Premium Advert Designs
-                    </h3>
-                    <p class="desc" style="font-size:18px; " align="justify">
-                        Our professional designers can create a powerful and engaging advertisement at a low cost. All ads
-                        are printed on paper with a glossy finish to produce high quality advertisements. To ensure a
-                        memorable advert a sleek and creative design with a targeted message can help your brand flourish.
-                    </p>
+                    @php
+                        echo $page->sec5_content;
+                    @endphp
                     <div class="text-center mt-3">
                         <a href="/advert-design-book" class="btn btn-outline-primary">Find out more</a>
                     </div>
@@ -294,13 +263,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
 
 
 
@@ -368,12 +330,12 @@
                             <h3>Spotlights</h3>
                         </div>
                     </div>
-  
+
                 </div>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
 
-         
+
                 <div class="swiper-scrollbar"></div>
             </div>
         </div>
@@ -391,7 +353,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12" data-animate="fadeInLeft" data-animate-delay="500">
                     <div class="image">
-                        <img src="{{ url('front/img/TL-Portfolio-graphic.jpg') }}" alt="">
+                        <img src="{{ url('uploads/' . $advertise[0]->ad_pathway_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12 mt-4" data-animate="fadeInRight" data-animate-delay="500">
@@ -407,9 +369,9 @@
                                 @endphp
                                 @foreach ($ad_pathway_desc as $path_desc)
                                     <li class="mb-3" style="color:#333">
-                                        @php 
-                                        echo $path_desc;
-                                         @endphp
+                                        @php
+                                            echo $path_desc;
+                                        @endphp
                                     </li>
                                 @endforeach
 
@@ -430,31 +392,47 @@
 
             <div class="desc" data-animate="fadeInUp" data-animate-delay="600">
                 @php
-                    echo '<p style="font-size:18px !important; font-weight:500 !important;">'.$advertise[0]->ad_service_desc.'</p>';
+                    echo '<p style="font-size:18px !important; font-weight:500 !important;">' . $advertise[0]->ad_service_desc . '</p>';
                 @endphp
             </div>
 
             <div class="pen">
                 <div class="stage">
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="500" style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="600" style="background: url('{{ url('front/img/advertisements/ad-3.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="700" style="background: url('{{ url('front/img/advertisements/ad-4.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="800" style="background: url('{{ url('front/img/advertisements/ad-5.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
+                    <div class="element" data-animate="fadeInDown" data-animate-delay="500"
+                        style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInUp" data-animate-delay="600"
+                        style="background: url('{{ url('front/img/advertisements/ad-3.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInDown" data-animate-delay="700"
+                        style="background: url('{{ url('front/img/advertisements/ad-4.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInUp" data-animate-delay="800"
+                        style="background: url('{{ url('front/img/advertisements/ad-5.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
 
                 </div>
                 <div class="stage mt-2">
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="900" style="background: url('{{ url('front/img/advertisements/ad-6.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="1000" style="background: url('{{ url('front/img/advertisements/ad-7.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="1100" style="background: url('{{ url('front/img/advertisements/ad1.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="1200" style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;"></div>
+                    <div class="element" data-animate="fadeInUp" data-animate-delay="900"
+                        style="background: url('{{ url('front/img/advertisements/ad-6.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInDown" data-animate-delay="1000"
+                        style="background: url('{{ url('front/img/advertisements/ad-7.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInUp" data-animate-delay="1100"
+                        style="background: url('{{ url('front/img/advertisements/ad1.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
+                    <div class="element" data-animate="fadeInDown" data-animate-delay="1200"
+                        style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
+                                                                    background-size: cover;">
+                    </div>
 
                 </div>
             </div>
@@ -469,13 +447,17 @@
         <div class="container">
             <div class="row p-0 m-0 d-flex justify-content-between">
                 <div class="col-lg-5 col-md-12 p-0 m-0" data-animate="fadeInLeft" data-animate-delay="600">
-                    <h2 class="title">Upcoming Issues
+                    {{-- <h2 class="title">Upcoming Issues
                     </h2>
                     <p class="description">The Green Guide magazine is a unified publication of local messages, community
                         initiatives and a business directory. Connecting residents with their local market to establish a
                         pathway for community growth. Download the latest issue or access our archives.
 
-                    </p>
+                    </p> --}}
+
+                    @php
+                        echo $advertise[0]->add_upcomming_issue_content;
+                    @endphp
                 </div>
                 <div class="col-lg-6 col-md-12 p-0 m-0" data-animate="fadeInRight" data-animate-delay="700">
                     <div class="table-responsive">
@@ -496,7 +478,7 @@
 
                                     </tr>
                                 @endforeach
-                       
+
 
                             </tbody>
                         </table>
@@ -515,7 +497,7 @@
 
     <div class="why__choose__greenguide benifits__of__adds">
         <div class="container">
-            <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
+            <h1 style="font-size: 45px !important" class="title" data-animate="fadeInDown" data-animate-delay="700">
                 {{ $advertise[0]->ad_benifits_title }}
             </h1>
             @php
@@ -534,12 +516,12 @@
                             </div>
                             <div class="text" style="font-size:18px !important;">
                                 <b style="font-size:17px !important;">
-                                    
-                                @php
-                                    echo $i == 1 ? $ad_benifits[0] : $ad_benifits[$i - 1];
-                                @endphp
+
+                                    @php
+                                        echo $i == 1 ? $ad_benifits[0] : $ad_benifits[$i - 1];
+                                    @endphp
                                 </b>
-                            </div> 
+                            </div>
                         </div>
                     @endfor
                 </div>
@@ -558,9 +540,9 @@
                             </div>
                             <div class="text">
                                 <b style="font-size:17px !important;">
-                                @php
-                                    echo $ad_benifits[$i - 1];
-                                @endphp
+                                    @php
+                                        echo $ad_benifits[$i - 1];
+                                    @endphp
                                 </b>
                             </div>
                         </div>
@@ -583,7 +565,7 @@
             </h1>
             <div class="desc m-b-100" data-animate="fadeInDown" data-animate-delay="900">
                 @php
-                    echo '<p style="font-size:18px !important; font-weight:500 !important;">'.$advertise[0]->ad_prices_desc.'</p>';
+                    echo '<p style="font-size:18px !important; font-weight:500 !important;">' . $advertise[0]->ad_prices_desc . '</p>';
                 @endphp
             </div>
             <div class="row pricing-table">
@@ -593,7 +575,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">A6</p>
                             <div class="plan-price"><sup>£</sup>475<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-light" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-light" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -606,7 +589,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">A5</p>
                             <div class="plan-price"><sup>£</sup>800<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-light" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-light" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -619,7 +603,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">A4</p>
                             <div class="plan-price"><sup>£</sup>1500<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-primary" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-primary" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -632,7 +617,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">Double Spread </p>
                             <div class="plan-price"><sup>£</sup>2800<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-light" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-light" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -645,7 +631,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">Voucher</p>
                             <div class="plan-price"><sup>£</sup>180<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-light" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-light" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -658,7 +645,8 @@
                             <h4>Your Plan</h4>
                             <p class="text-muted">Premium Pages (A4) </p>
                             <div class="plan-price"><sup>£</sup>1800<span><br>+VAT/mo</span> </div>
-                            <a class="btn btn-light" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+                            <a class="btn btn-light" href="/advert-design-book#book__addvertise"><i
+                                    class="icon-shopping-cart"></i> Book Now</a>
                         </div>
                         <div class="plan-list">
 
@@ -690,24 +678,25 @@
     </div>
 
 
-    
+
 
 
     <div class="py-5 " style="background: rgba(243, 243, 243, 0.76);margin-top: 10rem">
         <div class="container">
-          <div class="row">
-              <div class="col-lg-7 col-sm-12 my-2">
-                  <p style="font-size: 19px"><b>For further information about Green Guide Croydon, </b> please refer to the Media Pack document available to download.</p>
-                  <a href="/download-media-pack" class="btn btn-info px-5 mt-4" style="font-size:20px;">Download pdf <i class="ps-4 fa fa-download"></i></a>
-              </div>
-              <div class="col-lg-5 col-sm-12 ">
-                  <img src="{{asset('front/img/book-cover.png')}}" class="book__image"  style="max-width:500px; margin-top: -12rem" alt="">
-              </div>
-          </div>
+            <div class="row">
+                <div class="col-lg-7 col-sm-12 my-2">
+                    <p style="font-size: 19px"><b>For further information about Green Guide Croydon, </b> please refer to
+                        the Media Pack document available to download.</p>
+                    <a href="/download-media-pack" class="btn btn-info px-5 mt-4" style="font-size:20px;">Download pdf <i
+                            class="ps-4 fa fa-download"></i></a>
+                </div>
+                <div class="col-lg-5 col-sm-12 ">
+                    <img src="{{ asset('front/img/book-cover.png') }}" class="book__image"
+                        style="max-width:500px; margin-top: -12rem" alt="">
+                </div>
+            </div>
         </div>
-      </div>
-
-      
+    </div>
 
 
 
@@ -715,25 +704,27 @@
 
 
 
-      <div class="links__cards__section">
+
+
+    <div class="links__cards__section">
         <div class="container">
             <div class="row">
 
-                
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title1}}
+                                {{ $links[0]->title1 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details1}}
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -742,17 +733,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title2}}
+                                {{ $links[0]->title2 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details2}}
+                                {{ $links[0]->details2 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -762,16 +753,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title3}}
+                                {{ $links[0]->title3 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details3}}
+                                {{ $links[0]->details3 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -786,7 +777,7 @@
 
 
 
-    
+
 
     <script src="{{ url('front/js/jquery.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
