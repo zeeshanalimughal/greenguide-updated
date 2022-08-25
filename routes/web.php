@@ -500,6 +500,11 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('advertise-in-magazine', [Pages::class, 'getAdvertiseInMagazine']);
             Route::post('advertise-in-magazine', [Pages::class, 'advertiseInMagazine'])->name('page.advertise-in-magazine');
             
+
+            //Archives Page
+            Route::get('archives', [Pages::class, 'getArchivesPage']);
+            Route::post('archives', [Pages::class, 'archivesPageUpdate'])->name('page.archives');
+            
             
            
         });

@@ -104,7 +104,7 @@
 
 
 
-
+{{-- 
 
     <div class="upcomming__issues pt-5">
         <div class="container">
@@ -148,54 +148,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
-
-    <div class="container-fluid d-flex justify-content-center flex-column my-5">
-        <div class="row d-flex justify-content-center">
-            <div class="content col-lg-12 d-flex justify-content-center">
-                <div class="d-flex justify-content-center bg-light">
-                    <ul class="d-flex justify-content-center" style="list-style-type: none;">
-                        <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo2.png') }}"></a>
-                        </li>
-                        <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo3.png') }}"></a>
-                        </li>
-                        <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt=""
-                                    src="{{ url('front/img/logos/logo1.png') }}"></a>
-                        </li>
-                        {{-- <li>
-                            <a href="#"><img style="width:200px; height: 200px; margin:20px 40px" alt="" src="{{ url('front/img/logos/logo1.png') }}"></a>
-                        </li> --}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div> --}}
 
 
 

@@ -10,6 +10,7 @@ use App\Models\pages\About;
 use App\Models\pages\AdvertDesign;
 use App\Models\pages\Advertise;
 use App\Models\pages\AdvertiseInMagazine;
+use App\Models\pages\Archive;
 use App\Models\pages\Businessdirectory;
 use App\Models\pages\CommunityGrowth;
 use App\Models\pages\Contact;
@@ -1466,13 +1467,7 @@ class Pages extends Controller
             $data->sec5_image = $sec5_image;
         }
 
-
-
-
-
-
         $res =  $data->update();
-
         if ($res) {
             $request->session()->flash('success', 'Updated Successfully');
             return redirect('/admins/pages/advertise-in-magazine');
@@ -1480,5 +1475,33 @@ class Pages extends Controller
             $request->session()->flash('error', 'Something went wrong');
             return redirect('/admins/pages/advertise-in-magazine');
         }
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getArchivesPage()
+    {
+        // $page = Archive::where('id', 1)->get();
+        return view('backend.pages.archives');
+    }
+
+
+
+    public function archivesPageUpdate(Request $request)
+    {
+       dd($request->all());
     }
 }

@@ -53,12 +53,420 @@
 
 
 
+
+
+
+    
+
+
+
+    <div class="addvertise__gallery d-flex justify-content-center align-items-center"
+        style="background:#ededed;padding:3rem 0;">
+        <div class="container">
+            <h4 class="text-center text-dark mb-6" data-animate="fadeInDown" data-animate-delay="500">To maximise your
+                exposure and capture the readers eye we recommend that your advert design should be high quality images and
+                insightful content that is beneficial to the reader</h4>
+            <div class="row p-0 m-0" data-animate="fadeInUp" data-animate-delay="700">
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add1.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add1.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add2.jpg') }}">
+
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add2.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add3.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add3.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add4.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add4.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add5.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add5.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add6.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add6.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                {{-- <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add7.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add7.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add8.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add8.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add9.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add9.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add16.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add16.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add11.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add11.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add12.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add12.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add13.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add13.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add14.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add14.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6 p-0 m-0">
+                    <a href="{{ url('front/img/advertisements/add17.jpg') }}">
+                        <div class="image_box">
+                            <img src="{{ url('front/img/advertisements/add17.jpg') }}" alt="">
+                        </div>
+                    </a>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    
+
+
+    <div class="container mt-5">
+        <div class="text-center">
+            <h2>Advert Prices</h2>
+            <p class="lead">
+                Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a
+                few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <section id="page-content" class="px-5">
+
+        <div id="blog" class="grid-layout post-3-columns m-b-30 m-t-30 grid-loaded" data-item="post-item"
+            style="margin: 0px -20px -20px 0px; position: relative; height: 1486px;">
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        A6<br><span style="font-weight: 400;font-size:.8em">£100+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad1.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+
+
+
+
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        A5<br><span style="font-weight: 400;font-size:.8em">£120+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad-2.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+
+
+
+
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        A4<br><span style="font-weight: 400;font-size:.8em">£150+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad-3.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+
+
+
+
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        Double<br>Spread<br><span style="font-weight: 400;font-size:.8em">£200+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad-4.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+
+
+
+
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        Voucher<br><span style="font-weight: 400;font-size:.8em">£50+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad-5.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+
+
+
+
+
+
+            <!-- Post item-->
+            <div class="post-item"
+                style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;margin-bottom:4rem">
+
+                <div class="post-item-wrap position-relative d-flex align-items-center">
+
+                    <h3 style="position: relative; top: 50%; z-index:10;" class="advertise_name_price text-center me-5">
+                        Voucher <br><span style="font-weight: 400;font-size:.8em">£50+VAT</span></h3>
+                    <h3></h3>
+                    <div class="post-image ad-post-image">
+                        <div class="add_width_size"><strong>105</strong> mm</div>
+                        <div class="add_height_size"><strong>148</strong> mm</div>
+                        <img alt="" src="{{ asset('/front/img/advertisements/ad-6.jpg') }}">
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: Post item-->
+
+
+            <div class="grid-loader"></div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="links__cards__section">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title1 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details1 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title2 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details2 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business
+                                Listing <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title3 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details3 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events
+                                Listing <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
    
 
 
 
 
-
+{{-- 
     <section style="background:#ededed;padding:2rem 0;">
      <div class="container mt-4 mb-4">
         <div class="text-center">
@@ -94,12 +502,12 @@
             </table>
 
         </div>
-    </section>
+    </section> --}}
 
 
 
 
-
+{{-- 
 
 
 
@@ -147,7 +555,7 @@
             </div>
         </div>
     </div>
-
+ --}}
 
 
 

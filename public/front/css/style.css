@@ -2055,9 +2055,24 @@ Portfolio
 .post-item  { width: 100%; height: auto;position: relative; }
 .post-item img { width: 100%; height: auto; }
 
-.ad-post-image  { max-width: 90mm !important;width:100%; height: 130mm  !important;position: relative !important;box-shadow:4px 5px 20px rgba(0,0,0,0.1); }
+.ad-post-image  { max-width: 70mm !important;width:100%; height: 100mm  !important;position: relative !important;box-shadow:4px 5px 20px rgba(0,0,0,0.1);margin-bottom:3rem; }
 .ad-post-image img { width: 100%; height: 100%;position:absolute;top:0;left:0;object-fit:cover; }
+.ad-post-image .add_width_size{
+  position:absolute;
+  bottom:-40px;
+  font-size:2rem;
+  left:50%;
+  transform:translateX(-50%);
+}
+.ad-post-image .add_height_size{
+  position:absolute;
+  top:50%;
+  font-size:2rem;
+  left:-30px;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-lr; 
 
+}
 
 .post-item .post-image, .post-item .post-slider, .post-item .post-video, .post-item .post-audio, .post-item .post-quote-img { margin: 0; position: relative; padding: 0; }
 
