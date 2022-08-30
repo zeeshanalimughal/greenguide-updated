@@ -15,6 +15,10 @@ class CreatePageArchive extends Migration
     {
         Schema::create('page_archive', function (Blueprint $table) {
             $table->id();
+            $table->string('sec1_image');
+            $table->text('sec1_content');
+            $table->text('sec2_content');
+            $table->text('sec2_table');
             $table->timestamps();
         });
     }

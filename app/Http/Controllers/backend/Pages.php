@@ -348,7 +348,7 @@ class Pages extends Controller
         }
 
 
-        
+
         if ($request->hasFile('ad_sec2_image1')) {
             if ($data->ad_sec2_image1 !== '') {
                 $imagePath = public_path('/uploads/' . $data->ad_sec2_image1);
@@ -1478,7 +1478,7 @@ class Pages extends Controller
     }
 
 
-    
+
 
 
 
@@ -1494,14 +1494,47 @@ class Pages extends Controller
 
     public function getArchivesPage()
     {
-        // $page = Archive::where('id', 1)->get();
-        return view('backend.pages.archives');
+        $page = Archive::where('id', 1)->get();
+        return view('backend.pages.archives',['page' => $page]);
     }
-
 
 
     public function archivesPageUpdate(Request $request)
     {
-       dd($request->all());
+        $request->validate([
+            'sec1_content' => 'required',
+            'sec2_content' => 'required',
+            'sec2_table' => 'required',
+            'sec1_image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+
+        $data  = Archive::find(1);
+
+
+        if ($request->hasFile('sec1_image')) {
+            if ($data->sec1_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec1_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $sec1_image = time() . ' ' . $request->file('sec1_image')->getClientOriginalName();
+            $request->file('sec1_image')->move(public_path() . '/uploads/', $sec1_image);
+            $data->sec1_image = $sec1_image;
+        }
+
+        $data->sec1_content = $request->input('sec1_content');
+        $data->sec2_content = $request->input('sec2_content');
+        $data->sec2_table = $request->input('sec2_table');
+
+        $res =  $data->update();
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/archives');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/archives');
+        }
+
     }
 }

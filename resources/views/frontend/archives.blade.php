@@ -7,11 +7,11 @@
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
                     <div class="image">
                         <img style="z-index:100; display: flex !important;" width="100%"
-                            src="{{ asset('front/img/advertise-in-design.jpg') }}" alt="">
+                            src="{{ asset('uploads/'.$page->sec1_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
-                    <h3 class="heading " style="font-weight: 600">
+                    {{-- <h3 class="heading " style="font-weight: 600">
                         Green Guide Croydon Magazine
                     </h3>
                     <p class="desc" style="font-size:18px; " align="justify">
@@ -21,7 +21,13 @@
                         their disposal. The Green Guide Magazine will be posted to
                         residents based in the London Borough of Croydon (~156,000
                         households) with the aim to help build community growth.
-                    </p>
+                    </p> --}}
+
+                    @php
+
+                        echo $page->sec1_content
+
+                    @endphp
                     <div class="text-center mt-3">
                         <a href="/download-media-pack" class="btn btn-outline-primary">Media Pack <i
                                 class="ps-3 fa fa-download"></i></a>
@@ -35,21 +41,29 @@
                 <div class="row my-5 d-flex justify-content-around">
 
                     <div class="col-lg-4 col-md-12  text-white">
-                        <h2 class="heading " style="font-weight: 600">
+                        {{-- <h2 class="heading " style="font-weight: 600">
                             Upcoming Issues
                         </h2>
                         <p class="desc" style="font-size:18px; " align="justify">
                             The Green Guide magazine is a quarterly publication of local messages, community initiatives and
                             a business directory which will be distributed across the London Borough of Croydon. We offer a
                             range of advert sizes to accommodate any marketing budget.
-                        </p>
+                        </p> --}}
+
+                        @php
+
+                        echo $page->sec2_content
+
+                    @endphp
+
+
                         <div class="text-center mt-5">
                             <a href="/advert-design-book/#book__addvertise" class="btn btn-outline-primary">Book Now <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 ">
-                        <div class="table-responsive">
+                        {{-- <div class="table-responsive">
                             <table class="table text-white">
                                 <thead>
                                     <tr>
@@ -83,7 +97,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
+                        @php
+
+                            echo $page->sec2_table
+
+                        @endphp
                     </div>
                 </div>
             </div>
@@ -104,7 +123,7 @@
 
 
 
-{{-- 
+{{--
 
     <div class="upcomming__issues pt-5">
         <div class="container">
@@ -140,7 +159,7 @@
 
                                     </tr>
                                 @endforeach
-                          
+
 
                             </tbody>
                         </table>
@@ -160,7 +179,7 @@
         <div class="container">
             <div class="row">
 
-                
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">

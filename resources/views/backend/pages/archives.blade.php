@@ -36,27 +36,47 @@
                         @csrf
                         <div class="row">
 
-                            {{-- <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-12 col-md-12">
                                   <div class="form-group">
-                                      <label class="form-label">GreenInitiative Hero Background Image </label>
-                                      <input type="file" name="archive_hero_image" class="form-control">
+                                      <label class="form-label">Section one image </label>
+                                      <input type="file" name="sec1_image" class="form-control">
                                   </div>
                               </div>
-                            <div class="col-sm-6 col-md-6">
+
+
+                            <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Hero title </label>
-                                    <input type="text" value="" name="gi_title"
-                                        class="form-control">
+                                    <label class="form-label">Section one content</label>
+                                   <textarea name="sec1_content">
+                                        {{$page[0]->sec1_content}}
+                                   </textarea>
                                 </div>
                             </div>
-                             --}}
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Section two content</label>
+                                   <textarea name="sec2_content">
+                                        {{$page[0]->sec2_content}}
+                                   </textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Section two table</label>
+                                   <textarea name="sec2_table">
+                                        {{$page[0]->sec2_table}}
+                                   </textarea>
+                                </div>
+                            </div>
+
 
 
                         </div>
 
-
-
-                        {{-- <input type="submit" value="Update Details" class="btn btn-primary"> --}}
+                        <input type="submit" value="Update Details" class="btn btn-primary">
 
                 </div>
                 </form>
@@ -66,8 +86,10 @@
 
     </div>
     <script>
-    
-        // CKEDITOR.replace('gi_sec6_desc');
+
+        CKEDITOR.replace('sec1_content');
+        CKEDITOR.replace('sec2_content');
+        CKEDITOR.replace('sec2_table');
 
     </script>
 @endsection
