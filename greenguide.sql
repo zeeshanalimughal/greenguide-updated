@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Aug 25, 2022 at 01:20 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Host: localhost
+-- Generation Time: Aug 30, 2022 at 10:09 AM
+-- Server version: 5.7.39-42-log
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `greenguide-laravel`
+-- Database: `db2kwxqcerstha`
 --
 
 -- --------------------------------------------------------
@@ -135,12 +135,12 @@ CREATE TABLE `business_directorys` (
   `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subcategory` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_sub_category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_premium` int(1) NOT NULL DEFAULT 0,
+  `is_premium` int(1) NOT NULL DEFAULT '0',
   `borough` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `company_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `social` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `company_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `company_description` text COLLATE utf8mb4_unicode_ci,
+  `social` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `directory_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `monday_open` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `monday_close` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -207,9 +207,9 @@ CREATE TABLE `design_books` (
   `advertSize` bigint(20) UNSIGNED DEFAULT NULL,
   `upcomingIssue` bigint(20) UNSIGNED DEFAULT NULL,
   `brief_desc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'in-progress',
   `fb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -502,9 +502,9 @@ INSERT INTO `greenguide_team` (`id`, `image`, `name`, `position`, `email`, `crea
 CREATE TABLE `home_gallery` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`images`)),
+  `desc` text COLLATE utf8mb4_unicode_ci,
+  `link` text COLLATE utf8mb4_unicode_ci,
+  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -565,16 +565,16 @@ CREATE TABLE `links_cards` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `image1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details1` text COLLATE utf8mb4_unicode_ci,
+  `link1` text COLLATE utf8mb4_unicode_ci,
   `image2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details2` text COLLATE utf8mb4_unicode_ci,
+  `link2` text COLLATE utf8mb4_unicode_ci,
   `image3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details3` text COLLATE utf8mb4_unicode_ci,
+  `link3` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -810,6 +810,27 @@ CREATE TABLE `page_advert_design` (
 
 INSERT INTO `page_advert_design` (`id`, `hero_title`, `hero_subtitle`, `hero_image`, `section2_heading`, `section2_text`, `section2_image`, `section3_heading`, `section3_text`, `section4_heading`, `section4_text`, `created_at`, `updated_at`) VALUES
 (1, 'Green Guide Advert Design', 'Our professional design team can generate a high qualityadvert for your business', '1661236938 book-mockup-with-minimal-design_23-2149350413.webp', 'Advert Design', '<p>Readers and customers want an advert to catch their eye and we recommend that your advert consists of content that a reader can gain useful information from. To maximise your exposure we recommend that your advert;</p>\r\n\r\n<ul>\r\n	<li>Be original.</li>\r\n	<li>High-quality images and content.</li>\r\n	<li>Insightful content with the subliminal impact of selling a product or service.</li>\r\n	<li>Call to action</li>\r\n	<li>Trackable code to measure your ROI</li>\r\n</ul>', '1661236959 TL-Portfolio-graphic.jpg', 'Advert Prices', '<p>Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.</p>\r\n\r\n<p>In printed magazines, your adverts can reach new audiences, particularly local residents who do not regularly access online content.</p>', 'Upcoming Issues', 'The Green Guide magazine is a unified publication of local messages, community initiatives and a business directory. Connecting residents with their local market to establish a pathway for community growth. Download the latest issue or access our archives.', NULL, '2022-08-23 01:52:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_archive`
+--
+
+CREATE TABLE `page_archive` (
+  `id` int(11) NOT NULL,
+  `sec1_image` varchar(255) NOT NULL,
+  `sec1_content` text NOT NULL,
+  `sec2_content` text NOT NULL,
+  `sec2_table` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `page_archive`
+--
+
+INSERT INTO `page_archive` (`id`, `sec1_image`, `sec1_content`, `sec2_content`, `sec2_table`) VALUES
+(1, '1661508495 advertise-in-design.jpg', '<h2 style=\"text-align:center\"><span style=\"font-size:28px\">Green Guide Croydon Magazine</span></h2>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:16px\">We&#39;re helping build lives and livelihoods by combining our specialist knowledge in distribution with close collaborations with businesses to help local residents discover what amenities and services are at their disposal. The Green Guide Magazine will be posted to residents based in the London Borough of Croydon (~156,000 households) with the aim to help build community growth.</span></p>', '<h2><span style=\"font-size:28px\">Upcoming Issues</span></h2>\r\n\r\n<h2><span style=\"font-size:16px\">The Green Guide magazine is a quarterly publication of local messages, community initiatives and a business directory which will be distributed across the London Borough of Croydon. We offer a range of advert sizes to accommodate any marketing budget.</span></h2>', '<div class=\"table-responsive\">\r\n<table class=\"table text-white\">\r\n	<thead>\r\n		<tr>\r\n			<th>Issue</th>\r\n			<th>Artwork and Payment Deadline</th>\r\n			<th>Distribution Commencement</th>\r\n			<th>Book</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Christmas Special</td>\r\n			<td>1st Oct 2022</td>\r\n			<td>1st Nov 2022</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Spring 2023</td>\r\n			<td>15th Feb 2023</td>\r\n			<td>15th Mar 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Summer 2023</td>\r\n			<td>15th May 2023</td>\r\n			<td>15th Jun 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n</div>');
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1105,7 @@ CREATE TABLE `page_magazine_giveaway` (
   `section3_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `section3_sponser_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `section3_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `section3_gift_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`section3_gift_images`)),
+  `section3_gift_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `section3_hamper_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1121,7 +1142,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1456,6 +1477,12 @@ ALTER TABLE `page_advert_design`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `page_archive`
+--
+ALTER TABLE `page_archive`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `page_businessdirectory`
 --
 ALTER TABLE `page_businessdirectory`
@@ -1595,7 +1622,7 @@ ALTER TABLE `boroughs`
 -- AUTO_INCREMENT for table `business_directorys`
 --
 ALTER TABLE `business_directorys`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -1607,19 +1634,19 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `design_books`
 --
 ALTER TABLE `design_books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `directory_reviews`
 --
 ALTER TABLE `directory_reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `distributors`
 --
 ALTER TABLE `distributors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -1718,6 +1745,12 @@ ALTER TABLE `page_advert_design`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `page_archive`
+--
+ALTER TABLE `page_archive`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `page_businessdirectory`
 --
 ALTER TABLE `page_businessdirectory`
@@ -1787,7 +1820,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `reviews_reply`
 --
 ALTER TABLE `reviews_reply`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `upcomming_issues`
