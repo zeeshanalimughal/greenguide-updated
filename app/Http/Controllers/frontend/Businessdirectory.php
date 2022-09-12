@@ -76,8 +76,6 @@ class Businessdirectory extends Controller
     }
 
 
-
-
     function getSingleDirectory($id)
     {
         $directory =  ModelsBusinessDirectory::where('business_directorys.id', $id)

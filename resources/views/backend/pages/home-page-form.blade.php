@@ -64,10 +64,30 @@
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Hero animated title (seperate animated words by | symbol)</label>
+                                    <label class="form-label">Hero animated title (seperate animated words by |
+                                        symbol)</label>
                                     <textarea class="form-control" name="hero_animated_title">{{ $page[0]->hero_animated_title }}</textarea>
+
                                 </div>
                             </div>
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Highlight Heading</label>
+                                    <input type="text" value="{{ $page[0]->highlight_title }}" name="highlight_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Highlight LinkText</label>
+                                    <input type="text" value="{{ $page[0]->highlight_link_text }}"
+                                        name="highlight_link_text" class="form-control">
+                                </div>
+                            </div>
+
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -93,24 +113,24 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Post Category 1 Title </label>
-                                    <input type="text" value="{{ $page[0]->post_category_title1 }}" name="post_category_title1"
-                                        class="form-control">
+                                    <input type="text" value="{{ $page[0]->post_category_title1 }}"
+                                        name="post_category_title1" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Post Category 2 Title </label>
-                                    <input type="text" value="{{ $page[0]->post_category_title2 }}" name="post_category_title2"
-                                        class="form-control">
+                                    <input type="text" value="{{ $page[0]->post_category_title2 }}"
+                                        name="post_category_title2" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Post Category 3 Title </label>
-                                    <input type="text" value="{{ $page[0]->post_category_title3 }}" name="post_category_title3"
-                                        class="form-control">
+                                    <input type="text" value="{{ $page[0]->post_category_title3 }}"
+                                        name="post_category_title3" class="form-control">
                                 </div>
                             </div>
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 30, 2022 at 10:09 AM
--- Server version: 5.7.39-42-log
--- PHP Version: 7.4.30
+-- Host: 127.0.0.1:3307
+-- Generation Time: Sep 10, 2022 at 07:43 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db2kwxqcerstha`
+-- Database: `greenguide-laravel`
 --
 
 -- --------------------------------------------------------
@@ -135,12 +135,12 @@ CREATE TABLE `business_directorys` (
   `category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subcategory` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sub_sub_category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_premium` int(1) NOT NULL DEFAULT '0',
+  `is_premium` int(1) NOT NULL DEFAULT 0,
   `borough` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `company_description` text COLLATE utf8mb4_unicode_ci,
-  `social` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `company_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `company_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `directory_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `monday_open` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `monday_close` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -207,9 +207,9 @@ CREATE TABLE `design_books` (
   `advertSize` bigint(20) UNSIGNED DEFAULT NULL,
   `upcomingIssue` bigint(20) UNSIGNED DEFAULT NULL,
   `brief_desc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'in-progress',
   `fb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -491,7 +491,7 @@ INSERT INTO `greenguide_team` (`id`, `image`, `name`, `position`, `email`, `crea
 (3, '1660631579 woman-takes-images-holding-photographic-camera-hands_176532-12497.webp', 'Taurai Jiri', 'Managing Director', 'example@gmail.com', '2022-08-16 01:32:59', '2022-08-16 01:32:59'),
 (4, '1660631645 young-bearded-man-with-striped-shirt_273609-5677.webp', 'Richard Richards', 'Business Development Manager', 'example2@gmail.com', '2022-08-16 01:34:05', '2022-08-16 01:34:05'),
 (5, '1660631678 pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.webp', 'Daniella Milusheva', 'HR Assistant Manager', 'example3@gmail.com', '2022-08-16 01:34:38', '2022-08-16 01:34:38'),
-(6, '1660631815 friendly-smiling-woman-looking-pleased-front_176420-20779.webp', 'Andrea Halsey', 'Sales Assistant', 'example4@gmail.com', '2022-08-16 01:36:55', '2022-08-16 01:36:55');
+(6, '1662704554-ourwork.jpg', 'Andrea Halsey', 'Sales Assistant', 'example4@gmail.com', '2022-08-16 01:36:55', '2022-09-09 01:22:34');
 
 -- --------------------------------------------------------
 
@@ -502,9 +502,9 @@ INSERT INTO `greenguide_team` (`id`, `image`, `name`, `position`, `email`, `crea
 CREATE TABLE `home_gallery` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desc` text COLLATE utf8mb4_unicode_ci,
-  `link` text COLLATE utf8mb4_unicode_ci,
-  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `desc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -515,11 +515,11 @@ CREATE TABLE `home_gallery` (
 --
 
 INSERT INTO `home_gallery` (`id`, `title`, `desc`, `link`, `images`, `status`, `created_at`, `updated_at`) VALUES
-(4, NULL, 'Borough specific magzine with reliable information for the residents of the Crovdon Borough', '/archives', '[{\"name\":\"1611658489691950.png\"}]', 'active', '2022-07-22 06:34:51', '2022-07-22 06:34:51'),
+(4, NULL, 'Borough specific magzine with reliable information for the residents of the Crovdon Borough', '/archives', '[{\"name\":\"1611658489691950.png\"}]', 'active', '2022-07-22 06:34:51', '2022-09-09 01:52:46'),
 (5, NULL, 'Green Guide magazine is a high end quality printed magazine that is distributed through Croydon Borough.', '/advertise', '[{\"name\":\"561658489739306.jpg\"},{\"name\":\"852165848973984.jpg\"},{\"name\":\"5661658489739559.jpg\"}]', 'active', '2022-07-22 06:35:39', '2022-07-22 06:35:39'),
 (6, 'What\'s on in the Croydon Borough ?', NULL, '/localevents', '[]', 'active', '2022-07-22 06:36:17', '2022-07-22 06:36:17'),
 (7, 'Low cost, high exposure', NULL, '/advertise', '[]', 'active', '2022-07-22 06:36:40', '2022-07-22 06:36:40'),
-(8, NULL, 'We are doing our part to offset the production of the Green Guide Magazine.', '/greeninitiative', '[{\"name\":\"2301658489835712.jpg\"}]', 'active', '2022-07-22 06:37:15', '2022-07-22 06:37:15'),
+(8, NULL, 'We are doing our part to offset the production of the Green Guide Magazine.', '/greeninitiative', '[{\"name\":\"421662706450334.jpg\"},{\"name\":\"2961662706450345.png\"},{\"name\":\"3411662706450241.jpg\"}]', 'active', '2022-07-22 06:37:15', '2022-09-09 01:54:10'),
 (9, NULL, 'Green Guide magazine is produced and distributed by Green Guide t/a LLG Marketing team', '/about', '[{\"name\":\"4981658489875687.webp\"},{\"name\":\"3251658489875550.jpg\"},{\"name\":\"5341658489875162.jpg\"},{\"name\":\"5091658489875479.jpg\"}]', 'active', '2022-07-22 06:37:55', '2022-07-22 06:37:55'),
 (10, 'Community is key', NULL, '/communitygrowth', '[]', 'active', '2022-07-22 06:38:47', '2022-07-22 06:38:47'),
 (11, NULL, 'Strengthen your companies online exposure by registering on our local directory.', '/businessdirectory', '[{\"name\":\"9931658490104727.jpg\"}]', 'active', '2022-07-22 06:41:44', '2022-07-22 06:41:44');
@@ -565,16 +565,16 @@ CREATE TABLE `links_cards` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `image1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details1` text COLLATE utf8mb4_unicode_ci,
-  `link1` text COLLATE utf8mb4_unicode_ci,
+  `details1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details2` text COLLATE utf8mb4_unicode_ci,
-  `link2` text COLLATE utf8mb4_unicode_ci,
+  `details2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details3` text COLLATE utf8mb4_unicode_ci,
-  `link3` text COLLATE utf8mb4_unicode_ci,
+  `details3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1002,6 +1002,8 @@ CREATE TABLE `page_home` (
   `hero_title1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hero_title2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hero_animated_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `highlight_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `highlight_link_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_category_title1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_category_title2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_category_title3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1028,8 +1030,8 @@ CREATE TABLE `page_home` (
 -- Dumping data for table `page_home`
 --
 
-INSERT INTO `page_home` (`id`, `hero_image`, `hero_title1`, `hero_title2`, `hero_animated_title`, `post_category_title1`, `post_category_title2`, `post_category_title3`, `post_category_image1`, `post_category_image2`, `post_category_image3`, `b1_title`, `b1_image`, `b2_title`, `b2_image`, `b3_title`, `b3_image`, `b4_title`, `b4_image`, `b5_title`, `b5_image`, `dir_title`, `dir_desc`, `created_at`, `updated_at`) VALUES
-(1, '1660900390-herohome.jpg', 'Green Guide Croydon Magazine', 'We want to empower', 'residents to know who the can|go to.|turn to.|connect with.', 'Spotlights', 'Companies', 'LGG Team', '1660900775-1645600589 4.png', '1660892929 1645600499 1.png', '1660892929 1645600616 2.png', 'Pathway for community growths', '', 'Produced and distributed by LGG', '', 'Borough wide quarterly residential magazine', '', 'Less waste more trees', '', 'Your Local Market', '', 'Business Directory', 'A local magazine enables you to communicate directly to potential customers in the local area..', NULL, '2022-08-19 04:19:35');
+INSERT INTO `page_home` (`id`, `hero_image`, `hero_title1`, `hero_title2`, `hero_animated_title`, `highlight_title`, `highlight_link_text`, `post_category_title1`, `post_category_title2`, `post_category_title3`, `post_category_image1`, `post_category_image2`, `post_category_image3`, `b1_title`, `b1_image`, `b2_title`, `b2_image`, `b3_title`, `b3_image`, `b4_title`, `b4_image`, `b5_title`, `b5_image`, `dir_title`, `dir_desc`, `created_at`, `updated_at`) VALUES
+(1, '1660900390-herohome.jpg', 'Green Guide Croydon Magazine', 'We want to empower', 'residents to know who the can|go to.|turn to.|connect with.', 'Magazine Highlights\r\n', 'All stories in Highlights', 'Spotlights', 'Companies', 'LGG Team', '1660900775-1645600589 4.png', '1660892929 1645600499 1.png', '1660892929 1645600616 2.png', 'Pathway for community growths', '', 'Produced and distributed by LGG', '', 'Borough wide quarterly residential magazine', '', 'Less waste more trees', '', 'Your Local Market', '', 'Business Directory', 'A local magazine enables you to communicate directly to potential customers in the local area..', NULL, '2022-08-19 04:19:35');
 
 -- --------------------------------------------------------
 
@@ -1142,7 +1144,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL

@@ -73,38 +73,14 @@
 
                                         </td>
                                         <td>{{ $gallery->link }}</td>
-                                        {{-- <td>
-                                        @if ($highlight->status === 'active')
-                                            <span
-                                                class="badge rounded-pill bg-success badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
-                                        @else
-                                            <span
-                                                class="badge rounded-pill bg-danger badge-lg me-1 mb-1 mt-1">{{ $highlight->status }}</span>
-                                        @endif
-                                    </td> --}}
                                         <td>
                                             <div class="g-2">
-                                                {{-- @if ($highlight->status === 'active')
-                                                <a href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/deactivate">
-                                                    <button class="btn btn-primary" data-bs-placement="top"
-                                                        data-bs-toggle="tooltip" title=""
-                                                        data-bs-original-title="Deactivate">Deactivate</button>
-                                                </a>
-                                            @endif
-                                            @if ($highlight->status === 'deactive')
-                                                <a href="{{ url('/admins/magazine-highlights') }}/{{ $highlight->id }}/activate">
-                                                    <button class="btn btn-danger" data-bs-placement="top"
-                                                        data-bs-toggle="tooltip" title=""
-                                                        data-bs-original-title="Activate">Activate</button>
-                                                    {{-- @else
-                                            <a href="{{url('/admins/users')}}/{{$user->id}}/activate">
-                                                <button class="btn btn-danger" data-bs-placement="top"
-                                                data-bs-toggle="tooltip" title=""
-                                                data-bs-original-title="Activate">Activate</button>
-                                            </a> --}}
                                                 {{-- @endif --}}
-                                                <a href="{{ url('admins/pages/gallery/' . $gallery->id) }}/delete"
+                                                <a href="{{ url('admins/pages/gallery/' . $gallery->id) }}/edit"
                                                     class="btn btn-warning" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Delete">Edit</a>
+                                                <a href="{{ url('admins/pages/gallery/' . $gallery->id) }}/delete"
+                                                    class="btn btn-danger" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Delete">Remove</a>
                                             </div>
                                         </td>
@@ -175,7 +151,8 @@
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Gallery Description (if title is given not add description)</label>
+                                    <label class="form-label">Gallery Description (if title is given not add
+                                        description)</label>
                                     <textarea class="form-control" name="desc"></textarea>
                                 </div>
                             </div>
@@ -193,6 +170,6 @@
         </div>
     </div>
 
-    
+
     <!-- Modal -->
 @endsection

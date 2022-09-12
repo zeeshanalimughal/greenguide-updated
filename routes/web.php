@@ -464,11 +464,11 @@ Route::middleware(['admin-auth'])->group(function () {
 
 
 
-            //Jobs Page
+            //Gallery Page
             Route::get('gallery', [Pages::class, 'getAllGalleryData']);
             Route::post('add-gallery', [Pages::class, 'addGallery'])->name('page.add-gallery');
             //   Route::get('edit-gallery/{id}', [Pages::class, 'editGallery']);
-            //   Route::post('update-gallery', [Pages::class, 'updateGallery'])->name('page.update-gallery');
+              Route::post('update-gallery', [Pages::class, 'updateGallery'])->name('page.update-gallery');
             Route::get('gallery/{id}/{action}', [Pages::class, 'manageGallery'])->name('page.manageGallery');
 
 

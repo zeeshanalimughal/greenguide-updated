@@ -48,6 +48,8 @@ class Pages extends Controller
             'post_category_title1' => 'required',
             'post_category_title2' => 'required',
             'post_category_title3' => 'required',
+            'highlight_title' => 'required',
+            'highlight_link_text' => 'required',
             'post_category_image1' => 'mimes:png,jpg,jpeg,webp',
             'post_category_image2' => 'mimes:png,jpg,jpeg,webp',
             'post_category_image3' => 'mimes:png,jpg,jpeg,webp',
@@ -132,10 +134,13 @@ class Pages extends Controller
         $home->hero_title1 = $request->input('hero_title1');
         $home->hero_title2 = $request->input('hero_title2');
         $home->hero_animated_title = $request->input('hero_animated_title');
+
+        $home->highlight_title = $request->input('highlight_title');
+        $home->highlight_link_text = $request->input('highlight_link_text');
+
         $home->post_category_title1 = $request->input('post_category_title1');
         $home->post_category_title2 = $request->input('post_category_title2');
         $home->post_category_title3 = $request->input('post_category_title3');
-
 
         $res  = $home->update();
         if ($res) {
@@ -1030,15 +1035,57 @@ class Pages extends Controller
                 return redirect('/admins/pages/gallery');
             }
         }
+
+        if ($action === 'edit') {
+            return view('backend.edit-home-gallery', ['gallery' => $gallery]);
+        }
     }
 
 
 
+    public function updateGallery(Request $request)
+    {
+        $gallery =  HomeGallery::find($request->input('id'));
+        if ($gallery) {
+            if ($request->hasFile('images')) {
+                if (sizeof($gallery->images) > 0) {
+                    foreach ($gallery->images as $oldImage) {
+                        $imagePath = public_path('/uploads/' . $oldImage['name']);
+                        if (File::exists($imagePath)) {
+                            unlink($imagePath);
+                        }
+                    }
+                }
 
+                $imagesArray = [];
+                if ($request->images) {
+                    foreach ($request->images as $key => $image) {
+                        $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                        $image->move(public_path('uploads'), $imageName);
+                        $imagesArray[]['name'] = $imageName;
+                    }
+                }
+                $gallery->images = $imagesArray;
+            }
 
+            $gallery->title = $request->input('title');
+            $gallery->desc = $request->input('desc');
+            $gallery->link = $request->input('link');
 
+            $res =  $gallery->update();
 
-
+            if ($res) {
+                $request->session()->flash('success', 'Gallery Updated Successfully');
+                return redirect('/admins/pages/gallery');
+            } else {
+                $request->session()->flash('error', 'Something went wrong');
+                return redirect('/admins/pages/gallery');
+            }
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/gallery');
+        }
+    }
 
 
 
@@ -1495,7 +1542,7 @@ class Pages extends Controller
     public function getArchivesPage()
     {
         $page = Archive::where('id', 1)->get();
-        return view('backend.pages.archives',['page' => $page]);
+        return view('backend.pages.archives', ['page' => $page]);
     }
 
 
@@ -1535,6 +1582,5 @@ class Pages extends Controller
             $request->session()->flash('error', 'Something went wrong');
             return redirect('/admins/pages/archives');
         }
-
     }
 }
