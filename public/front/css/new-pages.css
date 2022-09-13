@@ -772,7 +772,6 @@ color        : #fff;
     width                   : 100%;
     min-height              : 70vh;
     padding                 : 3rem 0;
-    background-image        : linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('../img/local-events.jpg');
     background-repeat       : no-repeat;
     background-size         : cover;
     background-position     : bottom;

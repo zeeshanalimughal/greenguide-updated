@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\pages;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Archive extends Model
+class LatestIssue extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $table = 'page_archive';
+    protected $table = 'latest_issues';
+    protected $guarded = [];
 }

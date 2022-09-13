@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 12, 2022 at 01:11 PM
+-- Generation Time: Sep 13, 2022 at 01:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -584,6 +584,30 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `latest_issues`
+--
+
+CREATE TABLE `latest_issues` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `issue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deadline` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commencement` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `latest_issues`
+--
+
+INSERT INTO `latest_issues` (`id`, `issue`, `deadline`, `commencement`, `created_at`, `updated_at`) VALUES
+(2, 'Christmas Special', '1st Oct 2022', '1st Nov 2022', '2022-09-13 00:50:30', '2022-09-13 00:50:30'),
+(3, 'Spring 2023', '15th Feb 2023', '15th Mar 2023', '2022-09-13 00:51:22', '2022-09-13 00:51:22'),
+(4, 'Summer 2023', '15th May 2023', '15th Jun 2023', '2022-09-13 00:51:58', '2022-09-13 00:51:58');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `links_cards`
 --
 
@@ -718,7 +742,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (82, '2022_08_23_060814_create_page_advert_design_table', 50),
 (83, '2022_08_24_045329_create_page_advertise_in_magazine_table', 51),
 (84, '2022_08_25_095514_create_page_archive', 52),
-(85, '2022_09_12_074051_create_advertise_carousel_table', 52);
+(85, '2022_09_12_074051_create_advertise_carousel_table', 52),
+(86, '2022_09_13_052640_create_latest_issues_table', 53),
+(87, '2022_09_13_100326_create_page_local_events_table', 54);
 
 -- --------------------------------------------------------
 
@@ -855,6 +881,9 @@ INSERT INTO `page_advert_design` (`id`, `hero_title`, `hero_subtitle`, `hero_ima
 
 CREATE TABLE `page_archive` (
   `id` int(11) NOT NULL,
+  `hero_image` varchar(255) NOT NULL,
+  `hero_heading` varchar(255) NOT NULL,
+  `hero_subheading` varchar(255) NOT NULL,
   `sec1_image` varchar(255) NOT NULL,
   `sec1_content` text NOT NULL,
   `sec2_content` text NOT NULL,
@@ -865,8 +894,8 @@ CREATE TABLE `page_archive` (
 -- Dumping data for table `page_archive`
 --
 
-INSERT INTO `page_archive` (`id`, `sec1_image`, `sec1_content`, `sec2_content`, `sec2_table`) VALUES
-(1, '1661508495 advertise-in-design.jpg', '<h2 style=\"text-align:center\"><span style=\"font-size:28px\">Green Guide Croydon Magazine</span></h2>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:16px\">We&#39;re helping build lives and livelihoods by combining our specialist knowledge in distribution with close collaborations with businesses to help local residents discover what amenities and services are at their disposal. The Green Guide Magazine will be posted to residents based in the London Borough of Croydon (~156,000 households) with the aim to help build community growth.</span></p>', '<h2><span style=\"font-size:28px\">Upcoming Issues</span></h2>\r\n\r\n<h2><span style=\"font-size:16px\">The Green Guide magazine is a quarterly publication of local messages, community initiatives and a business directory which will be distributed across the London Borough of Croydon. We offer a range of advert sizes to accommodate any marketing budget.</span></h2>', '<div class=\"table-responsive\">\r\n<table class=\"table text-white\">\r\n	<thead>\r\n		<tr>\r\n			<th>Issue</th>\r\n			<th>Artwork and Payment Deadline</th>\r\n			<th>Distribution Commencement</th>\r\n			<th>Book</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Christmas Special</td>\r\n			<td>1st Oct 2022</td>\r\n			<td>1st Nov 2022</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Spring 2023</td>\r\n			<td>15th Feb 2023</td>\r\n			<td>15th Mar 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Summer 2023</td>\r\n			<td>15th May 2023</td>\r\n			<td>15th Jun 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n</div>');
+INSERT INTO `page_archive` (`id`, `hero_image`, `hero_heading`, `hero_subheading`, `sec1_image`, `sec1_content`, `sec2_content`, `sec2_table`) VALUES
+(1, '1663046504 1645685536 advertise.jpg', 'Green Guide Archives', 'Discover the potential of exceptional advertising', '1661508495 advertise-in-design.jpg', '<h2 style=\"text-align:center\"><span style=\"font-size:28px\">Green Guide Croydon Magazine</span></h2>\r\n\r\n<p style=\"text-align:center\"><span style=\"font-size:16px\">We&#39;re helping build lives and livelihoods by combining our specialist knowledge in distribution with close collaborations with businesses to help local residents discover what amenities and services are at their disposal. The Green Guide Magazine will be posted to residents based in the London Borough of Croydon (~156,000 households) with the aim to help build community growth.</span></p>', '<h2><span style=\"font-size:28px\">Upcoming Issues</span></h2>\r\n\r\n<h2><span style=\"font-size:16px\">The Green Guide magazine is a quarterly publication of local messages, community initiatives and a business directory which will be distributed across the London Borough of Croydon. We offer a range of advert sizes to accommodate any marketing budget.</span></h2>', '<div class=\"table-responsive\">\r\n<table class=\"table text-white\">\r\n	<thead>\r\n		<tr>\r\n			<th>Issue</th>\r\n			<th>Artwork and Payment Deadline</th>\r\n			<th>Distribution Commencement</th>\r\n			<th>Book</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>Christmas Special</td>\r\n			<td>1st Oct 2022</td>\r\n			<td>1st Nov 2022</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Spring 2023</td>\r\n			<td>15th Feb 2023</td>\r\n			<td>15th Mar 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n		<tr>\r\n			<td>Summer 2023</td>\r\n			<td>15th May 2023</td>\r\n			<td>15th Jun 2023</td>\r\n			<td><a class=\"btn btn-primary\" href=\"/advert-design-book/#book__addvertise\">Book Now</a></td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n</div>');
 
 -- --------------------------------------------------------
 
@@ -1089,6 +1118,11 @@ CREATE TABLE `page_job` (
   `job_sec3_sdesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `job_sec4_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `job_sec4_subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_steps_bg_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_step1_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_step2_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_step3_text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_apply_form_left_content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1097,8 +1131,33 @@ CREATE TABLE `page_job` (
 -- Dumping data for table `page_job`
 --
 
-INSERT INTO `page_job` (`id`, `job_hero_image`, `job_title`, `job_subtitle`, `job_sec2_title`, `job_sec2_image1`, `job_sec2_image2`, `job_sec2_sdesc`, `job_sec2_ldesc`, `job_sec3_title`, `job_sec3_sdesc`, `job_sec4_title`, `job_sec4_subtitle`, `created_at`, `updated_at`) VALUES
-(1, '1646398083 2107.q702.013.S.m005.c10.job search illustration-min.jpg', 'Leaflet Distributor', 'Join the Green Guide team TODAY', 'JOIN THE GREEN GUIDE TEAM', '1646116277 rsz_door-to-door-distributions-team.jpg', '1646116277 right-direction.jpg', '<p>We have a wide variety of job roles available within our fast growing company which include:</p>\r\n\r\n<ul>\r\n	<li>Leaflet Distributor Jobs in London</li>\r\n	<li>Distribution Manager Jobs in London</li>\r\n	<li>Warehouse Assistant Jobs in London</li>\r\n	<li>Admin Based Jobs&nbsp;in London</li>\r\n</ul>', '<p>If you are honest, hardworking and</p>\r\n\r\n<p>can work as part of a team then JOIN US today. All you need to do is</p>\r\n\r\n<p>fill out our application form and someone will be in contact.</p>', 'Are you still interested?', 'If you’re still interested in applying for a job with Green Guide, simply fill out the form on this page to beginthe application process.', 'Here are our steps to start earning money within days!', 'How our recruitment process works:', NULL, '2022-05-17 14:29:37');
+INSERT INTO `page_job` (`id`, `job_hero_image`, `job_title`, `job_subtitle`, `job_sec2_title`, `job_sec2_image1`, `job_sec2_image2`, `job_sec2_sdesc`, `job_sec2_ldesc`, `job_sec3_title`, `job_sec3_sdesc`, `job_sec4_title`, `job_sec4_subtitle`, `job_steps_bg_image`, `job_step1_text`, `job_step2_text`, `job_step3_text`, `job_apply_form_left_content`, `created_at`, `updated_at`) VALUES
+(1, '1646398083 2107.q702.013.S.m005.c10.job search illustration-min.jpg', 'Leaflet Distributor', 'Join the Green Guide team TODAY', 'JOIN THE GREEN GUIDE TEAM', '1646116277 rsz_door-to-door-distributions-team.jpg', '1646116277 right-direction.jpg', '<p>We have a wide variety of job roles available within our fast growing company which include:</p>\r\n\r\n<ul>\r\n	<li>Leaflet Distributor Jobs in London</li>\r\n	<li>Distribution Manager Jobs in London</li>\r\n	<li>Warehouse Assistant Jobs in London</li>\r\n	<li>Admin Based Jobs&nbsp;in London</li>\r\n</ul>', '<p>If you are honest, hardworking and</p>\r\n\r\n<p>can work as part of a team then JOIN US today. All you need to do is</p>\r\n\r\n<p>fill out our application form and someone will be in contact.</p>', 'Are you still interested?', 'If you’re still interested in applying for a job with Green Guide, simply fill out the form on this page to beginthe application process.', 'Here are our steps to start earning money within days!', 'How our recruitment process works:', '1663055265 Area-we-cover-1.jpg', 'Fill out our online application form', 'Successful candidates are provided an in-person interview', 'Trial day – start to earn money', '<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/1.png\" style=\"float:left; height:45px; margin-top:-10px; margin:-10px 10px; width:45px\" /></strong></span><span style=\"font-size:18px\"><strong>Immediate Start</strong></span> &ndash;&nbsp;Interviews available daily</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/2.png\" style=\"float:left; height:45px; margin:0px 10px; width:45px\" /></strong></span><span style=\"font-size:18px\"><strong>Job Growth </strong></span>&ndash;&nbsp;Opportunity to advance within the company and learn new roles and skills.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/3.png\" style=\"float:left; height:45px; margin:0px 15px; width:45px\" />Great Pay</strong></span> &ndash;&nbsp;Paid on your ability to do job with the possibility to earn more</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/4.png\" style=\"float:left; height:45px; margin:0px 10px; width:45px\" /></strong></span><span style=\"font-size:18px\"><strong>Self Employed</strong></span> &ndash;&nbsp;slef employed jobs available</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/5.png\" style=\"float:left; height:45px; margin:0px 10px; width:45px\" /></strong></span><span style=\"font-size:18px\"><strong>Multilingual teams</strong></span> &ndash;&nbsp;We have a diverse workforce</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><span style=\"font-size:18px\"><strong><img alt=\"\" src=\"http://127.0.0.1:8000/uploads/icons/6.png\" style=\"float:left; height:45px; margin:10px; width:45px\" /></strong></span><span style=\"font-size:18px\"><strong>Travel </strong></span>&ndash;&nbsp;Our distribution work all over London which allows you to see parts of London that you haven&rsquo;t seen before. There is even have the potential to get paid whilst you see different parts of the UK</p>', NULL, '2022-09-13 03:56:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_local_events`
+--
+
+CREATE TABLE `page_local_events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_title_small` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_title_large` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_sec3_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_sec3_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_sec3_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `page_local_events`
+--
+
+INSERT INTO `page_local_events` (`id`, `hero_image`, `hero_title_small`, `hero_title_large`, `event_sec3_title`, `event_sec3_desc`, `event_sec3_image`, `created_at`, `updated_at`) VALUES
+(1, '1663066056-local-events.jpg', 'Now This Is', 'Your Time', 'Register Your Event', '<p><span style=\"font-size:16px\">Want to expand your exposure to the Green Guide community? If you have an upcoming event or activity and would like to add your announcement to the Green Guide Events Calendar, then register it for FREE. We want to build an expansive Events Calendar tha</span></p>', '1663066088-BG_Register_your_business.png', NULL, '2022-09-13 05:56:22');
 
 -- --------------------------------------------------------
 
@@ -1479,6 +1538,12 @@ ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `latest_issues`
+--
+ALTER TABLE `latest_issues`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `links_cards`
 --
 ALTER TABLE `links_cards`
@@ -1566,6 +1631,12 @@ ALTER TABLE `page_home`
 -- Indexes for table `page_job`
 --
 ALTER TABLE `page_job`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `page_local_events`
+--
+ALTER TABLE `page_local_events`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1753,6 +1824,12 @@ ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `latest_issues`
+--
+ALTER TABLE `latest_issues`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `links_cards`
 --
 ALTER TABLE `links_cards`
@@ -1768,7 +1845,7 @@ ALTER TABLE `magazine_highlights`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `page_about`
@@ -1841,6 +1918,12 @@ ALTER TABLE `page_home`
 --
 ALTER TABLE `page_job`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `page_local_events`
+--
+ALTER TABLE `page_local_events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `page_magazine_competition`

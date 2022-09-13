@@ -1,6 +1,43 @@
 @extends('frontend.layouts.master')
 @section('main-section')
 
+
+
+
+
+
+<div class="advertise__hero" data-animate="fadeIn" data-animate-delay="500"
+        style="
+                                                               width     : 100%;
+                                                            min-height: 80vh;
+                                                            /* padding:3rem 0; */
+                                                            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+                                                            url('{{ asset('uploads/' . $page->hero_image) }}') !important;
+                                                            background-repeat  : no-repeat;
+                                                            background-size    : cover;
+                                                            background-position: center;
+                                                            display            : flex;
+                                                            justify-content    : center;
+                                                            align-items        : center;
+                                                            flex-direction     : column;
+                                                            align-items        : center;
+                                                            ">
+        <h1 class="title" data-animate="fadeInDown" data-animate-delay="1000">
+            {{ $page->hero_heading }}
+        </h1>
+        <h3 class="subtitle" data-animate="fadeInDown" data-animate-delay="1100">
+            {{ $page->hero_subheading }}
+        </h3>
+        <a href="/advert-design-book#book__addvertise" data-animate="fadeInUp" data-animate-delay="1200"><button
+                class="btn__advertise">Advertise Now</button></a>
+    </div>
+
+
+
+
+
+
+
     <div class="advert__in__design__section">
         <div class="container my-5">
             <div class="row my-5">
@@ -63,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 ">
-                        {{-- <div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table text-white">
                                 <thead>
                                     <tr>
@@ -74,35 +111,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($latestIssues as $issue)
+                                        
                                     <tr>
-                                        <td>Christmas Special</td>
-                                        <td>1st Oct 2022</td>
-                                        <td>1st Nov 2022</td>
+                                        <td>{{$issue->issue}}</td>
+                                        <td>{{$issue->deadline}}</td>
+                                        <td>{{$issue->commencement}}</td>
                                         <td><a href="/advert-design-book/#book__addvertise" class="btn btn-primary">Book
                                                 Now</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>Spring 2023</td>
-                                        <td>15th Feb 2023</td>
-                                        <td>15th Mar 2023</td>
-                                        <td><a href="/advert-design-book/#book__addvertise" class="btn btn-primary">Book
-                                                Now</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Summer 2023</td>
-                                        <td>15th May 2023</td>
-                                        <td>15th Jun 2023</td>
-                                        <td><a href="/advert-design-book/#book__addvertise" class="btn btn-primary">Book
-                                                Now</a></td>
-                                    </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
-                        </div> --}}
-                        @php
+                        </div>
+                        {{-- @php
 
                             echo $page->sec2_table
 
-                        @endphp
+                        @endphp --}}
                     </div>
                 </div>
             </div>

@@ -127,6 +127,13 @@
                                      Issues</span></a>
                          </li>
                          <li class="slide">
+                             <a class="side-menu__item" data-bs-toggle="slide"
+                                 href="{{ url('admins/latest-issues') }}"><i
+                                     class="side-menu__icon fe fe-alert-triangle"></i><span
+                                     class="side-menu__label">Latest
+                                     Issues</span></a>
+                         </li>
+                         <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="{{ url('admins/adverts') }}"><i
                                      class="side-menu__icon fe fe-maximize"></i><span class="side-menu__label">Advert
                                      Sizes</span></a>

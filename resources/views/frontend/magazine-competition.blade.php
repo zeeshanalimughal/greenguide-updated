@@ -1,17 +1,19 @@
-@extends("frontend.layouts.master")
+@extends('frontend.layouts.master')
 @section('main-section')
-  
 
 
 
-    <div class="advertise__hero advert__design__hero" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('{{asset('uploads/'.$page->hero_image)}}') !important;"  data-animate="fadeIn" data-animate-delay="500">
+
+    <div class="advertise__hero advert__design__hero"
+        style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('{{ asset('uploads/' . $page->hero_image) }}') !important;"
+        data-animate="fadeIn" data-animate-delay="500">
         <h1 class="title" data-animate="fadeInDown" data-animate-delay="700">
-            {{$page->hero_title}}
+            {{ $page->hero_title }}
         </h1>
         <div class="container">
             <p class="description" style="font-size:17px; color:#fff; margin-top: 20px; text-align: center"
                 data-animate="fadeInUp" data-animate-delay="800">
-                {{$page->hero_subtitle}}
+                {{ $page->hero_subtitle }}
             </p>
         </div>
 
@@ -21,22 +23,22 @@
 
 
 
-    
 
 
-    
+
+
 
 
 
 
 
     <div class="container pt-5 pb-3">
-    
-            <div class="page-title my-3" style="text-align:left;">
+
+        <div class="page-title my-3" style="text-align:left;">
             @php
                 echo $page->section2_text;
             @endphp
-            </div>
+        </div>
 
         @if (session()->has('success'))
             <div class="col-lg-12">
@@ -54,79 +56,79 @@
                 </div>
             </div>
         @endif
-        @if($form[0]->status==='live') 
-        <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
-            <h1 class="text-center"> {{$page->section2_heading}}</h1>
-            @csrf
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Issue Number - Present</label>
-                <select id="inputState" name="upcomingIssue" class="form-select">
-                    @foreach ($issues as $issue)
-                        <option value="{{ $issue->id }}">{{ $issue->issue }} - {{ $issue->deadline }}
-                        </option>
-                    @endforeach
-                </select>
-                @if ($errors->has('issue'))
-                    <div class="text-danger">{{ $errors->first('issue') }}</div>
-                @endif
-            </div>
-            <div class="col-md-6">
-                <label for="inputName" class="form-label">Name</label>
-                <input type="text" class="form-control" value="{{ old('name') }}" name="name" id="inputName">
-                @if ($errors->has('name'))
-                    <div class="text-danger">{{ $errors->first('name') }}</div>
-                @endif
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Contact Number</label>
-                <input type="text" class="form-control" value="{{ old('contact') }}" name="contact" id="inputCity">
-                @if ($errors->has('contact'))
-                    <div class="text-danger">{{ $errors->first('contact') }}</div>
-                @endif
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="inputEmail">
-                @if ($errors->has('email'))
-                    <div class="text-danger">{{ $errors->first('email') }}</div>
-                @endif
-            </div>
-
-
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" value="{{ old('address') }}" name="address" id="inputAddress"
-                    placeholder="1234 Main St">
-                @if ($errors->has('address'))
-                    <div class="text-danger">{{ $errors->first('address') }}</div>
-                @endif
-            </div>
-
-
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Answer</label>
-                <textarea name="answer" class="form-control" cols="30" rows="4">{{ old('answer') }}</textarea>
-                @if ($errors->has('answer'))
-                    <div class="text-danger">{{ $errors->first('answer') }}</div>
-                @endif
-            </div>
-
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                    <label class="form-check-label" for="gridCheck">
-                        Tick box – I have read and agree to Competition Terms & Conditions
-                    </label>
+        @if ($form[0]->status === 'live')
+            <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
+                <h1 class="text-center"> {{ $page->section2_heading }}</h1>
+                @csrf
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Issue Number - Present</label>
+                    <select id="inputState" name="upcomingIssue" class="form-select">
+                        @foreach ($issues as $issue)
+                            <option value="{{ $issue->id }}">{{ $issue->issue }} - {{ $issue->deadline }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('issue'))
+                        <div class="text-danger">{{ $errors->first('issue') }}</div>
+                    @endif
                 </div>
-            </div>
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label">Name</label>
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" id="inputName">
+                    @if ($errors->has('name'))
+                        <div class="text-danger">{{ $errors->first('name') }}</div>
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" value="{{ old('contact') }}" name="contact" id="inputCity">
+                    @if ($errors->has('contact'))
+                        <div class="text-danger">{{ $errors->first('contact') }}</div>
+                    @endif
+                </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </form>
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="inputEmail">
+                    @if ($errors->has('email'))
+                        <div class="text-danger">{{ $errors->first('email') }}</div>
+                    @endif
+                </div>
+
+
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" value="{{ old('address') }}" name="address"
+                        id="inputAddress" placeholder="1234 Main St">
+                    @if ($errors->has('address'))
+                        <div class="text-danger">{{ $errors->first('address') }}</div>
+                    @endif
+                </div>
+
+
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Answer</label>
+                    <textarea name="answer" class="form-control" cols="30" rows="4">{{ old('answer') }}</textarea>
+                    @if ($errors->has('answer'))
+                        <div class="text-danger">{{ $errors->first('answer') }}</div>
+                    @endif
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                        <label class="form-check-label" for="gridCheck">
+                            Tick box – I have read and agree to Competition Terms & Conditions
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </form>
         @else
-        <h2>Magazine Competition Form Is Not Available</h2>
+            <h2>Magazine Competition Form Is Not Available</h2>
         @endif
     </div>
 
@@ -136,141 +138,200 @@
 
 
 
-<div style="background:#ededed;padding:1rem 0;margin:4rem 0;">
 
-    <div class="container mt-5" style="background:#ededed;padding:3rem 0;">
-        <h2 class="text-center" style="font-weight: 700">{{$page->section3_heading}}</h2>
-        <h2 class="text-center">{{$page->section3_heading_online}}</h2>
-        <div class="row col-no-margin equalize" data-equalize-item=".text-box">
-            <!--Box 1-->
-            <div class="col-lg-6" style="background-color: #6f86a1;">
-                <div class="text-box hover-effect" style="height: 343.094px;">
-                    <a href="#"> <i class="fa fa-paper-plane"></i>
-                        <h3>Crossword Competition</h3>
-                        <p>Play our Crossword Puzzle for your chance to WIN a 1000 Visa gift card! ? </p>
-                        <a class="btn btn-primary">Play ></a>
-                    </a>
+
+
+
+
+
+
+    <div style="background:#fff;padding:2rem 0;width:100%;" style="margin-top:5rem !important;">
+        <div class="container  py-5 mt-5">
+            <div class="row">
+
+                <div class="col-lg-7 col-md-12 px-3">
+                    <h2 class="text-left">{{ $page2[0]->section3_heading }}</h2>
+                    <h1 style="text-align: left; fonts-size:3.5rem;color:green;">{{ $page2[0]->section3_sponser_name }}
+                    </h1>
+                    <p class="text-left">{{ $page2[0]->section3_subtitle }} </p>
+
+                    <div class="row d-flex my-5">
+                        <div class="col-lg-10">
+                            <div class="product-image">
+                                <!-- Carousel slider -->
+                                <div class="carousel dots-inside dots-dark arrows-visible" data-items="1"
+                                    data-loop="true" data-autoplay="true" data-animate-in="fadeIn"
+                                    data-animate-out="fadeOut" data-autoplay="2500" data-lightbox="gallery">
+                                    @foreach ($page2[0]->section3_gift_images as $images)
+                                        <a href="{{ asset('uploads/' . $images['name']) }}" data-lightbox="image"
+                                            title="Shop product image!"><img alt="Shop product image!"
+                                                src="{{ asset('uploads/' . $images['name']) }}">
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <!--End: Box 1-->
-            <!--Box 2-->
-            <div class="col-lg-6" style="background-color: #8498b1;">
-                <div class="text-box hover-effect" style="height: 343.094px;">
-                    <a href="#"> <i class="fas fa-chart-pie"></i>
-                        <h3>Sudoku Puzzle</h3>
-                        <p>Test your login skills and play Sudoku</p>
-                        <a class="btn btn-primary">Play ></a>
-                    </a>
+                <div class="col-lg-5 col-md-12 px-3" style="margin-top:8rem">
+                    @php
+                        
+                        echo $page2[0]->section3_hamper_content;
+                        
+                    @endphp
                 </div>
+
+
             </div>
-            <!--End: Box 2-->
         </div>
     </div>
 
 
 
-    <div class="container my-5">
-        <h2 class="text-center">{{$page->section3_heading_kidz}}</h2>
-        <div class="row col-no-margin equalize" data-equalize-item=".text-box">
-            <!--Box 1-->
-            <div class="col-lg-6" style="background-color: #8498b1;">
-                <div class="text-box hover-effect" style="height: 343.094px;">
-                    <a href="#"> <i class="fa fa-paper-plane"></i>
-                        <h3>Wordsearch Puzzle</h3>
-                        <p>Play Wordsearch and reveal the mystery solution.</p>
-                        <a class="btn btn-primary">Play ></a>
-                    </a>
-                </div>
-            </div>
-            <!--End: Box 1-->
-            <!--Box 2-->
-            <div class="col-lg-6" style="background-color: #6f86a1;">
-                <div class="text-box hover-effect" style="height: 343.094px;">
-                    <a href="#"> <i class="fas fa-chart-pie"></i>
-                        <h3>Wheel Words</h3>
-                        <p>Create as many words as you can before the time runs out.</p>
-                        <a class="btn btn-primary">Play ></a>
-                    </a>
-                </div>
-            </div>
-            <!--End: Box 2-->
-        </div>
-    </div>
-
-</div>
 
 
 
 
-    
 
 
 
 
-<div class="links__cards__section">
-    <div class="container">
-        <div class="row">
+    <div style="background:#ededed;padding:1rem 0;margin:4rem 0;">
 
-            
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            {{$links[0]->title1}}
-                        </h3>
-                        <p align="justify" class="card__content">
-                            {{$links[0]->details1}}
-                        </p>
-                        <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
-                                class="ps-3 fa fa-arrow-right"></i></a>
+        <div class="container mt-5" style="background:#ededed;padding:3rem 0;">
+            <h2 class="text-center" style="font-weight: 700">{{ $page->section3_heading }}</h2>
+            <h2 class="text-center">{{ $page->section3_heading_online }}</h2>
+            <div class="row col-no-margin equalize" data-equalize-item=".text-box">
+                <!--Box 1-->
+                <div class="col-lg-6" style="background-color: #6f86a1;">
+                    <div class="text-box hover-effect" style="height: 343.094px;">
+                        <a href="#"> <i class="fa fa-paper-plane"></i>
+                            <h3>Crossword Competition</h3>
+                            <p>Play our Crossword Puzzle for your chance to WIN a 1000 Visa gift card! ? </p>
+                            <a class="btn btn-primary">Play ></a>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            {{$links[0]->title2}}
-                        </h3>
-                        <p align="justify" class="card__content">
-                            {{$links[0]->details2}}
-                        </p>
-                        <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
-                                class="ps-3 fa fa-arrow-right"></i></a>
+                <!--End: Box 1-->
+                <!--Box 2-->
+                <div class="col-lg-6" style="background-color: #8498b1;">
+                    <div class="text-box hover-effect" style="height: 343.094px;">
+                        <a href="#"> <i class="fas fa-chart-pie"></i>
+                            <h3>Sudoku Puzzle</h3>
+                            <p>Test your login skills and play Sudoku</p>
+                            <a class="btn btn-primary">Play ></a>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="link__card">
-                    <div class="card__image">
-                        <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">
-                            {{$links[0]->title3}}
-                        </h3>
-                        <p align="justify" class="card__content">
-                            {{$links[0]->details3}}
-                        </p>
-                        <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
-                                class="ps-3 fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
+                <!--End: Box 2-->
             </div>
         </div>
+
+
+
+        <div class="container my-5">
+            <h2 class="text-center">{{ $page->section3_heading_kidz }}</h2>
+            <div class="row col-no-margin equalize" data-equalize-item=".text-box">
+                <!--Box 1-->
+                <div class="col-lg-6" style="background-color: #8498b1;">
+                    <div class="text-box hover-effect" style="height: 343.094px;">
+                        <a href="#"> <i class="fa fa-paper-plane"></i>
+                            <h3>Wordsearch Puzzle</h3>
+                            <p>Play Wordsearch and reveal the mystery solution.</p>
+                            <a class="btn btn-primary">Play ></a>
+                        </a>
+                    </div>
+                </div>
+                <!--End: Box 1-->
+                <!--Box 2-->
+                <div class="col-lg-6" style="background-color: #6f86a1;">
+                    <div class="text-box hover-effect" style="height: 343.094px;">
+                        <a href="#"> <i class="fas fa-chart-pie"></i>
+                            <h3>Wheel Words</h3>
+                            <p>Create as many words as you can before the time runs out.</p>
+                            <a class="btn btn-primary">Play ></a>
+                        </a>
+                    </div>
+                </div>
+                <!--End: Box 2-->
+            </div>
+        </div>
+
     </div>
-</div>
+
+
+
+
+
+
+
+
+
+    <div class="links__cards__section">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title1 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details1 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title2 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details2 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title3 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details3 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
+                                    class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

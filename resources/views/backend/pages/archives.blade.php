@@ -36,6 +36,31 @@
                         @csrf
                         <div class="row">
 
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Hero Background Image</label>
+                                    <input type="file" name="hero_image" class="form-control" accept="image/*">
+                                </div>
+                              </div>
+                            <div class="col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      <label class="form-label">Hero Heading </label>
+                                      <input type="text" name="hero_heading" class="form-control" value="{{$page[0]->hero_heading}}">
+                                  </div>
+                              </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                  <div class="form-group">
+                                      <label class="form-label">Hero Subheading </label>
+                                      <input type="text" name="hero_subheading" class="form-control" value="{{$page[0]->hero_subheading}}">
+                                  </div>
+                              </div>
+
+
+
                             <div class="col-sm-12 col-md-12">
                                   <div class="form-group">
                                       <label class="form-label">Section one image </label>

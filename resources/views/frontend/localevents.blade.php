@@ -1,11 +1,14 @@
 @extends('frontend.layouts.master')
 @section('main-section')
-    <div class="local__events__hero" data-animate="fadeIn" data-animate-delay="500">
+    <div class="local__events__hero" data-animate="fadeIn" data-animate-delay="500"
+        style="
+      background-image        : linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url({{ asset('uploads/' . $page->hero_image) }});
+    ">
         <div class="container w-100 ">
             <div class="row w-100">
                 <div class="col-lg-8 col-md-12">
                     <h1 class="title mb-5" data-animate="fadeInDown" data-animate-delay="1200">
-                        <span>Now This Is</span> <br>Your Time
+                        <span>{{ $page->hero_title_small }}</span> <br>{{ $page->hero_title_large }}
                     </h1>
                     <div class="m-t-60" data-animate="fadeInUp" data-animate-delay="1300">
                         <a href="#events" class="btn__event">
@@ -46,7 +49,7 @@
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <button type="submit" class="btn__event__search">Search</button>
                 </div>
 
@@ -115,9 +118,14 @@
 
 
 
-                @if (!app('request')->query('q') && app('request')->query('start') && app('request')->query('end') && app('request')->query('category'))
+                @if (!app('request')->query('q') &&
+                    app('request')->query('start') &&
+                    app('request')->query('end') &&
+                    app('request')->query('category'))
                     @foreach ($events as $event)
-                        @if ($event->event_start_date >= app('request')->query('start') && $event->event_start_date <= app('request')->query('end') && $event->event_category === app('request')->query('category'))
+                        @if ($event->event_start_date >= app('request')->query('start') &&
+                            $event->event_start_date <= app('request')->query('end') &&
+                            $event->event_category === app('request')->query('category'))
                             <div class="post-item border"
                                 style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;">
                                 <a href="/localevents/{{ $event->id }}">
@@ -173,7 +181,11 @@
 
 
 
-                @if (!app('request')->query('q') && !app('request')->query('start') && !app('request')->query('end ') && !app('request')->query('category') && app('request')->query('query') == '')
+                @if (!app('request')->query('q') &&
+                    !app('request')->query('start') &&
+                    !app('request')->query('end ') &&
+                    !app('request')->query('category') &&
+                    app('request')->query('query') == '')
                     @foreach ($events as $event)
                         <div class="post-item border"
                             style="padding: 0px 20px 20px 0px; position: absolute; left: 0px; top: 0px;">
@@ -428,27 +440,19 @@
 
 
 
-    <div class="register__business_Section m-t-100 m-b-100"  style="background:#ededed;padding:2rem 0;">
+    <div class="register__business_Section m-t-100 m-b-100" style="background:#ededed;padding:2rem 0;">
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-7 col-md-12 mt-4">
                     <h1 class="title">
-                        Register Your Event
+                        {{ $page->event_sec3_title }}
                     </h1>
                     <h5 class="description" text-align="justify">
-                        Want to expand your exposure to the Green Guide community? <br>
-                        If you have an upcoming event or activity and would like to add your announcement to the Green Guide
-                        Events Calendar, then register it for FREE.<br> We want to build an expansive Events Calendar that
-                        offers free exposure for local businesses and organisations and provides an easy and helpful
-                        resource for local residents. <br>
-                        Our online Events Calendar listing form will only take a few minutes to complete and is easy to use.
-                        When you have submitted the listing it will be reviewed and if accepted will be published live onto
-                        the Green Guide website.
-
+                        @php
+                            echo $page->event_sec3_desc;
+                        @endphp
                         <br>
-
-
                     </h5>
                     <a href="/events/add-event-form" class="text-white">
                         <button type="button"
@@ -462,7 +466,7 @@
                 <div class="col-lg-5 col-md-12">
                     <div class="image" style="max-width: 800px;width:100%;height:500px; position: relative;">
                         <img style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;object-fit: contain;"
-                            src="{{ asset('uploads/BG_Register_your_business.png') }}" alt="">
+                            src="{{ asset('uploads/'.$page->event_sec3_image) }}" alt="">
                     </div>
                 </div>
             </div>
@@ -493,21 +497,21 @@
         <div class="container">
             <div class="row">
 
-                
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title1}}
+                                {{ $links[0]->title1 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details1}}
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -516,17 +520,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title2}}
+                                {{ $links[0]->title2 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details2}}
+                                {{ $links[0]->details2 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -536,16 +540,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title3}}
+                                {{ $links[0]->title3 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details3}}
+                                {{ $links[0]->details3 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>

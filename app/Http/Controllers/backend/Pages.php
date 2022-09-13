@@ -7,6 +7,7 @@ use App\Models\Advert;
 use App\Models\Faq;
 use App\Models\HomeGallery;
 use App\Models\AdvertiseCarousel;
+use App\Models\LatestIssue;
 use App\Models\pages\Home;
 use App\Models\pages\About;
 use App\Models\pages\AdvertDesign;
@@ -20,6 +21,7 @@ use App\Models\pages\Feedback;
 use App\Models\pages\GreenInitiative;
 use App\Models\pages\Jobs;
 use App\Models\pages\LinksCard;
+use App\Models\pages\LocalEvents;
 use App\Models\pages\MagazineCompetition;
 use App\Models\pages\MagazineGiveaway;
 use App\Models\WebsiteForm;
@@ -193,7 +195,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $ab_image = time() . ' ' . $request->file('ab_image')->getClientOriginalName();
+            $ab_image = time() . '-' . $request->file('ab_image')->getClientOriginalName();
             $request->file('ab_image')->move(public_path() . '/uploads/', $ab_image);
             $data->ab_image = $ab_image;
         }
@@ -208,6 +210,79 @@ class Pages extends Controller
             return redirect('/admins/pages/about');
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+    // Local Events Page
+    public function getLocalEvents()
+    {
+        $page = LocalEvents::where('id', 1)->get();
+        return view('backend.pages.local-events', compact('page'));
+    }
+    public function page_local_events(Request $request)
+    {
+        $request->validate([
+            'hero_title_small' => 'required',
+            'hero_title_large' => 'required',
+            'event_sec3_title' => 'required',
+            'event_sec3_desc' => 'required',
+            'hero_image' => 'mimes:png,jpg,jpeg',
+            'event_sec3_image' => 'mimes:png,jpg,jpeg',
+        ]);
+
+
+        $data  = LocalEvents::find(1);
+
+        $data->hero_title_small = $request->input('hero_title_small');
+        $data->hero_title_large = $request->input('hero_title_large');
+        $data->event_sec3_title = $request->input('event_sec3_title');
+        $data->event_sec3_desc = $request->input('event_sec3_desc');
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
+
+        if ($request->hasFile('event_sec3_image')) {
+            if ($data->event_sec3_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->event_sec3_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $event_sec3_image = time() . '-' . $request->file('event_sec3_image')->getClientOriginalName();
+            $request->file('event_sec3_image')->move(public_path() . '/uploads/', $event_sec3_image);
+            $data->event_sec3_image = $event_sec3_image;
+        }
+
+        $res =  $data->update();
+
+        if ($res) {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect('/admins/pages/local-events');
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/local-events');
+        }
+    }
+
+
 
 
 
@@ -277,7 +352,7 @@ class Pages extends Controller
                 unlink($imagePath);
             }
 
-            $contact_hero_image = time() . ' ' . $request->file('contact_hero_image')->getClientOriginalName();
+            $contact_hero_image = time() . '-' . $request->file('contact_hero_image')->getClientOriginalName();
             $request->file('contact_hero_image')->move(public_path() . '/uploads/', $contact_hero_image);
             $data->contact_hero_image = $contact_hero_image;
         }
@@ -390,7 +465,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $add_carusel_bg_image = time() . ' ' . $request->file('add_carusel_bg_image')->getClientOriginalName();
+            $add_carusel_bg_image = time() . '-' . $request->file('add_carusel_bg_image')->getClientOriginalName();
             $request->file('add_carusel_bg_image')->move(public_path() . '/uploads/', $add_carusel_bg_image);
             $data->add_carusel_bg_image = $add_carusel_bg_image;
         }
@@ -402,7 +477,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $add_further_info_image = time() . ' ' . $request->file('add_further_info_image')->getClientOriginalName();
+            $add_further_info_image = time() . '-' . $request->file('add_further_info_image')->getClientOriginalName();
             $request->file('add_further_info_image')->move(public_path() . '/uploads/', $add_further_info_image);
             $data->add_further_info_image = $add_further_info_image;
         }
@@ -415,7 +490,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $add_hero_image = time() . ' ' . $request->file('add_hero_image')->getClientOriginalName();
+            $add_hero_image = time() . '-' . $request->file('add_hero_image')->getClientOriginalName();
             $request->file('add_hero_image')->move(public_path() . '/uploads/', $add_hero_image);
             $data->add_hero_image = $add_hero_image;
         }
@@ -429,7 +504,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $ad_sec2_image1 = time() . ' ' . $request->file('ad_sec2_image1')->getClientOriginalName();
+            $ad_sec2_image1 = time() . '-' . $request->file('ad_sec2_image1')->getClientOriginalName();
             $request->file('ad_sec2_image1')->move(public_path() . '/uploads/', $ad_sec2_image1);
             $data->ad_sec2_image1 = $ad_sec2_image1;
         }
@@ -441,7 +516,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $ad_sec2_image2 = time() . ' ' . $request->file('ad_sec2_image2')->getClientOriginalName();
+            $ad_sec2_image2 = time() . '-' . $request->file('ad_sec2_image2')->getClientOriginalName();
             $request->file('ad_sec2_image2')->move(public_path() . '/uploads/', $ad_sec2_image2);
             $data->ad_sec2_image2 = $ad_sec2_image2;
         }
@@ -453,7 +528,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $ad_pathway_image = time() . ' ' . $request->file('ad_pathway_image')->getClientOriginalName();
+            $ad_pathway_image = time() . '-' . $request->file('ad_pathway_image')->getClientOriginalName();
             $request->file('ad_pathway_image')->move(public_path() . '/uploads/', $ad_pathway_image);
             $data->ad_pathway_image = $ad_pathway_image;
         }
@@ -492,7 +567,7 @@ class Pages extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $carousel_image = time() . ' ' . $request->file('image')->getClientOriginalName();
+            $carousel_image = time() . '-' . $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path() . '/uploads/', $carousel_image);
 
             $carousel = new  AdvertiseCarousel();
@@ -555,7 +630,7 @@ class Pages extends Controller
                         unlink($imagePath);
                     }
                 }
-                $image = time() . ' ' . $request->file('image')->getClientOriginalName();
+                $image = time() . '-' . $request->file('image')->getClientOriginalName();
                 $request->file('image')->move(public_path() . '/uploads/', $image);
                 $carousel->image = $image;
             }
@@ -620,7 +695,7 @@ class Pages extends Controller
                 unlink($imagePath);
             }
 
-            $bd_hero_image = time() . ' ' . $request->file('bd_hero_image')->getClientOriginalName();
+            $bd_hero_image = time() . '-' . $request->file('bd_hero_image')->getClientOriginalName();
             $request->file('bd_hero_image')->move(public_path() . '/uploads/', $bd_hero_image);
             $data->bd_hero_image = $bd_hero_image;
         }
@@ -631,7 +706,7 @@ class Pages extends Controller
                 unlink($imagePath);
             }
 
-            $sec2_image = time() . ' ' . $request->file('sec2_image')->getClientOriginalName();
+            $sec2_image = time() . '-' . $request->file('sec2_image')->getClientOriginalName();
             $request->file('sec2_image')->move(public_path() . '/uploads/', $sec2_image);
             $data->sec2_image = $sec2_image;
         }
@@ -641,7 +716,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $bd_sec3_image = time() . ' ' . $request->file('bd_sec3_image')->getClientOriginalName();
+            $bd_sec3_image = time() . '-' . $request->file('bd_sec3_image')->getClientOriginalName();
             $request->file('bd_sec3_image')->move(public_path() . '/uploads/', $bd_sec3_image);
             $data->bd_sec3_image = $bd_sec3_image;
         }
@@ -720,7 +795,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $gi_hero_image = time() . ' ' . $request->file('gi_hero_image')->getClientOriginalName();
+            $gi_hero_image = time() . '-' . $request->file('gi_hero_image')->getClientOriginalName();
             $request->file('gi_hero_image')->move(public_path() . '/uploads/', $gi_hero_image);
             $data->gi_hero_image = $gi_hero_image;
         }
@@ -730,7 +805,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $gi_sec2_image = time() . ' ' . $request->file('gi_sec2_image')->getClientOriginalName();
+            $gi_sec2_image = time() . '-' . $request->file('gi_sec2_image')->getClientOriginalName();
             $request->file('gi_sec2_image')->move(public_path() . '/uploads/', $gi_sec2_image);
             $data->gi_sec2_image = $gi_sec2_image;
         }
@@ -739,7 +814,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $gi_sec4_image = time() . ' ' . $request->file('gi_sec4_image')->getClientOriginalName();
+            $gi_sec4_image = time() . '-' . $request->file('gi_sec4_image')->getClientOriginalName();
             $request->file('gi_sec4_image')->move(public_path() . '/uploads/', $gi_sec4_image);
             $data->gi_sec4_image = $gi_sec4_image;
         }
@@ -748,7 +823,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $gi_sec6_image = time() . ' ' . $request->file('gi_sec6_image')->getClientOriginalName();
+            $gi_sec6_image = time() . '-' . $request->file('gi_sec6_image')->getClientOriginalName();
             $request->file('gi_sec6_image')->move(public_path() . '/uploads/', $gi_sec6_image);
             $data->gi_sec6_image = $gi_sec6_image;
         }
@@ -817,7 +892,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $cg_hero_image = time() . ' ' . $request->file('cg_hero_image')->getClientOriginalName();
+            $cg_hero_image = time() . '-' . $request->file('cg_hero_image')->getClientOriginalName();
             $request->file('cg_hero_image')->move(public_path() . '/uploads/', $cg_hero_image);
             $data->cg_hero_image = $cg_hero_image;
         }
@@ -827,7 +902,7 @@ class Pages extends Controller
             if (File::exists($imagePath)) {
                 unlink($imagePath);
             }
-            $cg_sec2_image = time() . ' ' . $request->file('cg_sec2_image')->getClientOriginalName();
+            $cg_sec2_image = time() . '-' . $request->file('cg_sec2_image')->getClientOriginalName();
             $request->file('cg_sec2_image')->move(public_path() . '/uploads/', $cg_sec2_image);
             $data->cg_sec2_image = $cg_sec2_image;
         }
@@ -880,9 +955,14 @@ class Pages extends Controller
             'job_sec3_sdesc' => 'required',
             'job_sec4_title' => 'required',
             'job_sec4_subtitle' => 'required',
+            'job_step1_text' => 'required',
+            'job_step2_text' => 'required',
+            'job_step3_text' => 'required',
+            'job_apply_form_left_content' => 'required',
             'job_hero_image' => 'mimes:png,jpg,jpeg',
             'job_sec2_image1' => 'mimes:png,jpg,jpeg',
             'job_sec2_image2' => 'mimes:png,jpg,jpeg',
+            'job_steps_bg_image' => 'mimes:png,jpg,jpeg',
 
         ]);
 
@@ -897,8 +977,24 @@ class Pages extends Controller
         $data->job_sec3_sdesc = $request->input('job_sec3_sdesc');
         $data->job_sec4_title = $request->input('job_sec4_title');
         $data->job_sec4_subtitle = $request->input('job_sec4_subtitle');
+        $data->job_step1_text = $request->input('job_step1_text');
+        $data->job_step2_text = $request->input('job_step2_text');
+        $data->job_step3_text = $request->input('job_step3_text');
+        $data->job_apply_form_left_content = $request->input('job_apply_form_left_content');
 
 
+
+        if ($request->hasFile('job_steps_bg_image')) {
+            if ($data->job_steps_bg_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->job_steps_bg_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $job_steps_bg_image = time() . '-' . $request->file('job_steps_bg_image')->getClientOriginalName();
+            $request->file('job_steps_bg_image')->move(public_path() . '/uploads/', $job_steps_bg_image);
+            $data->job_steps_bg_image = $job_steps_bg_image;
+        }
 
         if ($request->hasFile('job_hero_image')) {
             if ($data->job_hero_image !== '') {
@@ -907,7 +1003,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $job_hero_image = time() . ' ' . $request->file('job_hero_image')->getClientOriginalName();
+            $job_hero_image = time() . '-' . $request->file('job_hero_image')->getClientOriginalName();
             $request->file('job_hero_image')->move(public_path() . '/uploads/', $job_hero_image);
             $data->job_hero_image = $job_hero_image;
         }
@@ -920,7 +1016,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $job_sec2_image1 = time() . ' ' . $request->file('job_sec2_image1')->getClientOriginalName();
+            $job_sec2_image1 = time() . '-' . $request->file('job_sec2_image1')->getClientOriginalName();
             $request->file('job_sec2_image1')->move(public_path() . '/uploads/', $job_sec2_image1);
             $data->job_sec2_image1 = $job_sec2_image1;
         }
@@ -934,7 +1030,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $job_sec2_image2 = time() . ' ' . $request->file('job_sec2_image2')->getClientOriginalName();
+            $job_sec2_image2 = time() . '-' . $request->file('job_sec2_image2')->getClientOriginalName();
             $request->file('job_sec2_image2')->move(public_path() . '/uploads/', $job_sec2_image2);
             $data->job_sec2_image2 = $job_sec2_image2;
         }
@@ -1075,7 +1171,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $image1 = time() . ' ' . $request->file('image1')->getClientOriginalName();
+            $image1 = time() . '-' . $request->file('image1')->getClientOriginalName();
             $request->file('image1')->move(public_path() . '/uploads/', $image1);
             $data->image1 = $image1;
         }
@@ -1089,7 +1185,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $image2 = time() . ' ' . $request->file('image2')->getClientOriginalName();
+            $image2 = time() . '-' . $request->file('image2')->getClientOriginalName();
             $request->file('image2')->move(public_path() . '/uploads/', $image2);
             $data->image2 = $image2;
         }
@@ -1103,7 +1199,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $image3 = time() . ' ' . $request->file('image3')->getClientOriginalName();
+            $image3 = time() . '-' . $request->file('image3')->getClientOriginalName();
             $request->file('image3')->move(public_path() . '/uploads/', $image3);
             $data->image3 = $image3;
         }
@@ -1257,7 +1353,8 @@ class Pages extends Controller
     {
 
         $page = MagazineCompetition::where('id', 1)->get();
-        return view('backend.pages.magazine-competition', compact('page'));
+        $page2 =  MagazineGiveaway::where('id', 1)->get();
+        return view('backend.pages.magazine-competition', ['page' => $page, 'page2' => $page2]);
     }
 
 
@@ -1292,7 +1389,7 @@ class Pages extends Controller
                 }
             }
 
-            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
             $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
             $data->hero_image = $hero_image;
         }
@@ -1366,7 +1463,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
             $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
             $data->hero_image = $hero_image;
         }
@@ -1446,7 +1543,7 @@ class Pages extends Controller
                 }
             }
 
-            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
             $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
             $data->hero_image = $hero_image;
         }
@@ -1551,7 +1648,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $hero_image = time() . ' ' . $request->file('hero_image')->getClientOriginalName();
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
             $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
             $data->hero_image = $hero_image;
         }
@@ -1563,7 +1660,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $section2_image = time() . ' ' . $request->file('section2_image')->getClientOriginalName();
+            $section2_image = time() . '-' . $request->file('section2_image')->getClientOriginalName();
             $request->file('section2_image')->move(public_path() . '/uploads/', $section2_image);
             $data->section2_image = $section2_image;
         }
@@ -1634,7 +1731,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $sec1_image = time() . ' ' . $request->file('sec1_image')->getClientOriginalName();
+            $sec1_image = time() . '-' . $request->file('sec1_image')->getClientOriginalName();
             $request->file('sec1_image')->move(public_path() . '/uploads/', $sec1_image);
             $data->sec1_image = $sec1_image;
         }
@@ -1648,7 +1745,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $sec3_image = time() . ' ' . $request->file('sec3_image')->getClientOriginalName();
+            $sec3_image = time() . '-' . $request->file('sec3_image')->getClientOriginalName();
             $request->file('sec3_image')->move(public_path() . '/uploads/', $sec3_image);
             $data->sec3_image = $sec3_image;
         }
@@ -1660,7 +1757,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $sec4_image = time() . ' ' . $request->file('sec4_image')->getClientOriginalName();
+            $sec4_image = time() . '-' . $request->file('sec4_image')->getClientOriginalName();
             $request->file('sec4_image')->move(public_path() . '/uploads/', $sec4_image);
             $data->sec4_image = $sec4_image;
         }
@@ -1673,7 +1770,7 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $sec5_image = time() . ' ' . $request->file('sec5_image')->getClientOriginalName();
+            $sec5_image = time() . '-' . $request->file('sec5_image')->getClientOriginalName();
             $request->file('sec5_image')->move(public_path() . '/uploads/', $sec5_image);
             $data->sec5_image = $sec5_image;
         }
@@ -1713,13 +1810,29 @@ class Pages extends Controller
     public function archivesPageUpdate(Request $request)
     {
         $request->validate([
+            'hero_heading' => 'required',
+            'hero_subheading' => 'required',
             'sec1_content' => 'required',
             'sec2_content' => 'required',
             'sec2_table' => 'required',
             'sec1_image' => 'mimes:png,jpg,jpeg,webp',
+            'hero_image' => 'mimes:png,jpg,jpeg,webp',
         ]);
 
         $data  = Archive::find(1);
+
+
+        if ($request->hasFile('hero_image')) {
+            if ($data->hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $hero_image = time() . '-' . $request->file('hero_image')->getClientOriginalName();
+            $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
+            $data->hero_image = $hero_image;
+        }
 
 
         if ($request->hasFile('sec1_image')) {
@@ -1729,11 +1842,13 @@ class Pages extends Controller
                     unlink($imagePath);
                 }
             }
-            $sec1_image = time() . ' ' . $request->file('sec1_image')->getClientOriginalName();
+            $sec1_image = time() . '-' . $request->file('sec1_image')->getClientOriginalName();
             $request->file('sec1_image')->move(public_path() . '/uploads/', $sec1_image);
             $data->sec1_image = $sec1_image;
         }
 
+        $data->hero_heading = $request->input('hero_heading');
+        $data->hero_subheading = $request->input('hero_subheading');
         $data->sec1_content = $request->input('sec1_content');
         $data->sec2_content = $request->input('sec2_content');
         $data->sec2_table = $request->input('sec2_table');

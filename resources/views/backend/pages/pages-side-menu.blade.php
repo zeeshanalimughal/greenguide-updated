@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div>
-                <a href="/admins/pages/" class="list-group-item  d-flex align-items-center px-0">
+                <a href="/admins/pages/local-events" class="list-group-item  d-flex align-items-center px-0">
                     <i class="fe fe-lock fs-18 me-2 text-warning p-2"></i> Local Events
                 </a>
             </div>

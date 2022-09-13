@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\pages\LinksCard;
+use App\Models\pages\LocalEvents as PagesLocalEvents;
 use App\Models\User;
 use App\Models\UserDetails;
 use App\Models\WebsiteForm;
@@ -30,7 +31,7 @@ class Localevents extends Controller
                 ]);
             }
         }
-        return view('frontend.localevents',['events'=>$ev,'links'=>LinksCard::where('id',1)->get()]);
+        return view('frontend.localevents',['events'=>$ev,'links'=>LinksCard::where('id',1)->get(),'page'=>PagesLocalEvents::find(1)]);
     }
 
 

@@ -28,7 +28,7 @@
                 <h1 class="job-hero-heading">
                     <a href="#apply-job"><span id="job-animated-title"></span></a>
                 </h1>
-    
+
             </div>
             <div data-animate="fadeInUp" data-animate-delay="1500" class="font-size-xl text-center mt-4">
                 {{ $page[0]->job_subtitle }}
@@ -91,7 +91,7 @@
         style="background-image: linear-gradient(rgba(36,94,27,0.8),rgba(36,94,27,.8)),url({{ url('front/img/posting.jpg') }}); background-repeat: no-repeat ;background-size: cover; background-position: center center; background-attachment: fixed;">
         <div class="container d-flex justify-content-center align-items-center flex-column text-center">
             <div class="heaging mb-3">
-      
+
                 <h2 class="display-4 font-weight-600 text-white" data-animate="fadeInDown" data-animate-delay="700">
                     {{ $page[0]->job_sec3_title }}
                 </h2>
@@ -245,14 +245,8 @@
 
 
     </section>
-
-
-
-
-
-
     <section class="my-5 resycling-importance d-flex justify-content-center align-items-center"
-        style="background-image:url({{ url('front/img/Area-we-cover-1.jpg') }}); background-repeat: no-repeat ;background-size: cover; background-position: center center; background-attachment: fixed;">
+        style="background: linear-gradient(rgba(0,0,0,0.4),rgba(0, 0, 0, 0.4)), url('{{ url('uploads/' . $page[0]->job_steps_bg_image) }}'); background-repeat: no-repeat ;background-size: cover; background-position: center center; background-attachment: fixed;">
         <div class="container">
             <div class="heaging mb-3 text-center" data-animate="fadeInDown" data-animate-delay="600">
                 <div class="font-size-xl font-weight-600 text-white"> {{ $page[0]->job_sec4_title }}
@@ -270,7 +264,7 @@
                             <div class="timeline-icon"
                                 style="width:20px; height:20px; top:-2px;left:8px; background-color: #26CE3E;"></div>
                             <div class="ms-3 text-white">Step 1:</div>
-                            <div class="ms-3 text-white mb-3">Fill out our online application form
+                            <div class="ms-3 text-white mb-3"> {{ $page[0]->job_step1_text }}
                             </div>
                         </li>
                         <!--end: Timeline item-->
@@ -279,7 +273,7 @@
                             <div class="timeline-icon"
                                 style="width:20px; height:20px; left:8px;background-color: #26CE3E;"></div>
                             <div class="ms-3 text-white">Step 2:</div>
-                            <div class="ms-3 text-white mb-3">Successful candidates are provided an in-person interview
+                            <div class="ms-3 text-white mb-3"> {{ $page[0]->job_step2_text }}
 
 
                             </div>
@@ -291,7 +285,7 @@
                                 style="width:20px; height:20px;left:8px;background-color: #26CE3E;">
                             </div>
                             <div class="ms-3 text-white">Step 3:</div>
-                            <div class="ms-3 text-white mb-3">Trial day – start to earn money
+                            <div class="ms-3 text-white mb-3"> {{ $page[0]->job_step3_text }}
 
 
                             </div>
@@ -317,6 +311,10 @@
                 <div class="col-lg-6 col-md-12 p-0 m-0 pe-0 pe-sm-4" data-animate="fadeInLeft" data-animate-delay="800">
 
 
+                    @php
+                        echo $page[0]->job_apply_form_left_content;
+                    @endphp
+{{-- 
                     <div class="d-flex align-items-center mb-5">
                         <div class="job-apply-icon-box rounded rounded-circle bg-success text-white me-4">
                             <i class="icon-thumbs-up font-size-xl"></i>
@@ -370,7 +368,7 @@
                             work all over London which allows you to see parts of London that you haven’t seen before. There
                             is even have the potential to get paid whilst you see different parts of the UK
                         </p>
-                    </div>
+                    </div> --}}
 
 
 
@@ -395,287 +393,286 @@
                         </div>
                     @endif
                     <div class="job-form-container px-0 px-sm-5">
-                        @if($form[0]->status==='live')    
-                        <form action="{{ route('job.submit') }}" method="POST" class="p-0 m-0"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="username">First Name</label>
-                                    <input type="text" class="form-control" value="{{ old('fname') }}"
-                                        name="fname" placeholder="Enter first name">
-                                    @if ($errors->has('fname'))
-                                        <div class="text-danger">{{ $errors->first('fname') }}</div>
-                                    @endif
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="text">Last Name</label>
-                                    <input type="text" class="form-control" value="{{ old('lname') }}"
-                                        name="lname" placeholder="Enter last name">
-                                    @if ($errors->has('lname'))
-                                        <div class="text-danger">{{ $errors->first('lname') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="gender">Date of Birth</label>
-                                    <input class="form-control" value="{{ old('dob') }}" type="date"
-                                        name="dob" required="">
-                                    @if ($errors->has('dob'))
-                                        <div class="text-danger">{{ $errors->first('dob') }}</div>
-                                    @endif
+                        @if ($form[0]->status === 'live')
+                            <form action="{{ route('job.submit') }}" method="POST" class="p-0 m-0"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="username">First Name</label>
+                                        <input type="text" class="form-control" value="{{ old('fname') }}"
+                                            name="fname" placeholder="Enter first name">
+                                        @if ($errors->has('fname'))
+                                            <div class="text-danger">{{ $errors->first('fname') }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="text">Last Name</label>
+                                        <input type="text" class="form-control" value="{{ old('lname') }}"
+                                            name="lname" placeholder="Enter last name">
+                                        @if ($errors->has('lname'))
+                                            <div class="text-danger">{{ $errors->first('lname') }}</div>
+                                        @endif
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-select" name="gender" required="">
-                                        <option value="">Select your gender</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Not say">Rather not say</option>
-                                    </select>
-                                    @if ($errors->has('gender'))
-                                        <div class="text-danger">{{ $errors->first('gender') }}</div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="gender">Date of Birth</label>
+                                        <input class="form-control" value="{{ old('dob') }}" type="date"
+                                            name="dob" required="">
+                                        @if ($errors->has('dob'))
+                                            <div class="text-danger">{{ $errors->first('dob') }}</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="gender">Gender</label>
+                                        <select class="form-select" name="gender" required="">
+                                            <option value="">Select your gender</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Not say">Rather not say</option>
+                                        </select>
+                                        @if ($errors->has('gender'))
+                                            <div class="text-danger">{{ $errors->first('gender') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="telephone">Telephone</label>
+                                    <input class="form-control" value="{{ old('phone') }}" type="tel"
+                                        name="phone" placeholder="Enter your Telephone number" required="">
+                                    @if ($errors->has('phone'))
+                                        <div class="text-danger">{{ $errors->first('phone') }}</div>
                                     @endif
                                 </div>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="telephone">Telephone</label>
-                                <input class="form-control" value="{{ old('phone') }}" type="tel" name="phone"
-                                    placeholder="Enter your Telephone number" required="">
-                                @if ($errors->has('phone'))
-                                    <div class="text-danger">{{ $errors->first('phone') }}</div>
-                                @endif
-                            </div>
 
 
 
 
-                            <div class="form-group col-md-12">
-                                <label for="address">Address</label>
-                                <input type="text" value="{{ old('address') }}" class="form-control"
-                                    name="address" placeholder="Enter your Street Address" required="">
-                                @if ($errors->has('address'))
-                                    <div class="text-danger">{{ $errors->first('address') }}</div>
-                                @endif
-                            </div>
-
-
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="city">City</label>
-                                    <input type="text" value="{{ old('city') }}" class="form-control"
-                                        name="city" placeholder="Enter your City" required="">
-                                    @if ($errors->has('city'))
-                                        <div class="text-danger">{{ $errors->first('city') }}</div>
+                                <div class="form-group col-md-12">
+                                    <label for="address">Address</label>
+                                    <input type="text" value="{{ old('address') }}" class="form-control"
+                                        name="address" placeholder="Enter your Street Address" required="">
+                                    @if ($errors->has('address'))
+                                        <div class="text-danger">{{ $errors->first('address') }}</div>
                                     @endif
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label>Zip / Postal Code:</label>
-                                    <input type="number" value="{{ old('zip') }}" class="form-control"
-                                        name="zip" placeholder="Enter Zip Code" required="">
-                                    @if ($errors->has('zip'))
-                                        <div class="text-danger">{{ $errors->first('zip') }}</div>
-                                    @endif
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="email">Email address</label>
-                                    <input type="email" value="{{ old('email') }}" class="form-control"
-                                        name="email" placeholder="Enter your email" required="">
-                                    @if ($errors->has('email'))
-                                        <div class="text-danger">{{ $errors->first('email') }}</div>
-                                    @endif
+
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="city">City</label>
+                                        <input type="text" value="{{ old('city') }}" class="form-control"
+                                            name="city" placeholder="Enter your City" required="">
+                                        @if ($errors->has('city'))
+                                            <div class="text-danger">{{ $errors->first('city') }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Zip / Postal Code:</label>
+                                        <input type="number" value="{{ old('zip') }}" class="form-control"
+                                            name="zip" placeholder="Enter Zip Code" required="">
+                                        @if ($errors->has('zip'))
+                                            <div class="text-danger">{{ $errors->first('zip') }}</div>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="country">Nationality</label>
-                                    <select name="nationality" class="form-select" required="">
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Email address</label>
+                                        <input type="email" value="{{ old('email') }}" class="form-control"
+                                            name="email" placeholder="Enter your email" required="">
+                                        @if ($errors->has('email'))
+                                            <div class="text-danger">{{ $errors->first('email') }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="country">Nationality</label>
+                                        <select name="nationality" class="form-select" required="">
+                                            <option value="" selected disabled>Select option</option>
+                                            @foreach (getCountriesList() as $country)
+                                                @php
+                                                    echo $country;
+                                                @endphp
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('country'))
+                                            <div class="text-danger">{{ $errors->first('country') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-md-12">
+                                    <label for="country">What is your current right to work status?</label>
+                                    <select name="current_right_work_status" class="form-select" required="">
                                         <option value="" selected disabled>Select option</option>
-                                        @foreach (getCountriesList() as $country)
-                                            @php
-                                                echo $country;
-                                            @endphp
-                                        @endforeach
+                                        <option vlast="British">British</option>
+                                        <option vlast="Pre-Setteled">Pre-Setteled</option>
+                                        <option vlast="Settled">Settled</option>
+                                        <option vlast="Biometric Residence Permit">Biometric Residence Permit</option>
+                                        <option vlast="Other">Other</option>
                                     </select>
-                                    @if ($errors->has('country'))
-                                        <div class="text-danger">{{ $errors->first('country') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group col-md-12">
-                                <label for="country">What is your current right to work status?</label>
-                                <select name="current_right_work_status" class="form-select" required="">
-                                    <option value="" selected disabled>Select option</option>
-                                    <option vlast="British">British</option>
-                                    <option vlast="Pre-Setteled">Pre-Setteled</option>
-                                    <option vlast="Settled">Settled</option>
-                                    <option vlast="Biometric Residence Permit">Biometric Residence Permit</option>
-                                    <option vlast="Other">Other</option>
-                                </select>
-                                @if ($errors->has('current_right_work_status'))
-                                    <div class="text-danger">{{ $errors->first('current_right_work_status') }}</div>
-                                @endif
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="country">What job role you are interested in?</label>
-                                <select name="job_role" id="job_role" class="form-select" required="">
-                                    <option value="" selected disabled>Select option</option>
-                                    <option value="Leaflet Distributor">Leaflet Distributor</option>
-                                    <option value="Distribution Manager">Distribution Manager</option>
-                                    <option value="Warehouse Assistant">Warehouse Assistant</option>
-                                    <option value="Administrator">Administrator</option>
-                                </select>
-                                @if ($errors->has('job_role'))
-                                    <div class="text-danger">{{ $errors->first('job_role') }}</div>
-                                @endif
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group col-md-12" id="has_experience">
-                                    <label for="country">Do you have experience with Leaflet Distribution?</label>
-                                    <select name="has_experience" class="form-select" required="">
-                                        <option value="" selected>Select option</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    @if ($errors->has('has_experience'))
-                                        <div class="text-danger">{{ $errors->first('has_experience') }}</div>
+                                    @if ($errors->has('current_right_work_status'))
+                                        <div class="text-danger">{{ $errors->first('current_right_work_status') }}</div>
                                     @endif
                                 </div>
 
-                                <div class="form-group col-md-12" id="has_driving_license">
-                                    <label for="country">Do you hold a full UK or EU Driving license?</label>
-                                    <select name="has_driving_license" class="form-select" required="">
-                                        <option value="" selected>Select option</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                <div class="form-group col-md-12">
+                                    <label for="country">What job role you are interested in?</label>
+                                    <select name="job_role" id="job_role" class="form-select" required="">
+                                        <option value="" selected disabled>Select option</option>
+                                        <option value="Leaflet Distributor">Leaflet Distributor</option>
+                                        <option value="Distribution Manager">Distribution Manager</option>
+                                        <option value="Warehouse Assistant">Warehouse Assistant</option>
+                                        <option value="Administrator">Administrator</option>
                                     </select>
-                                    @if ($errors->has('has_driving_license'))
-                                        <div class="text-danger">{{ $errors->first('has_driving_license') }}</div>
+                                    @if ($errors->has('job_role'))
+                                        <div class="text-danger">{{ $errors->first('job_role') }}</div>
                                     @endif
                                 </div>
 
-                                <div class="form-group col-md-12" id="has_fork_lift_license">
-                                    <label for="country">Do you hold an active fork lift license?</label>
-                                    <select name="has_fork_lift_license" class="form-select" required="">
-                                        <option value="" selected>Select option</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    @if ($errors->has('has_fork_lift_license'))
-                                        <div class="text-danger">{{ $errors->first('has_fork_lift_license') }}</div>
-                                    @endif
+
+                                <div class="row">
+                                    <div class="form-group col-md-12" id="has_experience">
+                                        <label for="country">Do you have experience with Leaflet Distribution?</label>
+                                        <select name="has_experience" class="form-select" required="">
+                                            <option value="" selected>Select option</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        @if ($errors->has('has_experience'))
+                                            <div class="text-danger">{{ $errors->first('has_experience') }}</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-12" id="has_driving_license">
+                                        <label for="country">Do you hold a full UK or EU Driving license?</label>
+                                        <select name="has_driving_license" class="form-select" required="">
+                                            <option value="" selected>Select option</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        @if ($errors->has('has_driving_license'))
+                                            <div class="text-danger">{{ $errors->first('has_driving_license') }}</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-12" id="has_fork_lift_license">
+                                        <label for="country">Do you hold an active fork lift license?</label>
+                                        <select name="has_fork_lift_license" class="form-select" required="">
+                                            <option value="" selected>Select option</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        @if ($errors->has('has_fork_lift_license'))
+                                            <div class="text-danger">{{ $errors->first('has_fork_lift_license') }}</div>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-12" id="has_own_Car">
+                                        <label for="country">Do you own your own car?</label>
+                                        <select name="has_own_car" class="form-select" required="">
+                                            <option value="" selected>Select option</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                        @if ($errors->has('has_own_car'))
+                                            <div class="text-danger">{{ $errors->first('has_own_car') }}</div>
+                                        @endif
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-12" id="has_own_Car">
-                                    <label for="country">Do you own your own car?</label>
-                                    <select name="has_own_car" class="form-select" required="">
-                                        <option value="" selected>Select option</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    @if ($errors->has('has_own_car'))
-                                        <div class="text-danger">{{ $errors->first('has_own_car') }}</div>
-                                    @endif
-                                </div>
-                            </div>
+                                <script>
+                                    const job_role = document.querySelector('#job_role');
+                                    const has_experience = document.querySelector('#has_experience');
 
-                            <script>
-                                const job_role = document.querySelector('#job_role');
-                                const has_experience = document.querySelector('#has_experience');
+                                    const has_driving_license = document.querySelector('#has_driving_license');
+                                    const has_fork_lift_license = document.querySelector('#has_fork_lift_license');
+                                    const has_own_Car = document.querySelector('#has_own_Car');
 
-                                const has_driving_license = document.querySelector('#has_driving_license');
-                                const has_fork_lift_license = document.querySelector('#has_fork_lift_license');
-                                const has_own_Car = document.querySelector('#has_own_Car');
+                                    const has_driving_license_select = document.querySelector('#has_driving_license select');
+                                    const has_fork_lift_license_select = document.querySelector('#has_fork_lift_license select');
+                                    const has_own_Car_select = document.querySelector('#has_own_Car select');
 
-                                const has_driving_license_select = document.querySelector('#has_driving_license select');
-                                const has_fork_lift_license_select = document.querySelector('#has_fork_lift_license select');
-                                const has_own_Car_select = document.querySelector('#has_own_Car select');
-
-                                has_experience.style.display = 'none';
-                                has_driving_license.style.display = 'none';
-                                has_fork_lift_license.style.display = 'none';
-                                has_own_Car.style.display = 'none';
+                                    has_experience.style.display = 'none';
+                                    has_driving_license.style.display = 'none';
+                                    has_fork_lift_license.style.display = 'none';
+                                    has_own_Car.style.display = 'none';
 
 
 
-                                job_role.addEventListener('change', function() {
-                                    if (job_role.value !== 'none') {
-                                        has_experience.style.display = 'block';
-                                    }
-                                    if (job_role.value === 'Leaflet Distributor') {
-                                        has_driving_license.style.display = 'none';
-                                        has_fork_lift_license.style.display = 'none';
-                                        has_own_Car.style.display = 'none';
-                                        has_driving_license_select.selectedIndex = 0;
-                                        has_fork_lift_license_select.selectedIndex = 0;
-                                        has_own_Car_select.selectedIndex = 0;
-                                    }
-                                    if (job_role.value === 'Distribution Manager' || job_role.value === 'Warehouse Assistant') {
-                                        has_driving_license.style.display = 'block';
-                                        has_fork_lift_license.style.display = 'block';
-                                        has_own_Car.style.display = 'block';
-                                    }
-                                    if (job_role.value === 'Administrator') {
-                                        has_driving_license.style.display = 'none';
-                                        has_fork_lift_license.style.display = 'none';
-                                        has_own_Car.style.display = 'none';
-                                        has_driving_license_select.selectedIndex = 0;
-                                        has_fork_lift_license_select.selectedIndex = 0;
-                                        has_own_Car_select.selectedIndex = 0;
-                                    }
-                                })
-                            </script>
+                                    job_role.addEventListener('change', function() {
+                                        if (job_role.value !== 'none') {
+                                            has_experience.style.display = 'block';
+                                        }
+                                        if (job_role.value === 'Leaflet Distributor') {
+                                            has_driving_license.style.display = 'none';
+                                            has_fork_lift_license.style.display = 'none';
+                                            has_own_Car.style.display = 'none';
+                                            has_driving_license_select.selectedIndex = 0;
+                                            has_fork_lift_license_select.selectedIndex = 0;
+                                            has_own_Car_select.selectedIndex = 0;
+                                        }
+                                        if (job_role.value === 'Distribution Manager' || job_role.value === 'Warehouse Assistant') {
+                                            has_driving_license.style.display = 'block';
+                                            has_fork_lift_license.style.display = 'block';
+                                            has_own_Car.style.display = 'block';
+                                        }
+                                        if (job_role.value === 'Administrator') {
+                                            has_driving_license.style.display = 'none';
+                                            has_fork_lift_license.style.display = 'none';
+                                            has_own_Car.style.display = 'none';
+                                            has_driving_license_select.selectedIndex = 0;
+                                            has_fork_lift_license_select.selectedIndex = 0;
+                                            has_own_Car_select.selectedIndex = 0;
+                                        }
+                                    })
+                                </script>
 
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="country">Additional Information</label>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="country">Additional Information</label>
 
-                                    <textarea name="other_information" class="form-control" placeholder="Your Message"
-                                        style="width: 100%; min-height: 70px;" required="">
+                                        <textarea name="other_information" class="form-control" placeholder="Your Message"
+                                            style="width: 100%; min-height: 70px;" required="">
                                         </textarea>
-                                    @if ($errors->has('other_information'))
-                                        <div class="text-danger">{{ $errors->first('other_information') }}</div>
-                                    @endif
+                                        @if ($errors->has('other_information'))
+                                            <div class="text-danger">{{ $errors->first('other_information') }}</div>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
+                                <div class="col-md-12">
 
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">CV (upload file)</label>
-                                    <input type="file" name="cv" class="form-control-file form-control"
-                                        id="exampleFormControlFile1">
-                                    <label class="text-muted"><small>Max. file size: 256 MB.</small></label>
-                                    @if ($errors->has('cv'))
-                                        <div class="text-danger">{{ $errors->first('cv') }}</div>
-                                    @endif
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">CV (upload file)</label>
+                                        <input type="file" name="cv" class="form-control-file form-control"
+                                            id="exampleFormControlFile1">
+                                        <label class="text-muted"><small>Max. file size: 256 MB.</small></label>
+                                        @if ($errors->has('cv'))
+                                            <div class="text-danger">{{ $errors->first('cv') }}</div>
+                                        @endif
+
+                                    </div>
 
                                 </div>
-
-                            </div>
-                            <div class="col-lg-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-success btn-roundeded btn-reveal "><span>Submit
-                                        Form</span><i class="icon-chevron-right"></i></button>
-                            </div>
+                                <div class="col-lg-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-success btn-roundeded btn-reveal "><span>Submit
+                                            Form</span><i class="icon-chevron-right"></i></button>
+                                </div>
 
 
-                        </form>
-                        
-                @else
-                <h1>Jops Form Not Available</h1>
-                @endif
+                            </form>
+                        @else
+                            <h1>Jops Form Not Available</h1>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -683,8 +680,7 @@
     </section>
 
 
-{{-- 
-    <section class="hyperlinks d-flex justify-content-center m-0">
+    {{-- <section class="hyperlinks d-flex justify-content-center m-0">
         <div class="container text-center m-0 ">
             <div class="grid-layout post-3-columns" data-item="post-item">
                 <div class="post-item  ">
@@ -729,7 +725,7 @@
 
 
 
-    
+
 
 
 
@@ -744,21 +740,21 @@
         <div class="container">
             <div class="row">
 
-                
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title1}}
+                                {{ $links[0]->title1 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details1}}
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -767,17 +763,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title2}}
+                                {{ $links[0]->title2 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details2}}
+                                {{ $links[0]->details2 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -787,16 +783,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title3}}
+                                {{ $links[0]->title3 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details3}}
+                                {{ $links[0]->details3 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>

@@ -137,6 +137,52 @@
                                 </div>
                             </div>
 
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Section 4 Steps Background Image</label>
+                                    <input type="file" name="job_steps_bg_image" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Section 4 Step 1 text</label>
+                                    <input type="text" value="{{ $page[0]->job_step1_text }}" name="job_step1_text"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Section 4 Step 2 text</label>
+                                    <input type="text" value="{{ $page[0]->job_step2_text }}" name="job_step2_text"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Section 4 Step 1 text</label>
+                                    <input type="text" value="{{ $page[0]->job_step3_text }}" name="job_step3_text"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Job Apply Form Left Side Content</label>
+                                    <textarea name="job_apply_form_left_content">
+                                                    {{ $page[0]->job_apply_form_left_content }}
+                                               </textarea>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
 
@@ -153,5 +199,6 @@
     <script>
         CKEDITOR.replace('job_sec2_sdesc');
         CKEDITOR.replace('job_sec2_ldesc');
+        CKEDITOR.replace('job_apply_form_left_content');
     </script>
 @endsection

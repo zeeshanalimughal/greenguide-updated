@@ -214,6 +214,7 @@ use App\Http\Controllers\backend\Distributor;
 use App\Http\Controllers\backend\Feedback;
 use App\Http\Controllers\backend\Giveaway;
 use App\Http\Controllers\backend\GreenguideTeam;
+use App\Http\Controllers\backend\LatestIssues;
 use App\Http\Controllers\backend\MagazineDesign;
 use App\Http\Controllers\backend\MagazineHighlights;
 use App\Http\Controllers\backend\UpcommingIssues;
@@ -320,6 +321,9 @@ Route::middleware(['admin-auth'])->group(function () {
         });
 
 
+
+
+        
         // Upcommign Issues
         Route::prefix('/upcomming-issues/')->name('issue.')->group(function () {
             Route::get('/', [UpcommingIssues::class, 'index']);
@@ -327,6 +331,17 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('{id}/{action}', [UpcommingIssues::class, 'issueAction']);
             Route::post('update', [UpcommingIssues::class, 'issueUpdate'])->name('update');
             Route::post('update-headings', [UpcommingIssues::class, 'updateHeadings'])->name('update-headings');
+        });
+
+
+
+        // Latest Issues
+        Route::prefix('/latest-issues/')->name('latestIssue.')->group(function () {
+            Route::get('/', [LatestIssues::class, 'index']);
+            Route::post('add', [LatestIssues::class, 'addIssue'])->name('add');
+            Route::get('{id}/{action}', [LatestIssues::class, 'issueAction']);
+            Route::post('update', [LatestIssues::class, 'issueUpdate'])->name('update');
+            Route::post('update-headings', [LatestIssues::class, 'updateHeadings'])->name('update-headings');
         });
 
 
@@ -419,9 +434,20 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('home', [Pages::class, 'getHomePage']);
             Route::post('page-home', [Pages::class, 'page_home'])->name('page.home');
 
+
+
             //About Page
             Route::get('about', [Pages::class, 'getAboutPage']);
             Route::post('page-about', [Pages::class, 'page_about'])->name('page.about');
+
+
+
+            //Local Events Page
+            Route::get('local-events', [Pages::class, 'getLocalEvents']);
+            Route::post('local-events', [Pages::class, 'page_local_events'])->name('page.localEvents');
+
+
+
 
             //Contact Page
             Route::get('contact', [Pages::class, 'getContactPage']);

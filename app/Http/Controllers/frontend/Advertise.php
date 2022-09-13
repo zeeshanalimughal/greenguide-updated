@@ -9,6 +9,7 @@ use App\Models\AdvertiseCarousel;
 use App\Models\Borough;
 use App\Models\DesignBook;
 use App\Models\General_Setting;
+use App\Models\LatestIssue;
 use App\Models\Pages\AdvertDesign as PagesAdvertDesign;
 use App\Models\pages\Advertise as PagesAdvertise;
 use App\Models\pages\AdvertiseInMagazine;
@@ -40,7 +41,7 @@ class Advertise extends Controller
 
     function archives()
     {
-        return view('frontend.archives', ['issues' => UpcommingIssues::all(), 'links' => LinksCard::where('id', 1)->get(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'page' => Archive::find(1)]);
+        return view('frontend.archives', ['issues' => UpcommingIssues::all(), 'links' => LinksCard::where('id', 1)->get(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'page' => Archive::find(1),'latestIssues'=>LatestIssue::all()]);
     }
 
     public function getMagazineInAdvertisePage()
@@ -152,7 +153,7 @@ class Advertise extends Controller
 
 
         if ($request->hasFile('logo')) {
-            $logo = time() . ' ' . $request->file('logo')->getClientOriginalName();
+            $logo = time() . '-' . $request->file('logo')->getClientOriginalName();
             $request->file('logo')->move(public_path() . '/uploads/', $logo);
             $designBook->logo = $logo;
         }
@@ -282,7 +283,7 @@ class Advertise extends Controller
             if (File::exists($path)) {
                 unlink($path);
             }
-            $logo = time() . ' ' . $request->file('logo')->getClientOriginalName();
+            $logo = time() . '-' . $request->file('logo')->getClientOriginalName();
             $request->file('logo')->move(public_path() . '/uploads/', $logo);
             $designBook->logo = $logo;
         }
@@ -452,7 +453,7 @@ class Advertise extends Controller
                 $currency = $sizes->currency;
             }
             $adverts[$i]['advertSize'] = $advertSizes;
-            $adverts[$i]['amount'] = $price . ' ' . $currency;
+            $adverts[$i]['amount'] = $price . '-' . $currency;
         }
         return view('frontend.all-user-advert-designs', ['adverts' => $adverts]);
     }

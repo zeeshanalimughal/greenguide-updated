@@ -50,80 +50,79 @@
                 </div>
             </div>
         @endif
-        @if($form[0]->status==='live') 
-        <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
-            <h1 class="text-center">{{ $page->section2_heading }}</h1>
-            @csrf
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Issue Number - Present</label>
-                <select id="inputState" name="upcomingIssue" class="form-select">
-                    @foreach ($issues as $issue)
-                        <option value="{{ $issue->id }}">{{ $issue->issue }} - {{ $issue->deadline }}
-                        </option>
-                    @endforeach
-                </select>
-                @if ($errors->has('issue'))
-                    <div class="text-danger">{{ $errors->first('issue') }}</div>
-                @endif
-            </div>
-            <div class="col-md-6">
-                <label for="inputName" class="form-label">Name</label>
-                <input type="text" class="form-control" value="{{ old('name') }}" name="name" id="inputName">
-                @if ($errors->has('name'))
-                    <div class="text-danger">{{ $errors->first('name') }}</div>
-                @endif
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">Contact Number</label>
-                <input type="text" class="form-control" value="{{ old('contact') }}" name="contact" id="inputCity">
-                @if ($errors->has('contact'))
-                    <div class="text-danger">{{ $errors->first('contact') }}</div>
-                @endif
-            </div>
-
-            <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="inputEmail">
-                @if ($errors->has('email'))
-                    <div class="text-danger">{{ $errors->first('email') }}</div>
-                @endif
-            </div>
-
-
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" value="{{ old('address') }}" name="address" id="inputAddress"
-                    placeholder="1234 Main St">
-                @if ($errors->has('address'))
-                    <div class="text-danger">{{ $errors->first('address') }}</div>
-                @endif
-            </div>
-
-
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Answer</label>
-                <textarea name="answer" class="form-control" cols="30" rows="4">{{ old('answer') }}</textarea>
-                @if ($errors->has('answer'))
-                    <div class="text-danger">{{ $errors->first('answer') }}</div>
-                @endif
-            </div>
-
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                    <label class="form-check-label" for="gridCheck">
-                        Tick box – I have read and agree to Competition Terms & Conditions
-                    </label>
+        @if ($form[0]->status === 'live')
+            <form class="row g-3" id="form" method="post" action="{{ route('magzine-giveaway.submit') }}">
+                <h1 class="text-center">{{ $page->section2_heading }}</h1>
+                @csrf
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Issue Number - Present</label>
+                    <select id="inputState" name="upcomingIssue" class="form-select">
+                        @foreach ($issues as $issue)
+                            <option value="{{ $issue->id }}">{{ $issue->issue }} - {{ $issue->deadline }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('issue'))
+                        <div class="text-danger">{{ $errors->first('issue') }}</div>
+                    @endif
                 </div>
-            </div>
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label">Name</label>
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" id="inputName">
+                    @if ($errors->has('name'))
+                        <div class="text-danger">{{ $errors->first('name') }}</div>
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" value="{{ old('contact') }}" name="contact" id="inputCity">
+                    @if ($errors->has('contact'))
+                        <div class="text-danger">{{ $errors->first('contact') }}</div>
+                    @endif
+                </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </form>
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" value="{{ old('email') }}" name="email" id="inputEmail">
+                    @if ($errors->has('email'))
+                        <div class="text-danger">{{ $errors->first('email') }}</div>
+                    @endif
+                </div>
 
+
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" value="{{ old('address') }}" name="address"
+                        id="inputAddress" placeholder="1234 Main St">
+                    @if ($errors->has('address'))
+                        <div class="text-danger">{{ $errors->first('address') }}</div>
+                    @endif
+                </div>
+
+
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Answer</label>
+                    <textarea name="answer" class="form-control" cols="30" rows="4">{{ old('answer') }}</textarea>
+                    @if ($errors->has('answer'))
+                        <div class="text-danger">{{ $errors->first('answer') }}</div>
+                    @endif
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                        <label class="form-check-label" for="gridCheck">
+                            Tick box – I have read and agree to Competition Terms & Conditions
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </form>
         @else
-        <h2>Magazine Giveaway Form Is Not Available</h2>
+            <h2>Magazine Giveaway Form Is Not Available</h2>
         @endif
     </div>
 
@@ -139,7 +138,7 @@
                     <p class="text-left">{{ $page->section3_subtitle }} </p>
 
                     <div class="row d-flex my-5">
-                        <div class="col-lg-5">
+                        <div class="col-lg-10">
                             <div class="product-image">
                                 <!-- Carousel slider -->
                                 <div class="carousel dots-inside dots-dark arrows-visible" data-items="1"
@@ -157,7 +156,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-5 col-md-12 px-3">
+                <div class="col-lg-5 col-md-12 px-3" style="margin-top:8rem">
                     @php
                         
                         echo $page->section3_hamper_content;

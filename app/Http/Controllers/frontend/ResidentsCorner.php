@@ -25,7 +25,8 @@ class ResidentsCorner extends Controller
 
     public function getMagazineCompetitionPage()
     {
-        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>MagazineCompetition::find(1),'form'=>WebsiteForm::where('link',FacadesRequest::path())->get()]);
+        $page2 =  MagazineGiveaway::where('id', 1)->get();
+        return view('frontend.magazine-competition', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>MagazineCompetition::find(1),'form'=>WebsiteForm::where('link',FacadesRequest::path())->get(),'page2'=>$page2]);
     }
     public function getMagazineGiveawayPage()
     {
