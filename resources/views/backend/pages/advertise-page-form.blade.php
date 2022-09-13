@@ -32,6 +32,7 @@
                             echo errorAlert($errors->all(), 'danger');
                         @endphp
                     @endif
+                    <a href="advertise-carousel" class="btn btn-info">Manage The Carousel Of Advertise Page</a>
                     <form action="{{route("page.advertise")}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -88,6 +89,17 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Add Carousel Background Image </label>
+                                    <input type="file" name="add_carusel_bg_image" class="form-control">
+                                </div>
+                            </div>
+
+
+
+
+
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
@@ -104,6 +116,11 @@
                                    </textarea>
                                 </div>
                             </div>
+
+
+                            
+
+
                             
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -111,6 +128,17 @@
                                     <input type="file" name="ad_pathway_image" class="form-control">
                                 </div>
                             </div>
+
+                            
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Our Services Title </label>
+                                    <input type="text" value="{{ $page[0]->add_service_title }}" name="add_service_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+
 
 
                             <div class="col-sm-12 col-md-12">
@@ -121,13 +149,14 @@
                                    </textarea>
                                 </div>
                             </div>
-{{-- 
+
+
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Our Services Images</label>
-                                    <input type="file" name="add_services_images" class="form-control" multiple="true">
+                                    <input type="file" name="add_services_images[]" class="form-control" multiple="true" accept="image/*">
                                 </div>
-                            </div> --}}
+                            </div>
 
 
                             <div class="col-sm-12 col-md-12">
@@ -156,6 +185,15 @@
                                    </textarea>
                                 </div>
                             </div>
+
+                            
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Add Prices Heading </label>
+                                    <input type="text" value="{{ $page[0]->add_prices_heading }}" name="add_prices_heading"
+                                        class="form-control">
+                                </div>
+                            </div>
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Add prices Desc</label>
@@ -164,7 +202,37 @@
                                    </textarea>
                                 </div>
                             </div>
+                            
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Add Boocking Heading </label>
+                                    <input type="text" value="{{ $page[0]->add_booking_title }}" name="add_booking_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Add Boocking Desc</label>
+                                    <textarea name="add_booking_desc">
+                                        {{$page[0]->add_booking_desc}}
+                                   </textarea>
+                                </div>
+                            </div>
 
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Add Further Info Text</label>
+                                    <textarea name="add_further_info_text">
+                                        {{$page[0]->add_further_info_text}}
+                                   </textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Add Further Info Image</label>
+                                    <input type="file" name="add_further_info_image" class="form-control" accept="image/*">
+                                </div>
+                            </div>
 
 
                         </div>
@@ -187,5 +255,7 @@
         CKEDITOR.replace('ad_service_desc');
         CKEDITOR.replace('ad_pathway_desc');
         CKEDITOR.replace('add_upcomming_issue_content');
+        CKEDITOR.replace('add_booking_desc');
+        CKEDITOR.replace('add_further_info_text');
     </script>
 @endsection

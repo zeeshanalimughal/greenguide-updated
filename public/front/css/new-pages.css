@@ -915,8 +915,8 @@ color        : #fff;
     width:100%;
     min-height:100vh;
     position     : relative;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
-    url('../img/aerial-view-business.jpg');
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url('../img/aerial-view-business.jpg'); */
 background-repeat  : no-repeat;
 background-size    : cover;
 background-position: center;
@@ -1246,21 +1246,6 @@ align-items        : center;
 
 
 
-
-
-  .contact__us__hero {
-    /* width     : 100% !important;
-    min-height: 50vh !important;
-    background-image:url('../img/contact-us-hero.jpg') !important;
-        background-repeat  : no-repeat !important;
-        background-size    : cover !important;
-        background-position: center !important;
-        display            : flex !important;
-        justify-content    : center;
-        align-items        : center !important;
-        padding:0 5rem;
-        flex-direction     : column !important; */
- }
   .contact__us__hero .title{
     color      : #fff;
     font-size  : 5rem;

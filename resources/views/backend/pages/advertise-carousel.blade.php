@@ -1,0 +1,147 @@
+@extends('backend.layouts.master')
+@include('backend.utils.functions')
+
+@section('admin-section')
+    @push('page-title')
+        <h1 class="page-title">All Advertise Carousels</h1>
+    @endpush
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <button class="btn btn-primary btn-pill mt-3" data-bs-toggle="modal" data-bs-target="#largemodal">Add New
+                Advertise Carousel</button>
+        </div>
+    </div>
+
+    @if (session()->has('error'))
+        @php
+            echo message(session()->get('error'), 'danger');
+        @endphp
+    @endif
+    @if (session()->has('success'))
+        @php
+            echo message(session()->get('success'), 'success');
+        @endphp
+    @endif
+    @if ($errors->any())
+        @php
+            echo errorAlert($errors->all(), 'danger');
+        @endphp
+    @endif
+
+
+
+    <!-- Row -->
+    <div class="row row-sm">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Advertise Carousel</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                            <thead>
+                                <tr>
+                                    <th class="wd-15p border-bottom-0">#</th>
+                                    <th class="wd-15p border-bottom-0">Images</th>
+                                    <th class="wd-15p border-bottom-0">Title</th>
+                                    <th class="wd-20p border-bottom-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($galleryData as $gallery)
+                                    <tr>
+                                        <td>{{ $gallery->id }}</td>
+                                        <td>
+                        <img src="{{asset('uploads/'.$gallery->image)}}" width="130" height="100" alt="" style="object-fit: cover; border-radius: 12px;">
+                                        </td>
+
+                                        <td>{{ $gallery->title }}</td>
+
+                                        <td>
+                                            <div class="d-flex g-3">
+                                                {{-- @endif --}}
+                                                <a href="{{ url('admins/pages/manage-advertise-carousel/' . $gallery->id) }}/edit"
+                                                    class="btn btn-warning" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Delete">Edit</a>
+                                                <a href="{{ url('admins/pages/manage-advertise-carousel/' . $gallery->id) }}/delete"
+                                                    class="btn btn-danger ms-4" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Delete">Remove</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal Add Post -->
+    <div class="modal fade" id="largemodal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Advertise Carousel</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('page.advertiseCarousel') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Carousel Image</label>
+                                    <input type="file" name="image" class="form-control" 
+                                        accept="image/png,image/jpeg,image/webp">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Title </label>
+                                    <input type="text" name="title" value="{{ old('title') }}" class="form-control">
+                                </div>
+                            </div>
+               
+
+                            <input type="submit" value="Save Carousel" class="btn btn-primary">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+@endsection

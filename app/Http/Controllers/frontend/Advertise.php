@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\AdvertDesign;
+use App\Models\AdvertiseCarousel;
 use App\Models\Borough;
 use App\Models\DesignBook;
 use App\Models\General_Setting;
@@ -29,24 +30,23 @@ class Advertise extends Controller
     function index()
     {
         $advertise = PagesAdvertise::where('id', 1)->get();
-        return view('frontend.advertise', ['advertise' => $advertise,'links'=>LinksCard::where('id',1)->get(),'page'=>AdvertiseInMagazine::find(1),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'issues' => UpcommingIssues::all()]);
+        return view('frontend.advertise', ['advertise' => $advertise, 'links' => LinksCard::where('id', 1)->get(), 'page' => AdvertiseInMagazine::find(1), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'issues' => UpcommingIssues::all(), 'prices' => Advert::all(), 'carousel_images' => AdvertiseCarousel::all()]);
     }
     function advertise_home()
     {
-        return view('frontend.advertise-home', ['issues' => UpcommingIssues::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]);
+        return view('frontend.advertise-home', ['issues' => UpcommingIssues::all(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three'])]);
     }
 
 
     function archives()
     {
-        return view('frontend.archives', ['issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>Archive::find(1)]);
-
-
+        return view('frontend.archives', ['issues' => UpcommingIssues::all(), 'links' => LinksCard::where('id', 1)->get(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'page' => Archive::find(1)]);
     }
 
-    public function getMagazineInAdvertisePage(){
+    public function getMagazineInAdvertisePage()
+    {
         $advertise = PagesAdvertise::where('id', 1)->get();
-        return view('frontend.advertise-in-magazine',['advertise' => $advertise, 'issues' => UpcommingIssues::all(),'links'=>LinksCard::where('id',1)->get(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'page'=>AdvertiseInMagazine::find(1)]);
+        return view('frontend.advertise-in-magazine', ['advertise' => $advertise, 'issues' => UpcommingIssues::all(), 'links' => LinksCard::where('id', 1)->get(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'page' => AdvertiseInMagazine::find(1)]);
     }
 
     function advert_design_book()
@@ -54,9 +54,9 @@ class Advertise extends Controller
         if (Auth::check()) {
             $userDetails = UserDetails::where('userId', Auth::user()->id)
                 ->first();
-            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','magzine-design-book#book__addvertise')->get()]);
+            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'form' => WebsiteForm::where('link', 'magzine-design-book#book__addvertise')->get()]);
         } else {
-            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','magzine-design-book#book__addvertise')->get()]);
+            return view('frontend.magzine-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'form' => WebsiteForm::where('link', 'magzine-design-book#book__addvertise')->get()]);
         }
     }
 
@@ -237,7 +237,7 @@ class Advertise extends Controller
             $UpcommingIssues = UpcommingIssues::all();
             $AdvertSize = Advert::all();
 
-            return sizeof($magazineDesign->toArray()) > 0  ?   view('frontend.edit-user-magazine-design', ['magazineDesign' => $magazineDesign, 'adverts_sizes' => $AdvertSize, 'issues' => $UpcommingIssues,'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three'])]) : redirect('/account/magzine-designs/', Session::flash('error', 'Unauthorized Action'));
+            return sizeof($magazineDesign->toArray()) > 0  ?   view('frontend.edit-user-magazine-design', ['magazineDesign' => $magazineDesign, 'adverts_sizes' => $AdvertSize, 'issues' => $UpcommingIssues, 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three'])]) : redirect('/account/magzine-designs/', Session::flash('error', 'Unauthorized Action'));
         }
     }
 
@@ -346,10 +346,10 @@ class Advertise extends Controller
         if (Auth::check()) {
             $userDetails = UserDetails::where('userId', Auth::user()->id)
                 ->first();
-            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get(),'page'=>PagesAdvertDesign::find(1),'links'=>LinksCard::where('id',1)->get(),]);
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'userDetails' => $userDetails, 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'form' => WebsiteForm::where('link', 'advert-design-book/#book__addvertise')->get(), 'page' => PagesAdvertDesign::find(1), 'links' => LinksCard::where('id', 1)->get(),]);
         } else {
 
-            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(),'settings'=>General_Setting::first()->get(['ui_heading_one','ui_heading_two','ui_heading_three']),'form'=>WebsiteForm::where('link','advert-design-book/#book__addvertise')->get(),'page'=>PagesAdvertDesign::find(1),'links'=>LinksCard::where('id',1)->get(),]);
+            return view('frontend.advert-design-book', ['adverts' => Advert::all(), 'issues' => UpcommingIssues::all(), 'adverts_sizes' => Advert::all(), 'borough' => Borough::all(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'form' => WebsiteForm::where('link', 'advert-design-book/#book__addvertise')->get(), 'page' => PagesAdvertDesign::find(1), 'links' => LinksCard::where('id', 1)->get(),]);
         }
     }
 

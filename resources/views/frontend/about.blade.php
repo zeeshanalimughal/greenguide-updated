@@ -70,25 +70,26 @@
                 <h2>{{ $page[0]->ab_company }}</h2>
                 <p class="lead text-center">{{ $page[0]->ab_company_qt }}</p>
             </div>
+            {{-- @if (!$distributors)
             <!-- Testimonials -->
             <div class="carousel arrows-visibile testimonial testimonial-single testimonial-left" data-items="1">
 
-                <!-- Testimonials item -->
-                @foreach ($distributors as $distributor)
-                    <div class="testimonial-item">
-                        <img src="{{ url('uploads/' . $distributor->image) }}" style="object-fit: cover" alt="">
-                        @php
-                            echo $distributor->message;
-                        @endphp
-                        <span>{{ $distributor->name }}</span>
-                        <span>{{ $distributor->position }}</span>
-                    </div>
-                @endforeach
-
-            </div>
+                    <!-- Testimonials item -->
+                    @foreach ($distributors as $distributor)
+                        <div class="testimonial-item">
+                            <img src="{{ url('uploads/' . $distributor->image) }}" style="object-fit: cover"
+                                alt="">
+                            @php
+                                echo $distributor->message;
+                            @endphp
+                            <span>{{ $distributor->name }}</span>
+                            <span>{{ $distributor->position }}</span>
+                        </div>
+                    @endforeach
+                </div>
+                @endif --}}
             <!-- end: Testimonials -->
         </div>
-
 
 
     </section>

@@ -9,4 +9,8 @@ class Advertise extends Model
 {
     use HasFactory;
     protected $table = "page_advertise";
+    protected $casts = [
+        'add_services_images' => 'array'
+    ];
+
 }

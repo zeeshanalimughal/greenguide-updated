@@ -92,83 +92,34 @@
 
 
 
-
-
-
-
-
-
-
-
-
-    <div class="add__slider__section my-5 d-flex justify-content-center">
+    <div class="add__slider__section my-5 d-flex justify-content-center"
+        style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url('{{ asset('uploads/' . $advertise[0]->add_carusel_bg_image) }}') !important;">
         <div class="container">
             <!-- Slider main container -->
             <div class="swiper-container">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad1.jpg') }}" alt="">
+
+                    @foreach ($carousel_images as $carousel)
+                        <div class="swiper-slide">
+                            <div class="picture">
+                                <img src="{{ url('uploads/' . $carousel->image) }}" alt="">
+                            </div>
+                            <div class="detail">
+                                <h3>{{ $carousel->title }}</h3>
+                            </div>
                         </div>
-                        <div class="detail">
-                            <h3>Know Your Borough</h3>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad-2.jpg') }}" alt="">
-                        </div>
-                        <div class="detail">
-                            <h3>What’s on Calendar</h3>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad-3.jpg') }}" alt="">
-                        </div>
-                        <div class="detail">
-                            <h3>Puzzles</h3>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad-4.jpg') }}" alt="">
-                        </div>
-                        <div class="detail">
-                            <h3>Vouchers</h3>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad-5.jpg') }}" alt="">
-                        </div>
-                        <div class="detail">
-                            <h3>Councillors</h3>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="picture">
-                            <img src="{{ url('front/img/advertisements/ad-6.jpg') }}" alt="">
-                        </div>
-                        <div class="detail">
-                            <h3>Spotlights</h3>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
-
-
                 <div class="swiper-scrollbar"></div>
             </div>
         </div>
     </div>
-
-
-
 
 
 
@@ -214,7 +165,8 @@
 
     <div class="advertise__prices my-5 d-flex justify-content-center align-items-center">
         <div class="container">
-            <div class="title" data-animate="fadeInDown" data-animate-delay="500">Our Services</div>
+            <div class="title" data-animate="fadeInDown" data-animate-delay="500">
+                {{ $advertise[0]->add_service_title }}</div>
 
             <div class="desc" data-animate="fadeInUp" data-animate-delay="600">
                 @php
@@ -222,89 +174,30 @@
                 @endphp
             </div>
 
+
+
             <div class="pen">
-                <div class="stage">
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="500"
-                        style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="600"
-                        style="background: url('{{ url('front/img/advertisements/ad-3.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="700"
-                        style="background: url('{{ url('front/img/advertisements/ad-4.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="800"
-                        style="background: url('{{ url('front/img/advertisements/ad-5.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
 
-                </div>
-                <div class="stage mt-2">
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="900"
-                        style="background: url('{{ url('front/img/advertisements/ad-6.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
+                @php
+                    if ($advertise[0]->add_services_images) {
+                        $chunks = array_chunk($advertise[0]->add_services_images, 4);
+                    } else {
+                        $chunks = [];
+                    }
+                @endphp
+                @for ($i = 0; $i < sizeof($chunks); $i++)
+                    <div class="stage mb-2">
+                        @foreach ($chunks[$i] as $image)
+                            <div class="element" data-animate="fadeInDown" data-animate-delay="500"
+                                style="background: url('{{ url('uploads/' . $image['name']) }}') 45% 0 no-repeat;
+                                                            background-size: cover;">
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="1000"
-                        style="background: url('{{ url('front/img/advertisements/ad-7.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-                    <div class="element" data-animate="fadeInUp" data-animate-delay="1100"
-                        style="background: url('{{ url('front/img/advertisements/ad1.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-                    <div class="element" data-animate="fadeInDown" data-animate-delay="1200"
-                        style="background: url('{{ url('front/img/advertisements/ad-2.jpg') }}') 45% 0 no-repeat;
-                                                                    background-size: cover;">
-                    </div>
-
-                </div>
+                @endfor
             </div>
         </div>
     </div>
-
-
-
-
-
-    {{-- <div class="upcomming__issues">
-        <div class="container">
-            <div class="row p-0 m-0 d-flex justify-content-between">
-                <div class="col-lg-5 col-md-12 p-0 m-0" data-animate="fadeInLeft" data-animate-delay="600">
-                    @php
-                        echo $advertise[0]->add_upcomming_issue_content;
-                    @endphp
-                </div>
-                <div class="col-lg-6 col-md-12 p-0 m-0" data-animate="fadeInRight" data-animate-delay="700">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_one }}</th>
-                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_two }}</th>
-                                    <th class="wd-15p border-bottom-0">{{ $settings[0]->ui_heading_three }}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($issues as $issue)
-                                    <tr>
-                                        <td>{{ $issue->issue }}</td>
-                                        <td>{{ $issue->deadline }}</td>
-                                        <td>{{ $issue->commencement }}</td>
-
-                                    </tr>
-                                @endforeach
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
 
 
@@ -387,7 +280,26 @@
                 @endphp
             </div>
             <div class="row pricing-table">
-                <div class="col" data-animate="fadeInDown" data-animate-delay="1000">
+                @foreach ($prices as $key => $price)
+                    <div class="col" data-animate="fadeInDown" data-animate-delay="1000">
+                        <div class="plan @if ($key == 2) featured @endif">
+                            <div class="plan-header">
+                                <h4>Your Plan</h4>
+                                <p class="text-muted">{{ $price->advert_size }}</p>
+                                <div class="plan-price">
+                                    <sup>{{ $price->currency }}</sup>{{ $price->advert_price }}<span><br>+VAT/mo</span>
+                                </div>
+                                <a class="btn @if ($key == 2) btn-primary @else btn-light @endif"
+                                    href="/advert-design-book#book__addvertise"><i class="icon-shopping-cart"></i> Book
+                                    Now</a>
+                            </div>
+                            <div class="plan-list">
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div class="col" data-animate="fadeInDown" data-animate-delay="1000">
                     <div class="plan">
                         <div class="plan-header">
                             <h4>Your Plan</h4>
@@ -470,7 +382,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -481,12 +393,14 @@
 
     <div class="book__now d-flex justify-content-center align-items-center my-5">
         <div class="container text-center">
-            <h1 data-animate="fadeInDown" data-animate-delay="500">Booking Form
+            <h1 data-animate="fadeInDown" data-animate-delay="500">
+                {{ $advertise[0]->add_booking_title }}
 
             </h1>
-            <h4 data-animate="fadeInDown" data-animate-delay="600"> In printed magazines, your adverts can reach new
-                audiences, particularly local residents who do not
-                regularly access online content.
+            <h4 data-animate="fadeInDown" data-animate-delay="600">
+                @php
+                    echo $advertise[0]->add_booking_desc;
+                @endphp
             </h4>
             <div class="text-center" data-animate="fadeInUp" data-animate-delay="700"><a href="/advert-design-book"
                     class="h-100 btn btn-success btn-shadow btn-rounded rounded-circle btn-iconed text-center py-2 py-sm-3 px-4 mt-4">Book
@@ -503,13 +417,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-sm-12 my-2">
-                    <p style="font-size: 19px"><b>For further information about Green Guide Croydon, </b> please refer to
-                        the Media Pack document available to download.</p>
+                    <p style="font-size: 19px">
+                        @php
+                            echo $advertise[0]->add_further_info_text;
+                        @endphp</p>
                     <a href="/download-media-pack" class="btn btn-info px-5 mt-4" style="font-size:20px;">Download pdf <i
                             class="ps-4 fa fa-download"></i></a>
                 </div>
                 <div class="col-lg-5 col-sm-12 ">
-                    <img src="{{ asset('front/img/book-cover.png') }}" class="book__image"
+                    <img src="{{ asset('uploads/' . $advertise[0]->add_further_info_image) }}" class="book__image"
                         style="max-width:500px; margin-top: -12rem" alt="">
                 </div>
             </div>
@@ -644,7 +560,3 @@
         });
     </script>
 @endsection
-
-
-
-

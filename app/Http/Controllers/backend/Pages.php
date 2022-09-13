@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advert;
 use App\Models\Faq;
 use App\Models\HomeGallery;
+use App\Models\AdvertiseCarousel;
 use App\Models\pages\Home;
 use App\Models\pages\About;
 use App\Models\pages\AdvertDesign;
@@ -302,13 +304,13 @@ class Pages extends Controller
     {
         $page = Advertise::where('id', 1)->get();
 
-        return view('backend.pages.advertise-page-form', compact('page'));
+        return view('backend.pages.advertise-page-form', ['page' => $page]);
     }
 
 
     public function page_advertise(Request $request)
     {
-        // dd($request->all());
+        // dd($request->add_services_images);
         $request->validate([
             'ad_title' => 'required',
             'ad_subtitle' => 'required',
@@ -316,15 +318,23 @@ class Pages extends Controller
             'ad_sec2_desc' => 'required',
             'ad_pathway_heading' => 'required',
             'ad_pathway_desc' => 'required',
+            'add_service_title' => 'required',
             'ad_service_desc' => 'required',
             'ad_benifits_title' => 'required',
             'ad_benifits' => 'required',
+            'add_prices_heading' => 'required',
             'ad_prices_desc' => 'required',
             'add_upcomming_issue_content' => 'required',
+            'add_booking_title' => 'required',
+            'add_booking_desc' => 'required',
+            'add_further_info_text' => 'required',
             'add_hero_image' => 'mimes:png,jpg,jpeg,webp',
             'ad_sec2_image1' => 'mimes:png,jpg,jpeg,webp',
             'ad_sec2_image2' => 'mimes:png,jpg,jpeg,webp',
             'ad_pathway_image' => 'mimes:png,jpg,jpeg,webp',
+            'add_further_info_image' => 'mimes:png,jpg,jpeg,webp',
+            'add_carusel_bg_image' => 'mimes:png,jpg,jpeg,webp',
+            'add_services_images[]' => 'mimes:png,jpg,jpeg,webp',
         ]);
         $data  = Advertise::find(1);
 
@@ -334,19 +344,77 @@ class Pages extends Controller
         $data->ad_sec2_desc = $request->input('ad_sec2_desc');
         $data->ad_pathway_heading = $request->input('ad_pathway_heading');
         $data->ad_pathway_desc = $request->input('ad_pathway_desc');
+        $data->add_service_title = $request->input('add_service_title');
         $data->ad_service_desc = $request->input('ad_service_desc');
         $data->ad_benifits_title = $request->input('ad_benifits_title');
         $data->ad_benifits = $request->input('ad_benifits');
+        $data->add_prices_heading = $request->input('add_prices_heading');
         $data->ad_prices_desc = $request->input('ad_prices_desc');
-        $data->ad_prices_desc = $request->input('ad_prices_desc');
+        $data->add_booking_title = $request->input('add_booking_title');
+        $data->add_booking_desc = $request->input('add_booking_desc');
         $data->add_upcomming_issue_content = $request->input('add_upcomming_issue_content');
+        $data->add_further_info_text = $request->input('add_further_info_text');
+
+
+
+
+
+        if ($request->hasFile('add_services_images')) {
+            if ($data->add_services_images && sizeof($data->add_services_images) > 0) {
+                foreach ($data->add_services_images as $oldImage) {
+                    $imagePath = public_path('/uploads/' . $oldImage['name']);
+                    if (File::exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+            }
+            $imagesArray = [];
+            if ($request->add_services_images) {
+                foreach ($request->add_services_images as $key => $image) {
+                    $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                    $image->move(public_path('uploads'), $imageName);
+                    $imagesArray[]['name'] = $imageName;
+                }
+            }
+            $data->add_services_images = $imagesArray;
+        }
+
+
+
+
+
+        if ($request->hasFile('add_carusel_bg_image')) {
+            if ($data->add_carusel_bg_image) {
+                $imagePath = public_path('/uploads/' . $data->add_carusel_bg_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $add_carusel_bg_image = time() . ' ' . $request->file('add_carusel_bg_image')->getClientOriginalName();
+            $request->file('add_carusel_bg_image')->move(public_path() . '/uploads/', $add_carusel_bg_image);
+            $data->add_carusel_bg_image = $add_carusel_bg_image;
+        }
+
+        if ($request->hasFile('add_further_info_image')) {
+            if ($data->add_further_info_image) {
+                $imagePath = public_path('/uploads/' . $data->add_further_info_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $add_further_info_image = time() . ' ' . $request->file('add_further_info_image')->getClientOriginalName();
+            $request->file('add_further_info_image')->move(public_path() . '/uploads/', $add_further_info_image);
+            $data->add_further_info_image = $add_further_info_image;
+        }
+
 
         if ($request->hasFile('add_hero_image')) {
-            $imagePath = public_path('/uploads/' . $data->add_hero_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
+            if ($data->add_hero_image) {
+                $imagePath = public_path('/uploads/' . $data->add_hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
-
             $add_hero_image = time() . ' ' . $request->file('add_hero_image')->getClientOriginalName();
             $request->file('add_hero_image')->move(public_path() . '/uploads/', $add_hero_image);
             $data->add_hero_image = $add_hero_image;
@@ -409,7 +477,103 @@ class Pages extends Controller
 
 
 
+    public function getAdvertiseCarouselPage()
+    {
 
+        return view('backend.pages.advertise-carousel', ['galleryData' => AdvertiseCarousel::all()]);
+    }
+
+
+    public function addAdvertiseCarousel(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $carousel_image = time() . ' ' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path() . '/uploads/', $carousel_image);
+
+            $carousel = new  AdvertiseCarousel();
+            $carousel->image = $carousel_image;
+            $carousel->title = $request->input('title');
+
+            if ($carousel->save()) {
+                $request->session()->flash('success', 'Carousel Added Successfully');
+                return redirect('/admins/pages/advertise-carousel');
+            } else {
+                $request->session()->flash('error', 'Something went wrong');
+                return redirect('/admins/pages/advertise-carousel');
+            }
+        }
+    }
+
+
+
+
+    public function manageAdvertiseCarousel($id, $action)
+    {
+
+        $gallery =  AdvertiseCarousel::find($id);
+        if ($action === 'delete') {
+            if ($gallery) {
+                if ($gallery->image !== '') {
+
+                    $imgPath = public_path('/uploads/' . $gallery->image);
+                    if (File::exists($imgPath)) {
+                        unlink($imgPath);
+                    }
+                }
+                if ($gallery->delete()) {
+                    Session::flash('success', 'Carousel deleted Successfully');
+                    return redirect('/admins/pages/advertise-carousel');
+                }
+                Session::flash('error', 'Something went wrong');
+                return redirect('/admins/pages/advertise-carousel');
+            }
+        }
+
+        if ($action === 'edit') {
+            return view('backend.pages.edit-advertise-carousel', ['gallery' => $gallery]);
+        }
+    }
+
+
+    public function updateAdvertiseCarousel(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'image' => 'mimes:png,jpg,jpeg,webp',
+        ]);
+        $carousel  = AdvertiseCarousel::find($request->input('id'));
+        if ($carousel) {
+            if ($request->hasFile('image')) {
+                if ($carousel->image !== null) {
+                    $imagePath = public_path('/uploads/' . $carousel->image);
+                    if (File::exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+                $image = time() . ' ' . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path() . '/uploads/', $image);
+                $carousel->image = $image;
+            }
+            $carousel->title = $request->input('title');
+            $res =  $carousel->update();
+
+            if ($res) {
+                $request->session()->flash('success', 'Updated Successfully');
+                return redirect('/admins/pages/advertise-carousel');
+            } else {
+                $request->session()->flash('error', 'Something went wrong');
+                return redirect('/admins/pages/advertise-carousel');
+            }
+        } else {
+            $request->session()->flash('error', 'Something went wrong');
+            return redirect('/admins/pages/advertise-carousel');
+        }
+    }
 
 
     public function getBusinessdirectoryPage()

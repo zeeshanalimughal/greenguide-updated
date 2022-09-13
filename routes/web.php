@@ -431,6 +431,18 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('advertise', [Pages::class, 'getAdvertisePage']);
             Route::post('page-advertise', [Pages::class, 'page_advertise'])->name('page.advertise');
 
+
+            //Advertise Page Carousel
+            Route::get('advertise-carousel', [Pages::class, 'getAdvertiseCarouselPage']);
+            Route::post('advertise-carousel', [Pages::class, 'addAdvertiseCarousel'])->name('page.advertiseCarousel');
+            Route::get('manage-advertise-carousel/{id}/{action}', [Pages::class, 'manageAdvertiseCarousel'])->name('page.manageAdvertiseCarousel');
+            
+            Route::post('update-advertise-carousel', [Pages::class, 'updateAdvertiseCarousel'])->name('page.updateAdvertiseCarousel');
+
+
+
+
+
             //Businessdirectory Page
             Route::get('businessdirectory', [Pages::class, 'getBusinessdirectoryPage']);
             Route::post('page-businessdirectory', [Pages::class, 'page_businessdirectory'])->name('page.businessdirectory');
