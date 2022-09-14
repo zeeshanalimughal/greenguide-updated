@@ -48,9 +48,9 @@
                                     <li><a href="/bd-terms-and-conditions">Business Directory Terms & Conditions</a></li>
                                     <li><a href="/reviews-ternms-of-use">Reviews Terms of Use</a></li>
                                 </ul>
-                                @if(Request::url() === route('contact'))
+                                {{-- @if(Request::url() === route('contact'))
                                 <a href="#opt-form"><h2>Opt Out</h2></a>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </div>

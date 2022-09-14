@@ -49,6 +49,9 @@
                                         class="form-control">
                                 </div>
                             </div>
+
+
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Page Sub title </label>
@@ -56,6 +59,35 @@
                                         class="form-control">
                                 </div>
                             </div>
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">OTP checkbox Text </label>
+                                    <input type="text" value="{{ $page[0]->otp_checkbox_text }}" name="otp_checkbox_text"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">OTP Section Bottom Text</label>
+                                    <textarea name="otp_bottom_text">
+                                        {{ $page[0]->otp_bottom_text }}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Contact Us Google Map Iframe Code</label>
+                                    <textarea rows="6" class="form-control" name="contact_map">{{$page[0]->contact_map}}</textarea>
+                                </div>
+                            </div>
+
+
 
 
                             <div class="col-sm-6 col-md-6">
@@ -72,7 +104,12 @@
                                         class="form-control">
                                 </div>
                             </div>
-
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Contact Team Background Image </label>
+                                    <input type="file" name="contact_team_bg_image" class="form-control">
+                                </div>
+                            </div>
 
 
 
@@ -133,8 +170,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Sales Team Phone</label>
-                                    <input type="text" value="{{ $page[0]->sales_phone }}"
-                                        name="sales_phone" class="form-control">
+                                    <input type="text" value="{{ $page[0]->sales_phone }}" name="sales_phone"
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -151,8 +188,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Design Phone</label>
-                                    <input type="text" value="{{ $page[0]->design_phone }}"
-                                        name="design_phone" class="form-control">
+                                    <input type="text" value="{{ $page[0]->design_phone }}" name="design_phone"
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -168,8 +205,8 @@
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Customer Service Phone</label>
-                                    <input type="text" value="{{ $page[0]->customer_phone }}"
-                                        name="customer_phone" class="form-control">
+                                    <input type="text" value="{{ $page[0]->customer_phone }}" name="customer_phone"
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -181,26 +218,72 @@
                                         class="form-control">
                                 </div>
                             </div>
+
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Hr Development Phone</label>
-                                    <input type="text" value="{{ $page[0]->hr_phone }}"
-                                        name="hr_phone" class="form-control">
+                                    <input type="text" value="{{ $page[0]->hr_phone }}" name="hr_phone"
+                                        class="form-control">
                                 </div>
                             </div>
 
 
 
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">facebook link</label>
+                                    <input type="text" value="{{ $page[0]->facebook }}" name="facebook"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">skype link</label>
+                                    <input type="text" value="{{ $page[0]->skype }}" name="skype"
+                                        class="form-control">
+                                </div>
+                            </div>
 
 
-
-
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">twitter link</label>
+                                    <input type="text" value="{{ $page[0]->twitter }}" name="twitter"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">instagram link</label>
+                                    <input type="text" value="{{ $page[0]->instagram }}" name="instagram"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">linkdin link</label>
+                                    <input type="text" value="{{ $page[0]->linkdin }}" name="linkdin"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">youtube link</label>
+                                    <input type="text" value="{{ $page[0]->youtube }}" name="youtube"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">vimeo link</label>
+                                    <input type="text" value="{{ $page[0]->vimeo }}" name="vimeo"
+                                        class="form-control">
+                                </div>
+                            </div>
                         </div>
-
-
-
                         <input type="submit" value="Update Details" class="btn btn-primary">
-
                 </div>
                 </form>
             </div>
@@ -208,4 +291,7 @@
     </div>
 
     </div>
+    <script>
+        CKEDITOR.replace('otp_bottom_text');
+    </script>
 @endsection

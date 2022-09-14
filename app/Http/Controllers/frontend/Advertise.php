@@ -10,7 +10,7 @@ use App\Models\Borough;
 use App\Models\DesignBook;
 use App\Models\General_Setting;
 use App\Models\LatestIssue;
-use App\Models\Pages\AdvertDesign as PagesAdvertDesign;
+use App\Models\pages\AdvertDesign as PagesAdvertDesign;
 use App\Models\pages\Advertise as PagesAdvertise;
 use App\Models\pages\AdvertiseInMagazine;
 use App\Models\pages\Archive;

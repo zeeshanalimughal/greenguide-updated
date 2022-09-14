@@ -307,6 +307,7 @@ class Pages extends Controller
         $request->validate([
             'contact_title' => 'required',
             'contact_sub_title' => 'required',
+            'contact_map' => 'required',
             'contact_team_title' => 'required',
             'contact_team_desc' => 'required',
 
@@ -322,12 +323,16 @@ class Pages extends Controller
             'customer_phone' => 'required',
             'hr_email' => 'required',
             'hr_phone' => 'required',
+            'otp_checkbox_text' => 'required',
+            'otp_bottom_text' => 'required',
 
             'contact_hero_image' => 'mimes:png,jpg,jpeg',
+            'contact_team_bg_image' => 'mimes:png,jpg,jpeg',
         ]);
         $data  = Contact::find(1);
 
         $data->contact_title = $request->input('contact_title');
+        $data->contact_map = $request->input('contact_map');
         $data->contact_sub_title = $request->input('contact_sub_title');
         $data->contact_team_title = $request->input('contact_team_title');
 
@@ -343,18 +348,40 @@ class Pages extends Controller
         $data->customer_phone = $request->input('customer_phone');
         $data->hr_email = $request->input('hr_email');
         $data->hr_phone = $request->input('hr_phone');
+        $data->otp_checkbox_text = $request->input('otp_checkbox_text');
+        $data->otp_bottom_text = $request->input('otp_bottom_text');
+
+        $data->facebook = $request->input('facebook');
+        $data->skype = $request->input('skype');
+        $data->twitter = $request->input('twitter');
+        $data->linkdin = $request->input('linkdin');
+        $data->instagram = $request->input('instagram');
+        $data->youtube = $request->input('youtube');
+        $data->vimeo = $request->input('vimeo');
 
 
 
         if ($request->hasFile('contact_hero_image')) {
-            $imagePath = public_path('/uploads/' . $data->contact_hero_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
+            if ($data->contact_hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->contact_hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
-
             $contact_hero_image = time() . '-' . $request->file('contact_hero_image')->getClientOriginalName();
             $request->file('contact_hero_image')->move(public_path() . '/uploads/', $contact_hero_image);
             $data->contact_hero_image = $contact_hero_image;
+        }
+        if ($request->hasFile('contact_team_bg_image')) {
+            if ($data->contact_team_bg_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->contact_team_bg_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $contact_team_bg_image = time() . '-' . $request->file('contact_team_bg_image')->getClientOriginalName();
+            $request->file('contact_team_bg_image')->move(public_path() . '/uploads/', $contact_team_bg_image);
+            $data->contact_team_bg_image = $contact_team_bg_image;
         }
 
         $res =  $data->update();
@@ -767,6 +794,14 @@ class Pages extends Controller
             'gi_sec5_desc' => 'required',
             'gi_sec6_title' => 'required',
             'gi_sec6_desc' => 'required',
+            'gi_magazine_printed_title' => 'required',
+            'gi_magazine_printed_count' => 'required',
+            'gi_trees_planted_title' => 'required',
+            'gi_trees_planted_count' => 'required',
+            'gi_greenguide_box_heading' => 'required',
+            'gi_greenguide_forest_box_heading' => 'required',
+            'gi_greenguide_box_content' => 'required',
+            'gi_greenguide_forest_box_content' => 'required',
             'gi_hero_image' => 'mimes:png,jpg,jpeg',
             'gi_sec2_image' => 'mimes:png,jpg,jpeg',
             'gi_sec4_image' => 'mimes:png,jpg,jpeg',
@@ -788,6 +823,14 @@ class Pages extends Controller
         $data->gi_sec5_desc = $request->input('gi_sec5_desc');
         $data->gi_sec6_title = $request->input('gi_sec6_title');
         $data->gi_sec6_desc = $request->input('gi_sec6_desc');
+        $data->gi_magazine_printed_title = $request->input('gi_magazine_printed_title');
+        $data->gi_magazine_printed_count = $request->input('gi_magazine_printed_count');
+        $data->gi_trees_planted_title = $request->input('gi_trees_planted_title');
+        $data->gi_trees_planted_count = $request->input('gi_trees_planted_count');
+        $data->gi_greenguide_box_heading = $request->input('gi_greenguide_box_heading');
+        $data->gi_greenguide_forest_box_heading = $request->input('gi_greenguide_forest_box_heading');
+        $data->gi_greenguide_box_content = $request->input('gi_greenguide_box_content');
+        $data->gi_greenguide_forest_box_content = $request->input('gi_greenguide_forest_box_content');
 
 
         if ($request->hasFile('gi_hero_image')) {

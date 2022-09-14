@@ -56,6 +56,9 @@
                                         class="form-control">
                                 </div>
                             </div>
+
+
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Hero subtitle </label>
@@ -63,6 +66,77 @@
                                         class="form-control">
                                 </div>
                             </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Counter Box Magazine Printed Title </label>
+                                    <input type="text" value="{{ $page[0]->gi_magazine_printed_title }}" name="gi_magazine_printed_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Counter Box Magazine Printed Count </label>
+                                    <input type="text" value="{{ $page[0]->gi_magazine_printed_count }}" name="gi_magazine_printed_count"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Counter Box Trees Planted Title </label>
+                                    <input type="text" value="{{ $page[0]->gi_trees_planted_title }}" name="gi_trees_planted_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Counter Box Trees Planted Count </label>
+                                    <input type="text" value="{{ $page[0]->gi_trees_planted_count }}" name="gi_trees_planted_count"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Gree Guide Box 1 Heading </label>
+                                    <input type="text" value="{{ $page[0]->gi_greenguide_box_heading }}" name="gi_greenguide_box_heading"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Gree Guide Forest Box 2 Heading </label>
+                                    <input type="text" value="{{ $page[0]->gi_greenguide_forest_box_heading }}" name="gi_greenguide_forest_box_heading"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Gree Guide Box 1 Content </label>
+                                   <textarea name="gi_greenguide_box_content">
+                                        {{$page[0]->gi_greenguide_box_content}}
+                                   </textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Gree Guide Forest Box 2 Content </label>
+                                   <textarea name="gi_greenguide_forest_box_content">
+                                        {{$page[0]->gi_greenguide_forest_box_content}}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Hero bottom description </label>
@@ -225,6 +299,8 @@
         CKEDITOR.replace('gi_sec4_desc');
         CKEDITOR.replace('gi_sec5_desc');
         CKEDITOR.replace('gi_sec6_desc');
+        CKEDITOR.replace('gi_greenguide_box_content');
+        CKEDITOR.replace('gi_greenguide_forest_box_content');
 
     </script>
 @endsection
