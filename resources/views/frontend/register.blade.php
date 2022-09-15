@@ -40,7 +40,9 @@
                                     <div class="col-6">
                                         <div class="form-group mb-3">
                                             <input type="text" placeholder="Name" id="name" class="form-control"
-                                                name="name" required autofocus>
+                                                name="name" required autofocus
+                                                value="{{old('name')}}"
+                                                >
                                             @if ($errors->has('name'))
                                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                             @endif
@@ -50,7 +52,7 @@
                                     <div class="col-6">
                                         <div class="form-group mb-3">
                                             <input type="text" placeholder="Email" id="email_address" class="form-control"
-                                                name="email" required autofocus>
+                                                name="email" value="{{old('email')}}" required autofocus>
                                             @if ($errors->has('email'))
                                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                                             @endif
@@ -85,7 +87,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="name">Company Name</label>
-                                            <input type="text" class="form-control" name="company_name" placeholder="Enter your Company Name" required="" value="">
+                                            <input type="text" class="form-control" name="company_name" placeholder="Enter your Company Name"  value="{{old('company_name')}}">
                                             @if ($errors->has('company_name'))
                                             <span class="text-danger">{{ $errors->first('company_name') }}</span>
                                         @endif
@@ -95,7 +97,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="surname">Company Registration Number</label>
-                                            <input type="text" class="form-control" name="company_reg_no" placeholder="Enter your Company Registration Number" required="" value="">
+                                            <input type="text" class="form-control" name="company_reg_no" placeholder="Enter your Company Registration Number"  value="{{old('company_reg_no')}}">
                                             @if ($errors->has('company_reg_no'))
                                             <span class="text-danger">{{ $errors->first('company_reg_no') }}</span>
                                         @endif
@@ -104,7 +106,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="telephone">Phone</label>
-                                            <input class="form-control" type="tel" name="phone" placeholder="Enter your Phone number" required="" value="">
+                                            <input class="form-control" type="tel" name="phone" placeholder="Enter your Phone number"  value="{{old('phone')}}">
                                             @if ($errors->has('phone'))
                                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                                         @endif
@@ -114,7 +116,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="telephone">Charity Number</label>
-                                            <input class="form-control" type="text" name="charity_no" placeholder="Enter your Charity number" required="" value="">
+                                            <input class="form-control" type="text" name="charity_no" placeholder="Enter your Charity number"  value="{{old('charity_no')}}">
                                             @if ($errors->has('charity_no'))
                                             <span class="text-danger">{{ $errors->first('charity_no') }}</span>
                                         @endif

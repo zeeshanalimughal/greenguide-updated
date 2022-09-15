@@ -48,7 +48,8 @@
                             <option value="Shopping">Shopping</option>
                         </select>
                     </div>
-                    <button class="button__search" data-animate="fadeInUp" data-animate-delay="1300">
+                    <button class="button__search btn-primary" style="background-color: #2B6C42 !important;"
+                        data-animate="fadeInUp" data-animate-delay="1300">
                         <i class="fas fa-search"></i>
                         Search
                     </button>
@@ -66,19 +67,19 @@
 
                 <div class="col-lg-7 col-md-12 mt-4" data-animate="fadeInLeft" data-animate-delay="1500">
                     <h1 class="title">
-                        {{$businessdirectory[0]->sec2_title}}
+                        {{ $businessdirectory[0]->sec2_title }}
                     </h1>
                     <h5 class="description" text-align="justify">
-                       @php
-                           echo $businessdirectory[0]->sec2_desc
-                       @endphp
+                        @php
+                            echo $businessdirectory[0]->sec2_desc;
+                        @endphp
                         <br>
 
 
                     </h5>
                     <a href="businessdirectory/add-new-directory" class="text-white">
                         <button type="button"
-                            class="btn btn-success text-white btn-roundeded btn-outline btn-reveal m-t-20"><span>Create a
+                            class="btn btn-primary text-white btn-roundeded btn-outline btn-reveal m-t-20"><span>Create a
                                 New Listing</span><i class="fa fa-plus"></i></button>
                     </a>
                     <br>
@@ -88,7 +89,7 @@
                 <div class="col-lg-5 col-md-12" data-animate="fadeInRight" data-animate-delay="1000">
                     <div class="image" style="max-width: 800px;width:100%;height:500px; position: relative;">
                         <img style="position: absolute;top: 0;left: 0;height: 100%;width: 100%;object-fit: contain;"
-                            src="{{ asset('uploads/'.$businessdirectory[0]->sec2_image) }}" alt="">
+                            src="{{ asset('uploads/' . $businessdirectory[0]->sec2_image) }}" alt="">
                     </div>
                 </div>
             </div>
@@ -103,14 +104,16 @@
 
 
 
-    <div class="businessdirectory__categories">
+    <div class="businessdirectory__categories" style="background-color: #2B6C42 !important;">
         <div class="container">
-            <h2 class="text-white">Business Categories <span style="font-size:15px;">What's on offer</span></h2>
+            <h2 class="text-white">@php
+                echo $businessdirectory[0]->categories_sec_title;
+            @endphp</h2>
             <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/education') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/education.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -122,7 +125,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/FOOD & DRINK') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/food.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -134,7 +137,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/HEALTH & BEAUTY') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/health.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -146,7 +149,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/LEISURE') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/leisure.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -158,7 +161,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/SERVICES') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/services.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -170,7 +173,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 mb-4">
                     <a href="{{ url('businessdirectory/search/SHOPPING') }}">
                         <div class="icon__box">
-                            <div class="icon">
+                            <div class="icon" style="background-color: #40925d !important;">
                                 <img src="{{ asset('/front/img/categories/shopping.png') }}" alt="">
                             </div>
                             <div class="title">
@@ -188,7 +191,7 @@
 
 
 
-    <div class="business__directories ps-2 mb-5">
+    {{-- <div class="business__directories ps-2 mb-5">
         <div class="container mx-auto">
             <!--Post Carousel -->
             <h2 class="mb-4">Business Directories</h2>
@@ -231,10 +234,12 @@
 
             </div>
 
-            {{-- </div> --}}
-            <!--end: Post Carousel -->
+             </div> 
         </div>
-    </div>
+    </div> --}}
+
+
+
 
 
 
@@ -353,16 +358,17 @@
     </div>
 
 
-    <div class="directory__join__us__section">
+    <div class="directory__join__us__section" style="background-color:#fff;color:#999 !important;">
         <div class="container px-2 px-md-5">
-            <h2 class="text-center text-white pb-4">
-                Join our Community
+            <h2 class="text-center  pb-4">
+                {{ $businessdirectory[0]->bd_join_comunity_title }}
             </h2>
             <div class="row">
                 <div class="col-lg-8 col-md-12">
-                    <h5 class="text-white p-0 p-md-4">We want to eanble residents to know who they can go to, who they
-                        can<br>turn to and to connect with, that's our route to community growth.<br>Register your business,
-                        organization or community group today.</h5>
+                    <h5 class=" p-0 p-md-4">
+                        @php
+                            echo $businessdirectory[0]->bd_join_comunity_desc;
+                        @endphp</h5>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <a class="btn btn-primary" href="">Add an Event Listing</a><br>
@@ -370,14 +376,19 @@
                 </div>
             </div>
         </div>
-        <div class="apply__today__row">
-            <a href="businessdirectory/add-new-directory" class="btn btn-primary  mx-2 mx-sm-5">Advertise Today</a>
-            <span class="text-white mx-2 mx-sm-5">or call</span>
+        <div class="apply__today__row" style="background-color: #2B6C42 !important;">
+            <a href="businessdirectory/add-new-directory" style="background-color: #35804f !important;"
+                class="btn btn-primary  mx-2 mx-sm-5">Advertise Today</a>
+
+            <span class="text-white mx-2 mx-sm-5">{{ $businessdirectory[0]->bd_call_label }}</span>
             <div class="call mx-2 mx-sm-5">
-                <h4 class="text-white"><b>0203 773 5835</b></h4>
-                <div class="text-white font-italic">Mon to Fri, 9am to 6pm
+                <h4 class="text-white"><b><a
+                            href="tel:{{ $businessdirectory[0]->bd_phone }}">{{ $businessdirectory[0]->bd_phone }}</a></b>
+                </h4>
+                <div class="text-white font-italic">{{ $businessdirectory[0]->bd_date }}
                 </div>
             </div>
+
         </div>
     </div>
     </div>
@@ -439,7 +450,8 @@
                 </div>
                 <div class="col-lg-6 col-md-12 d-flex justify-content-center">
                     <div class="image" data-animate="fadeInRight" data-animate-delay="1200">
-                        <img src="{{ url('front/img/contact-us.jpg') }}" alt="">
+                        <img src="{{ url('uploads/' . $businessdirectory[0]->bd_contact_form_side_image) }}"
+                            alt="">
                     </div>
                 </div>
             </div>
@@ -466,21 +478,21 @@
         <div class="container">
             <div class="row">
 
-                
+
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title1}}
+                                {{ $links[0]->title1 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details1}}
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -489,17 +501,17 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title2}}
+                                {{ $links[0]->title2 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details2}}
+                                {{ $links[0]->details2 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
-                                    class="ps-3 fa fa-arrow-right"></i></a>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -509,16 +521,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title3}}
+                                {{ $links[0]->title3 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details3}}
+                                {{ $links[0]->details3 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -526,9 +538,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 @endsection

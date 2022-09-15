@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            {{-- <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Business Category Title</label>
                                     <input type="text" value="{{ $page[0]->bd_cat_title }}" name="bd_cat_title"
@@ -63,12 +63,12 @@
                                     <input type="text" value="{{ $page[0]->bd_cat_desc }}" name="bd_cat_desc"
                                         class="form-control">
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">BBusiness Directory Section 2 title</label>
+                                    <label class="form-label">Business Directory Section 2 title</label>
                                     <input type="text" value="{{ $page[0]->sec2_title }}" name="sec2_title"
                                         class="form-control">
                                 </div>
@@ -76,8 +76,8 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Business Directory Section 2 Description</label>
-                          
-                                        <textarea name="sec2_desc">
+
+                                    <textarea name="sec2_desc">
                                             {{ $page[0]->sec2_desc }}
                                        </textarea>
                                 </div>
@@ -89,12 +89,20 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Categories Section Title </label>
+                                    <textarea name="categories_sec_title">
+                                        {{ $page[0]->categories_sec_title }}
+                                   </textarea>
+                                </div>
+                            </div>
 
 
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Business Directory Section 3 title</label>
+                                    <label class="form-label">Business Directory Section 4 title</label>
                                     <input type="text" value="{{ $page[0]->bd_sec3_title }}" name="bd_sec3_title"
                                         class="form-control">
                                 </div>
@@ -102,7 +110,7 @@
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Business Directory Section 3 desc</label>
+                                    <label class="form-label">Business Directory Section 4 desc</label>
                                     <textarea name="bd_sec3_desc">
                                         {{ $page[0]->bd_sec3_desc }}
                                    </textarea>
@@ -111,7 +119,7 @@
 
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Business Directory Section 3 Image </label>
+                                    <label class="form-label">Business Directory Section 4 Image </label>
                                     <input type="file" name="bd_sec3_image" class="form-control">
                                 </div>
                             </div>
@@ -119,27 +127,51 @@
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Business Directory Section 4 Title </label>
-                                    <input type="text" value="{{ $page[0]->bd_sec4_title }}" name="bd_sec4_title"
-                                        class="form-control">
+                                    <label class="form-label">Join community Section title</label>
+                                    <input type="text" value="{{ $page[0]->bd_join_comunity_title }}"
+                                        name="bd_join_comunity_title" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Business Directory Section 4 Description (put | to
-                                        seperate)</label>
-                                    <textarea name="bd_sec4_desc">
-                                        {{ $page[0]->bd_sec4_desc }}
+                                    <label class="form-label">Join Community Section Description</label>
+                                    <textarea name="bd_join_comunity_desc">
+                                        {{ $page[0]->bd_join_comunity_desc }}
                                    </textarea>
                                 </div>
                             </div>
 
 
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Call phone section label</label>
+                                    <input type="text" value="{{ $page[0]->bd_call_label }}" name="bd_call_label"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Call phone section Phone Number</label>
+                                    <input type="text" value="{{ $page[0]->bd_phone }}" name="bd_phone"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Call phone section Date and Time</label>
+                                    <input type="text" value="{{ $page[0]->bd_date }}" name="bd_date"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Business Directory Get in touch side image</label>
+                                    <input type="file" name="bd_contact_form_side_image" class="form-control">
+                                </div>
+                            </div>
                         </div>
-
-
-
                         <input type="submit" value="Update Details" class="btn btn-primary">
 
                 </div>
@@ -147,11 +179,12 @@
             </div>
         </div>
     </div>
-
     </div>
     <script>
         CKEDITOR.replace('sec2_desc');
         CKEDITOR.replace('bd_sec3_desc');
         CKEDITOR.replace('bd_sec4_desc');
+        CKEDITOR.replace('categories_sec_title');
+        CKEDITOR.replace('bd_join_comunity_desc');
     </script>
 @endsection

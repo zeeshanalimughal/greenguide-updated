@@ -691,35 +691,53 @@ class Pages extends Controller
     {
         $request->validate([
             'bd_title' => 'required',
-            'bd_cat_title' => 'required',
-            'bd_cat_desc' => 'required',
-            'bd_sec3_title' => 'required',
             'sec2_title' => 'required',
             'sec2_desc' => 'required',
+            'categories_sec_title' => 'required',
+            'bd_join_comunity_title' => 'required',
+            'bd_join_comunity_desc' => 'required',
+            'bd_sec3_title' => 'required',
             'bd_sec3_desc' => 'required',
-            'bd_sec4_title' => 'required',
-            'bd_sec4_desc' => 'required',
+            'bd_call_label' => 'required',
+            'bd_phone' => 'required',
+            'bd_date' => 'required',
             'bd_hero_image' => 'mimes:png,jpg,jpeg,webp',
             'bd_sec3_image' => 'mimes:png,jpg,jpeg,webp',
             'sec2_image' => 'mimes:png,jpg,jpeg,webp',
+            'bd_contact_form_side_image' => 'mimes:png,jpg,jpeg,webp',
         ]);
         $data  = Businessdirectory::find(1);
 
         $data->bd_title = $request->input('bd_title');
-        $data->bd_cat_title = $request->input('bd_cat_title');
-        $data->bd_cat_desc = $request->input('bd_cat_desc');
         $data->bd_sec3_title = $request->input('bd_sec3_title');
         $data->sec2_title = $request->input('sec2_title');
         $data->sec2_desc = $request->input('sec2_desc');
         $data->bd_sec3_desc = $request->input('bd_sec3_desc');
-        $data->bd_sec4_title = $request->input('bd_sec4_title');
-        $data->bd_sec4_desc = $request->input('bd_sec4_desc');
+        $data->categories_sec_title     = $request->input('categories_sec_title');
+        $data->bd_join_comunity_title     = $request->input('bd_join_comunity_title');
+        $data->bd_join_comunity_desc     = $request->input('bd_join_comunity_desc');
+        $data->bd_call_label     = $request->input('bd_call_label');
+        $data->bd_phone     = $request->input('bd_phone');
+        $data->bd_date     = $request->input('bd_date');
 
+        if ($request->hasFile('bd_contact_form_side_image')) {
+            if ($data->bd_contact_form_side_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->bd_contact_form_side_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $bd_contact_form_side_image = time() . '-' . $request->file('bd_contact_form_side_image')->getClientOriginalName();
+            $request->file('bd_contact_form_side_image')->move(public_path() . '/uploads/', $bd_contact_form_side_image);
+            $data->bd_contact_form_side_image = $bd_contact_form_side_image;
+        }
 
         if ($request->hasFile('bd_hero_image')) {
-            $imagePath = public_path('/uploads/' . $data->bd_hero_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
+            if ($data->bd_hero_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->bd_hero_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
 
             $bd_hero_image = time() . '-' . $request->file('bd_hero_image')->getClientOriginalName();
@@ -727,27 +745,31 @@ class Pages extends Controller
             $data->bd_hero_image = $bd_hero_image;
         }
 
-        if ($request->hasFile('sec2_image')) {
-            $imagePath = public_path('/uploads/' . $data->sec2_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
-            }
 
+
+        if ($request->hasFile('sec2_image')) {
+            if ($data->sec2_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->sec2_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
             $sec2_image = time() . '-' . $request->file('sec2_image')->getClientOriginalName();
             $request->file('sec2_image')->move(public_path() . '/uploads/', $sec2_image);
             $data->sec2_image = $sec2_image;
         }
 
         if ($request->hasFile('bd_sec3_image')) {
-            $imagePath = public_path('/uploads/' . $data->bd_sec3_image);
-            if (File::exists($imagePath)) {
-                unlink($imagePath);
+            if ($data->bd_sec3_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->bd_sec3_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $bd_sec3_image = time() . '-' . $request->file('bd_sec3_image')->getClientOriginalName();
+                $request->file('bd_sec3_image')->move(public_path() . '/uploads/', $bd_sec3_image);
+                $data->bd_sec3_image = $bd_sec3_image;
             }
-            $bd_sec3_image = time() . '-' . $request->file('bd_sec3_image')->getClientOriginalName();
-            $request->file('bd_sec3_image')->move(public_path() . '/uploads/', $bd_sec3_image);
-            $data->bd_sec3_image = $bd_sec3_image;
         }
-
         $res =  $data->update();
 
         if ($res) {
@@ -1232,8 +1254,6 @@ class Pages extends Controller
             $request->file('image2')->move(public_path() . '/uploads/', $image2);
             $data->image2 = $image2;
         }
-
-
 
         if ($request->hasFile('image3')) {
             if ($data->image3 !== null) {

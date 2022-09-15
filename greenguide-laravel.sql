@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 14, 2022 at 03:09 PM
+-- Generation Time: Sep 15, 2022 at 03:10 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -912,11 +912,16 @@ CREATE TABLE `page_businessdirectory` (
   `sec2_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sec2_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sec2_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categories_sec_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `bd_sec3_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bd_sec4_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bd_sec4_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_join_comunity_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_join_comunity_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_call_label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bd_contact_form_side_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -925,8 +930,8 @@ CREATE TABLE `page_businessdirectory` (
 -- Dumping data for table `page_businessdirectory`
 --
 
-INSERT INTO `page_businessdirectory` (`id`, `bd_hero_image`, `bd_title`, `bd_cat_title`, `bd_cat_desc`, `sec2_title`, `sec2_desc`, `sec2_image`, `bd_sec3_title`, `bd_sec3_desc`, `bd_sec3_image`, `bd_sec4_title`, `bd_sec4_desc`, `created_at`, `updated_at`) VALUES
-(1, '1645693562 business-bg.jpg', 'Green Guide Directory', 'DIRECTORY CATEGORIES', 'Need to find a local business? We have a wide range of businesses registered on the Green Guide business directory.', 'Register Your Business', '<p>Want to expand your exposure to the Green Guide community? If you&#39;re a business owner and would like to add your business to the Green Guide directory, then register for FREE. We want to build an expansive business directory that offers free exposure for local businesses and provides an easy and helpful resource for local residents. Our online business directory listing form will only take a few minutes to complete and is easy to use. When you have submitted the listing it will be reviewed and if accepted will be published live onto the Green Guide website.</p>', '1660803730 BG_Register_your_business.png', 'Green Guide Croydon Magazine', '<p>The team at LGG Marketing are pleased to announce the launch of a borough wide residential magazine across the entire Croydon Borough. The Green Guide magazine will be a unified publication of local messages, community initiatives and a business directory. We want to connect residents with their local market in order to establish a pathway for community growth.</p>', '1645693562 business-directory-img1.png', 'Why Choose GreenGuide?', '<p>This magazine focuses on residents and aims to provide them with important information and messages. Ultimately, the goal is to enhance the readership of the magazine.| A local magazine enables you to communicate directly to potential customers in the local area.| Although the internet is packed full of marketing noise, which we generally filter, a magazine only has a few advertisements per page. Thus, when advertising in a magazine, exposure increases substantially.| As the advertisement is placed inside a trusted and reliable local magazine, which provides important sources of local information, readers are likely to display higher levels of trust. oIn printed magazines, your adverts can reach new audiences, particularly local residents who do not regularly access online content.| High exposure rate with the magazine being posted by our own experienced distribution teams to ~156,000 households.| User friendly magazine will have an index page that has the company names listed with the associated page number, contents page that outlines the categories within the issue and colour co-ordinated, easy to use tabs which will enable readers to identify content quickly.| Build a pathway for companies to reach new audiences within their local market.| Low cost marketing approach with various advert sizes for a</p>', NULL, '2022-08-18 01:22:10');
+INSERT INTO `page_businessdirectory` (`id`, `bd_hero_image`, `bd_title`, `bd_cat_title`, `bd_cat_desc`, `sec2_title`, `sec2_desc`, `sec2_image`, `categories_sec_title`, `bd_sec3_title`, `bd_sec3_desc`, `bd_sec3_image`, `bd_join_comunity_title`, `bd_join_comunity_desc`, `bd_call_label`, `bd_phone`, `bd_date`, `bd_contact_form_side_image`, `created_at`, `updated_at`) VALUES
+(1, '1645693562 business-bg.jpg', 'Green Guide Directory', 'DIRECTORY CATEGORIES', 'Need to find a local business? We have a wide range of businesses registered on the Green Guide business directory.', 'Register Your Business', '<p>Want to expand your exposure to the Green Guide community? If you&#39;re a business owner and would like to add your business to the Green Guide directory, then register for FREE. We want to build an expansive business directory that offers free exposure for local businesses and provides an easy and helpful resource for local residents. Our online business directory listing form will only take a few minutes to complete and is easy to use. When you have submitted the listing it will be reviewed and if accepted will be published live onto the Green Guide website.</p>', '1660803730 BG_Register_your_business.png', '<h2><span style=\"color:#dddddd\">Business Categories&nbsp;<span style=\"font-size:16px\">What&#39;s on offer</span></span></h2>', 'Green Guide Croydon Magazine', '<p>The team at LGG Marketing are pleased to announce the launch of a borough wide residential magazine across the entire Croydon Borough. The Green Guide magazine will be a unified publication of local messages, community initiatives and a business directory. We want to connect residents with their local market in order to establish a pathway for community growth.</p>', '1645693562 business-directory-img1.png', 'Join our Community', '<p>We want to eanble residents to know who they can go to, who they can turn</p>\r\n\r\n<p>to and to connect with, that&#39;s our route to community growth.</p>\r\n\r\n<p>Register your business, organization or community group today.</p>', 'or call', '0203 773 5835', 'Mon to Fri, 9am to 6pm', '1663220419-contact-us.jpg', NULL, '2022-09-15 00:40:19');
 
 -- --------------------------------------------------------
 
@@ -1365,7 +1370,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (26, 'Zeeshan Ali', 'zeeshan@gmail.com', NULL, '$2y$10$hH7iQ/2JOdX2EhJlla1Y0OHp5AGRSC5OrMT0kSg5izdQQ1R3eDW8q', NULL, 'active', '2022-03-07 01:45:21', '2022-07-21 01:16:08'),
-(36, 'kashif', 'kashif@gmail.com', NULL, '$2y$10$LRppdBypjalw9dc1c9GOB.GER9WjrOkmkNBmojXGuRL651nqEuhdS', NULL, 'active', '2022-07-19 03:49:42', '2022-08-18 06:18:18');
+(36, 'kashif', 'kashif@gmail.com', NULL, '$2y$10$LRppdBypjalw9dc1c9GOB.GER9WjrOkmkNBmojXGuRL651nqEuhdS', NULL, 'active', '2022-07-19 03:49:42', '2022-08-18 06:18:18'),
+(37, 'Usama', 'usama@gmail.com', NULL, '$2y$10$XUJGdzzuKo23j3Aa5FKq3eUMmwqNCx3xksxCKACn7/AiBfObvhVt.', NULL, 'active', '2022-09-14 23:45:03', '2022-09-14 23:45:03');
 
 -- --------------------------------------------------------
 
@@ -1391,7 +1397,8 @@ CREATE TABLE `user_details` (
 
 INSERT INTO `user_details` (`id`, `userId`, `company_name`, `company_reg_no`, `phone`, `charity_number`, `billing_address`, `created_at`, `updated_at`) VALUES
 (13, 26, 'LLG Green Guide', '923847', '984237498', 'SWE2897', 'My Address', NULL, NULL),
-(22, 36, 'ZEX', '4543534', '03059677107', '345353', NULL, NULL, NULL);
+(22, 36, 'ZEX', '4543534', '03059677107', '345353', NULL, NULL, NULL),
+(23, 37, 'Usama Tech', '345345345', '98324983274', '0001', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1983,13 +1990,13 @@ ALTER TABLE `upcomming_issues`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `website_froms`
