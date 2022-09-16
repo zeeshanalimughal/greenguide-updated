@@ -631,68 +631,110 @@
                     </div>
 
                     <label for="example-text-input" class="col-lg-1 col-form-label">Issue</label>
-                    <div class="col-lg-5 ">
-                        <select class="form-select" name="upcomingIssue" required="required">
-                            <option value="">Select a Issue</option>
-                            @foreach ($issues as $issue)
-                                <option value="{{ $issue->id }}">{{ $issue->issue }} - {{ $issue->deadline }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <div class="col-lg-5" style="margin-top: -20px">
+                      
+                        <div style="display: flex; flex-wrap: wrap; align-items: center;">
+                            {{-- @foreach ($issues as $issue) --}}
+                            
+                                <div style="width:200px;display:flex; align-items: center; gap:10px;">
+                                    <input type="checkbox" name="issue" style="width:15px; height:15px; accent-color:green;margin-bottom: 5px;" id="Q2-2023" value="Q2 2023">
+                                    <label for="Q2-2023">Q2 2023</label>
+                                </div>
+                     
+                                <div style="width:200px;display:flex; align-items: center; gap:10px;">
+                                    <input type="checkbox" name="issue" style="width:15px; height:15px; accent-color:green;margin-bottom: 5px;" id="Q3-2023" value="Q3 2023">
+                                    <label for="Q3-2023">Q3 2023</label>
+                                </div>
+                     
+                                <div style="width:200px;display:flex; align-items: center; gap:10px;">
+                                    <input type="checkbox" name="issue" style="width:15px; height:15px; accent-color:green;margin-bottom: 5px;" id="Q4-2023" value="Q4 2023">
+                                    <label for="Q4-2023">Q4 2023</label>
+                                </div>
+                     
+                                <div style="width:200px;display:flex; align-items: center; gap:10px;">
+                                    <input type="checkbox" name="issue" style="width:15px; height:15px; accent-color:green;margin-bottom: 5px;" id="Q1-2024" value="Q1 2024">
+                                    <label for="Q1-2024">Q1 2024</label>
+                                </div>
+                     
+
+
+                            {{-- @endforeach --}}
+                        </div>
+
                         @if ($errors->has('upcomingIssue'))
                             <div class="text-danger">{{ $errors->first('upcomingIssue') }}</div>
                         @endif
                     </div>
 
                 </div>
-                <div class="row my-4">
+                {{-- <div class="row my-4">
                     <div class="col-12 d-flex justify-content-end">
                         <button type="button" class="btn btn-info btn-sm" id="btn-add-size-quantity">Add More Sizes</button>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group row" id="size-quantity-container">
-                    <label for="example-text-input" class="col-lg-1 col-form-label">Quantity</label>
-                    <div class="col-lg-5">
-                        <select class="form-select quantity" name="quantity[]" required="required">
-                            <option value="">Select Quantity</option>
-
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-
-                        </select>
-                        @if ($errors->has('quantity'))
-                            <div class="text-danger">{{ $errors->first('quantity') }}</div>
-                        @endif
+                    <div id="adverts-quantity-box">
                     </div>
-                    <label for="example-text-input" class="col-lg-1 col-form-label">Size of Advert</label>
-                    <div class="col-lg-5">
-                        <select class="form-select" name="advertSize[]" required="required">
-                            <option value="">Select a Size of Advert</option>
-                            @foreach ($adverts_sizes as $size)
-                                <option value="{{ $size->id }}">
-                                    {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('advertSize'))
-                            <div class="text-danger">{{ $errors->first('advertSize') }}</div>
-                        @endif
+
+
+                    
+                  
+
+
+                    
+
+
+                    <div class="col-lg-12 my-3 d-flex align-items-center">
+                        <input type="checkbox" id="wantDesignAddvertise" style="width:20px; height:20px; accent-color:green; margin-bottom: 5px;">
+                        <label for="wantDesignAddvertise" class=" col-form-label ms-4">I will need you to design the advertisement/s</label>
                     </div>
+                    <label id="wantDesignAddvertiseMessage" style="display:none; font-size: 19px;" class="mb-4">The Local Green Guide team will be in contact about your design brief once the order has been placed.</label>
+
+
+
+                    <div class="col-lg-12 my-3 d-flex align-items-center">
+                        <input type="checkbox" id="submittingMyWork" style="width:20px; height:20px; accent-color:green; margin-bottom: 5px;">
+                        <label for="submittingMyWork" class=" col-form-label ms-4">I will be submitting my artwork/s by</label>
+                    </div>
+                    <ul id="submittingMyWorkResult" style="display:none" class="text-dark">
+
+                    </ul>
+
+                    
+
+                    <label for="example-text-input" class="col-lg-12 col-form-label"><b>Sizes of Adverts</b></label>
+
+                    <div class="advertSizesContainer">
+                        {{-- <div class="advertSizesWrapper">
+                            <div class="col-lg-12">
+                                <select class="form-select" name="advertSize[]" >
+                                    <option value="">Select a Size of Advert</option>
+                                    @foreach ($adverts_sizes as $size)
+                                        <option value="{{ $size->id }}">
+                                            {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('advertSize'))
+                                    <div class="text-danger">{{ $errors->first('advertSize') }}</div>
+                                @endif
+                            </div>
+                        </div> --}}
+                    </div>
+
+
+
                 </div>
 
 
 
                 <br>
+                <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button>
 
-                <div class="col-md-6" style="display:none;" id="order_details_box">
+
+
+
+                {{-- <div class="col-md-6" style="display:none;" id="order_details_box">
                     <div class="card">
                         <div class="card-body p-4">
                             <h2 class="h3 mb-0">Order summary</h2>
@@ -752,7 +794,7 @@
                     <div class="col-lg-4">
                         <button class="btn btn-danger btn-shadow btn-block" type="button" id="adver_cancel_btn">No</button>
                     </div>
-                </div>
+                </div> --}}
             </form>
             @else
             <h2 class="text-center mt-5">Advert Design Form Is Not Available</h2>
@@ -762,150 +804,300 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <script src="{{ url('front/js/jquery.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/js/swiper.min.js"></script>
-
     <script>
 
 
 
-$("#passwords__container").css({
-            "display": "none"
-        });
-        $("#account_toggle").on('change', function() {
-            if (this.checked) {
-                $("#passwords__container").css({
-                    "display": "flex"
-                });
-                $("#account_toggle").val("1")
-            } else {
-                $("#passwords__container").css({
-                    "display": "none"
-                });
-                $("#account_toggle").val("0")
+        const wantDesignAddvertise = document.getElementById("wantDesignAddvertise");
+        const wantDesignAddvertiseMessage = document.getElementById("wantDesignAddvertiseMessage");
+        wantDesignAddvertise.addEventListener('click', function() {
+            if(wantDesignAddvertise.checked) {
+                wantDesignAddvertiseMessage.style.display="block"
+            }else{
+                
+                wantDesignAddvertiseMessage.style.display="none"
             }
-        });
-        const btn_add = document.getElementById("btn-add-size-quantity");
-        const size_quantity = document.getElementById("size-quantity-container");
+        })
 
-            if(btn_add){
-                btn_add.addEventListener("click", function() {
-                    size_quantity.insertAdjacentHTML('beforeend', `
-                            <label for="example-text-input" class="col-lg-1 col-form-label">Quantity</label>
-                            <div class="col-lg-5">
-                                <select class="form-select quantity"  name="quantity[]" required="required">
-                                    <option value="">Select Quantity</option>
-                                
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
+
+        const submit_advert_btn = document.querySelector("#submit_advert_btn");
+        const adver_form = document.querySelector("#adver_form");
+        let issuesInput = Array.from(document.getElementsByName("issue"));
+        // const advertsQuantity = document.getElementById("advertsQuantity")
+
+
+
+      
+
+
+        const submittingMyWork = document.getElementById("submittingMyWork")
+        const submittingMyWorkResult = document.getElementById("submittingMyWorkResult")
+
+        const adverts_quantity_box = document.getElementById("adverts-quantity-box")
+
+
+        const advertSizesContainer = document.querySelector(".advertSizesContainer")
+        // const advertSizesWrapper = document.querySelector(".advertSizesWrapper")
+
+
+
+        const advertSubmitionDates = new Map([
+            ['Q2 2023', '6th February 2023'],
+            ['Q3 2023', '8th May 2023'],
+            ['Q4 2023', '14th August 2023'],
+            ['Q1 2024', '6th November 2023']
+        ])
+        const issuesArray = []
+        issuesInput.forEach(function(issue) {
+            issue.addEventListener("input", function(event) {
+                
+                if(event.target.checked) {
+                    issuesArray.push(event.target.value)
+                }else{
+                    issuesArray.splice(issuesArray.indexOf(event.target.value),1)
+                }
+
+                submittingMyWorkResult.innerHTML=""
+                adverts_quantity_box.innerHTML=''
+                for(i of issuesArray){
+                    for (j of advertSubmitionDates.keys()) {
+                        if(i===j){
+                        const li = document.createElement('li')
+                        const text = document.createTextNode(i+'->'+advertSubmitionDates.get(i))
+                        li.appendChild(text)
+                        submittingMyWorkResult.appendChild(li);
+
+                        const advertsHtmlCode = `
+                        <div class="col-12">
+                        <label for="example-text-input" class="col-lg-12 col-form-label">How many adverts would you like within ${i} ${advertSubmitionDates.get(i)}?</label>
+                            <div class="col-lg-12">
+                            <select class="form-select advertsQuantity" name="advertsQuantity[]" id="advertsQuantity">
+                                <option value="" disabled selected="selected">Select Quantity</option>
+                                <option value="${i}|1">1</option>
+                                <option value="${i}|2">2</option>
+                                <option value="${i}|3">3</option>
+                                <option value="${i}|4">4</option>
+                                <option value="${i}|5">5</option>
+                            </select>
+                            @if ($errors->has('advertsQuantity'))
+                                <div class="text-danger">{{ $errors->first('advertsQuantity') }}</div>
+                            @endif
+                            </div> </div>`
+                            adverts_quantity_box.insertAdjacentHTML('afterbegin',advertsHtmlCode)
+                        }
+                    }
+                }
+
+
+                // Adverts Quantity Change 
+                const advertsQuantity = document.querySelectorAll(".advertsQuantity")
+                advertsQuantity.forEach(function(quantity){
+                    quantity.addEventListener("change", function(event){
+                        //   console.log(event.target.value)
+                        // advertSizesContainer.innerHTML=''
+                     console.log(advertSizesContainer.children)
+                     advertSizesContainer.querySelectorAll(".advertSizesWrapper").forEach(function(child){
+                     
+                        if(child.getAttribute('data-attr')!==event.target.value){
+                            console.log(child.parentNode)
+                            child.remove()
+                        }
+                     })
+
+                       const advertSizesWrapper = document.createElement("div");
+                       advertSizesWrapper.className = "advertSizesWrapper";
+                       advertSizesWrapper.setAttribute("data-attr", event.target.value)
+                       let htmlSizes = ``
+                       for(i=0;i < +event.target.value.split('|')[1];i++){
+
                         
-                                </select>
-                                @if ($errors->has('quantity'))
-                                    <div class="text-danger">{{ $errors->first('quantity') }}</div>
-                                @endif
-                            </div>
-                            <label for="example-text-input" class="col-lg-1 col-form-label">Size of Advert</label>
-                            <div class="col-lg-5">
-                                <select class="form-select" name="advertSize[]" required="required">
+
+                        htmlSizes+=`
+                         <div class="col-lg-12">
+                            <label for="example-text-input" class="col-lg-12 col-form-label my-3">Advertisement size for ${event.target.value.split('|')[0]} - ${i+1}</label>
+                                <select data-attr="${event.target.value}" class="form-select " name="advertSize[]" >
                                     <option value="">Select a Size of Advert</option>
                                     @foreach ($adverts_sizes as $size)
                                         <option value="{{ $size->id }}">
-                                            {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}</option>
+                                            {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('advertSize'))
                                     <div class="text-danger">{{ $errors->first('advertSize') }}</div>
                                 @endif
-                            </div>
-                    `);
+                            </div>`
+                       }
+                       advertSizesWrapper.innerHTML = htmlSizes
+                       advertSizesContainer.appendChild(advertSizesWrapper)
+
+                    })
                 })
-            }
-
-        const adver_form = document.querySelector("#adver_form");
-        const adver_submit_btn = document.querySelector("#adver_submit_btn");
-        const submit_advert_btn = document.querySelector("#submit_advert_btn");
-        const order_details_box = document.querySelector("#order_details_box");
-        const adver_cancel_btn = document.querySelector("#adver_cancel_btn");
-
-        const quantity = document.getElementsByName("quantity[]");
-        const advertPrice = document.getElementsByName("advertSize[]");
-        if(adver_cancel_btn){
-       
-        adver_cancel_btn.addEventListener("click", function(){
-            window.location.reload();
+            })
         })
-             
-    }
-    if(adver_cancel_btn){
+            
+       
+        submittingMyWork.addEventListener('click', function() {
+            if(submittingMyWork.checked) {
+                submittingMyWorkResult.style.display="block"
+            }else{
+                submittingMyWorkResult.style.display="none"
+            }
+        })
+        
+
+            
+        
         adver_form.addEventListener('submit', function(event) {
             event.preventDefault();
-        
-            let totalPrice = 0;
-        
-            let tot_qty = 0;
-            const quantity_array = []
-            quantity.forEach((q) => {
-                tot_qty += +q.value;
-                quantity_array.push(q.value);
-            }) 
 
-            let arr = [];
-            advertPrice.forEach((price) => {
-                arr.push(price.value);
+            const issues = []
+            issuesInput.forEach(function(issue) {
+            if(issue.checked) {
+                issues.push(issue.value)
+                }
             })
-            console.log(quantity_array)
 
-            for (let i = 0; i < arr.length; i++) {
-                $.ajax({
-                    url: "/get-advert-price-total/" + arr[i],
-                    type: "GET",
-                    async: true,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log(response[0][0])
-                        let price = quantity_array[i]*parseInt(response[0][0].advert_price)
-                        totalPrice+= price
+            // issues[]
+            // advertsQuantity.value
 
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-            submit_advert_btn.innerHTML = 'processing...';
-            setTimeout(() => {
-                adver_submit_btn.style.display = 'none';
-                order_details_box.style.display = 'block';
-                $("#totQty").html(tot_qty);
-                $("#amountTot").html(totalPrice+"£");
-            //     console.log(tot_qty);
-            // console.log(totalPrice);
-            }, 2000);
-            $("#submit_order").on("click", function() {
-                adver_form.submit();
-            })
+
+        // console.log(issues);
+
         })
-    }
+
+
+
+
+
+// $("#passwords__container").css({
+//             "display": "none"
+//         });
+//         $("#account_toggle").on('change', function() {
+//             if (this.checked) {
+//                 $("#passwords__container").css({
+//                     "display": "flex"
+//                 });
+//                 $("#account_toggle").val("1")
+//             } else {
+//                 $("#passwords__container").css({
+//                     "display": "none"
+//                 });
+//                 $("#account_toggle").val("0")
+//             }
+//         });
+//         const btn_add = document.getElementById("btn-add-size-quantity");
+//         const size_quantity = document.getElementById("size-quantity-container");
+
+//             if(btn_add){
+//                 btn_add.addEventListener("click", function() {
+//                     size_quantity.insertAdjacentHTML('beforeend', `
+//                             <label for="example-text-input" class="col-lg-1 col-form-label">Quantity</label>
+//                             <div class="col-lg-5">
+//                                 <select class="form-select quantity"  name="quantity[]" required="required">
+//                                     <option value="">Select Quantity</option>
+                                
+//                                         <option value="1">1</option>
+//                                         <option value="2">2</option>
+//                                         <option value="3">3</option>
+//                                         <option value="4">4</option>
+//                                         <option value="5">5</option>
+//                                         <option value="6">6</option>
+//                                         <option value="7">7</option>
+//                                         <option value="8">8</option>
+//                                         <option value="9">9</option>
+//                                         <option value="10">10</option>
+                        
+//                                 </select>
+//                                 @if ($errors->has('quantity'))
+//                                     <div class="text-danger">{{ $errors->first('quantity') }}</div>
+//                                 @endif
+//                             </div>
+//                             <label for="example-text-input" class="col-lg-1 col-form-label">Size of Advert</label>
+//                             <div class="col-lg-5">
+//                                 <select class="form-select" name="advertSize[]" required="required">
+//                                     <option value="">Select a Size of Advert</option>
+//                                     @foreach ($adverts_sizes as $size)
+//                                         <option value="{{ $size->id }}">
+//                                             {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}</option>
+//                                     @endforeach
+//                                 </select>
+//                                 @if ($errors->has('advertSize'))
+//                                     <div class="text-danger">{{ $errors->first('advertSize') }}</div>
+//                                 @endif
+//                             </div>
+//                     `);
+//                 })
+//             }
+
+//         const adver_form = document.querySelector("#adver_form");
+//         const adver_submit_btn = document.querySelector("#adver_submit_btn");
+//         const submit_advert_btn = document.querySelector("#submit_advert_btn");
+//         const order_details_box = document.querySelector("#order_details_box");
+//         const adver_cancel_btn = document.querySelector("#adver_cancel_btn");
+
+//         const quantity = document.getElementsByName("quantity[]");
+//         const advertPrice = document.getElementsByName("advertSize[]");
+//         if(adver_cancel_btn){
+       
+//         adver_cancel_btn.addEventListener("click", function(){
+//             window.location.reload();
+//         })
+             
+//     }
+//     if(adver_cancel_btn){
+//         adver_form.addEventListener('submit', function(event) {
+//             event.preventDefault();
+        
+//             let totalPrice = 0;
+        
+//             let tot_qty = 0;
+//             const quantity_array = []
+//             quantity.forEach((q) => {
+//                 tot_qty += +q.value;
+//                 quantity_array.push(q.value);
+//             }) 
+
+//             let arr = [];
+//             advertPrice.forEach((price) => {
+//                 arr.push(price.value);
+//             })
+//             console.log(quantity_array)
+
+//             for (let i = 0; i < arr.length; i++) {
+//                 $.ajax({
+//                     url: "/get-advert-price-total/" + arr[i],
+//                     type: "GET",
+//                     async: true,
+//                     processData: false,
+//                     contentType: false,
+//                     success: function(response) {
+//                         console.log(response[0][0])
+//                         let price = quantity_array[i]*parseInt(response[0][0].advert_price)
+//                         totalPrice+= price
+
+//                     },
+//                     error: function(error) {
+//                         console.log(error);
+//                     }
+//                 });
+//             }
+//             submit_advert_btn.innerHTML = 'processing...';
+//             setTimeout(() => {
+//                 adver_submit_btn.style.display = 'none';
+//                 order_details_box.style.display = 'block';
+//                 $("#totQty").html(tot_qty);
+//                 $("#amountTot").html(totalPrice+"£");
+//             //     console.log(tot_qty);
+//             // console.log(totalPrice);
+//             }, 2000);
+//             $("#submit_order").on("click", function() {
+//                 adver_form.submit();
+//             })
+//         })
+//     }
 
 
 
