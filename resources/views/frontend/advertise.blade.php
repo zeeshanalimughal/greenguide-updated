@@ -729,22 +729,37 @@
 
 
                 <br>
-                <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button>
+                {{-- <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button> --}}
 
 
 
 
-                {{-- <div class="col-md-6" style="display:none;" id="order_details_box">
+                <div class="col-md-8" style="display:none;" id="order_details_box">
                     <div class="card">
                         <div class="card-body p-4">
-                            <h2 class="h3 mb-0">Order summary</h2>
+                            <h2 class="h3 mb-2">Order Summary</h2>
                             <div class="media align-items-center mb-2">
-                                <div class="mr-3 mt-3">
+                                {{-- <div class="mr-3 mt-3">
                                     <h4 class=" font-weight-normal mb-0">Quantity Total</h4>
                                 </div>
                                 <h4 class="media-body text-right">
                                     <span id="totQty">$39.98</span>
-                                </h4>
+                                </h4> --}}
+                                <ul class="text-dark mt-4" id="replicatedOrderSummery">
+                                   
+                                </ul>
+                            </div>
+                            <h2 class="h3 mb-2">Quantity Total: </h2>
+                            <div class="media align-items-center mb-2">
+                                {{-- <div class="mr-3 mt-3">
+                                    <h4 class=" font-weight-normal mb-0">Quantity Total</h4>
+                                </div>
+                                <h4 class="media-body text-right">
+                                    <span id="totQty">$39.98</span>
+                                </h4> --}}
+                                <ul class="text-dark mt-4" id="orderQuantityTotal">
+                                   
+                                </ul>
                             </div>
         
                             <hr class="my-4">
@@ -759,10 +774,10 @@
                             @if (!auth()->check())     
                             <br>
                             <div class="form-group row d-flex align-items-center">
-                                <label for="account_toggle" class="col-lg-12 col-form-label ">Do You Want To Create Account ? </label>
-                                <div class="col-lg-12">
+                                <label for="account_toggle" class="col-lg-4 col-form-label ">Do You Want To Create Account ? </label>
+                                <span class="col-lg-5">
                                     <input type="checkbox" name="check_account" value="0" id="account_toggle" style="width:20px;height: 20px;" />
-                                </div>
+                                </span>
                             </div>
                             <div class="form-group row" id="passwords__container">
                                 <label for="example-text-input" class="col-lg-12 col-form-label ">Password</label>
@@ -781,27 +796,52 @@
                                 </div>
                             </div>
                             @endif
+
+                            <div class="form-group row d-flex align-items-center">
+                                <label for="cofirmTermsAndConditions" class="col-lg-7 col-form-label ">I have read and understood Local Green Guide <span id="openTermsAndConditionsPopup" class="text-info" style="cursor: pointer;">terms & conditions</span> </label>
+                                <span class="col-lg-4">
+                                    <input type="checkbox" name="cofirmTermsAndConditions" id="cofirmTermsAndConditions" style="width:20px;height: 20px;" /><br>
+                                </span>
+                                <div id="errorNotOpenTerms"></div>
+                            </div>
+
+
                             <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button>
                         </div>
                     </div>
                 </div>
+
+
+
+               
+
+
+
+
                 <br>
                 <div class="form-group row" id="adver_submit_btn">
-                    <div class="col-3"> <h5>Need Us to Design your Advert?</h5></div>
+                    {{-- <div class="col-3"> <h5>Need Us to Design your Advert?</h5></div> --}}
                     <div class="col-lg-5">
-                        <button class="btn btn-shadow btn-block" id="submit_advert_btn" type="submit" >Yes</button>
+                        <button class="btn btn-shadow btn-block" id="submit_advert_btn" type="submit" >Process Order</button>
                     </div>
                     <div class="col-lg-4">
                         <button class="btn btn-danger btn-shadow btn-block" type="button" id="adver_cancel_btn">No</button>
                     </div>
-                </div> --}}
+                </div>
             </form>
             @else
             <h2 class="text-center mt-5">Advert Design Form Is Not Available</h2>
             @endif
         </div>
+        <div id="termsAndConditionsContainer" style="position:fixed !important;width:100%;height:100%;top:0;left:0;background-color:#00000044;justify-content: center;align-items: center;z-index:1000">
+            <div class="termsAndConditionsBox" style="max-width:500px;width: 100%;min-height: 400px; background:#fff;padding:20px;border-radius: 20px;display:flex !important;text-align: center;justify-content: center;align-items: center;position: relative;">
+                <button id="closeTermsAndConditionsPopup" style="position: absolute;top:20px;right: 20px;border:none; outline: none;background-color:transparent;font-size: 25px;">
+                   <i class="fa fa-times"></i> 
+                </button>
+              <p>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis iusto distinctio amet natus sapiente? Unde officiis, consequuntur repellendus nihil, neque quisquam commodi ducimus quaerat ut necessitatibus maiores aperiam suscipit! Suscipit dolores, soluta modi accusamus ut odio quis necessitatibus officiis consequuntur.</p>
+            </div>
+        </div>
     </section>
-
 
 
     <script src="{{ url('front/js/jquery.js') }}"></script>
@@ -821,6 +861,7 @@
             }
         })
 
+        const adver_submit_btn = document.querySelector("#adver_submit_btn");
 
         const submit_advert_btn = document.querySelector("#submit_advert_btn");
         const adver_form = document.querySelector("#adver_form");
@@ -852,13 +893,13 @@
         const issuesArray = []
         issuesInput.forEach(function(issue) {
             issue.addEventListener("input", function(event) {
-                
                 if(event.target.checked) {
                     issuesArray.push(event.target.value)
                 }else{
                     issuesArray.splice(issuesArray.indexOf(event.target.value),1)
                 }
 
+                // issuesArray[0] = event.target.value
                 submittingMyWorkResult.innerHTML=""
                 adverts_quantity_box.innerHTML=''
                 for(i of issuesArray){
@@ -868,12 +909,12 @@
                         const text = document.createTextNode(i+'->'+advertSubmitionDates.get(i))
                         li.appendChild(text)
                         submittingMyWorkResult.appendChild(li);
-
+                        // ${i} ${advertSubmitionDates.get(i)}
                         const advertsHtmlCode = `
                         <div class="col-12">
                         <label for="example-text-input" class="col-lg-12 col-form-label">How many adverts would you like within ${i} ${advertSubmitionDates.get(i)}?</label>
                             <div class="col-lg-12">
-                            <select class="form-select advertsQuantity" name="advertsQuantity[]" id="advertsQuantity">
+                            <select data-attr="${i}" class="form-select advertsQuantity" name="advertsQuantity[]" id="advertsQuantity">
                                 <option value="" disabled selected="selected">Select Quantity</option>
                                 <option value="${i}|1">1</option>
                                 <option value="${i}|2">2</option>
@@ -895,33 +936,30 @@
                 const advertsQuantity = document.querySelectorAll(".advertsQuantity")
                 advertsQuantity.forEach(function(quantity){
                     quantity.addEventListener("change", function(event){
-                        //   console.log(event.target.value)
-                        // advertSizesContainer.innerHTML=''
-                     console.log(advertSizesContainer.children)
-                     advertSizesContainer.querySelectorAll(".advertSizesWrapper").forEach(function(child){
-                     
-                        if(child.getAttribute('data-attr')!==event.target.value){
-                            console.log(child.parentNode)
-                            child.remove()
+                        // console.log(quantity.hasAttribute('data-attr'))
+
+                        advertSizesContainer.querySelectorAll(".advertSizesWrapper select").forEach(function(child){
+                        if(child.getAttribute('data-attr')===quantity.getAttribute('data-attr')){
+                            // console.log(child.parentNode)
+                            child.parentNode.remove()
                         }
                      })
+
+                        // advertSizesContainer.innerHTML=''
 
                        const advertSizesWrapper = document.createElement("div");
                        advertSizesWrapper.className = "advertSizesWrapper";
                        advertSizesWrapper.setAttribute("data-attr", event.target.value)
                        let htmlSizes = ``
                        for(i=0;i < +event.target.value.split('|')[1];i++){
-
-                        
-
                         htmlSizes+=`
                          <div class="col-lg-12">
                             <label for="example-text-input" class="col-lg-12 col-form-label my-3">Advertisement size for ${event.target.value.split('|')[0]} - ${i+1}</label>
-                                <select data-attr="${event.target.value}" class="form-select " name="advertSize[]" >
+                                <select data-attr="${event.target.value.split('|')[0]}" class="form-select advertSizefFinal" name="advertSize[]" >
                                     <option value="">Select a Size of Advert</option>
                                     @foreach ($adverts_sizes as $size)
-                                        <option value="{{ $size->id }}">
-                                            {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}
+                                        <option value="{{$size->advert_size}}|{{ $size->id }}">
+                                            {{ $size->advert_size }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -948,26 +986,297 @@
         })
         
 
-            
-        
-        adver_form.addEventListener('submit', function(event) {
-            event.preventDefault();
+        const AMOUTN_WITHOUT_VAT = [
+        {
+            A6:{
+                standard:525,
+                Q2_2023:498.75,
+                two_issues:498.75,
+                three_issues:485.65,
+                four_issues:472.5,
+            },
+            A5:{
+                standard:950,
+                Q2_2023:902.5,
+                two_issues:902.5,
+                three_issues:878.75,
+                four_issues:855,
+            },
+            A4:{
+                standard:1800,
+                Q2_2023:1710,
+                two_issues:1710,
+                three_issues:1665,
+                four_issues:1620,
+            },
+            A3:{
+                standard:3200,
+                Q2_2023:3040,
+                two_issues:3040,
+                three_issues:2960,
+                four_issues:2880,
+            },
+            A4_premium:{
+                standard:2400,
+                Q2_2023:2280,
+                two_issues:2280,
+                three_issues:2220,
+                four_issues:2160,
+            }, 
+            Voucher:{
+                standard:180,
+                Q2_2023:171,
+                two_issues:171,
+                three_issues:166.5,
+                four_issues:162,
+            }
+        }
+        ]
 
+
+            
+
+        const AMOUTN_WITH_VAT = [
+        {
+            A6:{
+                standard:630,
+                Q2_2023:598.5,
+                two_issues:598.5,
+                three_issues:582.78,
+                four_issues:567,
+            },
+            A5:{
+                standard:1140,
+                Q2_2023:1083,
+                two_issues:1083,
+                three_issues:1054.5,
+                four_issues:1026,
+            },
+            A4:{
+                standard:2160,
+                Q2_2023:2052,
+                two_issues:2052,
+                three_issues:1998,
+                four_issues:1944,
+            },
+            A3:{
+                standard:3840,
+                Q2_2023:3648,
+                two_issues:3648,
+                three_issues:3552,
+                four_issues:3456,
+            },
+            A4_premium:{
+                standard:2880,
+                Q2_2023:2736,
+                two_issues:2736,
+                three_issues:2664,
+                four_issues:2592,
+            }, 
+            Voucher:{
+                standard:216,
+                Q2_2023:205.2,
+                two_issues:205.2,
+                three_issues:199.8,
+                four_issues:194.4,
+            }
+        }
+        ]
+
+
+        const AMOUTN_WITH_DICCOUNT = [
+        {
+            A6:{
+                standard:63,
+                Q2_2023:59.85,
+                two_issues:59.85,
+                three_issues:58.278,
+                four_issues:56.7,
+            },
+            A5:{
+                standard:114,
+                Q2_2023:108.3,
+                two_issues:108.3,
+                three_issues:105.45,
+                four_issues:102.6,
+            },
+            A4:{
+                standard:216,
+                Q2_2023:205.2,
+                two_issues:205.2,
+                three_issues:199.8,
+                four_issues:194.4,
+            },
+            A3:{
+                standard:384,
+                Q2_2023:364.8,
+                two_issues:364.8,
+                three_issues:355.2,
+                four_issues:345.6,
+            },
+            A4_premium:{
+                standard:288,
+                Q2_2023:273.6,
+                two_issues:273.6,
+                three_issues:266.4,
+                four_issues:259.2,
+            }, 
+            Voucher:{
+                standard:21.6,
+                Q2_2023:20.52,
+                two_issues:20.52,
+                three_issues:19.98,
+                four_issues:19.44,
+            }
+        }
+        ]
+
+
+        const adver_cancel_btn = document.querySelector("#adver_cancel_btn");
+
+        adver_cancel_btn.addEventListener("click", function(){
+            window.location.reload();
+        })
+
+
+
+
+            let is_terms_and_conditions_viewed = false
+                
+
+                const termsAndConditionsContainer = document.getElementById("termsAndConditionsContainer")
+                const cofirmTermsAndConditions = document.getElementById("cofirmTermsAndConditions")
+                termsAndConditionsContainer.style.display = "none"
+                const openTermsAndConditionsPopup = document.getElementById("openTermsAndConditionsPopup")
+                const closeTermsAndConditionsPopup = document.getElementById("closeTermsAndConditionsPopup")
+                const errorNotOpenTerms = document.getElementById("errorNotOpenTerms")
+
+                openTermsAndConditionsPopup.addEventListener("click", function(e){
+                    e.preventDefault();
+                    termsAndConditionsContainer.style.display ="flex"
+                    if(!is_terms_and_conditions_viewed){
+                        is_terms_and_conditions_viewed = true
+                        cofirmTermsAndConditions.checked = true;
+                        errorNotOpenTerms.innerHTML=""
+                    }
+                })
+                closeTermsAndConditionsPopup.addEventListener("click", function(e){
+                        termsAndConditionsContainer.style.display ="none"
+                })
+            
+
+        submit_advert_btn.addEventListener("click", function(event){
+            adver_submit_btn.style.display = 'none';
+            event.preventDefault();
+            const advertSizefFinal = document.querySelectorAll(".advertSizefFinal")
+    
             const issues = []
+            const advertSizefFinalValues = []
             issuesInput.forEach(function(issue) {
             if(issue.checked) {
                 issues.push(issue.value)
-                }
+            }
             })
-
+            advertSizefFinal.forEach(function(advertSize) {
+                advertSizefFinalValues.push(advertSize.value)
+            })
+    
             // issues[]
             // advertsQuantity.value
+    
+        order_details_box.style.display = "block";
 
+        const combinedSizesOfAdverts = {};
+            advertSizefFinalValues.forEach(element => {
+                combinedSizesOfAdverts[element.split("|")[0]] = (combinedSizesOfAdverts[element.split("|")[0]] || 0) + 1;
+            });
+        const replicateCountOfSelection = []
 
-        // console.log(issues);
+        const advertSizesWrapper = document.querySelectorAll(".advertSizesWrapper")
+        advertSizesWrapper.forEach(sizeWrapper => {
+            if(issues.indexOf(sizeWrapper.getAttribute("data-attr").split("|")[0]) !== -1){
+                sizeWrapper.querySelectorAll("select").forEach((select) => {
+                    let key = select.value.split("|")[0]
+                    let value = sizeWrapper.getAttribute("data-attr").split("|")[0]
+                    replicateCountOfSelection.push({[key]:value})
+                })
+            
+            }
+        })
+
+        const replicatedOrderSummery = document.getElementById("replicatedOrderSummery")
+        
+        replicatedOrderSummery.innerHTML=""
+        replicateCountOfSelection.forEach((orderSummery) => {
+            let size,issue = ''
+                for (const [key, value] of Object.entries(orderSummery)) {
+                size = key
+                issue = value
+                }
+            const li = document.createElement("li")
+            const text = document.createTextNode(`${size} in the ${issue} issue`)
+            li.appendChild(text)
+            li.style.marginBottom ="8px"
+            replicatedOrderSummery.style.listStyleType = "none"
+            replicatedOrderSummery.style.fontSize = "18px"
+            replicatedOrderSummery.appendChild(li)
+        })
+
+            const orderQuantityTotal = document.getElementById("orderQuantityTotal")
+            orderQuantityTotal.innerHTML=""
+            let size,quantity = ''
+                for (const [key, value] of Object.entries(combinedSizesOfAdverts)) {
+                    size = key
+                    quantity = value
+                    const li = document.createElement("li")
+                    const text = document.createTextNode(`${size} : ${quantity}`)
+                    li.appendChild(text)
+                    li.style.marginBottom ="8px"
+                    orderQuantityTotal.style.listStyleType = "none"
+                    orderQuantityTotal.style.fontSize = "18px"
+                    orderQuantityTotal.appendChild(li)
+                }
+    
+               
+
+  
 
         })
 
+        adver_form.addEventListener("submit", function(event){
+            event.preventDefault();
+                if(!is_terms_and_conditions_viewed){
+                    errorNotOpenTerms.innerHTML = "<div style='color:red;width:100%;margin-top:10px;'>Please read terms & conditions before order proceeding</div>"
+                }else{
+                    if(!cofirmTermsAndConditions.checked){
+                        errorNotOpenTerms.innerHTML = "<div style='color:red;width:100%;margin-top:10px;'>Please Accept Our Terms And Conditions!</div>"
+                    }else{
+                        errorNotOpenTerms.innerHTML =""
+                        console.log("OK")
+                    }
+                }
+        })
+
+        
+
+
+
+        $("#passwords__container").css({
+            "display": "none"
+        });
+        $("#account_toggle").on('change', function() {
+            if (this.checked) {
+                $("#passwords__container").css({
+                    "display": "flex"
+                });
+                $("#account_toggle").val("1")
+            } else {
+                $("#passwords__container").css({
+                    "display": "none"
+                });
+                $("#account_toggle").val("0")
+            }
+        });
 
 
 
@@ -1041,7 +1350,7 @@
 //         const quantity = document.getElementsByName("quantity[]");
 //         const advertPrice = document.getElementsByName("advertSize[]");
 //         if(adver_cancel_btn){
-       
+
 //         adver_cancel_btn.addEventListener("click", function(){
 //             window.location.reload();
 //         })

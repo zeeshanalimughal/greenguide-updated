@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 15, 2022 at 03:10 PM
+-- Generation Time: Sep 17, 2022 at 03:03 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -96,7 +96,7 @@ INSERT INTO `adverts` (`id`, `advert_size`, `advert_price`, `currency`, `created
 (6, 'A4', '1500', '£', '2022-03-09 06:42:33', '2022-03-09 06:42:33'),
 (7, 'Double Spread', '2800', '£', '2022-03-09 06:42:45', '2022-03-09 06:42:45'),
 (8, 'Voucher', '180', '£', '2022-03-09 06:43:09', '2022-03-09 06:43:09'),
-(9, 'Premium Pages (A4)', '1800', '£', '2022-03-09 06:43:23', '2022-03-09 06:43:23');
+(9, 'Premium Pages', '1800', '£', '2022-03-09 06:43:23', '2022-09-17 06:03:37');
 
 -- --------------------------------------------------------
 
@@ -115,17 +115,6 @@ CREATE TABLE `advert_designs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `advert_designs`
---
-
-INSERT INTO `advert_designs` (`id`, `userId`, `upcomingIssue`, `borough`, `advertSize`, `quantity`, `status`, `created_at`, `updated_at`) VALUES
-(1, 26, 5, 5, '[\"5\",\"7\",\"6\",\"4\"]', '[\"9\",\"10\",\"8\",\"5\"]', 'processing', '2022-04-04 00:28:29', '2022-04-09 05:15:00'),
-(2, 26, 3, 4, '[\"9\"]', '[\"5\"]', 'processing', '2022-04-04 00:42:54', '2022-04-09 05:02:01'),
-(9, 26, 5, 5, '[\"6\",\"8\",\"7\",\"4\",\"8\"]', '[\"3\",\"1\",\"6\",\"4\",\"1\"]', 'processing', '2022-04-09 04:49:05', '2022-04-09 05:09:21'),
-(10, 26, 5, 4, '[\"4\",\"5\",\"6\",\"7\"]', '[\"2\",\"1\",\"3\",\"2\"]', 'processing', '2022-07-14 02:02:05', '2022-07-14 02:02:05'),
-(11, 36, 2, 4, '[\"4\",\"5\"]', '[\"2\",\"2\"]', 'processing', '2022-07-19 03:49:42', '2022-07-19 03:49:42');
 
 -- --------------------------------------------------------
 
@@ -146,8 +135,7 @@ CREATE TABLE `boroughs` (
 --
 
 INSERT INTO `boroughs` (`id`, `borough`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'borough 1', 'live', '2022-04-03 23:30:57', '2022-04-03 23:31:06'),
-(5, 'borough 2', 'live', '2022-04-03 23:31:04', '2022-04-03 23:31:08');
+(6, 'Croydon', 'live', '2022-09-15 23:51:25', '2022-09-15 23:51:28');
 
 -- --------------------------------------------------------
 
@@ -1762,7 +1750,7 @@ ALTER TABLE `advert_designs`
 -- AUTO_INCREMENT for table `boroughs`
 --
 ALTER TABLE `boroughs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `business_directorys`
