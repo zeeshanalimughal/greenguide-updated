@@ -1,5 +1,11 @@
 @extends('frontend.layouts.master')
 @section('main-section')
+
+
+
+
+
+
     <div class="fixed__advertise__link">
         <a href="/magzine-design-book">Advertise with us</a>
     </div>
@@ -552,6 +558,20 @@
                 </div>
                 {{session()->forget('error')}}
             @endif
+
+            @if ($errors->any())
+            <div class="col-lg-12" id="errors_box">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+               
+            @endif
             @if($form[0]->status==='live') 
             <form method="POST" id="adver_form" class="form-validate" action="{{ route('advert.submit-advert') }}"
                 enctype="multipart/form-data" data-animate="fadeInUp" data-animate-delay="800">
@@ -732,6 +752,9 @@
                 {{-- <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button> --}}
 
 
+                <textarea name="order_summery" id="order_summery_input" cols="30" rows="10"></textarea>
+                <textarea name="quantity_total" id="quantity_total_input" cols="30" rows="10"></textarea>
+                <textarea name="total_amount" id="total_amount_input" cols="30" rows="10"></textarea>
 
 
                 <div class="col-md-8" style="display:none;" id="order_details_box">
@@ -850,6 +873,21 @@
 
 
 
+  
+        setTimeout(function () {
+            const errors_box = document.getElementById('errors_box')
+           if(errors_box){
+               let rect = errors_box.getBoundingClientRect();
+               window.scrollTo(0, rect.y-120)
+               console.log(rect)
+               console.log(errors_box)
+           }
+        },0)
+    
+
+
+
+
         const wantDesignAddvertise = document.getElementById("wantDesignAddvertise");
         const wantDesignAddvertiseMessage = document.getElementById("wantDesignAddvertiseMessage");
         wantDesignAddvertise.addEventListener('click', function() {
@@ -914,7 +952,7 @@
                         <div class="col-12">
                         <label for="example-text-input" class="col-lg-12 col-form-label">How many adverts would you like within ${i} ${advertSubmitionDates.get(i)}?</label>
                             <div class="col-lg-12">
-                            <select data-attr="${i}" class="form-select advertsQuantity" name="advertsQuantity[]" id="advertsQuantity">
+                            <select data-attr="${i}" class="form-select advertsQuantity"  id="advertsQuantity">
                                 <option value="" disabled selected="selected">Select Quantity</option>
                                 <option value="${i}|1">1</option>
                                 <option value="${i}|2">2</option>
@@ -955,7 +993,7 @@
                         htmlSizes+=`
                          <div class="col-lg-12">
                             <label for="example-text-input" class="col-lg-12 col-form-label my-3">Advertisement size for ${event.target.value.split('|')[0]} - ${i+1}</label>
-                                <select data-attr="${event.target.value.split('|')[0]}" class="form-select advertSizefFinal" name="advertSize[]" >
+                                <select data-attr="${event.target.value.split('|')[0]}" class="form-select advertSizefFinal" >
                                     <option value="">Select a Size of Advert</option>
                                     @foreach ($adverts_sizes as $size)
                                         <option value="{{$size->advert_size}}|{{ $size->id }}">
@@ -1165,8 +1203,24 @@
                 })
             
 
+
+
+
+
+
+
+                const order_summery_input = document.getElementById("order_summery_input")
+                const quantity_total_input = document.getElementById("quantity_total_input")
+                const total_amount_input = document.getElementById("total_amount_input")
+
+
+
+
+
+
+
         submit_advert_btn.addEventListener("click", function(event){
-            adver_submit_btn.style.display = 'none';
+            // adver_submit_btn.style.display = 'none';
             event.preventDefault();
             const advertSizefFinal = document.querySelectorAll(".advertSizefFinal")
     
@@ -1207,17 +1261,21 @@
         const replicatedOrderSummery = document.getElementById("replicatedOrderSummery")
         
         replicatedOrderSummery.innerHTML=""
+        let issuesLength = 0
+        const issuesArray = []
+
         replicateCountOfSelection.forEach((orderSummery) => {
             let size,issue = ''
                 for (const [key, value] of Object.entries(orderSummery)) {
                 size = key
                 issue = value
                 }
+                issuesArray.push(size+"|"+issue)
+                issuesLength++
             const li = document.createElement("li")
             const text = document.createTextNode(`${size} in the ${issue} issue`)
             li.appendChild(text)
             li.style.marginBottom ="8px"
-            replicatedOrderSummery.style.listStyleType = "none"
             replicatedOrderSummery.style.fontSize = "18px"
             replicatedOrderSummery.appendChild(li)
         })
@@ -1232,15 +1290,132 @@
                     const text = document.createTextNode(`${size} : ${quantity}`)
                     li.appendChild(text)
                     li.style.marginBottom ="8px"
-                    orderQuantityTotal.style.listStyleType = "none"
                     orderQuantityTotal.style.fontSize = "18px"
                     orderQuantityTotal.appendChild(li)
+            }
+                let totalAmount = 0
+
+                const advertSizesArray = ["A6","A5","A4","Double Spread","Voucher","Premium Pages"]
+
+                function calculateTotal(issue,size) {
+
+                    if(issue==="Q2 2023"){
+                    
+                       
+                                if(size==="A6"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A6.Q2_2023  
+                                }
+                                if(size==="A5"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A5.Q2_2023  
+                                }
+                                if(size==="A4"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4.Q2_2023  
+                                }
+                                if(size==="Double Spread"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A3.Q2_2023  
+                                }
+                                if(size==="Voucher"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4_premium.Q2_2023  
+                                }
+                                if(size==="Premium Pages"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].Voucher.Q2_2023  
+                                }
+         
+                        }else if(issue==="Q3 2023"){
+                               
+                                if(size==="A6"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A6.two_issues  
+                                }
+                                if(size==="A5"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A5.two_issues  
+                                }
+                                if(size==="A4"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4.two_issues  
+                                }
+                                if(size==="Double Spread"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A3.two_issues  
+                                }
+                                if(size==="Voucher"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4_premium.two_issues  
+                                }
+                                if(size==="Premium Pages"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].Voucher.two_issues  
+                                        }
+                             
+                        }else if(issue==="Q4 2023"){
+                               
+                                if(size==="A6"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A6.three_issues  
+                                }
+                                if(size==="A5"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A5.three_issues  
+                                }
+                                if(size==="A4"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4.three_issues  
+                                }
+                                if(size==="Double Spread"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A3.three_issues  
+                                }
+                                if(size==="Voucher"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4_premium.three_issues  
+                                }
+                                if(size==="Premium Pages"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].Voucher.three_issues  
+                                }
+                               
+                        }else if(issue==="Q1 2024"){
+                               
+                                if(size==="A6"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A6.four_issues  
+                                }
+                                if(size==="A5"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A5.four_issues  
+                                }
+                                if(size==="A4"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4.four_issues  
+                                }
+                                if(size==="Double Spread"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A3.four_issues  
+                                }
+                                if(size==="Voucher"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].A4_premium.four_issues  
+                                }
+                                if(size==="Premium Pages"){
+                                    totalAmount+=AMOUTN_WITH_DICCOUNT[0].Voucher.four_issues  
+                            }
+                        }
+
+                    }
+                
+                console.log(issuesArray,issuesLength)
+                for(let i = 0; i < issuesLength; i++){
+                    calculateTotal(issuesArray[i].split("|")[1],issuesArray[i].split("|")[0])
                 }
-    
-               
 
-  
+                    const amountTot = document.getElementById("amountTot")
+                    amountTot.innerHTML = "£ "+totalAmount.toFixed(2)        
 
+
+                  
+                    
+                    order_summery_input.value=replicatedOrderSummery.innerHTML
+                    quantity_total_input.value=orderQuantityTotal.innerHTML
+                    total_amount_input.value = totalAmount 
+
+                    if(order_summery_input.value!=="" && quantity_total_input.value!="" && total_amount_input.value){
+                        // adver_form.submit()
+                        setTimeout(() => {
+                            alert("Please Click On Book Now to Submit Order")
+                        },2000)
+                    }else{
+                        alert("Please process atleast one order quantity")
+                    }
+
+        })
+
+
+        submit_order.addEventListener("click",function(){
+            
         })
 
         adver_form.addEventListener("submit", function(event){
@@ -1252,7 +1427,11 @@
                         errorNotOpenTerms.innerHTML = "<div style='color:red;width:100%;margin-top:10px;'>Please Accept Our Terms And Conditions!</div>"
                     }else{
                         errorNotOpenTerms.innerHTML =""
-                        console.log("OK")
+                        if(order_summery_input.value!=="" && quantity_total_input.value!="" && total_amount_input.value){
+                        adver_form.submit()
+                    }else{
+                        alert("Please process atleast one order quantity")
+                    }
                     }
                 }
         })

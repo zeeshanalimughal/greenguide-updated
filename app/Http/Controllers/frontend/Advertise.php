@@ -360,11 +360,11 @@ class Advertise extends Controller
     public function submitAdvertDesign(Request $request)
     {
 
+        // dd($request->all());
         $request->validate([
-            'upcomingIssue' => 'required',
-            'borough' => 'required',
-            'advertSize' => 'required',
-            'quantity' => 'required',
+            'order_summery' => 'required',
+            'quantity_total' => 'required',
+            'total_amount' => 'required',
             'contact_phone' => 'required',
             'contact_name' => 'required',
             'contact_email' => 'required'
@@ -399,10 +399,9 @@ class Advertise extends Controller
 
         $advert = AdvertDesign::create([
             'userId' => Auth::check() ? Auth::user()->id : $userAccountId,
-            'upcomingIssue' => $request->upcomingIssue,
-            'borough' => $request->borough,
-            'advertSize' => $request->advertSize,
-            'quantity' => $request->quantity,
+            'order_summery' => $request->order_summery,
+            'quantity_total' => $request->quantity_total,
+            'total_amount' => $request->total_amount,
             'status' => 'processing',
         ]);
         if ($advert) {
