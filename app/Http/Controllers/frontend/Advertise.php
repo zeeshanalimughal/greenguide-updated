@@ -31,7 +31,14 @@ class Advertise extends Controller
     function index()
     {
         $advertise = PagesAdvertise::where('id', 1)->get();
-        return view('frontend.advertise', ['advertise' => $advertise, 'links' => LinksCard::where('id', 1)->get(), 'page' => AdvertiseInMagazine::find(1), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'issues' => UpcommingIssues::all(), 'prices' => Advert::all(), 'carousel_images' => AdvertiseCarousel::all(),'form' => WebsiteForm::where('link', 'magzine-design-book#book__addvertise')->get(),'borough' => Borough::all(), 'adverts_sizes' => Advert::all()]);
+        $userDetails = [];
+        if (Auth::check()) {
+            $userDetails = UserDetails::where('userId', Auth::user()->id)
+                ->first();
+        return view('frontend.advertise', ['advertise' => $advertise, 'links' => LinksCard::where('id', 1)->get(), 'page' => AdvertiseInMagazine::find(1), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'issues' => UpcommingIssues::all(), 'prices' => Advert::all(), 'carousel_images' => AdvertiseCarousel::all(),'form' => WebsiteForm::where('link', 'magzine-design-book#book__addvertise')->get(),'borough' => Borough::all(), 'adverts_sizes' => Advert::all(),'userDetails' => $userDetails]);
+        }else{
+        return view('frontend.advertise', ['advertise' => $advertise, 'links' => LinksCard::where('id', 1)->get(), 'page' => AdvertiseInMagazine::find(1), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'issues' => UpcommingIssues::all(), 'prices' => Advert::all(), 'carousel_images' => AdvertiseCarousel::all(),'form' => WebsiteForm::where('link', 'magzine-design-book#book__addvertise')->get(),'borough' => Borough::all(), 'adverts_sizes' => Advert::all(),'userDetails' => null]);
+        }
     }
     function advertise_home()
     {
@@ -170,10 +177,10 @@ class Advertise extends Controller
 
         if ($designBook->save()) {
             Session::flash('success', 'Green Guide magazine Added Successfully, It is under review');
-            return redirect('/magzine-design-book#book__addvertise');
+            return redirect('/advert-design-book/#book__addvertise');
         }
         Session::flash('error', 'Something went wrong');
-        return redirect('/magzine-design-book#book__addvertise');
+        return redirect('/advert-design-book/#book__addvertise');
     }
 
 
@@ -405,11 +412,11 @@ class Advertise extends Controller
             'status' => 'processing',
         ]);
         if ($advert) {
-            Session::put('success', 'Advert order has been submitted successfully');
-            return redirect('advert-design-book/#book__addvertise');
+            Session::put('success', 'Design order has been submitted successfully');
+            return redirect('advertise#book__addvertise');
         }
         Session::put('error', 'Something went wrong');
-        return redirect('advert-design-book/#book__addvertise');
+        return redirect('advertise#book__addvertise');
     }
 
     public function getAdvertPriceTotal($id)
@@ -424,36 +431,30 @@ class Advertise extends Controller
     public function getAllAdvertDesigns()
     {
 
-        $adverts = AdvertDesign::where('userId', Auth::user()->id)
+        $designsBooks = AdvertDesign::where('userId', Auth::user()->id)
             ->join('users', 'users.id', '=', 'advert_designs.userId')
-            ->join('upcomming_issues', 'upcomming_issues.id', '=', 'advert_designs.borough')
-            ->join('boroughs', 'boroughs.id', '=', 'advert_designs.borough')
+            // ->join('upcomming_issues', 'upcomming_issues.id', '=', 'advert_designs.borough')
+            // ->join('boroughs', 'boroughs.id', '=', 'advert_designs.borough')
             ->orderBy('id', 'DESC')
             ->get([
-                'advert_designs.id',
-                'advert_designs.advertSize',
-                'advert_designs.quantity',
-                'advert_designs.status',
-                'advert_designs.created_at',
+                'advert_designs.*',
                 'users.name',
                 'users.email',
-                'boroughs.borough',
-                'upcomming_issues.issue',
             ]);
 
-        for ($i = 0; $i < sizeof($adverts); $i++) {
-            $price = 0;
-            $currency = '';
-            $advertSizes = [];
-            for ($j = 0; $j < sizeof($adverts[$i]['advertSize']); $j++) {
-                $sizes  =  Advert::find($adverts[$i]['advertSize'][$j]);
-                array_push($advertSizes, $sizes->advert_size);
-                $price += $sizes->advert_price;
-                $currency = $sizes->currency;
-            }
-            $adverts[$i]['advertSize'] = $advertSizes;
-            $adverts[$i]['amount'] = $price . '-' . $currency;
-        }
-        return view('frontend.all-user-advert-designs', ['adverts' => $adverts]);
+        // for ($i = 0; $i < sizeof($adverts); $i++) {
+        //     $price = 0;
+        //     $currency = '';
+        //     $advertSizes = [];
+        //     for ($j = 0; $j < sizeof($adverts[$i]['advertSize']); $j++) {
+        //         $sizes  =  Advert::find($adverts[$i]['advertSize'][$j]);
+        //         array_push($advertSizes, $sizes->advert_size);
+        //         $price += $sizes->advert_price;
+        //         $currency = $sizes->currency;
+        //     }
+        //     $adverts[$i]['advertSize'] = $advertSizes;
+        //     $adverts[$i]['amount'] = $price . '-' . $currency;
+        // }
+        return view('frontend.all-user-advert-designs', ['designsBooks' => $designsBooks]);
     }
 }

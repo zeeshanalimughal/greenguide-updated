@@ -4,6 +4,47 @@
     <link rel="stylesheet" href="{{ url('front/css/home.css') }}">
 @endpush
 
+<style>
+    .containerGrid {
+        margin: auto !important;
+        width: 70%;
+        min-height: 80vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        /* justify-content: center; */
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .containerGrid .box {
+        width: 100%;
+        height: 100%;
+        background: green;
+    }
+
+    .containerGrid .box:nth-child(2n+1) {
+        background: orange;
+    }
+
+    .containerGrid .box:nth-child(3n+2) {
+        background: red;
+    }
+
+    .containerGrid .box:nth-child(5) {
+        width: 100%;
+        min-height: 85%;
+        background: pink;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 4;
+    }
+</style>
+
 @section('main-section')
     <!-- Particle stars -->
     <section
@@ -45,7 +86,7 @@
 
 
 
-    
+
 
 
 
@@ -131,11 +172,18 @@
 
 
 
-    
+
 
 
     <!-- Content -->
     <section id="page-content" style="margin-top:50px">
+
+        {{-- <div class="containerGrid">
+                @foreach ($galleryData as $gallery)
+                            <div class="box">
+                            </div>
+                @endforeach
+    </div> --}}
         <div class="container">
             <!-- post content -->
             <!-- Page title -->
@@ -144,34 +192,47 @@
             </div>
             <!-- end: Page title -->
             <!-- Blog -->
-            <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
-
-
+            <div id="blog" class="grid-layout post-3-columns m-b-30" style="min-height: 85vh !important" data-item="post-item">
 
                 @foreach ($galleryData as $gallery)
                     <!-- Post item YouTube-->
                     <div class="post-item border" style="max-height: 260px;position: relative;">
-                        <div class="post-item-wrap" style="max-height: 260px;">
-                            <div class="post-item-wrap hero__post__back" style="max-height: 260px;">
+                        <div class="post-item-wrap" style="max-height: 560px;">
+                            <div class="post-item-wrap hero__post__back" style="max-height: 560px;">
+                                @if ($gallery->file_type === 'image')
                                 <div class="post-slider" style="max-height: 260px;">
                                     <div class="carousel dots-inside arrows-visible arrows-only" data-autoplay="2600"
                                         data-animate-in="fadeIn" data-animate-out="fadeOut" data-items="1" data-loop="true"
-                                        data-autoplay="true" data-lightbox="gallery" style="max-height: 260px;">
+                                        data-autoplay="true" data-lightbox="gallery" style="max-height: 460px;">
 
                                         @if ($gallery->images)
-                                            @foreach ($gallery->images as $image)
-                                                <a href="{{ asset('uploads/') }}/{{ $image['name'] }}"
-                                                    data-lightbox="gallery-image">
-                                                    <img style="max-height: 260px; object-fit:cover;" alt=""
-                                                        src="{{ asset('uploads/') }}/{{ $image['name'] }}">
-                                                </a>
-                                            @endforeach
+                                            @if ($gallery->file_type === 'image')
+                                                @foreach ($gallery->images as $image)
+                                                    <a href="{{ asset('uploads/') }}/{{ $image['name'] }}"
+                                                        data-lightbox="gallery-image">
+                                                        <img style="max-height: 260px; object-fit:cover;" alt=""
+                                                            src="{{ asset('uploads/') }}/{{ $image['name'] }}">
+                                                    </a>
+                                                @endforeach
+
+                                               
+                                            @endif
                                         @endif
                                     </div>
 
                                 </div>
+
+                                @else
+                                <div style="background: transparent;width:100%;height:1570px;border-radius: 20px;position: relative;">
+
+                                    <video style="width:100%;position: absolute;top: 0;left: 0;"  controls>
+                                        <source src="{{ asset('uploads/'.$gallery->images[0]['name']) }}">
+                                    </video>
+                                </div>
+                            
+                                @endif
                                 @if ($gallery->desc)
-                                    <div class="post__back">
+                                    <div class="post__back" style="display: flex;justify-content: center;align-items: center;flex-direction: column;text-align: center;">
                                         <p>{{ $gallery->desc }}
                                         </p>
                                         <div>
@@ -181,12 +242,15 @@
                                 @endif
 
                                 @if ($gallery->desc == null)
-                                    <h2>{{ $gallery->title }}</h2>
+                                <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;text-align: center;padding:20px;">
+
+                                    <h3>{{ $gallery->title }}</h3>
                                     <div class="text-center">
                                         <a href="{{ $gallery->link }}" class="btn btn-success">Find Out</a>
                                     </div>
+                                </div>
                                 @endif
-
+ 
                             </div>
 
                         </div>

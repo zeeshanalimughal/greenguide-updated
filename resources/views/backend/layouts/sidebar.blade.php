@@ -57,7 +57,7 @@
                          </li>
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/advert-design-book/"><i
-                                     class="side-menu__icon icon icon-list"></i><span class="side-menu__label">Advert
+                                     class="side-menu__icon icon icon-list"></i><span class="side-menu__label">Advertise
                                      Booking</span></a>
                          </li>
                          <li class="slide">

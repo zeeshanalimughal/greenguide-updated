@@ -45,6 +45,7 @@
                                 <tr>
                                     <th class="wd-15p border-bottom-0">#</th>
                                     <th class="wd-15p border-bottom-0">Images</th>
+                                    <th class="wd-15p border-bottom-0">File Type</th>
                                     <th class="wd-15p border-bottom-0">Title</th>
                                     <th class="wd-20p border-bottom-0">Description</th>
                                     <th class="wd-20p border-bottom-0">Link</th>
@@ -56,13 +57,21 @@
                                     <tr>
                                         <td>{{ $gallery->id }}</td>
                                         <td>
+                                            @if($gallery->file_type==="image")    
                                             @foreach ($gallery->images as $image)
                                                 <span class="avatar avatar-lg bradius bradius cover-image"
                                                     data-bs-image-src="{{ asset('uploads/') }}/{{ $image['name'] }}"
                                                     style="background: url(&quot;{{ asset('uploads/') }}/{{ $image['name'] }}&quot;) center center;"></span>
                                             @endforeach
+
+                                            @else
+                                            <video style="width:300px;border-radius: 20px;" controls>
+                                                <source src="{{ asset('uploads/'.$gallery->images[0]['name']) }}">
+                                            </video>
+                                            @endif
                                         </td>
 
+                                        <td>{{ $gallery->file_type==="image" ? "Image"  :"Video" }}</td>
                                         <td>{{ $gallery->title }}</td>
 
                                         <td>
@@ -131,9 +140,9 @@
 
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Images</label>
+                                    <label class="form-label">Images Or Single Video</label>
                                     <input type="file" name="images[]" class="form-control" multiple="multiple"
-                                        accept="image/png,image/jpeg,image/webp">
+                                        >
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12">

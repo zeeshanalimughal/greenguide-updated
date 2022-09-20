@@ -14,35 +14,30 @@ class AdvertDesign extends Controller
 {
     public function getAllAdvertDesigns()
     {
-        $adverts = ModelsAdvertDesign::join('users', 'users.id', '=', 'advert_designs.userId')
-            ->join('upcomming_issues', 'upcomming_issues.id', '=', 'advert_designs.borough')
-            ->join('boroughs', 'boroughs.id', '=', 'advert_designs.borough')
+        // dd("Hello");
+        $designOrders = ModelsAdvertDesign::join('users', 'users.id', '=', 'advert_designs.userId')
+            // ->join('upcomming_issues', 'upcomming_issues.id', '=', 'advert_designs.borough')
+            // ->join('boroughs', 'boroughs.id', '=', 'advert_designs.borough')
             ->orderBy('id', 'DESC')
             ->get([
-                'advert_designs.id',
-                'advert_designs.advertSize',
-                'advert_designs.quantity',
-                'advert_designs.status',
-                'advert_designs.created_at',
+                'advert_designs.*',
                 'users.name',
                 'users.email',
-                'boroughs.borough',
-                'upcomming_issues.issue',
             ]);
-        for ($i = 0; $i < sizeof($adverts); $i++) {
-            $advertSizes = [];
-            $price = 0;
-            $currency = '';
-            for ($j = 0; $j < sizeof($adverts[$i]['advertSize']); $j++) {
-                $sizes  =  Advert::find($adverts[$i]['advertSize'][$j]);
-                array_push($advertSizes, $sizes->advert_size);
-                $price += $sizes->advert_price;
-                $currency = $sizes->currency;
-            }
-            $adverts[$i]['advertSize'] = $advertSizes;
-            $adverts[$i]['amount'] = $price . ' ' . $currency;
-        }
-        return view('backend.advert-designs', ['adverts' => $adverts]);
+        // for ($i = 0; $i < sizeof($adverts); $i++) {
+        //     $advertSizes = [];
+        //     $price = 0;
+        //     $currency = '';
+        //     for ($j = 0; $j < sizeof($adverts[$i]['advertSize']); $j++) {
+        //         $sizes  =  Advert::find($adverts[$i]['advertSize'][$j]);
+        //         array_push($advertSizes, $sizes->advert_size);
+        //         $price += $sizes->advert_price;
+        //         $currency = $sizes->currency;
+        //     }
+        //     $adverts[$i]['advertSize'] = $advertSizes;
+        //     $adverts[$i]['amount'] = $price . ' ' . $currency;
+        // }
+        return view('backend.advert-designs', ['designOrders' => $designOrders]);
     }
 
     public function manageAdvertDesigns($id, $action)

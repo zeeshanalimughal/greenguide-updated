@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Sep 17, 2022 at 03:03 PM
+-- Generation Time: Sep 20, 2022 at 01:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -107,14 +107,23 @@ INSERT INTO `adverts` (`id`, `advert_size`, `advert_price`, `currency`, `created
 CREATE TABLE `advert_designs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `userId` bigint(20) UNSIGNED NOT NULL,
-  `upcomingIssue` bigint(20) UNSIGNED NOT NULL,
-  `borough` bigint(20) UNSIGNED NOT NULL,
-  `advertSize` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `quantity` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `order_summery` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity_total` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` int(11) NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'in-progress',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `advert_designs`
+--
+
+INSERT INTO `advert_designs` (`id`, `userId`, `order_summery`, `quantity_total`, `total_amount`, `status`, `created_at`, `updated_at`) VALUES
+(12, 38, '<li style=\"margin-bottom: 8px;\">A6 in the Q2 2023 issue</li><li style=\"margin-bottom: 8px;\">A5 in the Q2 2023 issue</li>', '<li style=\"margin-bottom: 8px;\">A6 : 1</li><li style=\"margin-bottom: 8px;\">A5 : 1</li>', 168, 'processing', '2022-09-19 06:30:20', '2022-09-19 06:30:20'),
+(13, 39, '<li style=\"margin-bottom: 8px;\">A6 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A4 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A6 in the Q1 2024 issue</li><li style=\"margin-bottom: 8px;\">Voucher in the Q2 2023 issue</li><li style=\"margin-bottom: 8px;\">Voucher in the Q2 2023 issue</li><li style=\"margin-bottom: 8px;\">Premium Pages in the Q2 2023 issue</li>', '<li style=\"margin-bottom: 8px;\">A6 : 2</li><li style=\"margin-bottom: 8px;\">A4 : 1</li><li style=\"margin-bottom: 8px;\">Voucher : 2</li><li style=\"margin-bottom: 8px;\">Premium Pages : 1</li>', 889, 'completed', '2022-09-20 00:22:18', '2022-09-20 00:56:16'),
+(14, 26, '<li style=\"margin-bottom: 8px;\">A6 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">Double Spread in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A5 in the Q1 2024 issue</li><li style=\"margin-bottom: 8px;\">A6 in the Q1 2024 issue</li><li style=\"margin-bottom: 8px;\">Voucher in the Q1 2024 issue</li><li style=\"margin-bottom: 8px;\">Premium Pages in the Q2 2023 issue</li>', '<li style=\"margin-bottom: 8px;\">A6 : 2</li><li style=\"margin-bottom: 8px;\">Double Spread : 1</li><li style=\"margin-bottom: 8px;\">A5 : 1</li><li style=\"margin-bottom: 8px;\">Voucher : 1</li><li style=\"margin-bottom: 8px;\">Premium Pages : 1</li>', 864, 'processing', '2022-09-20 00:55:10', '2022-09-20 00:56:32'),
+(15, 26, '<li style=\"margin-bottom: 8px;\">A5 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A6 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A4 in the Q3 2023 issue</li><li style=\"margin-bottom: 8px;\">A4 in the Q2 2023 issue</li><li style=\"margin-bottom: 8px;\">A6 in the Q2 2023 issue</li>', '<li style=\"margin-bottom: 8px;\">A5 : 1</li><li style=\"margin-bottom: 8px;\">A6 : 2</li><li style=\"margin-bottom: 8px;\">A4 : 2</li>', 638, 'processing', '2022-09-20 03:02:38', '2022-09-20 03:02:38');
 
 -- --------------------------------------------------------
 
@@ -256,7 +265,8 @@ CREATE TABLE `design_books` (
 
 INSERT INTO `design_books` (`id`, `userId`, `advertSize`, `upcomingIssue`, `brief_desc`, `content`, `logo`, `images`, `website`, `status`, `fb`, `ins`, `tw`, `yt`, `monday_open`, `monday_close`, `tuesday_open`, `tuesday_close`, `wednesday_open`, `wednesday_close`, `thursday_open`, `thursday_close`, `friday_open`, `friday_close`, `saturday_open`, `saturday_close`, `sunday_open`, `sunday_close`, `holiday_open`, `holiday_close`, `created_at`, `updated_at`) VALUES
 (1, 26, 4, 3, 'Hello', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '1648451516 img9.jpg', '[{\"name\":\"7381648451535508.jpg\"}]', 'example.com', 'in-progress', 'example.com', 'example.com', 'example.com', 'example.com', '22:50', '00:48', '02:48', '03:49', '10:48', '10:52', '02:48', '22:49', '10:48', '02:48', '10:52', '10:52', '10:54', '10:52', '10:52', '10:53', '2022-03-28 00:53:09', '2022-03-28 03:26:32'),
-(4, 26, 5, 3, 'dsfsd', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '1648449417 logo.png', '[{\"name\":\"43516484494179.jpg\"},{\"name\":\"3591648449417270.jpg\"},{\"name\":\"3131648449417487.jpg\"},{\"name\":\"6601648449417550.jpg\"}]', 'example.com', 'in-progress', 'example.com', 'example.com', 'example.com', 'example.com', '22:50', '00:48', '02:48', '03:49', '10:48', '10:52', '02:48', '22:49', '10:48', '02:48', '10:52', '10:52', '10:54', '10:52', '10:52', '10:53', '2022-03-28 01:36:57', '2022-03-28 03:48:59');
+(4, 26, 5, 3, 'dsfsd', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', '1648449417 logo.png', '[{\"name\":\"43516484494179.jpg\"},{\"name\":\"3591648449417270.jpg\"},{\"name\":\"3131648449417487.jpg\"},{\"name\":\"6601648449417550.jpg\"}]', 'example.com', 'in-progress', 'example.com', 'example.com', 'example.com', 'example.com', '22:50', '00:48', '02:48', '03:49', '10:48', '10:52', '02:48', '22:49', '10:48', '02:48', '10:52', '10:52', '10:54', '10:52', '10:52', '10:53', '2022-03-28 01:36:57', '2022-03-28 03:48:59'),
+(5, 26, 5, 3, 'No', '<p>desc</p>', '1663661080-our-team-bg.jpg', '[{\"name\":\"4801663661080285.png\"},{\"name\":\"2121663661080362.png\"},{\"name\":\"9021663661080827.jpg\"}]', 'exampple.com', 'in-progress', 'exampple.com', 'exampple.com', 'exampple.com', 'exampple.com', '13:04', '13:03', '13:05', '13:07', '13:06', '16:03', '13:06', '18:04', '16:03', '13:04', '16:03', '13:03', '13:03', '13:05', '13:07', '13:05', '2022-09-20 03:04:40', '2022-09-20 03:04:40');
 
 -- --------------------------------------------------------
 
@@ -519,6 +529,7 @@ CREATE TABLE `home_gallery` (
   `desc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `file_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -528,15 +539,16 @@ CREATE TABLE `home_gallery` (
 -- Dumping data for table `home_gallery`
 --
 
-INSERT INTO `home_gallery` (`id`, `title`, `desc`, `link`, `images`, `status`, `created_at`, `updated_at`) VALUES
-(4, NULL, 'Borough specific magzine with reliable information for the residents of the Crovdon Borough', '/archives', '[{\"name\":\"1611658489691950.png\"}]', 'active', '2022-07-22 06:34:51', '2022-09-09 01:52:46'),
-(5, NULL, 'Green Guide magazine is a high end quality printed magazine that is distributed through Croydon Borough.', '/advertise', '[{\"name\":\"561658489739306.jpg\"},{\"name\":\"852165848973984.jpg\"},{\"name\":\"5661658489739559.jpg\"}]', 'active', '2022-07-22 06:35:39', '2022-07-22 06:35:39'),
-(6, 'What\'s on in the Croydon Borough ?', NULL, '/localevents', '[]', 'active', '2022-07-22 06:36:17', '2022-07-22 06:36:17'),
-(7, 'Low cost, high exposure', NULL, '/advertise', '[]', 'active', '2022-07-22 06:36:40', '2022-07-22 06:36:40'),
-(8, NULL, 'We are doing our part to offset the production of the Green Guide Magazine.', '/greeninitiative', '[{\"name\":\"421662706450334.jpg\"},{\"name\":\"2961662706450345.png\"},{\"name\":\"3411662706450241.jpg\"}]', 'active', '2022-07-22 06:37:15', '2022-09-09 01:54:10'),
-(9, NULL, 'Green Guide magazine is produced and distributed by Green Guide t/a LLG Marketing team', '/about', '[{\"name\":\"4981658489875687.webp\"},{\"name\":\"3251658489875550.jpg\"},{\"name\":\"5341658489875162.jpg\"},{\"name\":\"5091658489875479.jpg\"}]', 'active', '2022-07-22 06:37:55', '2022-07-22 06:37:55'),
-(10, 'Community is key', NULL, '/communitygrowth', '[]', 'active', '2022-07-22 06:38:47', '2022-07-22 06:38:47'),
-(11, NULL, 'Strengthen your companies online exposure by registering on our local directory.', '/businessdirectory', '[{\"name\":\"9931658490104727.jpg\"}]', 'active', '2022-07-22 06:41:44', '2022-07-22 06:41:44');
+INSERT INTO `home_gallery` (`id`, `title`, `desc`, `link`, `images`, `file_type`, `status`, `created_at`, `updated_at`) VALUES
+(4, NULL, 'Borough specific magzine with reliable information for the residents of the Crovdon Borough', '/archives', '[{\"name\":\"1611658489691950.png\"}]', 'image', 'active', '2022-07-22 06:34:51', '2022-09-09 01:52:46'),
+(5, NULL, 'Green Guide magazine is a high end quality printed magazine that is distributed through Croydon Borough.', '/advertise', '[{\"name\":\"561658489739306.jpg\"},{\"name\":\"852165848973984.jpg\"},{\"name\":\"5661658489739559.jpg\"}]', 'image', 'active', '2022-07-22 06:35:39', '2022-07-22 06:35:39'),
+(6, 'What\'s on in the Croydon Borough ?', NULL, '/localevents', '[]', 'image', 'active', '2022-07-22 06:36:17', '2022-07-22 06:36:17'),
+(7, 'Low cost, high exposure', NULL, '/advertise', '[]', 'image', 'active', '2022-07-22 06:36:40', '2022-07-22 06:36:40'),
+(8, NULL, 'We are doing our part to offset the production of the Green Guide Magazine.', '/greeninitiative', '[{\"name\":\"421662706450334.jpg\"},{\"name\":\"2961662706450345.png\"},{\"name\":\"3411662706450241.jpg\"}]', 'image', 'active', '2022-07-22 06:37:15', '2022-09-09 01:54:10'),
+(9, NULL, 'Green Guide magazine is produced and distributed by Green Guide t/a LLG Marketing team', '/about', '[{\"name\":\"4981658489875687.webp\"},{\"name\":\"3251658489875550.jpg\"},{\"name\":\"5341658489875162.jpg\"},{\"name\":\"5091658489875479.jpg\"}]', 'image', 'active', '2022-07-22 06:37:55', '2022-07-22 06:37:55'),
+(10, 'Strengthen your companies online exposure by registering on our local directory.', NULL, '/businessdirectory', '[{\"name\":\"6651663659787494.jpg\"},{\"name\":\"6801663659788550.jpg\"}]', 'image', 'active', '2022-07-22 06:38:47', '2022-09-20 02:43:08'),
+(11, 'Community is key', NULL, '/communitygrowth', '[{\"name\":\"9931658490104727.jpg\"}]', 'image', 'active', '2022-07-22 06:41:44', '2022-09-20 02:19:04'),
+(12, NULL, NULL, NULL, '[{\"name\":\"7901663657298904.mp4\"}]', 'mp4', 'active', '2022-09-20 02:01:38', '2022-09-20 02:01:38');
 
 -- --------------------------------------------------------
 
@@ -1359,7 +1371,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (26, 'Zeeshan Ali', 'zeeshan@gmail.com', NULL, '$2y$10$hH7iQ/2JOdX2EhJlla1Y0OHp5AGRSC5OrMT0kSg5izdQQ1R3eDW8q', NULL, 'active', '2022-03-07 01:45:21', '2022-07-21 01:16:08'),
 (36, 'kashif', 'kashif@gmail.com', NULL, '$2y$10$LRppdBypjalw9dc1c9GOB.GER9WjrOkmkNBmojXGuRL651nqEuhdS', NULL, 'active', '2022-07-19 03:49:42', '2022-08-18 06:18:18'),
-(37, 'Usama', 'usama@gmail.com', NULL, '$2y$10$XUJGdzzuKo23j3Aa5FKq3eUMmwqNCx3xksxCKACn7/AiBfObvhVt.', NULL, 'active', '2022-09-14 23:45:03', '2022-09-14 23:45:03');
+(37, 'Usama', 'usama@gmail.com', NULL, '$2y$10$XUJGdzzuKo23j3Aa5FKq3eUMmwqNCx3xksxCKACn7/AiBfObvhVt.', NULL, 'active', '2022-09-14 23:45:03', '2022-09-14 23:45:03'),
+(38, 'tryr', 'kashif@gmail.com', NULL, '', NULL, 'active', '2022-09-19 06:30:20', '2022-09-19 06:30:20'),
+(39, 'tetste', 'test@gmail.com', NULL, '', NULL, 'active', '2022-09-20 00:22:18', '2022-09-20 00:22:18');
 
 -- --------------------------------------------------------
 
@@ -1386,7 +1400,9 @@ CREATE TABLE `user_details` (
 INSERT INTO `user_details` (`id`, `userId`, `company_name`, `company_reg_no`, `phone`, `charity_number`, `billing_address`, `created_at`, `updated_at`) VALUES
 (13, 26, 'LLG Green Guide', '923847', '984237498', 'SWE2897', 'My Address', NULL, NULL),
 (22, 36, 'ZEX', '4543534', '03059677107', '345353', NULL, NULL, NULL),
-(23, 37, 'Usama Tech', '345345345', '98324983274', '0001', NULL, NULL, NULL);
+(23, 37, 'Usama Tech', '345345345', '98324983274', '0001', NULL, NULL, NULL),
+(24, 38, 'try', 'try', 'try', 'tyt', NULL, NULL, NULL),
+(25, 39, 'test', '903809483', '-034-0394', '432534', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1447,8 +1463,6 @@ ALTER TABLE `adverts`
 --
 ALTER TABLE `advert_designs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `advert_designs_upcomingissue_foreign` (`upcomingIssue`),
-  ADD KEY `advert_designs_borough_foreign` (`borough`),
   ADD KEY `advert_designs_userid_foreign` (`userId`);
 
 --
@@ -1744,7 +1758,7 @@ ALTER TABLE `adverts`
 -- AUTO_INCREMENT for table `advert_designs`
 --
 ALTER TABLE `advert_designs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `boroughs`
@@ -1768,7 +1782,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `design_books`
 --
 ALTER TABLE `design_books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `directory_reviews`
@@ -1828,7 +1842,7 @@ ALTER TABLE `greenguide_team`
 -- AUTO_INCREMENT for table `home_gallery`
 --
 ALTER TABLE `home_gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -1978,13 +1992,13 @@ ALTER TABLE `upcomming_issues`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `website_froms`
@@ -2000,8 +2014,6 @@ ALTER TABLE `website_froms`
 -- Constraints for table `advert_designs`
 --
 ALTER TABLE `advert_designs`
-  ADD CONSTRAINT `advert_designs_borough_foreign` FOREIGN KEY (`borough`) REFERENCES `boroughs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `advert_designs_upcomingissue_foreign` FOREIGN KEY (`upcomingIssue`) REFERENCES `upcomming_issues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `advert_designs_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

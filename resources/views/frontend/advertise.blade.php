@@ -752,9 +752,9 @@
                 {{-- <button type="submit" id="submit_order" class="btn btn-primary btn-block mt-4">Book Now</button> --}}
 
 
-                <textarea name="order_summery" id="order_summery_input" cols="30" rows="10"></textarea>
-                <textarea name="quantity_total" id="quantity_total_input" cols="30" rows="10"></textarea>
-                <textarea name="total_amount" id="total_amount_input" cols="30" rows="10"></textarea>
+                <textarea  style="display:none;" name="order_summery" id="order_summery_input" cols="30" rows="10"></textarea>
+                <textarea  style="display:none;" name="quantity_total" id="quantity_total_input" cols="30" rows="10"></textarea>
+                <textarea  style="display:none;" name="total_amount" id="total_amount_input" cols="30" rows="10"></textarea>
 
 
                 <div class="col-md-8" style="display:none;" id="order_details_box">
@@ -1209,9 +1209,9 @@
 
 
 
-                const order_summery_input = document.getElementById("order_summery_input")
-                const quantity_total_input = document.getElementById("quantity_total_input")
-                const total_amount_input = document.getElementById("total_amount_input")
+            const order_summery_input = document.getElementById("order_summery_input")
+            const quantity_total_input = document.getElementById("quantity_total_input")
+            const total_amount_input = document.getElementById("total_amount_input")
 
 
 
@@ -1456,139 +1456,6 @@
                 $("#account_toggle").val("0")
             }
         });
-
-
-
-
-// $("#passwords__container").css({
-//             "display": "none"
-//         });
-//         $("#account_toggle").on('change', function() {
-//             if (this.checked) {
-//                 $("#passwords__container").css({
-//                     "display": "flex"
-//                 });
-//                 $("#account_toggle").val("1")
-//             } else {
-//                 $("#passwords__container").css({
-//                     "display": "none"
-//                 });
-//                 $("#account_toggle").val("0")
-//             }
-//         });
-//         const btn_add = document.getElementById("btn-add-size-quantity");
-//         const size_quantity = document.getElementById("size-quantity-container");
-
-//             if(btn_add){
-//                 btn_add.addEventListener("click", function() {
-//                     size_quantity.insertAdjacentHTML('beforeend', `
-//                             <label for="example-text-input" class="col-lg-1 col-form-label">Quantity</label>
-//                             <div class="col-lg-5">
-//                                 <select class="form-select quantity"  name="quantity[]" required="required">
-//                                     <option value="">Select Quantity</option>
-                                
-//                                         <option value="1">1</option>
-//                                         <option value="2">2</option>
-//                                         <option value="3">3</option>
-//                                         <option value="4">4</option>
-//                                         <option value="5">5</option>
-//                                         <option value="6">6</option>
-//                                         <option value="7">7</option>
-//                                         <option value="8">8</option>
-//                                         <option value="9">9</option>
-//                                         <option value="10">10</option>
-                        
-//                                 </select>
-//                                 @if ($errors->has('quantity'))
-//                                     <div class="text-danger">{{ $errors->first('quantity') }}</div>
-//                                 @endif
-//                             </div>
-//                             <label for="example-text-input" class="col-lg-1 col-form-label">Size of Advert</label>
-//                             <div class="col-lg-5">
-//                                 <select class="form-select" name="advertSize[]" required="required">
-//                                     <option value="">Select a Size of Advert</option>
-//                                     @foreach ($adverts_sizes as $size)
-//                                         <option value="{{ $size->id }}">
-//                                             {{ $size->advert_size }}-{{ $size->advert_price }}{{ $size->currency }}</option>
-//                                     @endforeach
-//                                 </select>
-//                                 @if ($errors->has('advertSize'))
-//                                     <div class="text-danger">{{ $errors->first('advertSize') }}</div>
-//                                 @endif
-//                             </div>
-//                     `);
-//                 })
-//             }
-
-//         const adver_form = document.querySelector("#adver_form");
-//         const adver_submit_btn = document.querySelector("#adver_submit_btn");
-//         const submit_advert_btn = document.querySelector("#submit_advert_btn");
-//         const order_details_box = document.querySelector("#order_details_box");
-//         const adver_cancel_btn = document.querySelector("#adver_cancel_btn");
-
-//         const quantity = document.getElementsByName("quantity[]");
-//         const advertPrice = document.getElementsByName("advertSize[]");
-//         if(adver_cancel_btn){
-
-//         adver_cancel_btn.addEventListener("click", function(){
-//             window.location.reload();
-//         })
-             
-//     }
-//     if(adver_cancel_btn){
-//         adver_form.addEventListener('submit', function(event) {
-//             event.preventDefault();
-        
-//             let totalPrice = 0;
-        
-//             let tot_qty = 0;
-//             const quantity_array = []
-//             quantity.forEach((q) => {
-//                 tot_qty += +q.value;
-//                 quantity_array.push(q.value);
-//             }) 
-
-//             let arr = [];
-//             advertPrice.forEach((price) => {
-//                 arr.push(price.value);
-//             })
-//             console.log(quantity_array)
-
-//             for (let i = 0; i < arr.length; i++) {
-//                 $.ajax({
-//                     url: "/get-advert-price-total/" + arr[i],
-//                     type: "GET",
-//                     async: true,
-//                     processData: false,
-//                     contentType: false,
-//                     success: function(response) {
-//                         console.log(response[0][0])
-//                         let price = quantity_array[i]*parseInt(response[0][0].advert_price)
-//                         totalPrice+= price
-
-//                     },
-//                     error: function(error) {
-//                         console.log(error);
-//                     }
-//                 });
-//             }
-//             submit_advert_btn.innerHTML = 'processing...';
-//             setTimeout(() => {
-//                 adver_submit_btn.style.display = 'none';
-//                 order_details_box.style.display = 'block';
-//                 $("#totQty").html(tot_qty);
-//                 $("#amountTot").html(totalPrice+"£");
-//             //     console.log(tot_qty);
-//             // console.log(totalPrice);
-//             }, 2000);
-//             $("#submit_order").on("click", function() {
-//                 adver_form.submit();
-//             })
-//         })
-//     }
-
-
-
 
 
 

@@ -36,11 +36,9 @@
                                     <th>#</th>
                                     <th>name</th>
                                     <th>email</th>
-                                    <th>borough</th>
-                                    <th>issue</th>
-                                    <th>Advert size & qty</th>
+                                    <th>order summery</th>
+                                    <th>quantity total</th>
                                     <th>Total Amount</th>
-                                    {{-- <th>advert price</th> --}}
                                     <th>created at</th>
                                     <th>status</th>
                                     <th>Actions</th>
@@ -50,7 +48,7 @@
                                 @php
                                     $count = 0;
                                 @endphp
-                                @foreach ($adverts as $advert)
+                                @foreach ($designOrders as $advert)
                                     <tr>
                                         @php
                                             ++$count;
@@ -58,16 +56,20 @@
                                         <td>{{ $count }}</td>
                                         <td>{{ $advert->name }}</td>
                                         <td>{{ $advert->email }}</td>
-                                        <td>{{ $advert->borough }}</td>
-                                        <td>{{ $advert->issue }}</td>
-                                        <td>
+                                        <td>@php
+                                            echo $advert->order_summery;
+                                        @endphp</td>
+                                        <td>@php
+                                            echo $advert->quantity_total;
+                                        @endphp</td>
+                                        {{-- <td>
                                             @for ($i = 0; $i < sizeof($advert->advertSize); $i++)
                                                 @php
                                                     echo '<div><b>' . $advert->advertSize[$i] . '</b> => ' . $advert->quantity[$i] . '</div>';
                                                 @endphp
                                             @endfor
-                                        </td>
-                                        <td>{{ $advert->amount }}</td>
+                                        </td> --}}
+                                        <td>£ {{ $advert->total_amount }}</td>
                                         <td>{{ $advert->created_at->diffForHumans() }}</td>
                                         <td>
                                             @if ($advert->status == 'processing')

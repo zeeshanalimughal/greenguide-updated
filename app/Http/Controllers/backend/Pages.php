@@ -1305,13 +1305,25 @@ class Pages extends Controller
 
     public function addGallery(Request $request)
     {
+        // dd($request->images[0]);
+        // dd(filetype($request->images[0]->extension()));
         $gallery = new HomeGallery();
+
         $imagesArray = [];
+
         if ($request->images) {
-            foreach ($request->images as $key => $image) {
-                $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
-                $image->move(public_path('uploads'), $imageName);
-                $imagesArray[]['name'] = $imageName;
+            if ($request->images[0]->extension() === "mp4") {
+                $videName = rand(1, 999) . time() . rand(1, 999) . '.' . $request->images[0]->extension();
+                $request->images[0]->move(public_path('uploads'), $videName);
+                $imagesArray[]['name'] = $videName;
+                $gallery->file_type = "mp4";
+            } else {
+                foreach ($request->images as $key => $image) {
+                    $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                    $image->move(public_path('uploads'), $imageName);
+                    $imagesArray[]['name'] = $imageName;
+                }
+                $gallery->file_type = "image";
             }
         }
         $gallery->images = $imagesArray;
@@ -1320,6 +1332,7 @@ class Pages extends Controller
         $gallery->desc = $request->input('desc');
         $gallery->link = $request->input('link');
 
+        // dd($gallery);
         $res =  $gallery->save();
 
         if ($res) {
