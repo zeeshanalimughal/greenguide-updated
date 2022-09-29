@@ -36,65 +36,10 @@
         </div>
     </div>
 
-
-
-    <div class="container my-5 ">
-        <div class="row">
-            <div class="col-12 mt-4">
-                <div class="opt_section rounded py-4" style="background-color:#2B6C42;">
-                    <div class="row p-4 d-flex align-items-center">
-                        <div class="col-lg-2 col-md-12">
-                            <h4 class="text-white">OPT OUT</h4>
-                        </div>
-                        <div class="col-lg-10 col-md-12">
-                            <form action="" id="opt-form">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-9 col-md-12">
-                                        <div class="row mb-2">
-                                            <label for="inputEmail3" class="col-sm-2 col-form-label text-white">Name</label>
-                                            <div class="col-lg-9 col-md-12">
-                                                <input type="text" class="form-control" id="inputEmail3">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <label for="inputEmail3"
-                                                class="col-sm-2 col-form-label text-white">Address</label>
-                                            <div class="col-lg-9 col-md-12">
-                                                <input type="text" class="form-control" id="inputEmail3">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-12">
-                                        <button type="submit" class="btn btn-info btn-block">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-sm-10 offset-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label text-white" for="gridCheck1">
-                                    {{ $page[0]->otp_checkbox_text }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row ps-5 p-4 pt-0 text-white">
-                        @php
-                            echo $page[0]->otp_bottom_text;
-                        @endphp
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
     <section>
         <div class="container-fluid px-3 px-sm-10">
             <div class="row d-flex align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <h3 class="text-uppercase contact__title" id="contact__title" data-animate="fadeInDown"
                         data-animate-delay="600"> {{ $page[0]->contact_sub_title }}</h3>
                     <p class="text-justify" align="justify" data-animate="fadeInUp" data-animate-delay="700">
@@ -210,7 +155,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6" data-animate="fadeInRight" data-animate-delay="900">
+                <div class="col-lg-7" data-animate="fadeInRight" data-animate-delay="900">
                     <div class="row">
                         <div class="col-lg-6">
                             <address>
@@ -269,9 +214,61 @@
                                 </label>
                             </address>
                         </div>
+                   <div class="row">
+            <div class="col-12 mt-4">
+                <div class="opt_section rounded py-4" style="background-color:#2B6C42;">
+                   <div class="row ps-5 p-4 pt-0 text-white">
+                        @php
+                            echo $page[0]->otp_bottom_text;
+                        @endphp
+                    </div>
+                    <div class="row p-4 d-flex align-items-center">
+                        <div class="col-lg-2 col-md-12">
+                            <h4 class="text-white">OPT OUT</h4>
+                        </div>
+                        <div class="col-lg-10 col-md-12">
+                            <form action="" id="opt-form">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-9 col-md-12">
+                                        <div class="row mb-2">
+                                            <label for="inputEmail3" class="col-sm-2 col-form-label text-white">Name</label>
+                                            <div class="col-lg-9 col-md-12">
+                                                <input type="text" class="form-control" id="inputEmail3">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label for="inputEmail3"
+                                                class="col-sm-2 col-form-label text-white">Address</label>
+                                            <div class="col-lg-9 col-md-12">
+                                                <input type="text" class="form-control" id="inputEmail3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-12">
+                                        <button type="submit" class="btn btn-info btn-block">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-10 offset-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                <label class="form-check-label text-white" for="gridCheck1">
+                                    {{ $page[0]->otp_checkbox_text }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                 
+                </div>
+            </div>
+
+        </div>
                     </div>
 
                 </div>
+                
             </div>
 
             <div class="row mt-5">

@@ -278,7 +278,7 @@
             <div class="text-medium text-light" data-animate="fadeInDown" data-animate-delay="600">
                 {{ $page[0]->highlight_title }}
             </div>
-            <div class="grid-articles carousel post-carousel m-b-20" data-dots="false">
+            <div class="grid-articles carousel post-carousel m-b-20" data-dots="false" data-lightbox="gallery">
 
                 @foreach ($highlights as $highlight)
                     <article class="post-entry" data-animate="fadeInUp" data-animate-delay="900">

@@ -215,6 +215,8 @@ use App\Http\Controllers\backend\Feedback;
 use App\Http\Controllers\backend\Giveaway;
 use App\Http\Controllers\backend\GreenguideTeam;
 use App\Http\Controllers\backend\LatestIssues;
+use App\Http\Controllers\backend\LggWardMembers;
+use App\Http\Controllers\backend\LggWardsList;
 use App\Http\Controllers\backend\MagazineDesign;
 use App\Http\Controllers\backend\MagazineHighlights;
 use App\Http\Controllers\backend\UpcommingIssues;
@@ -256,6 +258,28 @@ Route::middleware(['admin-auth'])->group(function () {
     Route::prefix('/admins/')->group(function () {
         Route::get('/', [AdminController::class, 'index']);
 
+
+
+        // LGG Wards List
+        Route::prefix('/lgg-wards-list/')->name('lggWardsList.')->group(function () {
+            Route::get('/', [LggWardsList::class, 'getLggWardsList'])->name('getLggWardsList');
+            Route::post('add', [LggWardsList::class, 'addLggWards'])->name('add');
+            Route::get('{edit}/{id}', [LggWardsList::class, 'manageLggWardsList'])->name('manage');
+            Route::post('update', [LggWardsList::class, 'updateLggWard'])->name('update');
+        });
+
+
+
+
+          // LGG Ward Members
+          Route::prefix('/lgg-ward-members/')->name('lggWardsMembers.')->group(function () {
+            Route::get('/', [LggWardMembers::class, 'getWardsMembers'])->name('getWardsMembers');
+            Route::post('add', [LggWardMembers::class, 'addWardsMember'])->name('add');
+            Route::get('{edit}/{id}', [LggWardMembers::class, 'manageWardsMembers'])->name('manage');
+            Route::post('update', [LggWardMembers::class, 'updateWardsMember'])->name('update');
+        });
+
+    
 
 
         // Greengude Team Admin

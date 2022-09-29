@@ -60,6 +60,16 @@
                                      class="side-menu__icon icon icon-list"></i><span class="side-menu__label">Advertise
                                      Booking</span></a>
                          </li>
+
+                         <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="/admins/lgg-wards-list"><i
+                                    class="side-menu__icon fa fa-ge"></i><span class="side-menu__label">LGG Wards List</span></a>
+                        </li>
+                         <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="/admins/lgg-ward-members"><i
+                                    class="side-menu__icon fa fa-ge"></i><span class="side-menu__label">LGG Ward Members</span></a>
+                        </li>
+
                          <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="/admins/magazine-highlights"><i
                                      class="side-menu__icon fa fa-ge"></i><span class="side-menu__label">Magazine

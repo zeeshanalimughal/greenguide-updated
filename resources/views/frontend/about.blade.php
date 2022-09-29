@@ -27,11 +27,11 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
-                            <p align="justify">{{ $page[0]->ab_desc1 }}</p>
+                            <p align="justify">@php echo $page[0]->ab_desc1; @endphp</p>
                         </div>
 
                         <div class="col-lg-6">
-                            <p align="justify">{{ $page[0]->ab_desc2 }}</p>
+                            <p align="justify">@php echo $page[0]->ab_desc2; @endphp</p>
                         </div>
 
                     </div>

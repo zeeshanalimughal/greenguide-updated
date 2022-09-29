@@ -23,6 +23,8 @@
 <!-- JQUERY JS -->
 <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
 
+
+
 <!-- BOOTSTRAP JS -->
 <script src="{{ asset('admin/assets/plugins/bootstrap/js/popper.min.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -78,6 +80,7 @@
 
 
 
+
 <!-- INTERNAL APEXCHART JS -->
 {{-- <script src="{{asset('admin/assets/js/apexcharts.js')}}"></script> --}}
 {{-- <script src="{{asset('admin/assets/plugins/apexchart/irregular-data-series.js')}}"></script> --}}
@@ -98,6 +101,7 @@
 <!-- INTERNAL Vector js -->
 {{-- <script src="{{asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{asset('admin/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script> --}}
+    <script src="{{asset('admin/assets/plugins/input-mask/jquery.mask.min.js')}}"></script>
 
 
 
