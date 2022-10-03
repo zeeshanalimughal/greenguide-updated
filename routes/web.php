@@ -17,6 +17,7 @@ use App\Http\Controllers\frontend\Advertise;
 use App\Http\Controllers\frontend\UserAccount;
 use App\Http\Controllers\frontend\ComunityGrowth;
 use App\Http\Controllers\frontend\Contact;
+use App\Http\Controllers\frontend\LggWardMembers as FrontendLggWardMembers;
 use App\Http\Controllers\frontend\ResidentsCorner;
 use Illuminate\Support\Facades\Artisan;
 
@@ -42,6 +43,8 @@ Route::fallback(function () {
 });
 
 
+
+Route::get('/ward-members',[FrontendLggWardMembers::class,'getAllMembers']);
 
 
 // Website Policies Terms Conditions Routes

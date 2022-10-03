@@ -13,19 +13,26 @@ class LggWardMembers extends Controller
 {
     public function getWardsMembers()
     {
-        return view('backend.lgg-ward-members', ['wardMembers' => LggWardMember::all(), 'wards' => LggWardsList::where('ward_status', 'active')->orderBy('id', 'DESC')->get()]);
+        return view('backend.lgg-ward-members', 
+                [
+                    'wardMembers' => LggWardMember::join('lgg_wards_list', 'lgg_wards_list.id', '=', 'lgg_ward_members.wardId')->get(
+                [
+                    'lgg_ward_members.*',
+                    'lgg_wards_list.id as lgg_ward_id',
+                    'lgg_wards_list.ward_title as lgg_ward_title'
+                ]), 'wards' => LggWardsList::where('ward_status', 'active')->orderBy('id', 'DESC')->get()]);
     }
 
     public function addWardsMember(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            // 'title' => 'required',
             // 'wardId'=>'required',
-            'name' => 'required',
-            'party' => 'required',
+            // 'name' => 'required',
+            // 'party' => 'required',
             // 'landline'=>'required',
             // 'mobile'=>'required',
-            'email' => 'required',
+            // 'email' => 'required',
             // 'twitter'=>'required',
             'status' => 'required',
             'profile' => 'required|mimes:png,jpg,jpeg',
@@ -77,14 +84,24 @@ class LggWardMembers extends Controller
             }
         }
         if ($action === 'edit') {
-            $member = LggWardMember::find($id)->join('lgg_wards_list', 'lgg_wards_list.id', '=', 'lgg_ward_members.wardId')->get(
+            $member = LggWardMember::where('lgg_ward_members.id',$id)->join('lgg_wards_list', 'lgg_wards_list.id', '=', 'lgg_ward_members.wardId')->get(
                 [
-                    'lgg_ward_members.*',
+                    'lgg_ward_members.id as memberId',
+                    'lgg_ward_members.title',
+                    'lgg_ward_members.name',
+                    'lgg_ward_members.email',
+                    'lgg_ward_members.landline',
+                    'lgg_ward_members.status',
+                    'lgg_ward_members.party',
+                    'lgg_ward_members.mobile',
+                    'lgg_ward_members.profile',
+                    'lgg_ward_members.twitter',
+                    'lgg_ward_members.wardId',
                     'lgg_wards_list.id as lgg_ward_id',
                     'lgg_wards_list.ward_title as lgg_ward_title'
                 ]
             );
-           
+        //    dd($member);
             return view('backend.edit-lgg-ward-member', ['member' => $member, 'wards' => LggWardsList::where('ward_status', 'active')->orderBy('id', 'DESC')->get()]);
         }
     }
@@ -94,13 +111,13 @@ class LggWardMembers extends Controller
 
     public function updateWardsMember(Request $request){
         $request->validate([
-            'title' => 'required',
+            // 'title' => 'required',
             // 'wardId'=>'required',
-            'name' => 'required',
-            'party' => 'required',
+            // 'name' => 'required',
+            // 'party' => 'required',
             // 'landline'=>'required',
             // 'mobile'=>'required',
-            'email' => 'required',
+            // 'email' => 'required',
             // 'twitter'=>'required',
             'status' => 'required',
             'profile' => $request->hasFile('profile') ? 'mimes:png,jpg,jpeg'  :'',

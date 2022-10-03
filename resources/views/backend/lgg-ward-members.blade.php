@@ -78,7 +78,7 @@
                                                 style="background: url(&quot;{{ asset('uploads/') }}/{{ $member->profile }}&quot;) center center;"></span>
                                         </td>
                                         <td>{{ $member->title }}</td>
-                                        <td>{{ $member->wardId }}</td>
+                                        <td>{{ $member->lgg_ward_title }}</td>
                                         <td>{{ $member->name }}</td>
                                         <td>{{ $member->party }}</td>
                                         <td>{{ $member->landline }}</td>
@@ -167,7 +167,7 @@
                                 <label class="form-label">Ward</label>
 
                                 <select style="z-index:10 !important;" name="wardId"
-                                    class="form-control wards__select select2-show-search form-select"
+                                    class="form-control wards__select form-select"
                                     data-placeholder="Choose one">
                                     <option label="Choose one"></option>
                                     @foreach ($wards as $ward)

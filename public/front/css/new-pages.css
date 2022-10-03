@@ -4,6 +4,66 @@ html {
 
 
 
+/* Ward Members styles */
+.wards__members__section{
+  max-width: 90%;
+  width: 100%;
+  min-height: 80vh;
+  /* background-color: #eee; */
+  margin:5rem auto;
+}
+
+
+.wards__members__section .member__card{
+  width:100%;
+  padding:15px;
+  background:#fff;
+  border-radius:15px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  /* box-shadow: 5px 10px 20px rgba(0,0,0,0.2); */
+}
+.wards__members__section .member__card .profile{
+  min-width:90px;
+  height:90px;
+  min-height:70px;
+  /* border-radius: 50%; */
+  overflow: hidden;
+  width:100%;
+  max-width: 70px;
+  position: relative;
+}
+
+
+.wards__members__section .member__card .profile img{
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+.wards__members__section .member__card .profile_details{
+  margin-bottom: 20px;
+}
+.wards__members__section .member__card .profile_details label{
+ font-size: 16px !important;
+ display:block !important;
+ word-break: break-all;
+ color:#111;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 .premium__listings{
@@ -1379,6 +1439,11 @@ align-items        : center;
 
 
 @media (max-width:780px) {
+  .wards__members__section{
+    max-width: 100%;
+    width:100%;
+    padding:2rem 1rem;
+  }
   .event__form__row .form_field{
     max-width: 100%;
     width: 100%;

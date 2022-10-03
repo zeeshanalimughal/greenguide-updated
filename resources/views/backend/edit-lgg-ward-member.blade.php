@@ -109,7 +109,7 @@
                         </div>
                     </div>
 
-                    <input type="hidden" name="id" value="{{ $member[0]->id }}">
+                    <input type="hidden" name="id" value="{{ $member[0]->memberId }}">
 
                     <input type="submit" value="Update Ward Member" class="btn btn-primary">
 

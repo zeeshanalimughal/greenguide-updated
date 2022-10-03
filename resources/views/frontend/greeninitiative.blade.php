@@ -22,14 +22,14 @@
                     data-animate="fadeInUp" data-animate-delay="1800">
                     <p>{{ $page[0]->gi_magazine_printed_title }}</p>
                     <h3 class="coloured-count counter"><span data-from="0"
-                            data-to="{{ $page[0]->gi_magazine_printed_count }}" data-speed="1000"
+                            data-to="{{ intval(preg_replace('/[^\d.]/', '', $page[0]->gi_magazine_printed_count))  }}" data-speed="1000"
                             data-refresh-interval="5000"></span></h3>
                 </div>
                 <div class="col-lg-4 col-md-6  text-center p-t-20 p-b-20 my-2 transparent border border-2  border-white"
                     data-animate="fadeInUp" data-animate-delay="1800">
                     <p>{{ $page[0]->gi_trees_planted_title }}
                     </p>
-                    <h3 class="coloured-count counter"><span data-from="1" data-to="{{ $page[0]->gi_trees_planted_count }}"
+                    <h3 class="coloured-count counter"><span data-from="1" data-to="{{  intval(preg_replace('/[^\d.]/', '', $page[0]->gi_trees_planted_count))  }}"
                             data-speed="1" data-refresh-interval="5000"></span>
                     </h3>
                 </div>

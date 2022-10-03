@@ -1,12 +1,6 @@
 @extends('frontend.layouts.master')
 @section('main-section')
-
-
-
-
-
-
-<div class="advertise__hero" data-animate="fadeIn" data-animate-delay="500"
+    <div class="advertise__hero" data-animate="fadeIn" data-animate-delay="500"
         style="
                                                                width     : 100%;
                                                             min-height: 80vh;
@@ -44,7 +38,7 @@
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
                     <div class="image">
                         <img style="z-index:100; display: flex !important;" width="100%"
-                            src="{{ asset('uploads/'.$page->sec1_image) }}" alt="">
+                            src="{{ asset('uploads/' . $page->sec1_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 p-2 p-sm-3">
@@ -61,9 +55,9 @@
                     </p> --}}
 
                     @php
-
-                        echo $page->sec1_content
-
+                        
+                        echo $page->sec1_content;
+                        
                     @endphp
                     <div class="text-center mt-3">
                         <a href="/download-media-pack" class="btn btn-outline-primary">Media Pack <i
@@ -88,10 +82,10 @@
                         </p> --}}
 
                         @php
-
-                        echo $page->sec2_content
-
-                    @endphp
+                            
+                            echo $page->sec2_content;
+                            
+                        @endphp
 
 
                         <div class="text-center mt-5">
@@ -112,14 +106,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($latestIssues as $issue)
-                                        
-                                    <tr>
-                                        <td>{{$issue->issue}}</td>
-                                        <td>{{$issue->deadline}}</td>
-                                        <td>{{$issue->commencement}}</td>
-                                        <td><a href="/advert-design-book/#book__addvertise" class="btn btn-primary">Book
-                                                Now</a></td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $issue->issue }}</td>
+                                            <td>{{ $issue->deadline }}</td>
+                                            <td>{{ $issue->commencement }}</td>
+                                            <td><a href="/advert-design-book/#book__addvertise" class="btn btn-primary">Book
+                                                    Now</a></td>
+                                        </tr>
                                     @endforeach
 
                                 </tbody>
@@ -150,7 +143,7 @@
 
 
 
-{{--
+    {{--
 
     <div class="upcomming__issues pt-5">
         <div class="container">
@@ -210,16 +203,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image1) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title1}}
+                                {{ $links[0]->title1 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details1}}
+                                {{ $links[0]->details1 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link1}}" class="btn btn-dark">Advertise Today <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -229,16 +222,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image2) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title2}}
+                                {{ $links[0]->title2 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details2}}
+                                {{ $links[0]->details2 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link2}}" class="btn btn-dark">Business Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -249,16 +242,16 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="link__card">
                         <div class="card__image">
-                            <img src="{{ asset('uploads/'.$links[0]->image3) }}" alt="">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
                         </div>
                         <div class="card__body">
                             <h3 class="card__title">
-                                {{$links[0]->title3}}
+                                {{ $links[0]->title3 }}
                             </h3>
                             <p align="justify" class="card__content">
-                                {{$links[0]->details3}}
+                                {{ $links[0]->details3 }}
                             </p>
-                            <a href=" {{url('')}}/{{$links[0]->link3}}" class="btn btn-dark">Events Listing <i
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
                                     class="ps-3 fa fa-arrow-right"></i></a>
                         </div>
                     </div>
