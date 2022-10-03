@@ -59,6 +59,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Section Two Side Image</label>
@@ -87,16 +98,182 @@
 
 
 
-                            <div class="col-sm-12 col-md-12">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Section Three Heading </label>
-                                    <input type="text" value="{{ $page[0]->section3_heading }}" name="section3_heading"
+                                    <label class="form-label">Content section Image</label>
+                                    <input type="file" name="content_sec_image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Content section Heading </label>
+                                    <input type="text" value="{{ $page[0]->content_sec_title }}" name="content_sec_title"
                                         class="form-control">
                                 </div>
                             </div>
 
 
-                            
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Content section Description </label>
+                                    <textarea name="content_sec_desc">
+                                        {{ $page[0]->content_sec_desc }}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Call to Action Image</label>
+                                    <input type="file" name="call_to_sec_image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Call to Action Heading </label>
+                                    <input type="text" value="{{ $page[0]->call_to_sec_title }}" name="call_to_sec_title"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Call to Action Description text </label>
+                                    <textarea name="call_to_sec_desc">
+                                        {{ $page[0]->call_to_sec_desc }}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Advertorial Image</label>
+                                    <input type="file" name="advertorial_sec_image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Advertorial Heading </label>
+                                    <input type="text" value="{{ $page[0]->advertorial_sec_title }}"
+                                        name="advertorial_sec_title" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Advertorial Description </label>
+                                    <textarea name="advertorial_sec_desc">
+                                        {{ $page[0]->advertorial_sec_desc }}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Cards section text</label>
+                                    <textarea name="cards_section_text">
+                                        {{ $page[0]->cards_section_text }}
+                                   </textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Advert Sizes Images</label>
+                                    <input type="file" name="advert_sizes_images[]" class="form-control"
+                                        multiple="multiple" accept="image/*">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Artwork Specifications</label>
+                                    <textarea name="artwork_specifications">
+                                        {{ $page[0]->artwork_specifications }}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Cards section design images</label>
+                                    <input type="file" name="design_images[]" class="form-control"
+                                        multiple="multiple" accept="image/*">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Section Three Heading </label>
+                                    <input type="text" value="{{ $page[0]->section3_heading }}"
+                                        name="section3_heading" class="form-control">
+                                </div>
+                            </div>
+
+
+
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Section Three Description</label>
@@ -109,13 +286,13 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Section Four Heading </label>
-                                    <input type="text" value="{{ $page[0]->section4_heading }}" name="section4_heading"
-                                        class="form-control">
+                                    <input type="text" value="{{ $page[0]->section4_heading }}"
+                                        name="section4_heading" class="form-control">
                                 </div>
                             </div>
 
 
-                            
+
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Section Four Description</label>
@@ -143,5 +320,10 @@
         CKEDITOR.replace('section2_text');
         CKEDITOR.replace('section3_text');
         CKEDITOR.replace('section4_text');
+        CKEDITOR.replace('content_sec_desc');
+        CKEDITOR.replace('call_to_sec_desc');
+        CKEDITOR.replace('advertorial_sec_desc');
+        CKEDITOR.replace('cards_section_text');
+        CKEDITOR.replace('artwork_specifications');
     </script>
 @endsection

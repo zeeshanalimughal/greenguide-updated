@@ -9,5 +9,8 @@ class AdvertDesign extends Model
 {
     use HasFactory;
     protected $table = 'page_advert_design';
-    protected $guarded = [];
+    protected $casts = [
+        'design_images' => 'array',
+        'advert_sizes_images' => 'array'
+    ];
 }

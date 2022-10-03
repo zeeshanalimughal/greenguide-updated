@@ -225,7 +225,7 @@
                                 @else
                                 <div style="background: transparent;width:100%;height:1570px;border-radius: 20px;position: relative;">
 
-                                    <video style="width:100%;position: absolute;top: 0;left: 0;"  controls>
+                                    <video  style="width:100%;position: absolute;top: 0;left: 0;"  controls loop autoplay muted>
                                         <source src="{{ asset('uploads/'.$gallery->images[0]['name']) }}">
                                     </video>
                                 </div>

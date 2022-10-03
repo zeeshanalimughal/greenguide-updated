@@ -1702,11 +1702,26 @@ class Pages extends Controller
             'section3_text' => 'required',
             'section4_heading' => 'required',
             'section4_text' => 'required',
+
+
+            'content_sec_title' => 'required',
+            'content_sec_desc' => 'required',
+            'call_to_sec_title' => 'required',
+            'call_to_sec_desc' => 'required',
+            'advertorial_sec_title' => 'required',
+            'advertorial_sec_desc' => 'required',
+            'cards_section_text' => 'required',
+
+            'artwork_specifications' => 'required',
+
+            
             'section2_image' => 'mimes:png,jpg,jpeg,webp',
             'hero_image' => 'mimes:png,jpg,jpeg,webp',
+            'content_sec_image' => 'mimes:png,jpg,jpeg,webp',
+            'call_to_sec_image' => 'mimes:png,jpg,jpeg,webp',
+            'advertorial_sec_image' => 'mimes:png,jpg,jpeg,webp',
         ]);
         $data  = AdvertDesign::find(1);
-
         $data->hero_title = $request->input('hero_title');
         $data->hero_subtitle = $request->input('hero_subtitle');
         $data->section2_text = $request->input('section2_text');
@@ -1715,6 +1730,105 @@ class Pages extends Controller
         $data->section3_text = $request->input('section3_text');
         $data->section4_heading = $request->input('section4_heading');
         $data->section4_text = $request->input('section4_text');
+        
+        $data->content_sec_title = $request->input('content_sec_title');
+        $data->content_sec_desc = $request->input('content_sec_desc');
+        $data->call_to_sec_title = $request->input('call_to_sec_title');
+        $data->call_to_sec_desc = $request->input('call_to_sec_desc');
+        $data->advertorial_sec_title = $request->input('advertorial_sec_title');
+        $data->advertorial_sec_desc = $request->input('advertorial_sec_desc');
+        $data->artwork_specifications = $request->input('artwork_specifications');
+
+
+
+
+
+
+
+        
+        if ($request->hasFile('advert_sizes_images')) {
+            if ($data->advert_sizes_images && sizeof($data->advert_sizes_images) > 0) {
+                foreach ($data->advert_sizes_images as $oldImage) {
+                    $imagePath = public_path('/uploads/' . $oldImage['name']);
+                    if (File::exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+            }
+            $imagesArray = [];
+            if ($request->advert_sizes_images) {
+                foreach ($request->advert_sizes_images as $key => $image) {
+                    $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                    $image->move(public_path('uploads'), $imageName);
+                    $imagesArray[]['name'] = $imageName;
+                }
+            }
+            $data->advert_sizes_images = $imagesArray;
+        }
+
+
+        if ($request->hasFile('design_images')) {
+            if ($data->design_images && sizeof($data->design_images) > 0) {
+                foreach ($data->design_images as $oldImage) {
+                    $imagePath = public_path('/uploads/' . $oldImage['name']);
+                    if (File::exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+            }
+            $imagesArray = [];
+            if ($request->design_images) {
+                foreach ($request->design_images as $key => $image) {
+                    $imageName = rand(1, 999) . time() . rand(1, 999) . '.' . $image->extension();
+                    $image->move(public_path('uploads'), $imageName);
+                    $imagesArray[]['name'] = $imageName;
+                }
+            }
+            $data->design_images = $imagesArray;
+        }
+
+
+
+
+        
+
+        if ($request->hasFile('content_sec_image')) {
+            if ($data->content_sec_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->content_sec_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $content_sec_image = time() . '-' . $request->file('content_sec_image')->getClientOriginalName();
+            $request->file('content_sec_image')->move(public_path() . '/uploads/', $content_sec_image);
+            $data->content_sec_image = $content_sec_image;
+        }
+
+
+        if ($request->hasFile('call_to_sec_image')) {
+            if ($data->call_to_sec_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->call_to_sec_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $call_to_sec_image = time() . '-' . $request->file('call_to_sec_image')->getClientOriginalName();
+            $request->file('call_to_sec_image')->move(public_path() . '/uploads/', $call_to_sec_image);
+            $data->call_to_sec_image = $call_to_sec_image;
+        }
+
+
+        if ($request->hasFile('advertorial_sec_image')) {
+            if ($data->advertorial_sec_image !== '') {
+                $imagePath = public_path('/uploads/' . $data->advertorial_sec_image);
+                if (File::exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $advertorial_sec_image = time() . '-' . $request->file('advertorial_sec_image')->getClientOriginalName();
+            $request->file('advertorial_sec_image')->move(public_path() . '/uploads/', $advertorial_sec_image);
+            $data->advertorial_sec_image = $advertorial_sec_image;
+        }
 
 
         if ($request->hasFile('hero_image')) {
@@ -1728,6 +1842,9 @@ class Pages extends Controller
             $request->file('hero_image')->move(public_path() . '/uploads/', $hero_image);
             $data->hero_image = $hero_image;
         }
+
+
+
 
         if ($request->hasFile('section2_image')) {
             if ($data->section2_image !== '') {

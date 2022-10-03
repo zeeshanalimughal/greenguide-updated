@@ -20,14 +20,14 @@ html {
   background:#fff;
   border-radius:15px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   column-gap: 2rem;
   row-gap: 1rem;
   /* box-shadow: 5px 10px 20px rgba(0,0,0,0.2); */
 }
 .wards__members__section .member__card .profile{
-  min-width:90px;
-  height:90px;
+  min-width:100px;
+  height:110px;
   min-height:70px;
   /* border-radius: 50%; */
   overflow: hidden;
@@ -53,6 +53,7 @@ html {
  display:block !important;
  word-break: break-all;
  color:#111;
+ margin-bottom: 6px;
 }
 
 

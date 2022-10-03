@@ -22,8 +22,8 @@
         <h3 class="subtitle" data-animate="fadeInDown" data-animate-delay="1100">
             {{ $page->hero_subheading }}
         </h3>
-        <a href="/advert-design-book#book__addvertise" data-animate="fadeInUp" data-animate-delay="1200"><button
-                class="btn__advertise">Advertise Now</button></a>
+        <a href="/download-media-pack" data-animate="fadeInUp" data-animate-delay="1200"><button
+                class="btn__advertise">The Latest Issue</button></a>
     </div>
 
 

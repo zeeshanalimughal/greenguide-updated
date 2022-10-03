@@ -69,11 +69,11 @@
                 </a>
             </div>
 
-            <div>
+            {{-- <div>
                 <a href="/admins/pages/advertise-in-magazine" class="list-group-item  d-flex align-items-center px-0">
-                    <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Advertise in Magazine</a>
+                    <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Magazine design book</a>
                 </a>
-            </div>
+            </div> --}}
             <div>
                 <a href="/admins/pages/archives" class="list-group-item  d-flex align-items-center px-0">
                     <i class="fe fe-bell fs-18 me-2 text-secondary p-2"></i>Archives</a>
