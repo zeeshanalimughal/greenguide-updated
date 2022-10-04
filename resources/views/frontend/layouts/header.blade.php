@@ -170,6 +170,8 @@
                                             href="/jobs">Jobs</a></li>
                                     <li class="{{ Request::url() === route('contact') ? 'active' : '' }}"><a
                                             href="/contact">Contact</a></li>
+                                    <li class="{{ Request::url() === route('crydon-wards') ? 'active' : '' }}"><a
+                                            href="/crydon-wards">Crydon Wards</a></li>
                                     @guest
                                         <li class="{{ Request::url() === route('login') ? 'active' : '' }}"><a
                                                 href="/login">login</a></li>

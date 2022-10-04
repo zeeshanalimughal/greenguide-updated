@@ -2,16 +2,15 @@
 @section('main-section')
     <div class="ward__members__hero"
         style="width:100%;min-height: 30vh;background-image: url({{ asset('front/img/Area-we-cover-1.jpg') }}); background-position:center bottom;display: grid;place-items:center;">
-        <h1 class="text-white text-center px-3">Local Green Guide Website Ward</h1>
+    <h1 class="text-white text-center px-3">Local Green Guide {{$members[0]->lgg_ward_title}} WARD</h1>
     </div>
 
     <div class="wards__members__section">
         <div class="container my-5">
-            <h2 class="underline">Addiscombe East</h2>
+            <h2 class="underline"><b>Ward Name:</b> {{$members[0]->lgg_ward_title}}</h2>
             <div class="row g-4 d-flex justify-content-between">
 
-
-                @foreach ($addiscombe_east_members as $member)
+                @foreach ($members as $member)
                     <div class="col-lg-5 col-md-6 col-sm-12">
 
                         <div class="member__card">
@@ -32,23 +31,13 @@
                         </div>
                     </div>
                 @endforeach
-
-                <div class="col-lg-12 col-md-6 col-sm-12 d-flex justify-content-center" style="margin-top:-40px">
-                    <a href="#">
-                        <div class="member__card  d-flex justify-content-center" style="background:transparent">
-                            <div class="profile_details">
-                                <label class="name"><b>Corresponding Address</b></label>
-                                <label class="name">c/o Town Hall</label>
-                                <label class="name">Katharine Street</label>
-                                <label class="name">Croydon</label>
-                                <label class="name">CR0 1NX</label>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
 
+
+
+
+        
         <div class="places_and_services_section" style="margin-top: 40px;">
             <div class="row my-5">
                 <div class="col-lg-3 col-sm-12"></div>
@@ -87,78 +76,82 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-        <div class="container">
-            <h3 class="mb-5">London Borough of Croydon Cabinet Members (Conservative)</h3>
-        </div>
-        <div class="row g-4">
-
-            @foreach ($shadow_cabbinet_members as $member)
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="member__card">
-                        <a href="{{ $member->id }}">
-                            <div class="profile">
-                                <img src="{{ asset('uploads/' . $member->profile) }}" alt="">
-                            </div>
-                        </a>
-                        <div class="profile_details">
-                            <label class="name"><b>{{ $member->name }}</b></label>
-                            <label class="name">{{ $member->title }}</label>
-                            <label class="name">{{ $member->email }}</label>
-                            <label class="name">{{ $member->mobile }}</label>
-                            <label class="name">{{ $member->landline }}</label>
-                            <label class="name">{{ $member->twitter }}</label>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
-
-
-
-
-
-        <div class="container">
-            <h3 class="my-5">London Borough of Croydon Shadow Cabinet Members (Labour)</h3>
-        </div>
-        <div class="row g-4">
-            @foreach ($shadow_cabbinet_members as $member)
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="member__card">
-                        <a href="{{ $member->id }}">
-                            <div class="profile">
-                                <img src="{{ asset('uploads/' . $member->profile) }}" alt="">
-                            </div>
-                        </a>
-                        <div class="profile_details">
-                            <label class="name"><b>{{ $member->name }}</b></label>
-                            <label class="name">{{ $member->title }}</label>
-                            <label class="name">{{ $member->email }}</label>
-                            <label class="name">{{ $member->mobile }}</label>
-                            <label class="name">{{ $member->landline }}</label>
-                            <label class="name">{{ $member->twitter }}</label>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-
-
-
-
-
     </div>
 
 
 
 
+
+
+
+
+    <div class="container my-5">
+    
+    <div class="links__cards__section">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image1) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title1 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details1 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link1 }}" class="btn btn-dark">Advertise Today
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image2) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title2 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details2 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link2 }}" class="btn btn-dark">Business Listing
+                                <i class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="link__card">
+                        <div class="card__image">
+                            <img src="{{ asset('uploads/' . $links[0]->image3) }}" alt="">
+                        </div>
+                        <div class="card__body">
+                            <h3 class="card__title">
+                                {{ $links[0]->title3 }}
+                            </h3>
+                            <p align="justify" class="card__content">
+                                {{ $links[0]->details3 }}
+                            </p>
+                            <a href=" {{ url('') }}/{{ $links[0]->link3 }}" class="btn btn-dark">Events Listing <i
+                                    class="ps-3 fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\LggWardMember;
+use App\Models\LggWardsList;
+use App\Models\pages\LinksCard;
 use Illuminate\Http\Request;
 
 class LggWardMembers extends Controller
@@ -33,5 +35,26 @@ class LggWardMembers extends Controller
         });
 
         return view('frontend.ward-members', ['cabbinet_members' => $cabbinet_members, 'shadow_cabbinet_members' => $shadow_cabbinet_members, 'other_members' => $other_members, 'addiscombe_east_members' => $addiscombe_east_members]);
+    }
+
+
+
+
+
+    public function getAllWardsList()
+    {
+        return view('frontend.crydon-wards-list', ['wardsList' => LggWardsList::where('ward_status', 'active')->whereNotIn('id', [30, 31])->get(),'links'=>LinksCard::all()]);
+    }
+
+    public function getWardMembersByWardId($id)
+    {
+        $members = LggWardMember::where('lgg_ward_members.wardId', $id)->join('lgg_wards_list', 'lgg_wards_list.id', '=', 'lgg_ward_members.wardId')->where('lgg_wards_list.ward_status', 'active')->get(
+            [
+                'lgg_ward_members.*',
+                'lgg_wards_list.id as lgg_ward_id',
+                'lgg_wards_list.ward_title as lgg_ward_title'
+            ]
+        );
+        return view('frontend.show-members-by-ward',['members' => $members,'links'=>LinksCard::all()]);
     }
 }

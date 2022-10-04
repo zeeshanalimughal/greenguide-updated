@@ -44,7 +44,13 @@ Route::fallback(function () {
 
 
 
-Route::get('/ward-members',[FrontendLggWardMembers::class,'getAllMembers']);
+
+
+
+Route::get('/crydon-wards',[FrontendLggWardMembers::class,'getAllWardsList'])->name('crydon-wards');
+Route::get('/crydon-ward/{id}',[FrontendLggWardMembers::class,'getWardMembersByWardId'])->name('crydon-ward-by-id');
+
+Route::get('/ward-members',[FrontendLggWardMembers::class,'getAllMembers'])->name('ward-members');
 
 
 // Website Policies Terms Conditions Routes

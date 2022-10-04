@@ -4,6 +4,33 @@ html {
 
 
 
+.wards__boxes{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.wards__boxes .ward__box{
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  align-content:center;
+  background:#eeeeee;
+  text-align: center;
+}
+.wards__boxes .ward__box h2{
+
+  font-size:22px !important;
+  margin-bottom:20px;
+}
+
+
+.wards__list__container{
+  margin: 4rem 0;
+}
+
+
 /* Ward Members styles */
 .wards__members__section{
   max-width: 90%;
