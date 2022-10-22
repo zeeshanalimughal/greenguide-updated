@@ -2,7 +2,22 @@ html {
     scroll-padding-top: 23rem;
 }
 
-
+.footer_social_icons{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+.footer_social_icons li a{
+    font-size: 23px;
+    color: #000 !important;
+    display: flex;
+    align-items: center;
+}
+.footer_social_icons li a img{
+    width: 30px;
+}
 
 .wards__boxes{
   width: 100%;
@@ -299,7 +314,7 @@ transform:translate(-50%,-50%) rotate(720deg);
   margin-bottom: 1.5rem;
 }
 
-.links__cards__section .link__card .card__image{ 
+.links__cards__section .link__card .card__image{
   width:100%;
   height: 220px;
   position: relative;
@@ -308,7 +323,7 @@ transform:translate(-50%,-50%) rotate(720deg);
 
 
 
-.links__cards__section .link__card .card__image img{ 
+.links__cards__section .link__card .card__image img{
  position: absolute;
  width: 100%;
  height: 100%;
@@ -319,7 +334,7 @@ transform:translate(-50%,-50%) rotate(720deg);
 }
 
 
-.links__cards__section .link__card .card__body{ 
+.links__cards__section .link__card .card__body{
 background-color: #fff;
 box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 width: 90%;
@@ -329,11 +344,11 @@ z-index: 10;
 padding:10px 20px;
 border-radius: 5px;
 }
-.links__cards__section .link__card .card__body .card__title{ 
+.links__cards__section .link__card .card__body .card__title{
 font-size: 17px;
 font-weight: 700;
 }
-.links__cards__section .link__card .card__body .card__content{ 
+.links__cards__section .link__card .card__body .card__content{
 font-size: 14px;
 font-weight: 400;
 letter-spacing: -.5px;
