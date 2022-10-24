@@ -3,7 +3,7 @@
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-   
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="LGG" />
@@ -51,7 +51,6 @@
         .active {
             color: #2250fc !important;
         }
-
     </style>
 </head>
 
@@ -62,12 +61,13 @@
             <div class="header-inner">
                 <div class="container d-flex justify-content-center">
                     <!--Logo-->
-                    <div id="logo"> <a href="/"><span class="logo-default"><img class="img-fluid" width="100px"
-                                    height="60px" src="{{ url('front/img/green-guide-logo.png') }}"></span></a> </div>
+                    <div id="logo"> <a href="/"><span class="logo-default"><img class="img-fluid"
+                                    width="100px" height="60px"
+                                    src="{{ url('front/img/green-guide-logo.png') }}"></span></a> </div>
                     <!--End: Logo-->
                     <!-- Search -->
-                    <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i
-                                class="icon-x"></i></a>
+                    <div id="search"><a id="btn-search-close" class="btn-search-close"
+                            aria-label="Close search form"><i class="icon-x"></i></a>
                         <form class="search-form" action="search-results-page.html" method="get">
                             <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
                             <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
@@ -101,14 +101,15 @@
                         <div class="container d-sm-flex justify-content-sm-center align-items-sm-center">
                             <nav>
                                 <ul>
-                                    <li class="{{ Request::url() === route('/') ? 'active' : '' }}"><a
-                                            href="/">Home</a></li>
+                                    {{-- <li class="{{ Request::url() === route('/') ? 'active' : '' }}"><a
+                                            href="/">Home</a></li> --}}
                                     <li class="{{ Request::url() === route('about') ? 'active' : '' }}"><a
                                             href="/about">About</a></li>
                                     <!-- <li><a href="/advertise">Advertise</a></li> -->
                                     <li class="{{ Request::url() === route('advertise') ? 'active' : '' }}">
-                                        <div class="p-dropdown"><a href="{{ route('advertise') }}"
-                                                id="advertise-home" class="py-2 px-3 font-weight-600">Advertise <i class="fa fa-chevron-down"></i></a></a>
+                                        <div class="p-dropdown"><a href="{{ route('advertise') }}" id="advertise-home"
+                                                class="py-2 px-3 font-weight-600">Advertise <i
+                                                    class="fa fa-chevron-down"></i></a></a>
                                             <ul class="p-dropdown-content">
                                                 <li
                                                     class="{{ Request::url() === route('advertise') ? 'active' : '' }}">
@@ -130,13 +131,27 @@
                                             </ul>
                                         </div>
                                     </li>
+                                    <li class="{{ Request::url() === route('croydon-delivery') ? 'active' : '' }}">
+                                        <div class="p-dropdown"><a href="#" id="advertise-home"
+                                                class="py-2 px-3 font-weight-600">Magazine <i
+                                                    class="fa fa-chevron-down"></i></a></a>
+                                            <ul class="p-dropdown-content">
+                                                <li
+                                                    class="{{ Request::url() === route('croydon-delivery') ? 'active' : '' }}">
+                                                    <a href="magazine/croydon-delivery">Crydon</a></li>
+                                                <li
+                                                    class="{{ Request::url() === route('croydon-delivery') ? 'active' : '' }}">
+                                                    <a href="/about#circulation__area__section">Enfield</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <li class="{{ Request::url() === route('localevents') ? 'active' : '' }}"><a
                                             href="/localevents">Local Events</a></li>
                                     <li
-                                        class="{{ Request::url() === route('businessdirectory') ||Request::url() === route('businessdirectory.add-new-directory')? 'active': '' }}">
+                                        class="{{ Request::url() === route('businessdirectory') || Request::url() === route('businessdirectory.add-new-directory') ? 'active' : '' }}">
                                         <a href="/businessdirectory">Business Directory</a>
                                     </li>
-{{--                                     
+                                    {{--
                                     <li
                                         class="{{ Request::url() === route('residents-corner') ? 'active': '' }}">
                                         <a href="/residents-corner">Residents Corner</a>
@@ -144,15 +159,16 @@
 
                                     <li class="{{ Request::url() === route('residents-corner') ? 'active' : '' }}">
                                         <div class="p-dropdown"><a href="{{ route('advert_home') }}"
-                                                id="advertise-home" class="py-2 px-3 font-weight-600">Residents Corner  <i class="fa fa-chevron-down"></i></a>
+                                                id="advertise-home" class="py-2 px-3 font-weight-600">Residents Corner
+                                                <i class="fa fa-chevron-down"></i></a>
                                             <ul class="p-dropdown-content">
                                                 <li
                                                     class="{{ Request::url() === route('residents-corner') ? 'active' : '' }}">
                                                     <a href="/magzine-competition">Magazine Competitions </a>
                                                 </li>
-                                                <li 
+                                                <li
                                                     class="{{ Request::url() === route('residents-corner') || Request::url() === route('advert.advert-book') ? 'active' : '' }}">
-                                                    <a href="{{url('/magzine-giveaway')}}">Magazine Giveaway</a>
+                                                    <a href="{{ url('/magzine-giveaway') }}">Magazine Giveaway</a>
                                                 </li>
 
                                                 <li
@@ -162,7 +178,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    
+
                                     <li class="{{ Request::url() === route('greeninitiative') ? 'active' : '' }}"><a
                                             href="/greeninitiative">Green Initiative</a></li>
                                     {{-- <li  class="{{ Request::url() === route('communitygrowth') ? 'active' : '' }}"><a href="/communitygrowth">Comunity Growth</a></li> --}}
@@ -170,8 +186,7 @@
                                             href="/jobs">Jobs</a></li>
                                     <li class="{{ Request::url() === route('contact') ? 'active' : '' }}"><a
                                             href="/contact">Contact</a></li>
-                                    <li class="{{ Request::url() === route('crydon-wards') ? 'active' : '' }}"><a
-                                            href="/crydon-wards">Crydon Wards</a></li>
+
                                     @guest
                                         <li class="{{ Request::url() === route('login') ? 'active' : '' }}"><a
                                                 href="/login">login</a></li>

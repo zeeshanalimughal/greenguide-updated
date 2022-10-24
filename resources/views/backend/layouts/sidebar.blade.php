@@ -125,6 +125,11 @@
                                      class="side-menu__label">Jobs</span></a>
                          </li>
                          <li class="slide">
+                             <a class="side-menu__item" data-bs-toggle="slide" href="{{ url('admins/comming-soon-messages') }}"><i
+                                     class="side-menu__icon fe fe-anchor"></i><span
+                                     class="side-menu__label">London Borough CommingSoon</span></a>
+                         </li>
+                         <li class="slide">
                              <a class="side-menu__item" data-bs-toggle="slide" href="{{ url('admins/borough') }}"><i
                                      class="side-menu__icon fe fe-anchor"></i><span
                                      class="side-menu__label">Borough</span></a>

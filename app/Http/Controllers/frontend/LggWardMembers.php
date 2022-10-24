@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\General_Setting;
+use App\Models\LatestIssue;
 use App\Models\LggWardMember;
 use App\Models\LggWardsList;
+use App\Models\pages\Archive;
 use App\Models\pages\LinksCard;
+use App\Models\UpcommingIssues;
 use Illuminate\Http\Request;
 
 class LggWardMembers extends Controller
@@ -56,5 +60,10 @@ class LggWardMembers extends Controller
             ]
         );
         return view('frontend.show-members-by-ward',['members' => $members,'links'=>LinksCard::all()]);
+    }
+
+
+    public function getCrydonDeliveryPage(){
+        return view('frontend.croydon-delivery',['issues' => UpcommingIssues::all(), 'links' => LinksCard::where('id', 1)->get(), 'settings' => General_Setting::first()->get(['ui_heading_one', 'ui_heading_two', 'ui_heading_three']), 'page' => Archive::find(1),'latestIssues'=>LatestIssue::all()]);
     }
 }

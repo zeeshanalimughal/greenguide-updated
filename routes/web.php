@@ -14,6 +14,7 @@ use App\Http\Controllers\frontend\About;
 use App\Http\Controllers\frontend\Businessdirectory;
 use App\Http\Controllers\frontend\Localevents;
 use App\Http\Controllers\frontend\Advertise;
+use App\Http\Controllers\frontend\CommingSoon;
 use App\Http\Controllers\frontend\UserAccount;
 use App\Http\Controllers\frontend\ComunityGrowth;
 use App\Http\Controllers\frontend\Contact;
@@ -51,6 +52,22 @@ Route::get('/crydon-wards',[FrontendLggWardMembers::class,'getAllWardsList'])->n
 Route::get('/crydon-ward/{id}',[FrontendLggWardMembers::class,'getWardMembersByWardId'])->name('crydon-ward-by-id');
 
 Route::get('/ward-members',[FrontendLggWardMembers::class,'getAllMembers'])->name('ward-members');
+
+Route::get('magazine/croydon-delivery',[FrontendLggWardMembers::class,'getCrydonDeliveryPage'])->name('croydon-delivery');
+
+
+Route::get('comming-soon/redbridge',[CommingSoon::class,'getRedbridgePage'])->name('commingsoon.redbridge');
+Route::get('comming-soon/merton',[CommingSoon::class,'getMertongePage'])->name('commingsoon.mertonge');
+Route::get('comming-soon/lewisham',[CommingSoon::class,'getLewishamPage'])->name('commingsoon.lewisham');
+Route::get('comming-soon/havering',[CommingSoon::class,'getHaveringPage'])->name('commingsoon.havering');
+Route::get('comming-soon/enfield',[CommingSoon::class,'getEnfieldPage'])->name('commingsoon.enfield');
+Route::get('comming-soon/bromley',[CommingSoon::class,'getBromleyPage'])->name('commingsoon.bromley');
+Route::get('comming-soon/albans',[CommingSoon::class,'getAlbansPage'])->name('commingsoon.albans');
+
+
+Route::post('comming-soon/london-borough',[CommingSoon::class,'londonBoroughCommingSoonFrom'])->name('commingsoon.london-borough');
+
+
 
 
 // Website Policies Terms Conditions Routes
@@ -270,6 +287,13 @@ Route::middleware(['admin-auth'])->group(function () {
 
 
         // LGG Wards List
+        Route::prefix('/comming-soon-messages/')->name('commingSoon.')->group(function () {
+            Route::get('/', [CommingSoon::class, 'getAllCommingSoonMessages'])->name('getAllCommingSoonMessages');
+            Route::get('{action}/{id}', [CommingSoon::class, 'manageCommingSoonMessages'])->name('manage');
+        });
+
+
+        // LGG Wards List
         Route::prefix('/lgg-wards-list/')->name('lggWardsList.')->group(function () {
             Route::get('/', [LggWardsList::class, 'getLggWardsList'])->name('getLggWardsList');
             Route::post('add', [LggWardsList::class, 'addLggWards'])->name('add');
@@ -288,7 +312,7 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::post('update', [LggWardMembers::class, 'updateWardsMember'])->name('update');
         });
 
-    
+
 
 
         // Greengude Team Admin
@@ -356,7 +380,7 @@ Route::middleware(['admin-auth'])->group(function () {
 
 
 
-        
+
         // Upcommign Issues
         Route::prefix('/upcomming-issues/')->name('issue.')->group(function () {
             Route::get('/', [UpcommingIssues::class, 'index']);
@@ -495,7 +519,7 @@ Route::middleware(['admin-auth'])->group(function () {
             Route::get('advertise-carousel', [Pages::class, 'getAdvertiseCarouselPage']);
             Route::post('advertise-carousel', [Pages::class, 'addAdvertiseCarousel'])->name('page.advertiseCarousel');
             Route::get('manage-advertise-carousel/{id}/{action}', [Pages::class, 'manageAdvertiseCarousel'])->name('page.manageAdvertiseCarousel');
-            
+
             Route::post('update-advertise-carousel', [Pages::class, 'updateAdvertiseCarousel'])->name('page.updateAdvertiseCarousel');
 
 
@@ -557,27 +581,27 @@ Route::middleware(['admin-auth'])->group(function () {
             //Feedback Page
             Route::get('feedback', [Pages::class, 'getAdminFeedbackPage']);
             Route::post('feedback', [Pages::class, 'feedbackPage'])->name('page.feedback');
-            
-            
+
+
 
             //Advert Design Page
             Route::get('advert-design', [Pages::class, 'getAdvertDesign']);
             Route::post('advert-design', [Pages::class, 'advertDesign'])->name('page.advert-design');
-            
-            
-            
+
+
+
 
             //AdvertiseInMagazine Design Page
             Route::get('advertise-in-magazine', [Pages::class, 'getAdvertiseInMagazine']);
             Route::post('advertise-in-magazine', [Pages::class, 'advertiseInMagazine'])->name('page.advertise-in-magazine');
-            
+
 
             //Archives Page
             Route::get('archives', [Pages::class, 'getArchivesPage']);
             Route::post('archives', [Pages::class, 'archivesPageUpdate'])->name('page.archives');
-            
-            
-           
+
+
+
         });
     });
 });

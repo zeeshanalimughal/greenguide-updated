@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Oct 17, 2022 at 07:31 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 24, 2022 at 03:18 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -791,6 +791,22 @@ INSERT INTO `links_cards` (`id`, `image1`, `title1`, `details1`, `link1`, `image
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `london_borough_comming_soon_form`
+--
+
+CREATE TABLE `london_borough_comming_soon_form` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `area_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `magazine_highlights`
 --
 
@@ -899,7 +915,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (87, '2022_09_13_100326_create_page_local_events_table', 54),
 (88, '2022_09_29_053230_create_lgg_wards_list_table', 55),
 (89, '2022_09_29_070140_create__lgg_ward_members_table', 56),
-(90, '2022_09_29_071535_create_lgg_ward_members_table', 57);
+(90, '2022_09_29_071535_create_lgg_ward_members_table', 57),
+(91, '2022_10_24_055614_create_london_borough_comming_soon_form_table', 58);
 
 -- --------------------------------------------------------
 
@@ -927,7 +944,7 @@ CREATE TABLE `page_about` (
 --
 
 INSERT INTO `page_about` (`id`, `ab_image`, `ab_title`, `ab_desc1`, `ab_desc2`, `ab_box1`, `ab_box2`, `ab_box3`, `ab_company`, `ab_company_qt`, `created_at`, `updated_at`) VALUES
-(1, '1645537329 4.png', 'Local Green Guide Ltd', '<p class=\"MsoNormal\">Local Green Guide Ltd has been trading as LGG Marketing, a <span style=\"color:#3C4043\">leaflet design, print and distribution company for the\r\nlast seven years.&nbsp; Our dedicated\r\nmanagement team has been working in the distribution industry for more than 3\r\ndecades and we work collaboratively with various local authorities,\r\ncommunication companies and well-known national brands. As our company has\r\nrapidly grown we have analysed the market to indicate new opportunities that our\r\nexperience and skill sets can flourish within.&nbsp;&nbsp;<o:p></o:p></span></p>', '<p class=\"MsoNormal\"><span style=\"mso-bidi-font-family:Calibri;mso-bidi-theme-font:\r\nminor-latin;color:#3C4043\">We’re excited to bring our door to door expertise\r\ninto the manufacturing and publication of residential magazines for every\r\nLondon Borough. The first dedicated residential magazine will be within the\r\nLondon Borough of Croydon. The high quality publication will be an accumulation\r\nof local news and information along with a business directory. As we continue\r\ndown this path we will strive to help our clients expand their customer base which\r\nwill be supported by our professional customer service. &nbsp;<o:p></o:p></span></p>', 'Local Green Guide want to empower residents to know who they can connect with, who they can go to and who they can turn to.', 'Local Green Guide actively seek marketing avenues to enhance our clients brand exposure through trusted and transparent services.', 'Local Green Guide have an environmental responsibility to replenish that which we us.', 'Delivering 150,000+ Local Green Guide magazine across the London Borough of Croydon', '<p class=\"MsoNormal\">&nbsp;The Local Green Guide magazine will be hand delivered by our experienced door to door distribution teams. Our years of experience and expertise in the industry enable us full control from creation to delivery, no need to rely on third party companies. LGG Marketing have been delivering the Your Croydon newsletter on behalf of the Croydon Council for the last six years which means our delivery maps are refined and empower us to produce smooth delivery campaigns, every quarter.| The Local Green Guide Croydon magazine will be posted to the following households;&nbsp;| Addiscombe, Broad Green, Crystal Palace,&nbsp;Coulsdon, Croydon, Kenley, Norbury, Purley,&nbsp; Old Coulsdon, Sanderstead, Selhurst, Selsdon, South Croydon, South Norwood, Shirley, Thornton Heath, Upper Norwood, Waddon, Woodside&nbsp;| SW16, SE19, SE25, CR0, CR2, CR5, CR6, CR7, CR8&nbsp;|&nbsp;</p>\r\n\r\n<p class=\"MsoNormal\" style=\"line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;\"><br></p>', NULL, '2022-09-28 13:19:10');
+(1, '1645537329 4.png', 'Local Green Guide Ltd', '<p class=\"MsoNormal\">Local Green Guide Ltd has been trading as LGG Marketing, a <span style=\"color:#3C4043\">leaflet design, print and distribution company for the\r\nlast seven years.&nbsp; Our dedicated\r\nmanagement team has been working in the distribution industry for more than 3\r\ndecades and we work collaboratively with various local authorities,\r\ncommunication companies and well-known national brands. As our company has\r\nrapidly grown we have analysed the market to indicate new opportunities that our\r\nexperience and skill sets can flourish within.&nbsp;&nbsp;<o:p></o:p></span></p>', '<p class=\"MsoNormal\"><span style=\"mso-bidi-font-family:Calibri;mso-bidi-theme-font:\r\nminor-latin;color:#3C4043\">We’re excited to bring our door to door expertise\r\ninto the manufacturing and publication of residential magazines for every\r\nLondon Borough. The first dedicated residential magazine will be within the\r\nLondon Borough of Croydon. The high quality publication will be an accumulation\r\nof local news and information along with a business directory. As we continue\r\ndown this path we will strive to help our clients expand their customer base which\r\nwill be supported by our professional customer service. &nbsp;<o:p></o:p></span></p>', 'To empower residents to know who they can connect with, who they can go to and who they can turn to.', 'To actively seek marketing avenues that enhance our clients brand exposure through professional and transparent services.', 'To be environmentally responsible by replenishing that which we use.', 'Delivering 150,000+ Local Green Guide magazine across the London Borough of Croydon', '<p class=\"MsoNormal\">&nbsp;The Local Green Guide magazine will be hand delivered by our experienced door to door distribution teams. Our years of experience and expertise in the industry enable us full control from creation to delivery, no need to rely on third party companies. LGG Marketing have been delivering the Your Croydon newsletter on behalf of the Croydon Council for the last six years which means our delivery maps are refined and empower us to produce smooth delivery campaigns, every quarter.| The Local Green Guide Croydon magazine will be posted to the following households;&nbsp;| Addiscombe, Broad Green, Crystal Palace,&nbsp;Coulsdon, Croydon, Kenley, Norbury, Purley,&nbsp; Old Coulsdon, Sanderstead, Selhurst, Selsdon, South Croydon, South Norwood, Shirley, Thornton Heath, Upper Norwood, Waddon, Woodside&nbsp;| SW16, SE19, SE25, CR0, CR2, CR5, CR6, CR7, CR8&nbsp;|&nbsp;</p>\r\n\r\n<p class=\"MsoNormal\" style=\"line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;\"><br></p>', NULL, '2022-10-24 08:17:54');
 
 -- --------------------------------------------------------
 
@@ -1023,7 +1040,7 @@ CREATE TABLE `page_advert_design` (
   `advertorial_sec_desc` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `advertorial_sec_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cards_section_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `design_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`design_images`)),
+  `design_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `artwork_specifications` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `advert_sizes_images` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `section3_heading` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1176,7 +1193,7 @@ CREATE TABLE `page_contact` (
 --
 
 INSERT INTO `page_contact` (`id`, `contact_hero_image`, `contact_title`, `contact_sub_title`, `contact_desc`, `contact_map`, `otp_checkbox_text`, `otp_bottom_text`, `contact_team_title`, `contact_team_desc`, `contact_team_bg_image`, `contact_media_title`, `contact_media_desc`, `finance_email`, `finance_phone`, `design_email`, `design_phone`, `operations_email`, `operations_phone`, `customer_email`, `customer_phone`, `sales_email`, `sales_phone`, `hr_email`, `hr_phone`, `facebook`, `skype`, `twitter`, `instagram`, `linkdin`, `youtube`, `vimeo`, `created_at`, `updated_at`) VALUES
-(1, '1646374181 contact-us-hero.jpg', 'We’d Love to Hear From You', 'GET IN TOUCH', '&nbsp; &nbsp;', '<iframe\r\n                        src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.241881356656!2d-0.050808684338578!3d51.61877817965347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761e8ae036c7b1%3A0x85f7847126c3629f!2sLocal%20Green%20Guide%20Ltd%20-%20LGG%20Marketing!5e0!3m2!1sen!2s!4v1639087067763!5m2!1sen!2s\"\r\n                        style=\"border:0;widows: 100% !important; height: 50vh !important;\" allowfullscreen=\"\"\r\n                        loading=\"lazy\"></iframe>', 'I understand that when I collect submit I will no longer receive the Local Green Guide magazine', '<h3><span style=\"font-size:22px\"><strong>Not happy about something?</strong></span></h3>\r\n\r\n<p><span style=\"font-size:16px\">Fill in the form to the left and our professional customer service team will be in touch. </span></p>\r\n\r\n<p><span style=\"font-size:16px\">If you wish to no longer recieve the Local Green Guide magazine please complete the opt out form below.&nbsp;</span></p>', 'Local Green Guide Team', 'You can rely on our amazing, professional and friendly customer service team.', '1663133771-our-team-bg.jpg', 'Media Partnerships', 'We love to support local events and have been chosen to be media partners for many of the best local festivals and events. The best partnerships include advertising, competitions, editorial, online and engagement at events.', 'accounts@localgreenguide.com', '02037735835', 'design@localgreenguide.com', '02037735835', 'magazine@localgreenguide.com', '02037735835', 'info@localgreenguide.com', '02037735835', 'sales@localgreenguide.com', '07846 639436', 'hr@localgreenguide.com', '07484 795416', 'https://facebook.com/profile.php?id=100083758106281', NULL, 'https://twitter.com/lggmarketing?lang=en', 'https://https://instagram.com/greenguide_magazine/', 'https://example.com', NULL, NULL, NULL, '2022-09-29 14:55:06');
+(1, '1646374181 contact-us-hero.jpg', 'We’d Love to Hear From You', 'GET IN TOUCH', '&nbsp; &nbsp;', '<iframe\r\n                        src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2477.241881356656!2d-0.050808684338578!3d51.61877817965347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761e8ae036c7b1%3A0x85f7847126c3629f!2sLocal%20Green%20Guide%20Ltd%20-%20LGG%20Marketing!5e0!3m2!1sen!2s!4v1639087067763!5m2!1sen!2s\"\r\n                        style=\"border:0;widows: 100% !important; height: 50vh !important;\" allowfullscreen=\"\"\r\n                        loading=\"lazy\"></iframe>', 'I understand that when I click submit I will no longer receive the Local Green Guide magazine', '<h3><span style=\"font-size:22px\"><strong>Not happy about something?</strong></span></h3>\r\n\r\n<p><span style=\"font-size:16px\">Fill in the form to the left and our professional customer service team will be in touch. </span></p>\r\n\r\n<p><span style=\"font-size:16px\">If you wish to no longer recieve the Local Green Guide magazine please complete the opt out form below.&nbsp;</span></p>', 'Local Green Guide Team', 'You can rely on our amazing, professional and friendly customer service team.', '1663133771-our-team-bg.jpg', 'Media Partnerships', 'We love to support local events and have been chosen to be media partners for many of the best local festivals and events. The best partnerships include advertising, competitions, editorial, online and engagement at events.', 'accounts@localgreenguide.com', '02037735835', 'design@localgreenguide.com', '02037735835', 'magazine@localgreenguide.com', '02037735835', 'info@localgreenguide.com', '02037735835', 'sales@localgreenguide.com', '07846 639436', 'hr@localgreenguide.com', '07484 795416', 'https://facebook.com/profile.php?id=100083758106281', NULL, 'https://twitter.com/lggmarketing?lang=en', 'https://https://instagram.com/greenguide_magazine/', 'https://example.com', NULL, NULL, NULL, '2022-10-06 07:51:30');
 
 -- --------------------------------------------------------
 
@@ -1754,6 +1771,12 @@ ALTER TABLE `links_cards`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `london_borough_comming_soon_form`
+--
+ALTER TABLE `london_borough_comming_soon_form`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `magazine_highlights`
 --
 ALTER TABLE `magazine_highlights`
@@ -2025,7 +2048,7 @@ ALTER TABLE `home_gallery`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `latest_issues`
@@ -2052,6 +2075,12 @@ ALTER TABLE `links_cards`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `london_borough_comming_soon_form`
+--
+ALTER TABLE `london_borough_comming_soon_form`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `magazine_highlights`
 --
 ALTER TABLE `magazine_highlights`
@@ -2061,7 +2090,7 @@ ALTER TABLE `magazine_highlights`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `page_about`
@@ -2181,13 +2210,13 @@ ALTER TABLE `upcomming_issues`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `website_froms`

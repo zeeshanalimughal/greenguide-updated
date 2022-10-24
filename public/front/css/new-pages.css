@@ -2,6 +2,220 @@ html {
     scroll-padding-top: 23rem;
 }
 
+
+
+
+
+
+
+
+
+
+/* New footer page design */
+.hero_about_arrow{
+    width: 100%;
+    min-height: 67vh;
+
+    position: relative;
+    /* clip-path: polygon(86% 0, 100% 50%, 86% 100%, 66% 100%, 79% 50%, 66% 0); */
+    display: flex;
+    align-items: center;
+    background-color: #4F9467;
+}
+.hero_about_arrow h1{
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    text-decoration: underline;
+}
+.hero_about_arrow p{
+    color: #fff;
+    font-size: 18px;
+}
+.hero_about_arrow button{
+    border: 2px solid #346445 !important;
+    background-color: transparent !important;
+    margin-top: 30px;
+    align-self: center;
+}
+.arrow__clipped{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../img//about\ image\ 2.webp') ;
+    background-attachment: fixed;
+    background-size: 700px;
+    background-position: center;
+    clip-path: polygon(86% 0, 100% 50%, 86% 100%, 66% 100%, 79% 50%, 66% 0);
+}
+.arrow__clipped__reverse{
+    clip-path: polygon(34% 0, 18% 50%, 34% 100%, 14% 100%, 0% 50%, 14% 0);
+
+}
+
+.about__our__services{
+    margin: 4rem 0;
+    padding: 20px;
+
+}
+.about__our__services .service_cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem, 1fr));
+    align-content: flex-start;
+    margin: 0 !important;
+}
+
+.about__our__services .service_cards .service_card{
+    padding: 0 !important;
+    margin: 0 !important;
+   min-height: 20rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+.about__our__services .service_cards .service_card h1{
+   color: #fff !important;
+}
+
+.about__our__services .service_cards .service_card:nth-child(1){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/hd-wallpaper-gbb3008f4f_1280.jpg') ;
+}
+.about__our__services .service_cards .service_card:nth-child(2){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/digitization-g31bab2ad6_1280.jpg') ;
+    background-position: center;
+}
+.about__our__services .service_cards .service_card:nth-child(3){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/people-g1df654a84_1280.jpg') ;
+    background-position: bottom;
+}
+.about__our__services .service_cards .service_card:nth-child(4){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/puzzle-gadea232af_1280.jpg') ;
+    background-size: 200%;
+    background-position: center;
+}
+.about__our__services .service_cards .service_card:nth-child(5){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/hd-wallpaper-ge1b3f5ded_1280.jpg') ;
+    background-position: bottom;
+
+}
+.about__our__services .service_cards .service_card:nth-child(6){
+    background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('../img/background-g3329f32e2_1280.jpg') ;
+    background-position: center;
+}
+
+
+
+
+.circulation__area__section{
+    min-height: 80vh;
+    width: 100%;
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../img/wormhole-g8cadb3faa_1280.png') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 8rem 10%;
+    text-align: center;
+}
+.circulation__area__section .circulation_cards{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(23rem, 1fr));
+    align-content: flex-start;
+    gap: 2rem;
+}
+.circulation__area__section .circulation_cards .circulation_card{
+   min-height: 16rem;
+   background-color: #fff;
+   display: grid;
+   place-items: center;
+    padding: 20px;
+    /* border-radius: 60px 5px 60px 5px; */
+}
+
+.circulation__area__section .circulation_cards .circulation_card .title{
+  font-size: 1.8rem;
+}
+
+
+
+.circulation__area__section > h1{
+    color: #fff;
+}
+
+.circulation__area__section > p{
+    color: #fff;
+    font-size: 18px;
+}
+
+
+.advertisement__spaces{
+    min-height: 70vh;
+    width: 100%;
+    background-image:linear-gradient(to right,rgba(0,0,0,0.8) 50%,transparent 50%), url('../img/executives-joking-laughing-office_1098-1834.webp') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 8rem 10%;
+}
+
+
+.advertisement__spaces .title{
+    color: #fff;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+.advertisement__spaces .desc{
+    color: #0ED145;
+    font-size: 18px;
+}
+
+
+.advertisement__spaces button{
+    background-color: transparent !important;
+    border:3px solid #22B14C !important;
+}
+
+
+.advertisement__spaces .advertise_spaces__box{
+    max-width: 100%;
+    width: 100%;
+    padding: 4rem 8%;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(12rem, 1fr));
+    gap: 5rem;
+}
+.advertisement__spaces .advertise_spaces__box .advertise__size__box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.advertisement__spaces .advertise_spaces__box .advertise__size__box .size__title{
+    font-size: 1.8rem;
+    margin: 20px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .footer_social_icons{
     display: flex;
     list-style: none;
@@ -1170,6 +1384,7 @@ align-items        : center;
     margin: 0;
   }
   @media all and (min-width: 900px) {
+
     .pen {
       max-width: 100%;
       width:100%;
@@ -1481,7 +1696,33 @@ align-items        : center;
 }
 
 
+@media (max-width:991px) {
+    .advertisement__spaces{
+
+        background-image:linear-gradient(to right,rgba(0,0,0,0.8) 100%,transparent 0), url('../img/executives-joking-laughing-office_1098-1834.webp') ;
+        padding: 4rem 5%;
+    }
+    .advertisement__spaces .advertise_spaces__box{
+        gap: 2rem;
+        background-color:transparent;
+    }
+    .advertisement__spaces .advertise_spaces__box .advertise__size__box{
+       background-color: #fff;
+       padding: 30px;
+    }
+
+   .hero_about_arrow .arrow__clipped{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%) !important;
+   }
+}
+
+
 @media (max-width:780px) {
+
+.about__our__services{
+padding:0 !important;
+
+}
   .wards__members__section{
     max-width: 100%;
     width:100%;
