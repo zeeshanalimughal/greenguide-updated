@@ -63,6 +63,7 @@ Route::get('comming-soon/havering',[CommingSoon::class,'getHaveringPage'])->name
 Route::get('comming-soon/enfield',[CommingSoon::class,'getEnfieldPage'])->name('commingsoon.enfield');
 Route::get('comming-soon/bromley',[CommingSoon::class,'getBromleyPage'])->name('commingsoon.bromley');
 Route::get('comming-soon/albans',[CommingSoon::class,'getAlbansPage'])->name('commingsoon.albans');
+Route::get('comming-soon/london-borough-of-croydon',[CommingSoon::class,'getCroydonPage'])->name('commingsoon.croydon');
 
 
 Route::post('comming-soon/london-borough',[CommingSoon::class,'londonBoroughCommingSoonFrom'])->name('commingsoon.london-borough');

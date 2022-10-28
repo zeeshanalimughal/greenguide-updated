@@ -71,15 +71,6 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 col-md-12 offset-sm-1 offset-0">
-                        <p class=" text-bold">Local Green Guide Ltd (t/a) LLG Marketing is a limited company registered
-                            in England and Wales. Registered Office: Unit 4 Georgiou Business Park, Second Avenue,
-                            London, N18 2PG Company Reg No. 09076943</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="copyright-content">

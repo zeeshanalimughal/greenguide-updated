@@ -103,8 +103,8 @@
                                 <ul>
                                     {{-- <li class="{{ Request::url() === route('/') ? 'active' : '' }}"><a
                                             href="/">Home</a></li> --}}
-                                    <li class="{{ Request::url() === route('about') ? 'active' : '' }}"><a
-                                            href="/about">About</a></li>
+                                    {{-- <li class="{{ Request::url() === route('about') ? 'active' : '' }}"><a
+                                            href="/about">About</a></li> --}}
                                     <!-- <li><a href="/advertise">Advertise</a></li> -->
                                     <li class="{{ Request::url() === route('advertise') ? 'active' : '' }}">
                                         <div class="p-dropdown"><a href="{{ route('advertise') }}" id="advertise-home"
@@ -184,8 +184,8 @@
                                     {{-- <li  class="{{ Request::url() === route('communitygrowth') ? 'active' : '' }}"><a href="/communitygrowth">Comunity Growth</a></li> --}}
                                     <li class="{{ Request::url() === route('jobs') ? 'active' : '' }}"><a
                                             href="/jobs">Jobs</a></li>
-                                    <li class="{{ Request::url() === route('contact') ? 'active' : '' }}"><a
-                                            href="/contact">Contact</a></li>
+                                    {{-- <li class="{{ Request::url() === route('contact') ? 'active' : '' }}"><a
+                                            href="/contact">Contact</a></li> --}}
 
                                     @guest
                                         <li class="{{ Request::url() === route('login') ? 'active' : '' }}"><a

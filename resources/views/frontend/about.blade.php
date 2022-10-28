@@ -59,7 +59,7 @@
 
 
 
-    <section class="circulation__area__section" >
+    <section class="circulation__area__section">
         <h1 class="section__title">
             Circulation Areas:
         </h1>
@@ -67,95 +67,97 @@
             The Local Green Guide magazine will be hand delivered to households in a London<br>
             Borough or town by our experienced door to door distribution teams.
         </p>
-        <div class="circulation_cards" id="circulation__area__section">
-            <a>
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Croydon
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 156,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/enfield">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Enfield
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 122,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/albans">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        St Albans
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 56,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/lewisham">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Lewisham
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 118,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/havering">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Havering
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 98,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/redbridge">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Redbridge
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 100,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/merton">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Merton
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 80,000 households
-                    </p>
-                </div>
-            </a>
-            <a target="__blank" href="/comming-soon/bromley">
-                <div class="circulation_card">
-                    <div class="lablel">Comming Soon</div>
-                    <h2 class="title">
-                        London Borough of Bromley
-                    </h2>
-                    <p class="subtitle">
-                        Estimated 135,000 households
-                    </p>
-                </div>
-            </a>
+        <div class="container">
+            <div class="circulation_cards" id="circulation__area__section">
+                <a href="/comming-soon/london-borough-of-croydon">
+                    <div class="circulation_card">
+                        <h2 class="title">
+                            London Borough of Croydon
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 156,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/enfield">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Enfield
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 122,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/albans">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            St Albans
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 56,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/lewisham">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Lewisham
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 118,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/havering">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Havering
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 98,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/redbridge">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Redbridge
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 100,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/merton">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Merton
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 80,000 households
+                        </p>
+                    </div>
+                </a>
+                <a href="/comming-soon/bromley">
+                    <div class="circulation_card">
+                        <div class="lablel">Coming Soon</div>
+                        <h2 class="title">
+                            London Borough of Bromley
+                        </h2>
+                        <p class="subtitle">
+                            Estimated 135,000 households
+                        </p>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -183,32 +185,50 @@
             <div class="col-lg-8 col-md-12 p-4">
                 <div class="advertise_spaces__box">
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-1.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-1.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-broadcast-tower" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Double Spread</div>
                         <div class="size">A3 - 297 x 420mm</div>
                     </div>
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-2.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-2.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-clipboard-list" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Full Page</div>
                         <div class="size">A4 - 210 x 297mm</div>
                     </div>
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-3.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-3.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-file-alt" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Half Page</div>
                         <div class="size">A5 - 148 x 210mm</div>
                     </div>
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-4.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-4.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-fax" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Quarter Page</div>
                         <div class="size">A6 - 105 x 148mm</div>
                     </div>
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-5.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-5.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-file-audio" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Voucher</div>
                         <div class="size">70 x 42mm</div>
                     </div>
                     <div class="advertise__size__box">
-                        <img src="{{ url('front/img/advert-size-icon-6.png') }}" alt="">
+                        {{-- <img src="{{ url('front/img/advert-size-icon-6.png') }}" alt=""> --}}
+                        <span>
+                            <i class="fa fa-file-powerpoint" style="font-size: 6rem; color: #335e41"> </i>
+                        </span>
                         <div class="size__title">Premium</div>
                         <div class="size">A4 - 210 x 297mm</div>
                     </div>

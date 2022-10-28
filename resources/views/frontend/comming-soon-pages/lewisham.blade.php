@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>London Borough of Lewisham</title>
     <style>
-        /* Comming Soon Pages Styles */
+        /* Coming Soon Pages Styles */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Trispace:wght@200;300;400;500;600&display=swap');
 
         * {
@@ -35,14 +35,11 @@
             position: absolute;
             top: 30px;
             left: 30px;
-            font-size: 1.9rem;
-            line-height: 35px;
-            font-family: 'Trispace', sans-serif;
         }
 
-        .comming__soon__page__wrapper .fixed_top__text span {
-            background: rgb(135, 240, 121);
-            color: #000;
+        .comming__soon__page__wrapper .fixed_top__text img {
+          width: 150px;
+          object-fit: cover
         }
 
         .comming__soon__page__wrapper .main__title {
@@ -135,6 +132,17 @@
 
 
         }
+        .comming__soon__page__wrapper .go_back_to_site{
+                position: fixed;
+                top: 30px;
+                right: 40px;
+                font-size: 18px;
+                text-decoration: none;
+                color: #32682b;
+                padding-bottom: 5px;
+                border-bottom: 2px solid #32682b;
+            }
+
     </style>
 </head>
 
@@ -142,21 +150,20 @@
 
 
     <div class="comming__soon__page__wrapper">
+           <a class="go_back_to_site" href="/about#circulation__area__section" > Go back</a>
+     
         <h2 class="fixed_top__text">
-            Local<br><span>Green Guide</span>
+           <a href="/"><img src="{{asset('front/img/green-guide-logo.png')}}" alt=""></a>
         </h2>
 
         <h1 class="main__title">
-            London Borough of Lewisham is <br>Comming Soon
+            London Borough of Lewisham is <br>Coming Soon
         </h1>
-        <span class="households">
-            Estimated 118,000 households
-        </span>
 
         <p class="description">
             <span>Until then…</span>
             <br>
-            Don't miss out on the opportunity to be apart of the Local Green Guide “London Borough of Lewisham”
+            Don't miss out on the opportunity to be apart of the Local Green Guide London Borough of Lewisham
             magazine.
             To
             stay up to date on latest information and launch date, register your interest below.
@@ -164,7 +171,7 @@
         <ul class="list__items">
             <li> <img src="{{ asset('front/img/tickicon.png') }}" alt="">
                 <span>Circulation of an estimated
-                    “Household Count”
+                    <b>118,000</b>
                 </span>
             </li>
             <li>

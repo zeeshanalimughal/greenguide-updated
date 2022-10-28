@@ -3,7 +3,7 @@
 
 @section('admin-section')
     @push('page-title')
-        <h1 class="page-title">London Borough Comming Soon Form Submitions</h1>
+        <h1 class="page-title">London Borough Coming Soon Form Submitions</h1>
     @endpush
 
     @if (session()->has('error'))
@@ -29,7 +29,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">London Borough Comming Soon Form Submitions</h3>
+                    <h3 class="card-title">London Borough Coming Soon Form Submitions</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

@@ -42,6 +42,11 @@ class CommingSoon extends Controller
     {
         return view('frontend.comming-soon-pages.albans');
     }
+    
+    public function getCroydonPage()
+    {
+        return view('frontend.comming-soon-pages.london-borough-of-croydon');
+    }
 
     public function londonBoroughCommingSoonFrom(LondonBoroughCommingSoon $model, LondonBorough $request)
     {

@@ -63,7 +63,7 @@ html {
 }
 .about__our__services .service_cards{
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(25rem, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(20rem, 1fr));
     align-content: flex-start;
     margin: 0 !important;
 }
@@ -111,36 +111,36 @@ html {
 
 
 .circulation__area__section{
-    min-height: 80vh;
+    min-height: 60vh;
     width: 100%;
     background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../img/wormhole-g8cadb3faa_1280.png') ;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    padding: 8rem 10%;
+    padding: 4rem 10%;
     text-align: center;
 }
 .circulation__area__section .circulation_cards{
     width: 100%;
     display: flex;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(23rem, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(14rem, 1fr));
     align-content: flex-start;
-    gap: 2rem;
+    gap: 3rem;
 }
 .circulation__area__section .circulation_cards .circulation_card{
-   min-height: 16rem;
+   min-height: 11rem;
    background-color: #fff;
    display: grid;
    place-items: center;
-    padding: 20px;
+    padding: 10px;
     /* border-radius: 60px 5px 60px 5px; */
 }
 
 .circulation__area__section .circulation_cards .circulation_card .title{
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 }
 
 
@@ -151,7 +151,7 @@ html {
 
 .circulation__area__section > p{
     color: #fff;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 
@@ -187,10 +187,13 @@ html {
     max-width: 100%;
     width: 100%;
     padding: 4rem 8%;
-    background-color: #fff;
+    background-color: #ffffff99;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(12rem, 1fr));
     gap: 5rem;
+    backdrop-filter:blur(10px);
+    border-radius:10px;
+    box-shadow:0 0 30px #00000033;
 }
 .advertisement__spaces .advertise_spaces__box .advertise__size__box{
     display: flex;
@@ -202,6 +205,11 @@ html {
 .advertisement__spaces .advertise_spaces__box .advertise__size__box .size__title{
     font-size: 1.8rem;
     margin: 20px 0;
+    font-weight:500;
+}
+
+.advertisement__spaces .advertise_spaces__box .advertise__size__box .size{
+    font-size: 1.4rem;
 }
 
 

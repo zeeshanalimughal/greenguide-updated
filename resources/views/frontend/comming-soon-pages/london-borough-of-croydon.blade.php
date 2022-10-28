@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>London Borough of Havering</title>
+    <title>London Borough of Croydon</title>
     <style>
         /* Coming Soon Pages Styles */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Trispace:wght@200;300;400;500;600&display=swap');
@@ -155,23 +155,21 @@
         <h2 class="fixed_top__text">
            <a href="/"><img src="{{asset('front/img/green-guide-logo.png')}}" alt=""></a>
         </h2>
+
         <h1 class="main__title">
-            London Borough of Havering is <br>Coming Soon
+            London Borough of Croydon
         </h1>
 
-
         <p class="description">
-            <span>Until then…</span>
-            <br>
-            Don't miss out on the opportunity to be apart of the Local Green Guide London Borough of Havering
-            magazine.
+            
+            Don't miss out on the opportunity to be apart of the Local Green Guide London Borough of Croydon magazine.
             To
             stay up to date on latest information and launch date, register your interest below.
         </p>
         <ul class="list__items">
             <li> <img src="{{ asset('front/img/tickicon.png') }}" alt="">
                 <span>Circulation of an estimated
-                    <b>98,000</b>
+                    <b> 156,000 </b>
                 </span>
             </li>
             <li>
@@ -210,7 +208,7 @@
             @if ($errors->has('email'))
                 <div style="color: red; margin-top: -10px;">*{{ $errors->first('email') }}</div>
             @endif
-            <input type="hidden" name="area_name" value="London Borough of Havering">
+            <input type="hidden" name="area_name" value="London Borough of Croydon">
             <input type="submit" value="I'm Interested">
         </form>
     </div>
